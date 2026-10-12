@@ -6,6 +6,10 @@
 	objectVersion = 90;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FE0000000000000000000001 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = FE0000000000000000000002 /* FirebaseCore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		000000000000000000000120 /* trees2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trees2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -22,6 +26,7 @@
 		000000000000000130000000 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				FE0000000000000000000001 /* FirebaseCore in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -60,6 +65,9 @@
 				000000000000000000000010 /* trees2 */,
 			);
 			name = trees2;
+			packageProductDependencies = (
+				FE0000000000000000000002 /* FirebaseCore */,
+			);
 			productName = MyApp;
 			productReference = 000000000000000000000120 /* trees2.app */;
 			productType = "com.apple.product-type.application";
@@ -359,6 +367,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FE0000000000000000000002 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA9873EF307C0391008E1456 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 000000000000000000000000 /* Project object */;
 }
