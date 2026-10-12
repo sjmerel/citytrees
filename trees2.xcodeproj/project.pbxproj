@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA1BE9BE307DA10A00B8B8B2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = AA1BE9BD307DA10A00B8B8B2 /* FirebaseAnalytics */; };
 		FE0000000000000000000001 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = FE0000000000000000000002 /* FirebaseCore */; };
 /* End PBXBuildFile section */
 
@@ -14,9 +15,22 @@
 		000000000000000000000120 /* trees2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trees2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AA1BE9BB307DA05000B8B8B2 /* Exceptions for "trees2" folder in "trees2" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 000000000000000100000000 /* trees2 */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		000000000000000000000010 /* trees2 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				AA1BE9BB307DA05000B8B8B2 /* Exceptions for "trees2" folder in "trees2" target */,
+			);
 			path = trees2;
 			sourceTree = "<group>";
 		};
@@ -26,6 +40,7 @@
 		000000000000000130000000 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				AA1BE9BE307DA10A00B8B8B2 /* FirebaseAnalytics in Frameworks */,
 				FE0000000000000000000001 /* FirebaseCore in Frameworks */,
 			);
 		};
@@ -36,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000010 /* trees2 */,
+				AA1BE9BC307DA10A00B8B8B2 /* Frameworks */,
 				000000000000000000000020 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,6 +62,13 @@
 				000000000000000000000120 /* trees2.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AA1BE9BC307DA10A00B8B8B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -67,6 +90,7 @@
 			name = trees2;
 			packageProductDependencies = (
 				FE0000000000000000000002 /* FirebaseCore */,
+				AA1BE9BD307DA10A00B8B8B2 /* FirebaseAnalytics */,
 			);
 			productName = MyApp;
 			productReference = 000000000000000000000120 /* trees2.app */;
@@ -268,6 +292,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = trees2/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -307,6 +332,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = trees2/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -369,6 +395,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AA1BE9BD307DA10A00B8B8B2 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA9873EF307C0391008E1456 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
 		FE0000000000000000000002 /* FirebaseCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA9873EF307C0391008E1456 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
