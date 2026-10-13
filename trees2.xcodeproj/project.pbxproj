@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AA1BE9BE307DA10A00B8B8B2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = AA1BE9BD307DA10A00B8B8B2 /* FirebaseAnalytics */; };
 		AA1BE9C1307DA57300B8B8B2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = AA1BE9C0307DA57300B8B8B2 /* FirebaseCrashlytics */; };
+		AA1BE9C4307DA73A00B8B8B2 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = AA1BE9C3307DA73A00B8B8B2 /* GoogleMaps */; };
 		FE0000000000000000000001 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = FE0000000000000000000002 /* FirebaseCore */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		000000000000000130000000 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				AA1BE9C4307DA73A00B8B8B2 /* GoogleMaps in Frameworks */,
 				AA1BE9C1307DA57300B8B8B2 /* FirebaseCrashlytics in Frameworks */,
 				AA1BE9BE307DA10A00B8B8B2 /* FirebaseAnalytics in Frameworks */,
 				FE0000000000000000000001 /* FirebaseCore in Frameworks */,
@@ -95,6 +97,7 @@
 				FE0000000000000000000002 /* FirebaseCore */,
 				AA1BE9BD307DA10A00B8B8B2 /* FirebaseAnalytics */,
 				AA1BE9C0307DA57300B8B8B2 /* FirebaseCrashlytics */,
+				AA1BE9C3307DA73A00B8B8B2 /* GoogleMaps */,
 			);
 			productName = MyApp;
 			productReference = 000000000000000000000120 /* trees2.app */;
@@ -126,6 +129,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				AA9873EF307C0391008E1456 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				AA1BE9C2307DA72D00B8B8B2 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
 			);
 			preferredProjectObjectVersion = 90;
 			productRefGroup = 000000000000000000000020 /* Products */;
@@ -316,6 +320,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = trees2/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to show your position on the map.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -355,6 +360,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = trees2/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to show your position on the map.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -405,6 +411,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AA1BE9C2307DA72D00B8B8B2 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/ios-maps-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.2.0;
+			};
+		};
 		AA9873EF307C0391008E1456 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -425,6 +439,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA9873EF307C0391008E1456 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
+		};
+		AA1BE9C3307DA73A00B8B8B2 /* GoogleMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA1BE9C2307DA72D00B8B8B2 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
+			productName = GoogleMaps;
 		};
 		FE0000000000000000000002 /* FirebaseCore */ = {
 			isa = XCSwiftPackageProductDependency;
