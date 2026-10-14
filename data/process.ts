@@ -136,6 +136,61 @@ async function main() {
   // fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
   fs.writeFileSync('types.json', JSON.stringify(types, null, 2));
   fs.writeFileSync('trees.json', JSON.stringify(trees, null, 2));
+  writeTypesBinary(types);
+  writeTreesBinary(trees, types.length);
+}
+
+function writeTypesBinary(types: { canonical_name: string }[]): void {
+  const headerSize = 12;
+  const encodedNames = types.map(type => Buffer.from(type.canonical_name, 'utf8'));
+  const totalSize = headerSize + encodedNames.reduce((size, name) => {
+    assert(name.length <= 0xffff, 'Type name is too long to encode');
+    return size + 2 + name.length;
+  }, 0);
+  const output = Buffer.alloc(totalSize);
+
+  // Little-endian header: magic "TYPE", version, reserved, type count.
+  output.write('TYPE', 0, 'ascii');
+  output.writeUInt16LE(1, 4);
+  output.writeUInt16LE(0, 6);
+  output.writeUInt32LE(types.length, 8);
+
+  let offset = headerSize;
+  for (const name of encodedNames) {
+    output.writeUInt16LE(name.length, offset);
+    offset += 2;
+    name.copy(output, offset);
+    offset += name.length;
+  }
+
+  fs.writeFileSync('types.bin', output);
+}
+
+function writeTreesBinary(
+  trees: { lat: number; lon: number; type: number }[],
+  typeCount: number
+): void {
+  const headerSize = 12;
+  const recordSize = 20;
+  const output = Buffer.alloc(headerSize + trees.length * recordSize);
+
+  // Little-endian header: magic "TREE", version, reserved, tree count.
+  output.write('TREE', 0, 'ascii');
+  output.writeUInt16LE(1, 4);
+  output.writeUInt16LE(0, 6);
+  output.writeUInt32LE(trees.length, 8);
+
+  let offset = headerSize;
+  for (const tree of trees) {
+    assert(Number.isFinite(tree.lat) && Number.isFinite(tree.lon), 'Invalid tree coordinates');
+    assert(Number.isInteger(tree.type) && tree.type >= 0 && tree.type < typeCount, 'Invalid tree type index');
+    output.writeDoubleLE(tree.lat, offset);
+    output.writeDoubleLE(tree.lon, offset + 8);
+    output.writeUInt32LE(tree.type, offset + 16);
+    offset += recordSize;
+  }
+
+  fs.writeFileSync('trees.bin', output);
 }
 
 ////////////////////////////////////////
@@ -181,5 +236,4 @@ catch(error) {
 }
 
 }) ();
-
 

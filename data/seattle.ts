@@ -4,6 +4,9 @@ import fs from 'node:fs';
 import { parse } from 'csv-parse';
 
 async function main() {
+
+  // data from: https://data.seattle.gov/dataset/SDOT-Trees/gapw-b2rf/about_data 
+
   let parser = fs.createReadStream('./seattle.csv').pipe(
     parse({
       columns: true,

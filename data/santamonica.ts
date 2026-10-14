@@ -4,6 +4,9 @@ import fs from 'node:fs';
 import { parse } from 'csv-parse';
 
 async function main() {
+
+  // data from: https://data.santamonica.gov/ne/dataset/trees-inventory
+
   let parser = fs.createReadStream('./santamonica.csv').pipe(
     parse({
       columns: true,
