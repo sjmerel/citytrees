@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "000000000000000100000000"
-               BuildableName = "trees2.app"
-               ReferencedContainer = "container:trees2.xcodeproj">
+               BuildableName = "trees.app"
+               ReferencedContainer = "container:trees.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "000000000000000100000000"
-            BuildableName = "trees2.app"
-            ReferencedContainer = "container:trees2.xcodeproj">
+            BuildableName = "trees.app"
+            ReferencedContainer = "container:trees.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -71,8 +71,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "000000000000000100000000"
-            BuildableName = "trees2.app"
-            ReferencedContainer = "container:trees2.xcodeproj">
+            BuildableName = "trees.app"
+            ReferencedContainer = "container:trees.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
