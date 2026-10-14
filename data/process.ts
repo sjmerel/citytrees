@@ -17,13 +17,13 @@ async function main() {
   console.log('loading...');
   for (let city of cities) {
     let cityData = JSON.parse(fs.readFileSync(`${city}.json`, 'utf8'));
-    console.log(`  ${city}: ${cityData.length} trees`);
+    console.log(`  ${city}: ${cityData.length} sites`);
     for (let d of cityData) {
       assert(d.name && d.lat && d.lon);
       data.push(d);
     }
   }
-  console.log(`  TOTAL: ${data.length} trees`);
+  console.log(`  TOTAL: ${data.length} sites`);
 
 
   // preprocess
@@ -116,18 +116,18 @@ async function main() {
     return true;
   });
 
-  console.log(`discarded ${discarded} trees`);
+  console.log(`discarded ${discarded} sites`);
   fs.writeFileSync('debug_canonicalize.json', JSON.stringify(canonicalizedMap, null, 2));
   fs.writeFileSync('debug_canonicalize_fail.json', JSON.stringify(failedMap, null, 2));
 
   let names = [...new Set(data.map(o => o.name))];
 
-  let trees = data.map(o => ({
+  let sites = data.map(o => ({
     lat: o.lat,
     lon: o.lon,
     type: names.indexOf(o.name)
   }));
-  console.log(`${trees.length} trees`);
+  console.log(`${sites.length} sites`);
 
   let types = names.map(o => ({
     canonical_name: o
@@ -136,9 +136,9 @@ async function main() {
 
   // fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
   fs.writeFileSync('types.json', JSON.stringify(types, null, 2));
-  fs.writeFileSync('trees.json', JSON.stringify(trees, null, 2));
+  fs.writeFileSync('sites.json', JSON.stringify(sites, null, 2));
   writeTypesBinary(types);
-  writeTreesBinary(trees, types.length);
+  writeSitesBinary(sites, types.length);
 }
 
 function writeTypesBinary(types: { canonical_name: string }[]): void {
@@ -164,28 +164,28 @@ function writeTypesBinary(types: { canonical_name: string }[]): void {
   fs.writeFileSync(path.join(__dirname, '../ios/trees/types.bin'), output);
 }
 
-function writeTreesBinary(
-  trees: { lat: number; lon: number; type: number }[],
+function writeSitesBinary(
+  sites: { lat: number; lon: number; type: number }[],
   typeCount: number
 ): void {
   const headerSize = 4;
   const recordSize = 20;
-  const output = Buffer.alloc(headerSize + trees.length * recordSize);
+  const output = Buffer.alloc(headerSize + sites.length * recordSize);
 
-  // Little-endian tree count, followed by fixed-width tree records.
-  output.writeUInt32LE(trees.length, 0);
+  // Little-endian site count, followed by fixed-width site records.
+  output.writeUInt32LE(sites.length, 0);
 
   let offset = headerSize;
-  for (const tree of trees) {
-    assert(Number.isFinite(tree.lat) && Number.isFinite(tree.lon), 'Invalid tree coordinates');
-    assert(Number.isInteger(tree.type) && tree.type >= 0 && tree.type < typeCount, 'Invalid tree type index');
-    output.writeDoubleLE(tree.lat, offset);
-    output.writeDoubleLE(tree.lon, offset + 8);
-    output.writeUInt32LE(tree.type, offset + 16);
+  for (const site of sites) {
+    assert(Number.isFinite(site.lat) && Number.isFinite(site.lon), 'Invalid site coordinates');
+    assert(Number.isInteger(site.type) && site.type >= 0 && site.type < typeCount, 'Invalid site type index');
+    output.writeDoubleLE(site.lat, offset);
+    output.writeDoubleLE(site.lon, offset + 8);
+    output.writeUInt32LE(site.type, offset + 16);
     offset += recordSize;
   }
 
-  fs.writeFileSync(path.join(__dirname, '../ios/trees/trees.bin'), output);
+  fs.writeFileSync(path.join(__dirname, '../ios/trees/sites.bin'), output);
 }
 
 ////////////////////////////////////////

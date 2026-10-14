@@ -19,7 +19,7 @@ struct MapView: UIViewRepresentable {
         mapView.camera = camera
         mapView.delegate = context.coordinator
 
-        for tree in Tree.all.prefix(100) {
+        for tree in Site.all.prefix(100) {
             let marker = GMSMarker(
                 position: CLLocationCoordinate2D(
                     latitude: tree.latitude,
