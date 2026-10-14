@@ -19,6 +19,17 @@ struct MapView: UIViewRepresentable {
         mapView.camera = camera
         mapView.delegate = context.coordinator
 
+        for tree in Tree.all.prefix(100) {
+            let marker = GMSMarker(
+                position: CLLocationCoordinate2D(
+                    latitude: tree.latitude,
+                    longitude: tree.longitude
+                )
+            )
+            marker.title = tree.type.canonicalName
+            marker.map = mapView
+        }
+
         context.coordinator.configureLocation(for: mapView)
 
         // custom map style

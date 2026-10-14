@@ -4,8 +4,8 @@ import GoogleMaps
 struct ContentView: View {
     
     @State private var targetCoordinate = CLLocationCoordinate2D(
-        latitude: 34.0195,
-        longitude: -118.4912
+        latitude: 34.2951,
+        longitude: -118.5728
     )
     
     var body: some View {

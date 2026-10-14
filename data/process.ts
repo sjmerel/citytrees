@@ -3,6 +3,7 @@
 import axios from 'axios';
 import fs from 'node:fs';
 import assert from 'node:assert';
+import path from 'node:path';
 
 let cities = [
   'losangeles',
@@ -141,7 +142,7 @@ async function main() {
 }
 
 function writeTypesBinary(types: { canonical_name: string }[]): void {
-  const headerSize = 12;
+  const headerSize = 4;
   const encodedNames = types.map(type => Buffer.from(type.canonical_name, 'utf8'));
   const totalSize = headerSize + encodedNames.reduce((size, name) => {
     assert(name.length <= 0xffff, 'Type name is too long to encode');
@@ -149,11 +150,8 @@ function writeTypesBinary(types: { canonical_name: string }[]): void {
   }, 0);
   const output = Buffer.alloc(totalSize);
 
-  // Little-endian header: magic "TYPE", version, reserved, type count.
-  output.write('TYPE', 0, 'ascii');
-  output.writeUInt16LE(1, 4);
-  output.writeUInt16LE(0, 6);
-  output.writeUInt32LE(types.length, 8);
+  // Little-endian type count, followed by length-prefixed UTF-8 names.
+  output.writeUInt32LE(types.length, 0);
 
   let offset = headerSize;
   for (const name of encodedNames) {
@@ -163,22 +161,19 @@ function writeTypesBinary(types: { canonical_name: string }[]): void {
     offset += name.length;
   }
 
-  fs.writeFileSync('types.bin', output);
+  fs.writeFileSync(path.join(__dirname, '../ios/trees/types.bin'), output);
 }
 
 function writeTreesBinary(
   trees: { lat: number; lon: number; type: number }[],
   typeCount: number
 ): void {
-  const headerSize = 12;
+  const headerSize = 4;
   const recordSize = 20;
   const output = Buffer.alloc(headerSize + trees.length * recordSize);
 
-  // Little-endian header: magic "TREE", version, reserved, tree count.
-  output.write('TREE', 0, 'ascii');
-  output.writeUInt16LE(1, 4);
-  output.writeUInt16LE(0, 6);
-  output.writeUInt32LE(trees.length, 8);
+  // Little-endian tree count, followed by fixed-width tree records.
+  output.writeUInt32LE(trees.length, 0);
 
   let offset = headerSize;
   for (const tree of trees) {
@@ -190,7 +185,7 @@ function writeTreesBinary(
     offset += recordSize;
   }
 
-  fs.writeFileSync('trees.bin', output);
+  fs.writeFileSync(path.join(__dirname, '../ios/trees/trees.bin'), output);
 }
 
 ////////////////////////////////////////
@@ -236,4 +231,3 @@ catch(error) {
 }
 
 }) ();
-
