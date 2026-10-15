@@ -33,11 +33,20 @@ class MapTileLayer: GMSSyncTileLayer {
             y: (Double(y) + 1 + padding) / tileCount
         )
         let rect = MapRect(northWest: northWest, southEast: southEast)
-        let sites = TreeNode.all.find(rect: rect)
+        var sites = TreeNode.all.find(rect: rect)
 
         if sites.isEmpty { return kGMSTileLayerNoTile }
 
-        let profiler = Profiler(name: "tile \(x) \(y)")
+        if sites.count > MAX_SITES {
+            let allSites = sites
+            let sampleCount = MAX_SITES
+            sites = (0..<sampleCount).map { index in
+                allSites[index * allSites.count / sampleCount]
+            }
+            print("decimated \(allSites.count) -> \(sites.count)")
+        }
+
+        let profiler = Profiler(name: "tile \(x) \(y) (\(sites.count) sites)")
         // note: we get an assertion if we use UIGraphicsImageRenderer
         let pixelSize = Int(TILE_SIZE)
         let bytesPerRow = pixelSize * 4
@@ -84,6 +93,7 @@ class MapTileLayer: GMSSyncTileLayer {
     private let SITES_DIAMETER_METERS = 4.0
     private let MIN_DIAMETER_POINTS = 4.0
     private let MAP_TILE_SIZE_POINTS = 256.0
+    private let MAX_SITES = 5000
 
     private func project(location: MapLocation) -> (Double, Double) {
         var s = sin(location.lat * .pi / 180)
