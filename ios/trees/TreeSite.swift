@@ -10,13 +10,12 @@ struct TreeSite {
 
     static func load(reader: BinaryReader) -> TreeSite {
         let location = MapLocation.load(reader: reader) //MapLocation(longitude: longitude, latitude: latitude)
-        let typeIndex = Int(reader.readUInt32())
+        let typeIndex = Int(reader.readUInt16())
         return TreeSite(location: location, typeIndex: typeIndex)
     }
 
 
     ////////////////////////////////////////
 
-    private let typeIndex: Int // TODO Int16?
+    private let typeIndex: Int
 }
-

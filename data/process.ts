@@ -189,7 +189,7 @@ function writeSitesBinary(
   }
 
   const headerSize = 4 + 4 * 8;
-  const recordSize = 20;
+  const recordSize = 18;
   const output = Buffer.alloc(headerSize + sites.length * recordSize);
 
   // Little-endian site count and northwest/southeast bounds, followed by site records.
@@ -202,9 +202,10 @@ function writeSitesBinary(
   let offset = headerSize;
   for (const site of sites) {
     assert(Number.isInteger(site.type) && site.type >= 0 && site.type < typeCount, 'Invalid site type index');
+    assert(site.type <= 0xffff, 'Site type index exceeds 16-bit encoding');
     output.writeDoubleLE(site.lat, offset);
     output.writeDoubleLE(site.lon, offset + 8);
-    output.writeUInt32LE(site.type, offset + 16);
+    output.writeUInt16LE(site.type, offset + 16);
     offset += recordSize;
   }
 
