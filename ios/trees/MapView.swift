@@ -19,6 +19,9 @@ struct MapView: UIViewRepresentable {
         mapView.camera = camera
         mapView.delegate = context.coordinator
 
+        self.tileLayer.map = mapView
+
+        /*
         for tree in Site.all.prefix(100) {
             let marker = GMSMarker(
                 position: CLLocationCoordinate2D(
@@ -29,6 +32,7 @@ struct MapView: UIViewRepresentable {
             marker.title = tree.type.canonicalName
             marker.map = mapView
         }
+        */
 
         context.coordinator.configureLocation(for: mapView)
 
@@ -53,6 +57,7 @@ struct MapView: UIViewRepresentable {
         mapView.animate(to: camera)
     }
 
+    private let tileLayer = SiteTileLayer()
 
     ////////////////////////////////////////
 

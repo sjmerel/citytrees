@@ -1,19 +1,17 @@
 import Foundation
 
-struct BinaryReader {
+class BinaryReader {
 
-    private let data: Data
-    private var offset = 0
+    init(fileName: String) {
+        let url = Bundle.main.url(forResource: fileName, withExtension: nil)!
+        self.data = try! Data(contentsOf: url)
+    }
 
     var isAtEnd: Bool {
         offset == data.count
     }
 
-    init(data: Data) {
-        self.data = data
-    }
-
-    mutating func readUInt16() -> UInt16 {
+    func readUInt16() -> UInt16 {
         precondition(offset <= data.count - 2)
         defer { offset += 2 }
         return data.withUnsafeBytes { bytes in
@@ -21,7 +19,7 @@ struct BinaryReader {
         }
     }
 
-    mutating func readUInt32() -> UInt32 {
+    func readUInt32() -> UInt32 {
         precondition(offset <= data.count - 4)
         defer { offset += 4 }
         return data.withUnsafeBytes { bytes in
@@ -29,13 +27,7 @@ struct BinaryReader {
         }
     }
 
-    mutating func readString(count: Int) -> String {
-        precondition(count >= 0 && count <= data.count - offset)
-        defer { offset += count }
-        return String(data: data[offset..<(offset + count)], encoding: .utf8)!
-    }
-
-    mutating func readDouble() -> Double {
+    func readDouble() -> Double {
         precondition(offset <= data.count - 8)
         defer { offset += 8 }
         return data.withUnsafeBytes { bytes in
@@ -43,4 +35,17 @@ struct BinaryReader {
             return Double(bitPattern: bitPattern)
         }
     }
+
+    func readString(count: Int) -> String {
+        precondition(count >= 0 && count <= data.count - offset)
+        defer { offset += count }
+        return String(data: data[offset..<(offset + count)], encoding: .utf8)!
+    }
+
+
+    ////////////////////////////////////////
+
+    private let data: Data
+    private var offset = 0
+
 }

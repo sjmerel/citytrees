@@ -5,12 +5,12 @@ struct TreeType {
     let canonicalName: String
     // let commonNames: [String]
 
-    static let all = loadFromBundle()
+    static let all = load()
 
-    private static func loadFromBundle() -> [TreeType] {
-        let url = Bundle.main.url(forResource: "types", withExtension: "bin")!
-        let data = try! Data(contentsOf: url)
-        var reader = BinaryReader(data: data)
+    private static func load() -> [TreeType] {
+        let profiler = Profiler(name: "read sites.bin")
+
+        let reader = BinaryReader(fileName: "types.bin")
 
         let count = reader.readUInt32()
         var types: [TreeType] = []
@@ -23,6 +23,7 @@ struct TreeType {
         }
 
         precondition(reader.isAtEnd)
+        profiler.stop()
         return types
     }
 }

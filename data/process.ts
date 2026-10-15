@@ -27,7 +27,8 @@ async function main() {
 
 
   // preprocess
-  console.log('preprocessing...');
+  console.log();
+  console.log('preprocessing botanical names...');
   let strippedMap = {}
   let unstrippedMap = {}
   for (let d of data) {
@@ -46,7 +47,8 @@ async function main() {
 
 
   // canonicalize
-  console.log('canonicalizing...');
+  console.log();
+  console.log('canonicalizing botanical names...');
   let inputNames = [...new Set(data.map(o => o.name))];
   let canonicalizedMap = {}
   let failedMap = {}
@@ -81,7 +83,7 @@ async function main() {
     );
     let matches = response.data;
     assert(matches.length == batch.length);
-    console.log(`  ${start+batch.length}/${inputNames.length}`);
+    console.log(`  ... ${start+batch.length}/${inputNames.length}`);
 
     for (let i = 0; i < batch.length; i++) {
       let name = batch[i];
@@ -102,9 +104,12 @@ async function main() {
       }
     }
   }
-  console.log(`  ${Object.keys(failedMap).length} could not be canonicalized`);
-  console.log(`  ${Object.keys(canonicalizedMap).length} canonicalized`);
+  let failedCount = Object.keys(failedMap).length;
+  let successCount = Object.keys(canonicalizedMap).length;
+  console.log(`  ${successCount} names canonicalized`);
+  console.log(`  ${failedCount} names could not be canonicalized (${(failedCount/(failedCount+successCount)*100).toFixed(0)}%)`);
 
+  // discard sites whose names could not be canonicalized
   let discarded = 0;
   data = data.filter(d => {
     let canonicalName = canonicalizedMap[d.name];
@@ -116,7 +121,6 @@ async function main() {
     return true;
   });
 
-  console.log(`discarded ${discarded} sites`);
   fs.writeFileSync('debug_canonicalize.json', JSON.stringify(canonicalizedMap, null, 2));
   fs.writeFileSync('debug_canonicalize_fail.json', JSON.stringify(failedMap, null, 2));
 
@@ -127,14 +131,16 @@ async function main() {
     lon: o.lon,
     type: names.indexOf(o.name)
   }));
-  console.log(`${sites.length} sites`);
 
   let types = names.map(o => ({
     canonical_name: o
   }));
-  console.log(`${types.length} types`);
 
-  // fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
+  console.log();
+  console.log('writing binary files...');
+  console.log(`  ${sites.length} sites`);
+  console.log(`  ${discarded} sites discarded `);
+  console.log(`  ${types.length} unique types`);
   fs.writeFileSync('types.json', JSON.stringify(types, null, 2));
   fs.writeFileSync('sites.json', JSON.stringify(sites, null, 2));
   writeTypesBinary(types);
@@ -168,16 +174,33 @@ function writeSitesBinary(
   sites: { lat: number; lon: number; type: number }[],
   typeCount: number
 ): void {
-  const headerSize = 4;
+  assert(sites.length > 0, 'Cannot write a bounding box for an empty site list');
+
+  let minLat = sites[0].lat;
+  let minLon = sites[0].lon;
+  let maxLat = sites[0].lat;
+  let maxLon = sites[0].lon;
+  for (const site of sites) {
+    assert(Number.isFinite(site.lat) && Number.isFinite(site.lon), 'Invalid site coordinates');
+    minLat = Math.min(minLat, site.lat);
+    minLon = Math.min(minLon, site.lon);
+    maxLat = Math.max(maxLat, site.lat);
+    maxLon = Math.max(maxLon, site.lon);
+  }
+
+  const headerSize = 4 + 4 * 8;
   const recordSize = 20;
   const output = Buffer.alloc(headerSize + sites.length * recordSize);
 
-  // Little-endian site count, followed by fixed-width site records.
+  // Little-endian site count and bounding box (min lat/lon, max lat/lon), followed by site records.
   output.writeUInt32LE(sites.length, 0);
+  output.writeDoubleLE(minLat, 4);
+  output.writeDoubleLE(minLon, 12);
+  output.writeDoubleLE(maxLat, 20);
+  output.writeDoubleLE(maxLon, 28);
 
   let offset = headerSize;
   for (const site of sites) {
-    assert(Number.isFinite(site.lat) && Number.isFinite(site.lon), 'Invalid site coordinates');
     assert(Number.isInteger(site.type) && site.type >= 0 && site.type < typeCount, 'Invalid site type index');
     output.writeDoubleLE(site.lat, offset);
     output.writeDoubleLE(site.lon, offset + 8);
