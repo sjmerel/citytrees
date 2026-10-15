@@ -37,7 +37,7 @@ class BinaryReader {
     }
 
     func readString(count: Int) -> String {
-        precondassertition(count >= 0 && count <= data.count - offset)
+        assert(count >= 0 && count <= data.count - offset)
         defer { offset += count }
         return String(data: data[offset..<(offset + count)], encoding: .utf8)!
     }
