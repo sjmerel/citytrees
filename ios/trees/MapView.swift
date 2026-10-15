@@ -57,7 +57,7 @@ struct MapView: UIViewRepresentable {
         mapView.animate(to: camera)
     }
 
-    private let tileLayer = SiteTileLayer()
+    private let tileLayer = MapTileLayer()
 
     ////////////////////////////////////////
 

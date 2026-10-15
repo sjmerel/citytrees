@@ -21,10 +21,10 @@ class TreeNode {
             if (self.sites!.count > maxSites) {
                 // build subtree
                 self.nodes = [
-                    TreeNode(rect: MapRect(topLeft: self.rect.topLeft, bottomRight: MapLocation(x: self.rect.midX, y: self.rect.midY))),
-                    TreeNode(rect: MapRect(topLeft: MapLocation(x: self.rect.midX, y: self.rect.minY), bottomRight: MapLocation(x: self.rect.maxX, y: self.rect.midY))),
-                    TreeNode(rect: MapRect(topLeft: MapLocation(x: self.rect.minX, y: self.rect.midY), bottomRight: MapLocation(x: self.rect.midX, y: self.rect.maxY))),
-                    TreeNode(rect: MapRect(topLeft: MapLocation(x: self.rect.midX, y: self.rect.midY), bottomRight: self.rect.bottomRight))
+                    TreeNode(rect: MapRect(minX: self.rect.minX, minY: self.rect.minY, maxX: self.rect.midX, maxY: self.rect.midY)),
+                    TreeNode(rect: MapRect(minX: self.rect.midX, minY: self.rect.minY, maxX: self.rect.maxX, maxY: self.rect.midY)),
+                    TreeNode(rect: MapRect(minX: self.rect.minX, minY: self.rect.midY, maxX: self.rect.midX, maxY: self.rect.maxY)),
+                    TreeNode(rect: MapRect(minX: self.rect.midX, minY: self.rect.midY, maxX: self.rect.maxX, maxY: self.rect.maxY))
                 ]
                 for site in self.sites! {
                     addToNodes(site: site)
@@ -59,7 +59,8 @@ class TreeNode {
     let rect: MapRect
 
     static let all = load() // XXX
-    var first: TreeSite? {
+
+    var first: TreeSite? { // XXX
         if let site = self.sites?.first { return site }
         if let nodes = self.nodes {
             for node in nodes {
@@ -91,12 +92,13 @@ class TreeNode {
         precondition(reader.isAtEnd)
         profiler.stop()
         //node.printNode()
+
         return node
     }
 
     func printNode(depth: Int = 0) {
         var s = ""
-        for i in 0..<depth { s += "  " }
+        for _ in 0..<depth { s += "  " }
         
         if let sites = self.sites {
             print("\(s)\(sites.count)")
@@ -129,7 +131,7 @@ class TreeNode {
         if !rect.intersects(self.rect) { return }
 
         if let sites = self.sites {
-            result.append(contentsOf: sites.filter { self.rect.contains($0.location) })
+            result.append(contentsOf: sites.filter { rect.contains($0.location) })
         }
         else {
             for node in self.nodes! {

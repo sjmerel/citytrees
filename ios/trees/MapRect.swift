@@ -1,4 +1,13 @@
 struct MapRect {
+    init(topLeft: MapLocation, bottomRight: MapLocation) {
+        self.topLeft = topLeft
+        self.bottomRight = bottomRight
+    }
+
+    init(minX: Double, minY: Double, maxX: Double, maxY: Double) {
+        self.topLeft = MapLocation(x: minX, y: minY)
+        self.bottomRight = MapLocation(x: maxX, y: maxY)
+    }
 
     var topLeft: MapLocation
     var bottomRight: MapLocation
