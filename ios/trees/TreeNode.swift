@@ -1,7 +1,8 @@
 class TreeNode {
     
-    init(rect: MapRect) {
+    init(rect: MapRect, sites: [TreeSite]) {
         self.rect = rect
+        add(sites: sites)
     }
 
     func findNearest(location: MapLocation) -> TreeSite? {
@@ -12,48 +13,6 @@ class TreeNode {
         var result = [TreeSite]()
         find(rect: rect, result: &result)
         return result
-    }
-
-    func add(site: TreeSite) {
-        assert(self.rect.contains(site.location))
-        if self.sites != nil {
-            self.sites!.append(site)
-            if (self.sites!.count > maxSites) {
-                // build subtree
-                self.nodes = [
-                    TreeNode(rect: MapRect(north: self.rect.north, west: self.rect.west, south: self.rect.midLat, east: self.rect.midLon)),
-                    TreeNode(rect: MapRect(north: self.rect.north, west: self.rect.midLon, south: self.rect.midLat, east: self.rect.east)),
-                    TreeNode(rect: MapRect(north: self.rect.midLat, west: self.rect.west, south: self.rect.south, east: self.rect.midLon)),
-                    TreeNode(rect: MapRect(north: self.rect.midLat, west: self.rect.midLon, south: self.rect.south, east: self.rect.east)),
-                ]
-                for site in self.sites! {
-                    addToNodes(site: site)
-                }
-                self.sites = nil
-            }
-        }
-        else {
-            addToNodes(site: site)
-        }
-    }
-
-    private func addToNodes(site: TreeSite) {
-        if (site.location.lon < self.rect.midLon) {
-            if (site.location.lat >= self.rect.midLat) {
-                self.nodes![northWest].add(site: site)
-            }
-            else {
-                self.nodes![southWest].add(site: site)
-            }
-        }
-        else {
-            if (site.location.lat >= self.rect.midLat) {
-                self.nodes![northEast].add(site: site)
-            }
-            else {
-                self.nodes![southEast].add(site: site)
-            }
-        }
     }
 
     let rect: MapRect
@@ -82,16 +41,23 @@ class TreeNode {
         rect.northWest.lat += rect.northWest.lat.ulp
         rect.southEast.lon += rect.southEast.lon.ulp
 
-        let node = TreeNode(rect: rect)
+        profiler.mark(label: "read start")
+        var sites: [TreeSite] = []
+        sites.reserveCapacity(Int(count))
 
         for _ in 0..<count {
-            let site = TreeSite.load(reader: reader)
-            node.add(site: site)
+            sites.append(TreeSite.load(reader: reader))
         }
-
         assert(reader.isAtEnd)
+        profiler.mark(label: "read \(count) sites")
+
+        let node = TreeNode(rect: rect, sites: sites)
+        profiler.mark(label: "build tree")
+
         profiler.stop()
+
         //node.printNode()
+        print("depth: \(node.maxDepth())")
 
         return node
     }
@@ -116,15 +82,20 @@ class TreeNode {
 
     ////////////////////////////////////////
 
-    private var sites: [TreeSite]? = [TreeSite]()
+    private var sites: [TreeSite]? = nil
     private var nodes: [TreeNode]? = nil 
 
-    private let maxSites = 10
+    private let maxSites = 32
     
     private let northWest = 0
     private let northEast = 1
     private let southWest = 2
     private let southEast = 3
+
+    private func maxDepth() -> Int {
+        guard let nodes = self.nodes else { return 0 }
+        return 1 + nodes.map { $0.maxDepth() }.max()!
+    }
 
 
     private func find(rect: MapRect, result: inout [TreeSite]) {
@@ -137,6 +108,37 @@ class TreeNode {
             for node in self.nodes! {
                 node.find(rect: rect, result: &result)
             }
+        }
+    }
+
+    private func add(sites: [TreeSite]) {
+        if (sites.count <= self.maxSites) {
+            self.sites = sites
+        }
+        else {
+            var nodeSites = [
+                [TreeSite](), 
+                [TreeSite](), 
+                [TreeSite](), 
+                [TreeSite](), 
+            ]
+            for site in sites {
+                let east = site.location.lon >= self.rect.midLon
+                let north = site.location.lat >= self.rect.midLat
+                let index: Int
+                if north {
+                    index = east ? self.northEast : self.northWest
+                } else {
+                    index = east ? self.southEast : self.southWest
+                }
+                nodeSites[index].append(site)
+            }
+            self.nodes = [
+                TreeNode(rect: MapRect(north: self.rect.north, west: self.rect.west, south: self.rect.midLat, east: self.rect.midLon), sites: nodeSites[0]),
+                TreeNode(rect: MapRect(north: self.rect.north, west: self.rect.midLon, south: self.rect.midLat, east: self.rect.east), sites: nodeSites[1]),
+                TreeNode(rect: MapRect(north: self.rect.midLat, west: self.rect.west, south: self.rect.south, east: self.rect.midLon), sites: nodeSites[2]),
+                TreeNode(rect: MapRect(north: self.rect.midLat, west: self.rect.midLon, south: self.rect.south, east: self.rect.east), sites: nodeSites[3]),
+            ]
         }
     }
 
