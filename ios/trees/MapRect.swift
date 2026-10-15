@@ -1,41 +1,48 @@
 struct MapRect {
-    init(topLeft: MapLocation, bottomRight: MapLocation) {
-        self.topLeft = topLeft
-        self.bottomRight = bottomRight
+
+    init(northWest: MapLocation, southEast: MapLocation) {
+        assert(northWest.lat >= southEast.lat)
+        assert(northWest.lon <= southEast.lon)
+        self.northWest = northWest
+        self.southEast = southEast
     }
 
-    init(minX: Double, minY: Double, maxX: Double, maxY: Double) {
-        self.topLeft = MapLocation(x: minX, y: minY)
-        self.bottomRight = MapLocation(x: maxX, y: maxY)
+    init(north: Double, west: Double, south: Double, east: Double) {
+        self.init(northWest: MapLocation(lat: north, lon: west),
+                  southEast: MapLocation(lat: south, lon: east))
     }
 
-    var topLeft: MapLocation
-    var bottomRight: MapLocation
+    var northWest: MapLocation
+    var southEast: MapLocation
 
-    var minX: Double { return self.topLeft.x }
-    var midX: Double { return (self.minX + self.maxX)/2 }
-    var maxX: Double { return self.bottomRight.x }
+    var west: Double { return self.northWest.lon }
+    var east: Double { return self.southEast.lon }
+    var minLon: Double { return self.west }
+    var midLon: Double { return (self.west + self.east)/2 }
+    var maxLon: Double { return self.east }
 
-    var minY: Double { return self.topLeft.y }
-    var midY: Double { return (self.minY + self.maxY)/2 }
-    var maxY: Double { return self.bottomRight.y }
+    var north: Double { return self.northWest.lat }
+    var south: Double { return self.southEast.lat }
+    var minLat: Double { return self.south }
+    var midLat: Double { return (self.north + self.south)/2 }
+    var maxLat: Double { return self.north }
 
     func contains(_ location: MapLocation) -> Bool {
-        return location.x >= self.minX && location.x < self.maxX &&
-               location.y >= self.minY && location.y < self.maxY
+        return location.lat >= self.minLat && location.lat < self.maxLat &&
+               location.lon >= self.minLon && location.lon < self.maxLon
     }
 
     func intersects(_ rect: MapRect) -> Bool {
-        return !(self.maxY <= rect.minY ||
-                 self.minY >= rect.maxY ||
-                 self.maxX <= rect.minX ||
-                 self.minX >= rect.maxX)
+        return !(self.maxLat <= rect.minLat ||
+                 self.minLat >= rect.maxLat ||
+                 self.maxLon <= rect.minLon ||
+                 self.minLon >= rect.maxLon)
     }
 
 
     static func load(reader: BinaryReader) -> MapRect {
-        let topLeft = MapLocation.load(reader: reader)
+        let northWest = MapLocation.load(reader: reader)
         let bottomRight = MapLocation.load(reader: reader)
-        return MapRect(topLeft: topLeft, bottomRight: bottomRight)
+        return MapRect(northWest: northWest, southEast: bottomRight)
     }
 }

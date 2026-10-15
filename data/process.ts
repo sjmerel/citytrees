@@ -139,7 +139,7 @@ async function main() {
   console.log();
   console.log('writing binary files...');
   console.log(`  ${sites.length} sites`);
-  console.log(`  ${discarded} sites discarded `);
+  console.log(`  ${discarded} sites discarded (${(discarded/(discarded+sites.length)*100).toFixed(0)}%)`);
   console.log(`  ${types.length} unique types`);
   fs.writeFileSync('types.json', JSON.stringify(types, null, 2));
   fs.writeFileSync('sites.json', JSON.stringify(sites, null, 2));
@@ -192,12 +192,12 @@ function writeSitesBinary(
   const recordSize = 20;
   const output = Buffer.alloc(headerSize + sites.length * recordSize);
 
-  // Little-endian site count and bounding box (min lat/lon, max lat/lon), followed by site records.
+  // Little-endian site count and northwest/southeast bounds, followed by site records.
   output.writeUInt32LE(sites.length, 0);
-  output.writeDoubleLE(minLat, 4);
-  output.writeDoubleLE(minLon, 12);
-  output.writeDoubleLE(maxLat, 20);
-  output.writeDoubleLE(maxLon, 28);
+  output.writeDoubleLE(maxLat, 4);  // north
+  output.writeDoubleLE(minLon, 12); // west
+  output.writeDoubleLE(minLat, 20); // south
+  output.writeDoubleLE(maxLon, 28); // east
 
   let offset = headerSize;
   for (const site of sites) {

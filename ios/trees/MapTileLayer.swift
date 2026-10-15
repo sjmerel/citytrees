@@ -10,20 +10,15 @@ class MapTileLayer: GMSSyncTileLayer {
 
     override func tileFor(x: UInt, y: UInt, zoom: UInt) -> UIImage? {
         let tileCount = pow(2.0, Double(zoom))
-        let topLeft = unproject(
+        let northWest = unproject(
             x: Double(x) / tileCount,
             y: Double(y) / tileCount
         )
-        let bottomRight = unproject(
+        let southEast = unproject(
             x: (Double(x) + 1) / tileCount,
             y: (Double(y) + 1) / tileCount
         )
-        let rect = MapRect(
-            minX: topLeft.x,
-            minY: bottomRight.y,
-            maxX: bottomRight.x,
-            maxY: topLeft.y
-        )
+        let rect = MapRect(northWest: northWest, southEast: southEast)
         let sites = TreeNode.all.find(rect: rect)
 
         if sites.isEmpty { return kGMSTileLayerNoTile }
@@ -82,13 +77,13 @@ class MapTileLayer: GMSSyncTileLayer {
     private let TILE_SIZE = 512
 
     private func project(location: MapLocation) -> (Double, Double) {
-        var s = sin(location.latitude * .pi / 180)
+        var s = sin(location.lat * .pi / 180)
 
         // Truncating to 0.9999 effectively limits latitude to 89.189. This is
         // about a third of a tile past the edge of the world tile.
         s = min(max(s, -0.9999), 0.9999)
 
-        let x = 0.5 + location.longitude / 360
+        let x = 0.5 + location.lon / 360
         let y = 0.5 - log((1+s)/(1-s)) / (4 * .pi)
         return (x, y)
     }
@@ -99,6 +94,6 @@ class MapTileLayer: GMSSyncTileLayer {
         let a = exp((0.5 - y)*(4.0 * .pi))
         let latitude = asin((a-1.0)/(a+1.0)) * 180.0 / .pi
 
-        return MapLocation(longitude: longitude, latitude: latitude)
+        return MapLocation(lat: latitude, lon: longitude)
     }
 }

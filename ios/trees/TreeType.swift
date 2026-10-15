@@ -22,7 +22,7 @@ struct TreeType {
             types.append(TreeType(canonicalName: name))
         }
 
-        precondition(reader.isAtEnd)
+        assert(reader.isAtEnd)
         profiler.stop()
         return types
     }
