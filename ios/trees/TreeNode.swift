@@ -18,17 +18,6 @@ class TreeNode {
     let rect: MapRect
 
     static let all = load() // XXX
-
-    var first: TreeSite? { // XXX
-        if let site = self.sites?.first { return site }
-        if let nodes = self.nodes {
-            for node in nodes {
-                if let site = node.first { return site }
-            }
-        }
-        return nil
-    }
-
     static func load() -> TreeNode {
         let profiler = Profiler(name: "read sites.bin")
 

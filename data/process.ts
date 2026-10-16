@@ -8,7 +8,9 @@ import path from 'node:path';
 let cities = [
   'losangeles',
   'seattle',
-  'santamonica'
+  'santamonica',
+  'westhollywood',
+  'beverlyhills',
 ];
 
 async function main() {
