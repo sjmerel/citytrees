@@ -13,6 +13,8 @@ let cities = [
   'beverlyhills',
 ];
 
+const GLOBAL_SITE_LIMIT = 10_000;
+
 async function main() {
   // read all data
   let data = [];
@@ -147,6 +149,10 @@ async function main() {
   fs.writeFileSync('sites.json', JSON.stringify(sites, null, 2));
   writeTypesBinary(types);
   writeSitesBinary(sites, types.length);
+
+  const globalSites = decimateSites(sites, GLOBAL_SITE_LIMIT);
+  console.log(`  ${globalSites.length} sites in global overview`);
+  writeSitesBinary(globalSites, types.length, 'global.bin');
 }
 
 function writeTypesBinary(types: { canonical_name: string }[]): void {
@@ -174,7 +180,8 @@ function writeTypesBinary(types: { canonical_name: string }[]): void {
 
 function writeSitesBinary(
   sites: { lat: number; lon: number; type: number }[],
-  typeCount: number
+  typeCount: number,
+  fileName = 'sites.bin'
 ): void {
   assert(sites.length > 0, 'Cannot write a bounding box for an empty site list');
 
@@ -211,7 +218,41 @@ function writeSitesBinary(
     offset += recordSize;
   }
 
-  fs.writeFileSync(path.join(__dirname, '../ios/trees/sites.bin'), output);
+  fs.writeFileSync(path.join(__dirname, `../ios/trees/${fileName}`), output);
+}
+
+function decimateSites(
+  sites: { lat: number; lon: number; type: number }[],
+  maxCount: number
+): { lat: number; lon: number; type: number }[] {
+  if (sites.length <= maxCount) {
+    return sites;
+  }
+
+  let selected: { lat: number; lon: number; type: number }[] = [];
+  for (let level = 0; level <= 30; level++) {
+    const cells = new Map<string, { lat: number; lon: number; type: number }>();
+    const cellCount = 2 ** level;
+
+    for (const site of sites) {
+      const latitude = Math.max(-85.05112878, Math.min(85.05112878, site.lat));
+      const x = Math.max(0, Math.min(cellCount - 1,
+        Math.floor((site.lon + 180) / 360 * cellCount)));
+      const y = Math.max(0, Math.min(cellCount - 1,
+        Math.floor((1 - Math.asinh(Math.tan(latitude * Math.PI / 180)) / Math.PI) / 2 * cellCount)));
+      const key = `${x},${y}`;
+      if (!cells.has(key)) {
+        cells.set(key, site);
+      }
+    }
+
+    if (cells.size > maxCount) {
+      break;
+    }
+    selected = [...cells.values()];
+  }
+
+  return selected;
 }
 
 ////////////////////////////////////////
