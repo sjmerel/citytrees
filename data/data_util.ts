@@ -1,0 +1,62 @@
+import axios from 'axios';
+
+export namespace DataUtil {
+
+  export async function fetchSocrata(endpoint: string,
+    query: Record<string, string>
+  ): Promise<Record<string, any>[]> {
+    let rows = [];
+    let offset = 0;
+    let pageSize = 1000;
+    for (;;) {
+      let response = await axios.get(endpoint, {
+        params: { ...query, '$limit': pageSize, '$offset': offset }
+      });
+      let page = response.data;
+
+      rows.push(...page);
+      console.log(`${rows.length}`);
+
+      if (page.length < pageSize) {
+        return rows;
+      }
+      offset += page.length;
+    }
+  }
+
+  export async function fetchArcGis(endpoint: string, options: {
+    where: string;
+    outFields: string;
+    returnGeometry?: boolean;
+  } = {}) {
+
+    let rows = [];
+    let offset = 0;
+    let pageSize = 1000;
+    for (;;) {
+      let response = await axios.get(`${endpoint}/query`, {
+        params: {
+          where: options.where ?? '1=1',
+          outFields: options.outFields ?? '*',
+          returnGeometry: options.returnGeometry ?? false,
+
+          f: 'json',
+          outSR: 4326, // lat & lon
+          orderByFields: 'OBJECTID ASC',
+          resultOffset: offset,
+          resultRecordCount: pageSize
+        }
+      });
+      let page = response.data.features;
+
+      rows.push(...page);
+      console.log(`${rows.length}`);
+
+      if (page.length < pageSize) {
+        return rows;
+      }
+      offset += page.length;
+    }
+  }
+
+}

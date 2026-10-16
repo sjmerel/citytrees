@@ -1,54 +1,22 @@
 #!/usr/bin/env npx tsx
 
 import fs from 'node:fs';
-import { parse } from 'csv-parse';
-import proj4 from 'proj4';
+import { DataUtil } from './data_util';
 
 async function main() {
 
-  // data from: https://opendata-hub.beverlyhills.org/datasets/fdf9005441a947a482175f7e5e0f3762_1
+  let endpoint = 'https://mgis.beverlyhills.org/arcgis/rest/services/Hansen/CBH_IPS_GIS_UrbanForest_Feature/MapServer/0';
 
-  let parser = fs.createReadStream('./beverlyhills.csv').pipe(
-    parse({
-      columns: true,
-      trim: true,
-      cast: true,
-      skip_empty_lines: true,
-    })
-  );
+  let rows = await DataUtil.fetchArcGis(endpoint, { 
+    outFields: 'BotanicalName,Latitude,Longitude',
+    where: 'Latitude <> 0 AND Longitude <> 0'
+  });
 
-  let n = 0;
-  let skipped = 0;
-  let trees = [];
-  for await (let row of parser) {
-    ++n;
-    if (n % 10000 == 0) {
-      console.log(n);
-    }
-
-    let x = Number(row.X);
-    let y = Number(row.Y);
-    if (!Number.isFinite(x) || !Number.isFinite(y)) {
-      ++skipped;
-      continue;
-    }
-
-    let [lon, lat] = proj4('EPSG:3857', 'EPSG:4326', [x, y]);
-    let tree = {
-      lat,
-      lon,
-      name: row.BOTANICAL
-    };
-
-    if (!tree.name || !tree.lat || !tree.lon) {
-      ++skipped;
-      continue;
-    }
-
-    trees.push(tree);
-  }
-
-  console.log(`processed ${n}, skipped ${skipped}`);
+  let trees = rows.map(o => ({
+    lat: o.attributes.Latitude,
+    lon: o.attributes.Longitude,
+    name: o.attributes.BotanicalName.trim()
+  }));
 
   fs.writeFileSync('beverlyhills.json', JSON.stringify(trees, null, 2));
 }
@@ -68,5 +36,3 @@ catch(error) {
 }
 
 }) ();
-
-

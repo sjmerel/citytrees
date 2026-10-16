@@ -1,45 +1,23 @@
 #!/usr/bin/env npx tsx
 
 import fs from 'node:fs';
-import { parse } from 'csv-parse';
+import { DataUtil } from './data_util';
 
 async function main() {
 
-  // data from: https://data.seattle.gov/dataset/SDOT-Trees/gapw-b2rf/about_data 
+  let endpoint = 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/SDOT_Trees_CDL/FeatureServer/0';
 
-  let parser = fs.createReadStream('./seattle.csv').pipe(
-    parse({
-      columns: true,
-      trim: true,
-      cast: true,
-      skip_empty_lines: true,
-    })
+  let rows = await DataUtil.fetchArcGis(endpoint, {
+      where: "SCIENTIFIC_NAME IS NOT NULL AND SHAPE_LAT IS NOT NULL AND SHAPE_LNG IS NOT NULL",
+      outFields: 'SCIENTIFIC_NAME,SHAPE_LAT,SHAPE_LNG'
+    }
   );
 
-  let n = 0;
-  let skipped = 0;
-  let trees = [];
-  for await (let row of parser) {
-    ++n;
-    if (n % 10000 == 0) {
-      console.log(n);
-    }
-
-    let tree = {
-      lat: row.SHAPE_LAT,
-      lon: row.SHAPE_LNG,
-      name: row.SCIENTIFIC_NAME
-    };
-
-    if (!tree.name || !tree.lat || !tree.lon) {
-      ++skipped;
-      continue;
-    }
-
-    trees.push(tree);
-  }
-
-  console.log(`processed ${n}, skipped ${skipped}`);
+  let trees = rows.map(o => ({
+    lat: o.attributes.SHAPE_LAT,
+    lon: o.attributes.SHAPE_LNG,
+    name: o.attributes.SCIENTIFIC_NAME,
+  }));
 
   fs.writeFileSync('seattle.json', JSON.stringify(trees, null, 2));
 }
@@ -59,6 +37,5 @@ catch(error) {
 }
 
 }) ();
-
 
 

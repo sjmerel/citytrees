@@ -6,14 +6,14 @@ import assert from 'node:assert';
 import path from 'node:path';
 
 let cities = [
-  'losangeles',
-  'seattle',
-  'santamonica',
-  'westhollywood',
   'beverlyhills',
-  'sanfrancisco',
+  'losangeles',
   'newyorkcity',
   'pasadena',
+  'sanfrancisco',
+  'santamonica',
+  'seattle',
+  'westhollywood',
 ];
 
 const GLOBAL_SITE_LIMIT = 10_000;
@@ -26,7 +26,8 @@ async function main() {
     let cityData = JSON.parse(fs.readFileSync(`${city}.json`, 'utf8'));
     console.log(`  ${city}: ${cityData.length} sites`);
     for (let d of cityData) {
-      assert(d.name && d.lat && d.lon);
+      assert(d.name);
+      assert(d.lat && d.lon);
       data.push(d);
     }
   }

@@ -1,43 +1,36 @@
 #!/usr/bin/env npx tsx
 
 import fs from 'node:fs';
-import { parse } from 'csv-parse';
+import { DataUtil } from './data_util';
 
 async function main() {
 
-  // data from: https://data.cityofnewyork.us/Environment/2015-Street-Tree-Census-Tree-Data/uvpi-gqnh
+  let endpoint = 'https://data.cityofnewyork.us/resource/uvpi-gqnh.json';
 
-  let parser = fs.createReadStream('./newyorkcity.csv').pipe(
-    parse({
-      columns: true,
-      trim: true,
-      cast: true,
-      skip_empty_lines: true,
-    })
+  let rows = await DataUtil.fetchSocrata(endpoint, {
+      '$select': 'latitude,longitude,spc_latin',
+      '$order': 'tree_id',
+      '$where': "status = 'Alive' AND latitude IS NOT NULL AND longitude IS NOT NULL AND spc_latin IS NOT NULL"
+    }
   );
 
-  let n = 0;
-  let skipped = 0;
-  let trees = [];
-  for await (let row of parser) {
-    ++n;
-    if (n % 10000 == 0) {
-      console.log(n);
-    }
-
-    let name = String(row.spc_latin ?? '').trim();
-    let lat = Number(row.latitude);
-    let lon = Number(row.longitude);
-    if (row.status !== 'Alive' || !name || !Number.isFinite(lat) || !Number.isFinite(lon) ||
+  //let skipped = 0;
+  const trees = [];
+  for (const row of rows) {
+    const name = String(row.spc_latin ?? '').trim();
+    const lat = Number(row.latitude);
+    const lon = Number(row.longitude);
+    /*
+    if (!name || !Number.isFinite(lat) || !Number.isFinite(lon) ||
         lat === 0 || lon === 0) {
       ++skipped;
       continue;
     }
-
+    */
     trees.push({ lat, lon, name });
   }
 
-  console.log(`processed ${n}, skipped ${skipped}`);
+  //console.log(`processed ${rows.length}, skipped ${skipped}`);
   fs.writeFileSync('newyorkcity.json', JSON.stringify(trees, null, 2));
 }
 

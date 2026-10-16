@@ -1,47 +1,25 @@
 #!/usr/bin/env npx tsx
 
 import fs from 'node:fs';
-import { parse } from 'csv-parse';
+import { DataUtil } from './data_util';
 
 async function main() {
 
-  // data from: https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq
+  let endpoint = 'https://data.sfgov.org/resource/tkzw-k3nq.json';
 
-  let parser = fs.createReadStream('./sanfrancisco.csv').pipe(
-    parse({
-      columns: true,
-      trim: true,
-      cast: true,
-      skip_empty_lines: true,
-    })
+  let rows = await DataUtil.fetchSocrata(endpoint, {
+      '$select': 'latitude,longitude,species',
+      '$order': 'treeid',
+      '$where': "planttype = 'Tree' AND latitude IS NOT NULL AND longitude IS NOT NULL AND species IS NOT NULL"
+    }
   );
 
-  let n = 0;
-  let skipped = 0;
-  let trees = [];
-  for await (let row of parser) {
-    ++n;
-    if (n % 10000 == 0) {
-      console.log(n);
-    }
+  let trees = rows.map(o => ({
+    name: o.species.split(' :: ')[0].trim(),
+    lat: parseFloat(o.latitude),
+    lon: parseFloat(o.longitude)
+  }));
 
-    if (row.PlantType !== 'Tree') {
-      ++skipped;
-      continue;
-    }
-
-    let name = String(row.qSpecies ?? '').split(' :: ')[0].trim();
-    let lat = Number(row.Latitude);
-    let lon = Number(row.Longitude);
-    if (!name || !Number.isFinite(lat) || !Number.isFinite(lon) || lat === 0 || lon === 0) {
-      ++skipped;
-      continue;
-    }
-
-    trees.push({ lat, lon, name });
-  }
-
-  console.log(`processed ${n}, skipped ${skipped}`);
   fs.writeFileSync('sanfrancisco.json', JSON.stringify(trees, null, 2));
 }
 

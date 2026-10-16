@@ -7,6 +7,7 @@ async function main() {
 
   // data from: https://data.santamonica.gov/ne/dataset/trees-inventory
 
+  // The current online export returns corrupted rows, so use the validated local export.
   let parser = fs.createReadStream('./santamonica.csv').pipe(
     parse({
       columns: true,
@@ -59,5 +60,3 @@ catch(error) {
 }
 
 }) ();
-
-

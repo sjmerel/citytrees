@@ -1,47 +1,23 @@
 #!/usr/bin/env npx tsx
 
-import axios from 'axios';
 import fs from 'node:fs';
+import { DataUtil } from './data_util';
 
 async function main() {
 
-  let endpoint = 'https://data.weho.org/api/v3/views/qqwt-wx9z/query.json';
-  let query = 'WHERE location_1.latitude != 0 AND location_1.longitude != 0';
+  let endpoint = 'https://data.weho.org/resource/qqwt-wx9z.json';
+  let rows = await DataUtil.fetchSocrata(endpoint, {
+    '$where': 'location_1.latitude != 0 AND location_1.longitude != 0',
+    '$order': ':id'
+  });
 
-  let response = await axios.post(
-    endpoint,
-    { query: `SELECT count(*) ${query}` },
-  );
-  const rowCount = response.data[0].count
+  let trees = rows.map(o => ({
+    lat: o.location_1.latitude,
+    lon: o.location_1.longitude,
+    name: o.botanicalname.trim()
+  }));
 
-  const pageSize = 1000;
-  let allRows = [];
-  let pageNumber = 1;
-
-  for (;;) {
-    let response = await axios.post(endpoint, {
-      query: `SELECT * ${query}`,
-      page: { 
-        pageNumber: pageNumber, 
-        pageSize: pageSize 
-      }
-    });
-
-    let rows = response.data.map(o => ({
-      lat: o.location_1.latitude,
-      lon: o.location_1.longitude,
-      name: o.botanicalname.trim()
-    }));
-    allRows.push(...rows);
-
-    console.log(`${allRows.length}/${rowCount}`);
-    if (rows.length < pageSize) {
-      break;
-    }
-    ++pageNumber;
-  }
-
-  fs.writeFileSync('westhollywood.json', JSON.stringify(allRows, null, 2));
+  fs.writeFileSync('westhollywood.json', JSON.stringify(trees, null, 2));
 }
 
 ////////////////////////////////////////
@@ -58,6 +34,3 @@ catch(error) {
 }
 
 }) ();
-
-
-
