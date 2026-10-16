@@ -8,7 +8,7 @@ async function main() {
   let endpoint = 'https://services2.arcgis.com/zNjnZafDYCAJAbN0/arcgis/rest/services/Street_ROW_Trees/FeatureServer/0';
 
   let rows = await DataUtil.fetchArcGis(endpoint, {
-      outFields: 'Genus,Species',
+      fields: 'Genus,Species',
       where: "Genus <> '' AND Species <> ''",
       returnGeometry: true
     }

@@ -26,7 +26,6 @@ async function main() {
     let cityData = JSON.parse(fs.readFileSync(`${city}.json`, 'utf8'));
     console.log(`  ${city}: ${cityData.length} sites`);
     for (let d of cityData) {
-      assert(d.name);
       assert(d.lat && d.lon);
       data.push(d);
     }
@@ -263,26 +262,21 @@ function decimateSites(
 
 function stripCultivar(name: string): string {
   // normalize quotes
-  name = name.replace(/["`‘’]/g, "'"); 
+  name = name.replace(/["`‘’“”]/g, "'");
 
   // handle possessives
   //  Cornus kousa 'Champion's Gold' -> Cornus kousa 'Champion’s Gold'
   name = name.replace(/(\S)'(s )/g, '$1’$2');
 
-  // handle quotes
-  let match = name.match(/'/g);
-  if (match) {
-    let quoteCount = match.length
-    if (quoteCount == 1) {
-      // one quote; assume cultivar was cut off at the end
-      name = name.replace(/\s+'.*/, '');
-    }
-    else if (quoteCount == 2) {
-      name = name.replace(/\s+'[^']+'$/, '');
-    }
-    else {
-      fail();
-    }
+  const cultivarStart = name.search(/\s+'/);
+  if (cultivarStart < 0) {
+    return name;
+  }
+
+  const cultivar = name.slice(cultivarStart + 1);
+  const quoteCount = (cultivar.match(/'/g) ?? []).length;
+  if (cultivar.endsWith("'") || quoteCount === 1) {
+    return name.slice(0, cultivarStart).trimEnd();
   }
 
   return name;

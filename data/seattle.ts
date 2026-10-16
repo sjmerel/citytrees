@@ -8,8 +8,8 @@ async function main() {
   let endpoint = 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/SDOT_Trees_CDL/FeatureServer/0';
 
   let rows = await DataUtil.fetchArcGis(endpoint, {
-      where: "SCIENTIFIC_NAME IS NOT NULL AND SHAPE_LAT IS NOT NULL AND SHAPE_LNG IS NOT NULL",
-      outFields: 'SCIENTIFIC_NAME,SHAPE_LAT,SHAPE_LNG'
+      fields: 'SCIENTIFIC_NAME,SHAPE_LAT,SHAPE_LNG'
+      where: 'SCIENTIFIC_NAME IS NOT NULL AND SHAPE_LAT IS NOT NULL AND SHAPE_LNG IS NOT NULL',
     }
   );
 
@@ -37,5 +37,3 @@ catch(error) {
 }
 
 }) ();
-
-

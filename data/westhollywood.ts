@@ -6,9 +6,10 @@ import { DataUtil } from './data_util';
 async function main() {
 
   let endpoint = 'https://data.weho.org/resource/qqwt-wx9z.json';
+
   let rows = await DataUtil.fetchSocrata(endpoint, {
-    '$where': 'location_1.latitude != 0 AND location_1.longitude != 0',
-    '$order': ':id'
+    where: 'location_1.latitude != 0 AND location_1.longitude != 0',
+    order: ':id'
   });
 
   let trees = rows.map(o => ({

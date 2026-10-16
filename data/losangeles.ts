@@ -8,8 +8,8 @@ async function main() {
   let endpoint = 'https://services5.arcgis.com/7nsPwEMP38bSkCjy/arcgis/rest/services/Trees_Data_Bureau_of_Street_Services/FeatureServer/0';
 
   let rows = await DataUtil.fetchArcGis(endpoint, {
+      fields: 'TOOLTIP',
       where: "Type_Description IN ('Tree', 'Tree in Tree Well')",
-      outFields: 'TOOLTIP',
       returnGeometry: true
     }
   );

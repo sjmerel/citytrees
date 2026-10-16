@@ -1,46 +1,23 @@
 #!/usr/bin/env npx tsx
 
 import fs from 'node:fs';
-import { parse } from 'csv-parse';
+import { DataUtil } from './data_util';
 
 async function main() {
 
-  // data from: https://data.santamonica.gov/ne/dataset/trees-inventory
+  let endpoint = 'https://gis.santamonica.gov/server/rest/services/Trees/MapServer/0';
 
-  // The current online export returns corrupted rows, so use the validated local export.
-  let parser = fs.createReadStream('./santamonica.csv').pipe(
-    parse({
-      columns: true,
-      trim: true,
-      cast: true,
-      skip_empty_lines: true,
-    })
+  let rows = await DataUtil.fetchArcGis(endpoint, {
+      fields: 'botanicalname,latitude,longitude',
+      where: "botanicalname IS NOT NULL AND botanicalname <> ''",
+    }
   );
 
-  let n = 0;
-  let skipped = 0;
-  let trees = [];
-  for await (let row of parser) {
-    ++n;
-    if (n % 10000 == 0) {
-      console.log(n);
-    }
-
-    let tree = {
-      lat: row.latitude,
-      lon: row.longitude,
-      name: row.name_botanical
-    };
-
-    if (!tree.name || !tree.lat || !tree.lon) {
-      ++skipped;
-      continue;
-    }
-
-    trees.push(tree);
-  }
-
-  console.log(`processed ${n}, skipped ${skipped}`);
+  let trees = rows.map(o => ({
+    name: o.attributes.botanicalname,
+    lat: o.attributes.latitude,
+    lon: o.attributes.longitude,
+  }));
 
   fs.writeFileSync('santamonica.json', JSON.stringify(trees, null, 2));
 }

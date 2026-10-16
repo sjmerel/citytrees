@@ -2,15 +2,25 @@ import axios from 'axios';
 
 export namespace DataUtil {
 
-  export async function fetchSocrata(endpoint: string,
-    query: Record<string, string>
+  export async function fetchSocrata(endpoint: string, options: {
+    where: string;
+    select: string;
+    order: string;
+  } = {}
   ): Promise<Record<string, any>[]> {
     let rows = [];
     let offset = 0;
     let pageSize = 1000;
     for (;;) {
       let response = await axios.get(endpoint, {
-        params: { ...query, '$limit': pageSize, '$offset': offset }
+        params: { 
+          '$select': options.select,
+          '$order': options.order,
+          '$where': options.where,
+
+          '$limit': pageSize, 
+          '$offset': offset 
+        }
       });
       let page = response.data;
 
@@ -26,7 +36,7 @@ export namespace DataUtil {
 
   export async function fetchArcGis(endpoint: string, options: {
     where: string;
-    outFields: string;
+    fields: string;
     returnGeometry?: boolean;
   } = {}) {
 

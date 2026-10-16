@@ -8,9 +8,9 @@ async function main() {
   let endpoint = 'https://data.sfgov.org/resource/tkzw-k3nq.json';
 
   let rows = await DataUtil.fetchSocrata(endpoint, {
-      '$select': 'latitude,longitude,species',
-      '$order': 'treeid',
-      '$where': "planttype = 'Tree' AND latitude IS NOT NULL AND longitude IS NOT NULL AND species IS NOT NULL"
+      select: 'latitude,longitude,species',
+      order: 'treeid',
+      where: "planttype = 'Tree' AND latitude IS NOT NULL AND longitude IS NOT NULL AND species IS NOT NULL"
     }
   );
 

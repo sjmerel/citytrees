@@ -8,7 +8,7 @@ async function main() {
   let endpoint = 'https://mgis.beverlyhills.org/arcgis/rest/services/Hansen/CBH_IPS_GIS_UrbanForest_Feature/MapServer/0';
 
   let rows = await DataUtil.fetchArcGis(endpoint, { 
-    outFields: 'BotanicalName,Latitude,Longitude',
+    fields: 'BotanicalName,Latitude,Longitude',
     where: 'Latitude <> 0 AND Longitude <> 0'
   });
 
