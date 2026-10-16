@@ -11,6 +11,9 @@ let cities = [
   'santamonica',
   'westhollywood',
   'beverlyhills',
+  'sanfrancisco',
+  'newyorkcity',
+  'pasadena',
 ];
 
 const GLOBAL_SITE_LIMIT = 10_000;

@@ -46,7 +46,7 @@ class MapTileLayer: GMSSyncTileLayer {
             print("decimated \(allSites.count) -> \(sites.count)")
         }
 
-        let profiler = Profiler(name: "tile \(x) \(y) (\(sites.count) sites)")
+        let profiler = Profiler(name: "tile \(x),\(y) \(zoom) (\(sites.count) sites)")
         // note: we get an assertion if we use UIGraphicsImageRenderer
         let pixelSize = Int(TILE_SIZE)
         let bytesPerRow = pixelSize * 4
