@@ -14,6 +14,22 @@ let cities = [
   'santamonica',
   'seattle',
   'westhollywood',
+  'austin',
+  'berkeley',
+  'cambridge',
+  'denver',
+  'london',
+  'montreal',
+  'oakland',
+  'philadelphia',
+  'portland',
+  'sacramento',
+  'sanjose',
+  'toronto',
+  'vancouver',
+  'victoria',
+  'washingtondc',
+  'waterloo',
 ];
 
 const GLOBAL_SITE_LIMIT = 10_000;
