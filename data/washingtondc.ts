@@ -7,7 +7,7 @@ async function main() {
   let endpoint = 'https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Urban_Tree_Canopy/MapServer/23';
   let rows = await DataUtil.fetchArcGis(endpoint, {
     fields: 'SCI_NM',
-    where: 'SCI_NM IS NOT NULL',
+    where: 'SCI_NM IS NOT NULL AND SHAPE IS NOT NULL',
     returnGeometry: true
   });
 

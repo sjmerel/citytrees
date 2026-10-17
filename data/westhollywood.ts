@@ -13,8 +13,8 @@ async function main() {
   });
 
   let trees = rows.map(o => ({
-    lat: o.location_1.latitude,
-    lon: o.location_1.longitude,
+    lat: parseFloat(o.location_1.latitude),
+    lon: parseFloat(o.location_1.longitude),
     name: o.botanicalname.trim()
   }));
 

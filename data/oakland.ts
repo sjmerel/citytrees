@@ -7,7 +7,7 @@ async function main() {
   let endpoint = 'https://data.oaklandca.gov/resource/4jcx-enxf.json';
   let rows = await DataUtil.fetchSocrata(endpoint, {
     select: 'objectid,species,location_1',
-    where: 'species IS NOT NULL AND location_1 IS NOT NULL',
+    where: 'species IS NOT NULL AND location_1 IS NOT NULL AND location_1.latitude IS NOT NULL',
     order: 'objectid'
   });
 

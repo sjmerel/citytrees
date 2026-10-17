@@ -15,7 +15,7 @@ async function main() {
   );
 
   let trees = rows.map(o => ({
-    name: o.species.split(' :: ')[0].trim(),
+    name: o.species.split('::')[0].trim(),
     lat: parseFloat(o.latitude),
     lon: parseFloat(o.longitude)
   }));

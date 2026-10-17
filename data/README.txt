@@ -1,5 +1,10 @@
-* download raw data to <city>.csv
 * create and run <city>.ts to export latitude, longitude, and scientific name to <city>.json
-   (if ts has errors, open .csv and re-export in Numbers)
-   TODO: share code among scripts?
-* run process.ts
+* run process.ts to combine to sites.json and types.json
+
+TODO:
+ improve cultivar stripping
+ improve canonicalization
+ add more cities
+ move binary generation to Swift
+ keep cultivar information
+ add manual overrides? 

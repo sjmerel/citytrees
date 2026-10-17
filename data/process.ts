@@ -30,11 +30,17 @@ let cities = [
   'victoria',
   'washingtondc',
   'waterloo',
+  'atlanta',
+  'baltimore',
+  'boston',
+  'neworleans',
+  'sandiego',
 ];
 
 const GLOBAL_SITE_LIMIT = 10_000;
 
 async function main() {
+
   // read all data
   let data = [];
   console.log('loading...');
@@ -42,7 +48,8 @@ async function main() {
     let cityData = JSON.parse(fs.readFileSync(`${city}.json`, 'utf8'));
     console.log(`  ${city}: ${cityData.length} sites`);
     for (let d of cityData) {
-      assert(d.lat && d.lon);
+      if (!(d.name && d.lat && d.lon && Number.isFinite(d.lat) && Number.isFinite(d.lon))) { console.log(d); }
+      assert(d.name && d.lat && d.lon && Number.isFinite(d.lat) && Number.isFinite(d.lon));
       data.push(d);
     }
   }
@@ -115,7 +122,7 @@ async function main() {
       let rank = match?.usage?.rank ?? null;
       let confidence = match?.diagnostics?.confidence ?? null;
 
-      if (canonicalName && acceptedRanks.has(rank) && confidence >= 85) {
+      if (canonicalName && acceptedRanks.has(rank) && confidence >= 80) {
         canonicalizedMap[name] = canonicalName;
       } else {
         let reason = !canonicalName
@@ -145,7 +152,12 @@ async function main() {
   });
 
   fs.writeFileSync('debug_canonicalize.json', JSON.stringify(canonicalizedMap, null, 2));
-  fs.writeFileSync('debug_canonicalize_fail.json', JSON.stringify(failedMap, null, 2));
+  let failedMapSorted = Object.fromEntries(
+    Object.entries(failedMap).sort(([, a], [, b]) =>
+      (b.confidence ?? -Infinity) - (a.confidence ?? -Infinity)
+    )
+  );
+  fs.writeFileSync('debug_canonicalize_fail.json', JSON.stringify(failedMapSorted, null, 2));
 
   let names = [...new Set(data.map(o => o.name))];
 
@@ -209,7 +221,6 @@ function writeSitesBinary(
   let maxLat = sites[0].lat;
   let maxLon = sites[0].lon;
   for (const site of sites) {
-    assert(Number.isFinite(site.lat) && Number.isFinite(site.lon), 'Invalid site coordinates');
     minLat = Math.min(minLat, site.lat);
     minLon = Math.min(minLon, site.lon);
     maxLat = Math.max(maxLat, site.lat);
@@ -278,7 +289,7 @@ function decimateSites(
 
 function stripCultivar(name: string): string {
   // normalize quotes
-  name = name.replace(/["`‘’“”]/g, "'");
+  name = name.replace(/(?:\\"|["`‘’“”])/g, "'");
 
   // handle possessives
   //  Cornus kousa 'Champion's Gold' -> Cornus kousa 'Champion’s Gold'

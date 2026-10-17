@@ -1,0 +1,31 @@
+#!/usr/bin/env npx tsx
+
+import fs from 'node:fs';
+import { DataUtil } from './data_util';
+
+async function main() {
+  let endpoint = 'https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/iTreeReport_SanDiegoAP_Merge11/FeatureServer/0';
+  let rows = await DataUtil.fetchArcGis(endpoint, {
+    fields: 'BotanicalName',
+    where: "BotanicalName IS NOT NULL AND BotanicalName <> '' AND SHAPE IS NOT NULL",
+    returnGeometry: true
+  });
+
+  let trees = rows.map(o => ({
+    name: o.attributes.BotanicalName.trim(),
+    lat: o.geometry.y,
+    lon: o.geometry.x
+  }));
+
+  fs.writeFileSync('sandiego.json', JSON.stringify(trees, null, 2));
+}
+
+(async () => {
+  try {
+    await main();
+    process.exit(0);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+})();

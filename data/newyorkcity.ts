@@ -16,8 +16,8 @@ async function main() {
 
   let trees = rows.map(o => ({
     name: o.spc_latin,
-    lat: o.latitude,
-    lon: o.longitude
+    lat: parseFloat(o.latitude),
+    lon: parseFloat(o.longitude)
   }));
 
   fs.writeFileSync('newyorkcity.json', JSON.stringify(trees, null, 2));
