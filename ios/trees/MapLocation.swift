@@ -1,4 +1,4 @@
-struct MapLocation {
+struct MapLocation: Equatable {
 
     var lat: Double // latitude
     var lon: Double // longitude

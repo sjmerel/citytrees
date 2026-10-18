@@ -1,6 +1,6 @@
 import Foundation
 
-struct TreeSite {
+struct TreeSite: Equatable {
 
     init(location: MapLocation, typeIndex: Int) {
         self.location = location

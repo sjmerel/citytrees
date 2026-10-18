@@ -8,6 +8,15 @@ class MapTileLayer: GMSSyncTileLayer {
         self.fadeIn = true
     }
 
+    // Safe to set from the main thread while tiles render on background threads.
+    var selectedSite: TreeSite? {
+        get { selectionLock.withLock { _selectedSite } }
+        set {
+            selectionLock.withLock { _selectedSite = newValue }
+            clearTileCache()
+        }
+    }
+
     override func tileFor(x: UInt, y: UInt, zoom: UInt) -> UIImage? {
         let tileCount = pow(2.0, Double(zoom))
         let tileCenter = unproject(
@@ -33,9 +42,10 @@ class MapTileLayer: GMSSyncTileLayer {
             y: (Double(y) + 1 + padding) / tileCount
         )
         let rect = MapRect(northWest: northWest, southEast: southEast)
+        let selectedSite = self.selectedSite
         var sites = TreeNode.all.find(rect: rect)
 
-        if sites.isEmpty { return kGMSTileLayerNoTile }
+        if sites.isEmpty && selectedSite == nil { return kGMSTileLayerNoTile }
 
         if sites.count > MAX_SITES {
             let oldCount = sites.count
@@ -61,7 +71,7 @@ class MapTileLayer: GMSSyncTileLayer {
         context.scaleBy(x: 1, y: -1)
         context.setFillColor(UIColor.red.cgColor)
 
-        for site in sites {
+        func draw(_ site: TreeSite) {
             let (worldX, worldY) = project(location: site.location)
             let tileX = (worldX * tileCount - Double(x)) * Double(TILE_SIZE)
             let tileY = (worldY * tileCount - Double(y)) * Double(TILE_SIZE)
@@ -69,6 +79,16 @@ class MapTileLayer: GMSSyncTileLayer {
                                 y: tileY - radius,
                                 width: diameter, height: diameter)
             context.fillEllipse(in: circle)
+        }
+
+        for site in sites {
+            draw(site)
+        }
+
+        // drawn last (and never decimated away) so it is always visible
+        if let selectedSite, rect.contains(selectedSite.location) {
+            context.setFillColor(UIColor.yellow.cgColor)
+            draw(selectedSite)
         }
 
         // draw tile borders
@@ -85,6 +105,9 @@ class MapTileLayer: GMSSyncTileLayer {
 
 
     ////////////////////////////////////////
+
+    private let selectionLock = NSLock()
+    private var _selectedSite: TreeSite?
 
     private let TILE_SIZE = 512
     private let SITES_DIAMETER_METERS = 4.0
