@@ -1,0 +1,39 @@
+Cities considered and rejected (reconstructed from research; earlier rejections from previous sessions were not recorded).
+
+Chicago: no public per-tree dataset (a cited Socrata link was actually Building Permits).
+Houston: 215k-tree layer exists, but common names only. Dataset: https://geohwp.houstontx.gov/.../Land_Base/MapServer/0 (full URL not recorded)
+Phoenix: no public per-tree dataset.
+Dallas: partial TreeKeeper viewer, no open API.
+San Antonio: no public per-tree dataset.
+Columbus, OH: 316k trees, but common names only (species code domain).
+Minneapolis: only park trees (8,964, from 2016); no citywide boulevard-tree layer; license unstated.
+Charlotte: 191k trees, common names only.
+Indianapolis: no public inventory (only a 15-tree academic sample).
+Nashville: canopy layers only.
+Miami / Miami-Dade: species table licensed internal-use only; no public per-tree data.
+Detroit: city layer has 3,001 trees with common names only; the 1.39M-tree FinalTreePoints layer is AI-derived by a contractor with unclear provenance.
+Long Beach: only vacant planting-site layers are public.
+Somerville, MA: only a Harvard-hosted March 2023 snapshot of unclear license.
+Arlington County, VA: 30,842 trees, common names only.
+Alexandria, VA: only a 275th-anniversary planting layer.
+Montgomery County, MD: canopy rasters/polygons only.
+Tacoma: canopy only.
+Raleigh: 209k trees, but the public layer has only a species code with common names (no scientific names). Dataset: https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/PRCR_Urban_Forestry_Trees_Open_Data/FeatureServer/0
+Cincinnati: street tree layer exists with genus/species fields but is empty (0 records, never populated). Dataset: https://services2.arcgis.com/4XlTp6SwwtAtXgjj/arcgis/rest/services/streettreecincy_public/FeatureServer/0
+Kansas City, MO: Parks tree inventory layer has 1 record (stub); open data portal only has annual aggregates. Dataset: https://services.arcgis.com/4o5uMWTHuOhUVJPd/arcgis/rest/services/Parks_Department_Tree_Inventory/FeatureServer/0
+Milwaukee: only EAB survey points and maintenance districts are published; no street tree inventory. Dataset: https://milwaukeemaps.milwaukee.gov/arcgis/rest/services/DPW/DPW_forestry/MapServer
+Tampa: no official city tree inventory (tampatreemap.org is a community project).
+Tucson: only canopy/equity layers and a giveaway program layer without species.
+Honolulu: https://services1-nocdn.arcgis.com/gGHDlz6USftL5Pau/ArcGIS/rest/services/Tree_Inventory/FeatureServer/0 is a stale (2022) US Forest Service volunteer Citizen Forester dataset, not municipal; city's own server unreachable.
+Savannah: https://pub.sagis.org/arcgis/rest/services/Savannah/Trees/MapServer/0 has 37k trees but common names only.
+Chula Vista: no genuine city inventory found (candidate services were Woolwich, Ontario and a generic template).
+Irvine: https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/0 has trees but common names only.
+Boise: the Forestry_Resource service redirects to a web page; no working public inventory found.
+Hayward, Alameda, Santa Clara (city), Culver City, Glendale CA, Burbank, Walnut Creek, Mountain View, Redwood City: no genuine city-specific public per-tree inventory found (search hits were other cities' data).
+San Mateo: only a county vegetation/land-cover layer.
+Emeryville: EmeryvilleTreeSites2023 has only 4,122 records and Trees_Authoritative_view 3,807 (too small).
+Hoboken: web map item reports its subscription was canceled.
+Medford, MA: 752 records, no species field.
+Kirkland, WA: only a niche park fruit tree layer.
+Rockville, MD and Fairfax County, VA: canopy polygons only.
+Jersey City: promising FeatureServer (JC_TreeInventory_20210902) but not verified.

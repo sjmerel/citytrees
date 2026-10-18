@@ -1,0 +1,235 @@
+[
+  {
+    "code": "beverlyhills",
+    "name": "Beverly Hills",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "losangeles",
+    "name": "Los Angeles",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "newyorkcity",
+    "name": "New York City",
+    "state": "NY",
+    "country": "US"
+  },
+  {
+    "code": "pasadena",
+    "name": "Pasadena",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "sanfrancisco",
+    "name": "San Francisco",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "santamonica",
+    "name": "Santa Monica",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "seattle",
+    "name": "Seattle",
+    "state": "WA",
+    "country": "US"
+  },
+  {
+    "code": "westhollywood",
+    "name": "West Hollywood",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "austin",
+    "name": "Austin",
+    "state": "TX",
+    "country": "US"
+  },
+  {
+    "code": "berkeley",
+    "name": "Berkeley",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "cambridge",
+    "name": "Cambridge",
+    "state": "MA",
+    "country": "US"
+  },
+  {
+    "code": "denver",
+    "name": "Denver",
+    "state": "CO",
+    "country": "US"
+  },
+  {
+    "code": "london",
+    "name": "London",
+    "country": "GB"
+  },
+  {
+    "code": "montreal",
+    "name": "Montreal",
+    "state": "QC",
+    "country": "CA"
+  },
+  {
+    "code": "oakland",
+    "name": "Oakland",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "philadelphia",
+    "name": "Philadelphia",
+    "state": "PA",
+    "country": "US"
+  },
+  {
+    "code": "portland",
+    "name": "Portland",
+    "state": "OR",
+    "country": "US"
+  },
+  {
+    "code": "sacramento",
+    "name": "Sacramento",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "sanjose",
+    "name": "San Jose",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "toronto",
+    "name": "Toronto",
+    "state": "ON",
+    "country": "CA"
+  },
+  {
+    "code": "vancouver",
+    "name": "Vancouver",
+    "state": "BC",
+    "country": "CA"
+  },
+  {
+    "code": "victoria",
+    "name": "Victoria",
+    "state": "BC",
+    "country": "CA"
+  },
+  {
+    "code": "washingtondc",
+    "name": "Washington",
+    "state": "DC",
+    "country": "US"
+  },
+  {
+    "code": "waterloo",
+    "name": "Waterloo",
+    "state": "ON",
+    "country": "CA"
+  },
+  {
+    "code": "atlanta",
+    "name": "Atlanta",
+    "state": "GA",
+    "country": "US"
+  },
+  {
+    "code": "baltimore",
+    "name": "Baltimore",
+    "state": "MD",
+    "country": "US"
+  },
+  {
+    "code": "boston",
+    "name": "Boston",
+    "state": "MA",
+    "country": "US"
+  },
+  {
+    "code": "neworleans",
+    "name": "New Orleans",
+    "state": "LA",
+    "country": "US"
+  },
+  {
+    "code": "sandiego",
+    "name": "San Diego",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "pittsburgh",
+    "name": "Pittsburgh",
+    "state": "PA",
+    "country": "US"
+  },
+  {
+    "code": "paloalto",
+    "name": "Palo Alto",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "fremont",
+    "name": "Fremont",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "boulder",
+    "name": "Boulder",
+    "state": "CO",
+    "country": "US"
+  },
+  {
+    "code": "brookline",
+    "name": "Brookline",
+    "state": "MA",
+    "country": "US"
+  },
+  {
+    "code": "louisville",
+    "name": "Louisville",
+    "state": "KY",
+    "country": "US"
+  },
+  {
+    "code": "lasvegas",
+    "name": "Las Vegas",
+    "state": "NV",
+    "country": "US"
+  },
+  {
+    "code": "richmond",
+    "name": "Richmond",
+    "state": "VA",
+    "country": "US"
+  },
+  {
+    "code": "madison",
+    "name": "Madison",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "aurora",
+    "name": "Aurora",
+    "state": "CO",
+    "country": "US"
+  }
+]

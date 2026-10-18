@@ -1,0 +1,37 @@
+#!/usr/bin/env npx tsx
+
+import fs from 'node:fs';
+import { DataUtil } from './data_util';
+
+async function main() {
+  let endpoint = 'https://services1.arcgis.com/k3vhq11XkBNeeOfM/arcgis/rest/services/Tree_Inventory_Public_View/FeatureServer/0';
+  let rows = await DataUtil.fetchArcGis(endpoint, {
+    fields: 'SPP',
+    where: "Status = 'In Service' AND SPP IS NOT NULL AND SPP NOT LIKE '%Vacant%' AND SPP NOT IN ('Stump', 'Unknown tree', 'Unknown shrub')",
+    returnGeometry: true
+  });
+
+  let trees = rows.map(o => ({
+    name: o.attributes.SPP.trim(),
+    lat: o.geometry.y,
+    lon: o.geometry.x
+  }));
+
+  fs.writeFileSync('richmond.json', JSON.stringify(trees, null, 2));
+}
+
+
+////////////////////////////////////////
+
+(async () => {
+
+try {
+  await main();
+  process.exit(0);
+}
+catch(error) {
+  console.log(error);
+  process.exit(1);
+}
+
+}) ();

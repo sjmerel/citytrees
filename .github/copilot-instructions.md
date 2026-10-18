@@ -1,7 +1,25 @@
 This is source code for an app so people can identify trees in their neighborhoods.
 
-Data comes from publicly available city data maintained by their landscaping departments.  
+## Data
+Data comes from publicly available city data maintained by their landscaping departments. We download and process the data initially using TypeScript scripts in the data/ directory.
 
-Each city database contains several thousand entries in various formats.  When preparing the data, we extract the latitude, longitude, and botanical name.  We canonicalize the botanical name and try to correct errors in the data (e.g. typos).  The result is written into a binary file of tree sites, each of which references an entry in a binary file of tree types (e.g. species).
+Each city database contains thousands of entries in various formats. The data pipeline is as follows:
+* Download a city's data with the <city>.ts script (e.g. losangeles.ts). The data is saved in <city>.json, containing latitude, longitude, and botanical name for each tree. 
+* Run process.ts:
+  * Combine all city data.
+  * Strip cultivars from botanical names, to make canonicalization easier later.  (We may at some point want to keep the cultivar information.)
+  * Canonicalize botanical names with a query to the GBIF API. 
+  * Build a global list of tree types and write it to types.json.
+  * Save a list of tree sites containing latitude/longitude and an index into the tree type list, to sites.json.
+* Run build_data (Swift):
+  * read types.json and sites.json; write binary versions that can take less space and can be loaded quickly by the app.
+
+When adding a new city, prefer government "open data" sites to community projects. Many cities have multiple databases available; if so, try to use the largest and most up-to-date one. If a possible city is rejected (e.g. because of inadequate tree data), add that city to data/rejected_cities.txt.
+
+
+## App
 
 Data is drawn on a Google Map.
+
+Code conventions:
+* use assert() instead of precondition().

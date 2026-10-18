@@ -4,43 +4,12 @@ import axios from 'axios';
 import fs from 'node:fs';
 import assert from 'node:assert';
 
-let cities = [
-  'beverlyhills',
-  'losangeles',
-  'newyorkcity',
-  'pasadena',
-  'sanfrancisco',
-  'santamonica',
-  'seattle',
-  'westhollywood',
-  'austin',
-  'berkeley',
-  'cambridge',
-  'denver',
-  'london',
-  'montreal',
-  'oakland',
-  'philadelphia',
-  'portland',
-  'sacramento',
-  'sanjose',
-  'toronto',
-  'vancouver',
-  'victoria',
-  'washingtondc',
-  'waterloo',
-  'atlanta',
-  'baltimore',
-  'boston',
-  'neworleans',
-  'sandiego',
-];
-
 
 async function main() {
 
   ////////////////////////////////////////
   // read all data
+  let cities: string[] = JSON.parse(fs.readFileSync('cities.json', 'utf8')).map((city: { code: string }) => city.code);
   let data = [];
   console.log('loading...');
   for (let city of cities) {
