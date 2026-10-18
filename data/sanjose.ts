@@ -4,15 +4,15 @@ import fs from 'node:fs';
 import { DataUtil } from './data_util';
 
 async function main() {
-  let endpoint = 'https://services.arcgis.com/NkcnS0qk4w2wasOJ/arcgis/rest/services/San%20Jose%20Street%20Tree%20Data/FeatureServer/1';
+  let endpoint = 'https://geo.sanjoseca.gov/server/rest/services/OPN/OPN_OpenDataService/MapServer/510';
   let rows = await DataUtil.fetchArcGis(endpoint, {
-    fields: 'NAMESCIENT',
-    where: "NAMESCIENT IS NOT NULL AND NAMESCIENT <> ''",
+    fields: 'NAMESCIENTIFIC',
+    where: "NAMESCIENTIFIC IS NOT NULL AND NAMESCIENTIFIC <> ''",
     returnGeometry: true
   });
 
   let trees = rows.map(o => ({
-    name: o.attributes.NAMESCIENT.trim(),
+    name: o.attributes.NAMESCIENTIFIC.trim(),
     lat: o.geometry.y,
     lon: o.geometry.x
   }));

@@ -4,17 +4,16 @@ import fs from 'node:fs';
 import { DataUtil } from './data_util';
 
 async function main() {
-  let endpoint = 'https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/iTreeReport_SanDiegoAP_Merge11/FeatureServer/0';
+  let endpoint = 'https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20';
   let rows = await DataUtil.fetchArcGis(endpoint, {
-    fields: 'BotanicalName',
-    where: "BotanicalName IS NOT NULL AND BotanicalName <> '' AND SHAPE IS NOT NULL",
-    returnGeometry: true
+    fields: 'SPECIES_NAME,LATITUDE,LONGITUDE',
+    where: "SPECIES_NAME IS NOT NULL AND SPECIES_NAME <> '' AND MAPNG_STAT_CD <> 'RM' AND LATITUDE IS NOT NULL AND LONGITUDE IS NOT NULL",
   });
 
   let trees = rows.map(o => ({
-    name: o.attributes.BotanicalName.trim(),
-    lat: o.geometry.y,
-    lon: o.geometry.x
+    name: o.attributes.SPECIES_NAME.trim(),
+    lat: o.attributes.LATITUDE,
+    lon: o.attributes.LONGITUDE
   }));
 
   fs.writeFileSync('sandiego.json', JSON.stringify(trees, null, 2));

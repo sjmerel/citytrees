@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import { DataUtil } from './data_util';
 
 async function main() {
-  let endpoint = 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/ppr_tree_inventory_2024/FeatureServer/0';
+  let endpoint = 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/ppr_tree_inventory_2025/FeatureServer/0';
   let rows = await DataUtil.fetchArcGis(endpoint, {
     fields: 'tree_name',
     where: "tree_name IS NOT NULL AND tree_name <> ''",

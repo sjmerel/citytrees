@@ -5,19 +5,19 @@ import { DataUtil } from './data_util';
 
 async function main() {
 
-  let endpoint = 'https://data.cityofnewyork.us/resource/uvpi-gqnh.json';
+  let endpoint = 'https://data.cityofnewyork.us/resource/hn5i-inap.json';
 
   let rows = await DataUtil.fetchSocrata(endpoint, {
-      select: 'latitude,longitude,spc_latin',
-      order: 'tree_id',
-      where: "status = 'Alive' AND spc_latin IS NOT NULL"
+      select: 'genusspecies,location',
+      order: 'objectid',
+      where: "tpstructure = 'Full' AND genusspecies IS NOT NULL AND location IS NOT NULL"
     }
   );
 
   let trees = rows.map(o => ({
-    name: o.spc_latin,
-    lat: parseFloat(o.latitude),
-    lon: parseFloat(o.longitude)
+    name: o.genusspecies.split(' - ')[0].trim(),
+    lat: o.location.coordinates[1],
+    lon: o.location.coordinates[0]
   }));
 
   fs.writeFileSync('newyorkcity.json', JSON.stringify(trees, null, 2));
