@@ -4,17 +4,17 @@ import fs from 'node:fs';
 import { DataUtil } from './data_util';
 
 async function main() {
-  let endpoint = 'https://data.oaklandca.gov/resource/4jcx-enxf.json';
-  let rows = await DataUtil.fetchSocrata(endpoint, {
-    select: 'objectid,species,location_1',
-    where: 'species IS NOT NULL AND location_1 IS NOT NULL AND location_1.latitude IS NOT NULL',
-    order: 'objectid'
+  let endpoint = 'https://services.arcgis.com/9tC74aDHuml0x5Yz/arcgis/rest/services/Oakland_Public_Tree_Inventory_/FeatureServer/0';
+  let rows = await DataUtil.fetchArcGis(endpoint, {
+    fields: 'Species___botanical',
+    where: "Species___botanical IS NOT NULL AND Public_Tree = 'Yes'",
+    returnGeometry: true
   });
 
   let trees = rows.map(o => ({
-    name: o.species.trim(),
-    lat: parseFloat(o.location_1.latitude),
-    lon: parseFloat(o.location_1.longitude)
+    name: o.attributes.Species___botanical.trim(),
+    lat: o.geometry.y,
+    lon: o.geometry.x
   }));
 
   fs.writeFileSync('oakland.json', JSON.stringify(trees, null, 2));
