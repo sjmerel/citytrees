@@ -38,12 +38,9 @@ class MapTileLayer: GMSSyncTileLayer {
         if sites.isEmpty { return kGMSTileLayerNoTile }
 
         if sites.count > MAX_SITES {
-            let allSites = sites
-            let sampleCount = MAX_SITES
-            sites = (0..<sampleCount).map { index in
-                allSites[index * allSites.count / sampleCount]
-            }
-            print("decimated \(allSites.count) -> \(sites.count)")
+            let oldCount = sites.count
+            sites = TreeSite.decimate(sites: sites, n: MAX_SITES)
+            print("decimated \(oldCount) -> \(sites.count)")
         }
 
         let profiler = Profiler(name: "tile \(x),\(y) \(zoom) (\(sites.count) sites)")

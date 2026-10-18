@@ -26,6 +26,20 @@
 			);
 			target = 000000000000000100000000 /* trees */;
 		};
+		AA77FDB830845C7700DF9258 /* Exceptions for "trees" folder in "build_data" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				BinaryReader.swift,
+				BinaryWriter.swift,
+				MapLocation.swift,
+				MapRect.swift,
+				Profiler.swift,
+				Stopwatch.swift,
+				TreeSite.swift,
+				TreeType.swift,
+			);
+			target = AA77FDAD308430F200DF9258 /* build_data */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -33,6 +47,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				AA1BE9BB307DA05000B8B8B2 /* Exceptions for "trees" folder in "trees" target */,
+				AA77FDB830845C7700DF9258 /* Exceptions for "trees" folder in "build_data" target */,
 			);
 			path = trees;
 			sourceTree = "<group>";

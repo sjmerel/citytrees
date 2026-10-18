@@ -2,8 +2,7 @@ import Foundation
 
 class BinaryReader {
 
-    init(fileName: String) {
-        let url = Bundle.main.url(forResource: fileName, withExtension: nil)!
+    init(url: URL) {
         self.data = try! Data(contentsOf: url)
     }
 

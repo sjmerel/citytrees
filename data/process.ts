@@ -3,7 +3,6 @@
 import axios from 'axios';
 import fs from 'node:fs';
 import assert from 'node:assert';
-import path from 'node:path';
 
 let cities = [
   'beverlyhills',
@@ -37,7 +36,6 @@ let cities = [
   'sandiego',
 ];
 
-const GLOBAL_SITE_LIMIT = 10_000;
 
 async function main() {
 
@@ -172,117 +170,12 @@ async function main() {
   }));
 
   console.log();
-  console.log('writing binary files...');
+  console.log('writing json files...');
   console.log(`  ${sites.length} sites`);
   console.log(`  ${discarded} sites discarded (${(discarded/(discarded+sites.length)*100).toFixed(0)}%)`);
   console.log(`  ${types.length} unique types`);
   fs.writeFileSync('types.json', JSON.stringify(types, null, 2));
   fs.writeFileSync('sites.json', JSON.stringify(sites, null, 2));
-  writeTypesBinary(types);
-  writeSitesBinary(sites, types.length);
-
-  const globalSites = decimateSites(sites, GLOBAL_SITE_LIMIT);
-  console.log(`  ${globalSites.length} sites in global overview`);
-  writeSitesBinary(globalSites, types.length, 'global.bin');
-}
-
-function writeTypesBinary(types: { canonical_name: string }[]): void {
-  const headerSize = 4;
-  const encodedNames = types.map(type => Buffer.from(type.canonical_name, 'utf8'));
-  const totalSize = headerSize + encodedNames.reduce((size, name) => {
-    assert(name.length <= 0xffff, 'Type name is too long to encode');
-    return size + 2 + name.length;
-  }, 0);
-  const output = Buffer.alloc(totalSize);
-
-  // Little-endian type count, followed by length-prefixed UTF-8 names.
-  output.writeUInt32LE(types.length, 0);
-
-  let offset = headerSize;
-  for (const name of encodedNames) {
-    output.writeUInt16LE(name.length, offset);
-    offset += 2;
-    name.copy(output, offset);
-    offset += name.length;
-  }
-
-  fs.writeFileSync(path.join(__dirname, '../ios/trees/types.bin'), output);
-}
-
-function writeSitesBinary(
-  sites: { lat: number; lon: number; type: number }[],
-  typeCount: number,
-  fileName = 'sites.bin'
-): void {
-  assert(sites.length > 0, 'Cannot write a bounding box for an empty site list');
-
-  let minLat = sites[0].lat;
-  let minLon = sites[0].lon;
-  let maxLat = sites[0].lat;
-  let maxLon = sites[0].lon;
-  for (const site of sites) {
-    minLat = Math.min(minLat, site.lat);
-    minLon = Math.min(minLon, site.lon);
-    maxLat = Math.max(maxLat, site.lat);
-    maxLon = Math.max(maxLon, site.lon);
-  }
-
-  const headerSize = 4 + 4 * 8;
-  const recordSize = 18;
-  const output = Buffer.alloc(headerSize + sites.length * recordSize);
-
-  // Little-endian site count and northwest/southeast bounds, followed by site records.
-  output.writeUInt32LE(sites.length, 0);
-  output.writeDoubleLE(maxLat, 4);  // north
-  output.writeDoubleLE(minLon, 12); // west
-  output.writeDoubleLE(minLat, 20); // south
-  output.writeDoubleLE(maxLon, 28); // east
-
-  let offset = headerSize;
-  for (const site of sites) {
-    assert(Number.isInteger(site.type) && site.type >= 0 && site.type < typeCount, 'Invalid site type index');
-    assert(site.type <= 0xffff, 'Site type index exceeds 16-bit encoding');
-    output.writeDoubleLE(site.lat, offset);
-    output.writeDoubleLE(site.lon, offset + 8);
-    output.writeUInt16LE(site.type, offset + 16);
-    offset += recordSize;
-  }
-
-  fs.writeFileSync(path.join(__dirname, `../ios/trees/${fileName}`), output);
-}
-
-function decimateSites(
-  sites: { lat: number; lon: number; type: number }[],
-  maxCount: number
-): { lat: number; lon: number; type: number }[] {
-  if (sites.length <= maxCount) {
-    return sites;
-  }
-
-  let selected: { lat: number; lon: number; type: number }[] = [];
-  for (let level = 0; level <= 30; level++) {
-    const cells = new Map<string, { lat: number; lon: number; type: number }>();
-    const cellCount = 2 ** level;
-
-    for (const site of sites) {
-      const latitude = Math.max(-85.05112878, Math.min(85.05112878, site.lat));
-      const x = Math.max(0, Math.min(cellCount - 1,
-        Math.floor((site.lon + 180) / 360 * cellCount)));
-      const y = Math.max(0, Math.min(cellCount - 1,
-        Math.floor((1 - Math.asinh(Math.tan(latitude * Math.PI / 180)) / Math.PI) / 2 * cellCount)));
-      const key = `${x},${y}`;
-      if (!cells.has(key)) {
-        cells.set(key, site);
-      }
-    }
-
-    if (cells.size > maxCount) {
-      break;
-    }
-    selected = [...cells.values()];
-  }
-
-  return selected;
 }
 
 ////////////////////////////////////////

@@ -1,6 +1,10 @@
+import Foundation
+
 class TreeNode {
     
     init(rect: MapRect, sites: [TreeSite]) {
+        assert(rect.maxLat > rect.minLat)
+        assert(rect.maxLon > rect.minLon)
         self.rect = rect
         add(sites: sites)
     }
@@ -20,13 +24,13 @@ class TreeNode {
     static let all = load() // XXX
     static func load() -> TreeNode {
         let profiler = Profiler(name: "read sites.bin")
-
-        let reader = BinaryReader(fileName: "sites.bin")
+        let url = Bundle.main.url(forResource: "sites", withExtension: "bin")!
+        let reader = BinaryReader(url: url)
 
         let count = reader.readUInt32()
 
         // stored rect is min/max; nudge max so all sites are contained
-        var rect = MapRect.load(reader: reader)
+        var rect = MapRect.readBinary(reader: reader)
         rect.northWest.lat += rect.northWest.lat.ulp
         rect.southEast.lon += rect.southEast.lon.ulp
 
@@ -35,7 +39,7 @@ class TreeNode {
         sites.reserveCapacity(Int(count))
 
         for _ in 0..<count {
-            sites.append(TreeSite.load(reader: reader))
+            sites.append(TreeSite.readBinary(reader: reader))
         }
         assert(reader.isAtEnd)
         profiler.mark(label: "read \(count) sites")
