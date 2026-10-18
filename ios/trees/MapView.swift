@@ -143,30 +143,14 @@ struct MapView: UIViewRepresentable {
         private func nearestSite(to coordinate: CLLocationCoordinate2D, in mapView: GMSMapView) -> Site? {
             let projection = mapView.projection
             let tap = projection.point(for: coordinate)
-            let r = SELECTION_RADIUS_POINTS
 
-            // Bounding box of the search circle; the map may be rotated, so use all four corners.
-            let corners = [(-r, -r), (r, -r), (-r, r), (r, r)].map {
-                projection.coordinate(for: CGPoint(x: tap.x + $0.0, y: tap.y + $0.1))
-            }
-            let north = corners.map(\.latitude).max()!
-            let south = corners.map(\.latitude).min()!
-            let west = corners.map(\.longitude).min()!
-            let east = corners.map(\.longitude).max()!
-            let rect = MapRect(north: north, west: west, south: south, east: east)
+            // Convert the screen-space radius to meters at the tap location.
+            let edge = projection.coordinate(for: CGPoint(x: tap.x + SELECTION_RADIUS_POINTS, y: tap.y))
+            let radius = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                .distance(from: CLLocation(latitude: edge.latitude, longitude: edge.longitude))
 
-            var best: Site?
-            var bestDistance = r * r
-            for site in MapNode.all.find(rect: rect) {
-                let p = projection.point(for: CLLocationCoordinate2D(latitude: site.location.lat,
-                                                                     longitude: site.location.lon))
-                let d = (p.x - tap.x) * (p.x - tap.x) + (p.y - tap.y) * (p.y - tap.y)
-                if d <= bestDistance {
-                    bestDistance = d
-                    best = site
-                }
-            }
-            return best
+            return MapNode.all.findNearest(location: MapLocation(lat: coordinate.latitude, lon: coordinate.longitude),
+                                           maxDistance: radius)
         }
 
         private func updateLocationControls() {

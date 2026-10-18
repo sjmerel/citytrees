@@ -9,8 +9,12 @@ class MapNode {
         add(sites: sites)
     }
 
-    func findNearest(location: MapLocation) -> Site? {
-        return nil // TODO
+    // Nearest site to location within maxDistance meters, if any.
+    func findNearest(location: MapLocation, maxDistance: Double) -> Site? {
+        var best: Site?
+        var bestDistance = maxDistance
+        findNearest(location: location, best: &best, bestDistance: &bestDistance)
+        return best
     }
 
     func find(rect: MapRect) -> [Site] {
@@ -90,6 +94,37 @@ class MapNode {
         return 1 + nodes.map { $0.maxDepth() }.max()!
     }
 
+
+    private static let metersPerDegree = 111_320.0
+
+    // Approximate (equirectangular) distance in meters; accurate enough at tap scale.
+    private static func distance(from a: MapLocation, to b: MapLocation) -> Double {
+        let dy = (b.lat - a.lat) * metersPerDegree
+        let dx = (b.lon - a.lon) * metersPerDegree * cos(a.lat * .pi / 180)
+        return (dx * dx + dy * dy).squareRoot()
+    }
+
+    private func findNearest(location: MapLocation, best: inout Site?, bestDistance: inout Double) {
+        // distance to the closest point of this node's rect; skip if it can't beat the best
+        let closest = MapLocation(lat: min(max(location.lat, rect.minLat), rect.maxLat),
+                                  lon: min(max(location.lon, rect.minLon), rect.maxLon))
+        if MapNode.distance(from: location, to: closest) > bestDistance { return }
+
+        if let sites = self.sites {
+            for site in sites {
+                let d = MapNode.distance(from: location, to: site.location)
+                if d <= bestDistance {
+                    bestDistance = d
+                    best = site
+                }
+            }
+        }
+        else {
+            for node in self.nodes! {
+                node.findNearest(location: location, best: &best, bestDistance: &bestDistance)
+            }
+        }
+    }
 
     private func find(rect: MapRect, result: inout [Site]) {
         if !rect.intersects(self.rect) { return }
