@@ -39,6 +39,7 @@ let cities = [
 
 async function main() {
 
+  ////////////////////////////////////////
   // read all data
   let data = [];
   console.log('loading...');
@@ -54,7 +55,9 @@ async function main() {
   console.log(`  TOTAL: ${data.length} sites`);
 
 
-  // preprocess
+
+  ////////////////////////////////////////
+  // preprocess and strip cultivar
   console.log();
   console.log('preprocessing botanical names...');
   let strippedMap = {}
@@ -74,7 +77,9 @@ async function main() {
   fs.writeFileSync('debug_preprocess_unstripped.json', JSON.stringify(unstrippedMap, null, 2));
 
 
-  // canonicalize
+
+  ////////////////////////////////////////
+  // canonicalize names
   console.log();
   console.log('canonicalizing botanical names...');
   let inputNames = [...new Set(data.map(o => o.name))];
@@ -148,7 +153,9 @@ async function main() {
     d.name = canonicalName;
     return true;
   });
+  console.log(`  ${discarded} sites discarded (${(discarded/(discarded+data.length)*100).toFixed(0)}%)`);
 
+  // write debug files
   fs.writeFileSync('debug_canonicalize.json', JSON.stringify(canonicalizedMap, null, 2));
   let failedMapSorted = Object.fromEntries(
     Object.entries(failedMap).sort(([, a], [, b]) =>
@@ -156,6 +163,38 @@ async function main() {
     )
   );
   fs.writeFileSync('debug_canonicalize_fail.json', JSON.stringify(failedMapSorted, null, 2));
+
+
+  ////////////////////////////////////////
+  // handle sites with same location:
+  // keep them only if they are the same species.
+
+  console.log();
+  console.log('handling duplicate locations...');
+  let byLocation = new Map<string, any[]>();
+  for (let d of data) {
+    let key = `${d.lat},${d.lon}`;
+    let group = byLocation.get(key);
+    if (group) { group.push(d); } else { byLocation.set(key, [d]); }
+  }
+  let dedupedSame = 0;
+  let droppedMixed = 0;
+  data = [];
+  for (let group of byLocation.values()) {
+    if (group.length == 1) {
+      data.push(group[0]);
+    } else if (group.every(d => d.name == group[0].name)) {
+      data.push(group[0]);
+      dedupedSame += group.length - 1;
+    } else {
+      droppedMixed += group.length;
+    }
+  }
+  console.log(`  ${dedupedSame} duplicate same-species sites merged`);
+  console.log(`  ${droppedMixed} mixed-species co-located sites dropped`);
+
+
+  ////////////////////////////////////////
 
   let names = [...new Set(data.map(o => o.name))];
 
@@ -172,7 +211,6 @@ async function main() {
   console.log();
   console.log('writing json files...');
   console.log(`  ${sites.length} sites`);
-  console.log(`  ${discarded} sites discarded (${(discarded/(discarded+sites.length)*100).toFixed(0)}%)`);
   console.log(`  ${types.length} unique types`);
   fs.writeFileSync('types.json', JSON.stringify(types, null, 2));
   fs.writeFileSync('sites.json', JSON.stringify(sites, null, 2));
