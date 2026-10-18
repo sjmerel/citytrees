@@ -1,7 +1,7 @@
 import SwiftUI
 //import FirebaseAnalytics
 
-@main struct MyApp: App {
+@main struct TreesApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     var body: some Scene {

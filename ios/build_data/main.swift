@@ -16,16 +16,16 @@ print("read \(types.count) types")
 
 print("reading sites.json")
 let sitesUrl = dataDir.appendingPathComponent("sites.json")
-var sites = try JSONDecoder().decode([TreeSite].self, from: Data(contentsOf: sitesUrl))
+var sites = try JSONDecoder().decode([Site].self, from: Data(contentsOf: sitesUrl))
 print("read \(sites.count) sites")
 
-sites = TreeSite.decimate(sites: sites, n: 10000)
+sites = Site.decimate(sites: sites, n: 50000)
 print("decimated to \(sites.count) sites")
 
 print("writing types.bin")
 try TreeType.writeBinary(types: types, url: outDir.appendingPathComponent("types.bin"))
 
 print("writing sites.bin")
-try TreeSite.writeBinary(sites: sites, url: outDir.appendingPathComponent("sites.bin"))
+try Site.writeBinary(sites: sites, url: outDir.appendingPathComponent("sites.bin"))
 
 p.stop()

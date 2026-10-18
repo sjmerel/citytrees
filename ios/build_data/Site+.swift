@@ -1,4 +1,4 @@
-extension TreeSite: Decodable {
+extension Site: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case lat, lon, type

@@ -1,6 +1,6 @@
 import Foundation
 
-struct TreeSite: Equatable {
+struct Site {
 
     init(location: MapLocation, typeIndex: Int) {
         self.location = location
@@ -16,13 +16,13 @@ struct TreeSite: Equatable {
 
     ////////////////////////////////////////
 
-    static func readBinary(reader: BinaryReader) -> TreeSite {
-        let location = MapLocation.readBinary(reader: reader) //MapLocation(longitude: longitude, latitude: latitude)
+    static func readBinary(reader: BinaryReader) -> Site {
+        let location = MapLocation.readBinary(reader: reader)
         let typeIndex = Int(reader.readUInt16())
-        return TreeSite(location: location, typeIndex: typeIndex)
+        return Site(location: location, typeIndex: typeIndex)
     }
 
-    static func writeBinary(sites: [TreeSite], url: URL) throws {
+    static func writeBinary(sites: [Site], url: URL) throws {
         let profiler = Profiler(name: "write \(url)")
 
         var north = -Double.infinity, south = Double.infinity
@@ -46,7 +46,7 @@ struct TreeSite: Equatable {
     }
 
 
-    static func decimate(sites: [TreeSite], n: Int) -> [TreeSite] {
+    static func decimate(sites: [Site], n: Int) -> [Site] {
         assert(n < sites.count)
         return (0..<n).map { sites[$0 * sites.count / n] }
     }

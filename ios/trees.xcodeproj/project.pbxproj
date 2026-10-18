@@ -34,8 +34,8 @@
 				MapLocation.swift,
 				MapRect.swift,
 				Profiler.swift,
+				Site.swift,
 				Stopwatch.swift,
-				TreeSite.swift,
 				TreeType.swift,
 			);
 			target = AA77FDAD308430F200DF9258 /* build_data */;

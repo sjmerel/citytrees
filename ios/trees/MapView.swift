@@ -133,14 +133,14 @@ struct MapView: UIViewRepresentable {
         private let selectionLabel = PaddedLabel()
         private let SELECTION_RADIUS_POINTS = 20.0
 
-        private func select(site: TreeSite?) {
+        private func select(site: Site?) {
             parent.tileLayer.selectedSite = site
             selectionLabel.text = site?.type.canonicalName
             selectionLabel.isHidden = site == nil
         }
 
         // Nearest site to the tap, if within SELECTION_RADIUS_POINTS on screen.
-        private func nearestSite(to coordinate: CLLocationCoordinate2D, in mapView: GMSMapView) -> TreeSite? {
+        private func nearestSite(to coordinate: CLLocationCoordinate2D, in mapView: GMSMapView) -> Site? {
             let projection = mapView.projection
             let tap = projection.point(for: coordinate)
             let r = SELECTION_RADIUS_POINTS
@@ -155,9 +155,9 @@ struct MapView: UIViewRepresentable {
             let east = corners.map(\.longitude).max()!
             let rect = MapRect(north: north, west: west, south: south, east: east)
 
-            var best: TreeSite?
+            var best: Site?
             var bestDistance = r * r
-            for site in TreeNode.all.find(rect: rect) {
+            for site in MapNode.all.find(rect: rect) {
                 let p = projection.point(for: CLLocationCoordinate2D(latitude: site.location.lat,
                                                                      longitude: site.location.lon))
                 let d = (p.x - tap.x) * (p.x - tap.x) + (p.y - tap.y) * (p.y - tap.y)

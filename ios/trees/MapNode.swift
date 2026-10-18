@@ -1,20 +1,20 @@
 import Foundation
 
-class TreeNode {
+class MapNode {
     
-    init(rect: MapRect, sites: [TreeSite]) {
+    init(rect: MapRect, sites: [Site]) {
         assert(rect.maxLat > rect.minLat)
         assert(rect.maxLon > rect.minLon)
         self.rect = rect
         add(sites: sites)
     }
 
-    func findNearest(location: MapLocation) -> TreeSite? {
+    func findNearest(location: MapLocation) -> Site? {
         return nil // TODO
     }
 
-    func find(rect: MapRect) -> [TreeSite] {
-        var result = [TreeSite]()
+    func find(rect: MapRect) -> [Site] {
+        var result = [Site]()
         find(rect: rect, result: &result)
         return result
     }
@@ -22,7 +22,7 @@ class TreeNode {
     let rect: MapRect
 
     static let all = load() // XXX
-    static func load() -> TreeNode {
+    static func load() -> MapNode {
         let profiler = Profiler(name: "read sites.bin")
         let url = Bundle.main.url(forResource: "sites", withExtension: "bin")!
         let reader = BinaryReader(url: url)
@@ -35,16 +35,16 @@ class TreeNode {
         rect.southEast.lon += rect.southEast.lon.ulp
 
         profiler.mark(label: "read start")
-        var sites: [TreeSite] = []
+        var sites: [Site] = []
         sites.reserveCapacity(Int(count))
 
         for _ in 0..<count {
-            sites.append(TreeSite.readBinary(reader: reader))
+            sites.append(Site.readBinary(reader: reader))
         }
         assert(reader.isAtEnd)
         profiler.mark(label: "read \(count) sites")
 
-        let node = TreeNode(rect: rect, sites: sites)
+        let node = MapNode(rect: rect, sites: sites)
         profiler.mark(label: "build tree")
 
         profiler.stop()
@@ -75,8 +75,8 @@ class TreeNode {
 
     ////////////////////////////////////////
 
-    private var sites: [TreeSite]? = nil
-    private var nodes: [TreeNode]? = nil 
+    private var sites: [Site]? = nil
+    private var nodes: [MapNode]? = nil 
 
     private let maxSites = 32
     
@@ -91,7 +91,7 @@ class TreeNode {
     }
 
 
-    private func find(rect: MapRect, result: inout [TreeSite]) {
+    private func find(rect: MapRect, result: inout [Site]) {
         if !rect.intersects(self.rect) { return }
 
         if let sites = self.sites {
@@ -104,16 +104,16 @@ class TreeNode {
         }
     }
 
-    private func add(sites: [TreeSite]) {
+    private func add(sites: [Site]) {
         if (sites.count <= self.maxSites) {
             self.sites = sites
         }
         else {
             var nodeSites = [
-                [TreeSite](), 
-                [TreeSite](), 
-                [TreeSite](), 
-                [TreeSite](), 
+                [Site](), 
+                [Site](), 
+                [Site](), 
+                [Site](), 
             ]
             for site in sites {
                 let east = site.location.lon >= self.rect.midLon
@@ -127,10 +127,10 @@ class TreeNode {
                 nodeSites[index].append(site)
             }
             self.nodes = [
-                TreeNode(rect: MapRect(north: self.rect.north, west: self.rect.west, south: self.rect.midLat, east: self.rect.midLon), sites: nodeSites[0]),
-                TreeNode(rect: MapRect(north: self.rect.north, west: self.rect.midLon, south: self.rect.midLat, east: self.rect.east), sites: nodeSites[1]),
-                TreeNode(rect: MapRect(north: self.rect.midLat, west: self.rect.west, south: self.rect.south, east: self.rect.midLon), sites: nodeSites[2]),
-                TreeNode(rect: MapRect(north: self.rect.midLat, west: self.rect.midLon, south: self.rect.south, east: self.rect.east), sites: nodeSites[3]),
+                MapNode(rect: MapRect(north: self.rect.north, west: self.rect.west, south: self.rect.midLat, east: self.rect.midLon), sites: nodeSites[0]),
+                MapNode(rect: MapRect(north: self.rect.north, west: self.rect.midLon, south: self.rect.midLat, east: self.rect.east), sites: nodeSites[1]),
+                MapNode(rect: MapRect(north: self.rect.midLat, west: self.rect.west, south: self.rect.south, east: self.rect.midLon), sites: nodeSites[2]),
+                MapNode(rect: MapRect(north: self.rect.midLat, west: self.rect.midLon, south: self.rect.south, east: self.rect.east), sites: nodeSites[3]),
             ]
         }
     }

@@ -9,7 +9,7 @@ class MapTileLayer: GMSSyncTileLayer {
     }
 
     // Safe to set from the main thread while tiles render on background threads.
-    var selectedSite: TreeSite? {
+    var selectedSite: Site? {
         get { selectionLock.withLock { _selectedSite } }
         set {
             selectionLock.withLock { _selectedSite = newValue }
@@ -43,13 +43,13 @@ class MapTileLayer: GMSSyncTileLayer {
         )
         let rect = MapRect(northWest: northWest, southEast: southEast)
         let selectedSite = self.selectedSite
-        var sites = TreeNode.all.find(rect: rect)
+        var sites = MapNode.all.find(rect: rect)
 
         if sites.isEmpty && selectedSite == nil { return kGMSTileLayerNoTile }
 
         if sites.count > MAX_SITES {
             let oldCount = sites.count
-            sites = TreeSite.decimate(sites: sites, n: MAX_SITES)
+            sites = Site.decimate(sites: sites, n: MAX_SITES)
             print("decimated \(oldCount) -> \(sites.count)")
         }
 
@@ -71,7 +71,7 @@ class MapTileLayer: GMSSyncTileLayer {
         context.scaleBy(x: 1, y: -1)
         context.setFillColor(UIColor.red.cgColor)
 
-        func draw(_ site: TreeSite) {
+        func draw(_ site: Site) {
             let (worldX, worldY) = project(location: site.location)
             let tileX = (worldX * tileCount - Double(x)) * Double(TILE_SIZE)
             let tileY = (worldY * tileCount - Double(y)) * Double(TILE_SIZE)
@@ -107,7 +107,7 @@ class MapTileLayer: GMSSyncTileLayer {
     ////////////////////////////////////////
 
     private let selectionLock = NSLock()
-    private var _selectedSite: TreeSite?
+    private var _selectedSite: Site?
 
     private let TILE_SIZE = 512
     private let SITES_DIAMETER_METERS = 4.0
