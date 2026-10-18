@@ -20,12 +20,18 @@ async function main() {
   fs.writeFileSync('sacramento.json', JSON.stringify(trees, null, 2));
 }
 
+
+////////////////////////////////////////
+
 (async () => {
-  try {
-    await main();
-    process.exit(0);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-})();
+
+try {
+  await main();
+  process.exit(0);
+}
+catch(error) {
+  console.log(error);
+  process.exit(1);
+}
+
+}) ();
