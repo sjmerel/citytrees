@@ -95,7 +95,7 @@
     "country": "US"
   },
   {
-    "code": "portland",
+    "code": "portlandor",
     "name": "Portland",
     "state": "OR",
     "country": "US"
@@ -230,6 +230,12 @@
     "code": "aurora",
     "name": "Aurora",
     "state": "CO",
+    "country": "US"
+  },
+  {
+    "code": "portlandme",
+    "name": "Portland",
+    "state": "ME",
     "country": "US"
   }
 ]

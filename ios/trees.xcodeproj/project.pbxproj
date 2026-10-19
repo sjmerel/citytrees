@@ -32,6 +32,7 @@
 				BinaryReader.swift,
 				BinaryWriter.swift,
 				MapLocation.swift,
+				MapNode.swift,
 				MapRect.swift,
 				Profiler.swift,
 				Site.swift,
