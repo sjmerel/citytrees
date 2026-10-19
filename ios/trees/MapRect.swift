@@ -1,4 +1,4 @@
-struct MapRect {
+struct MapRect: CustomStringConvertible {
 
     init(northWest: MapLocation, southEast: MapLocation) {
         assert(northWest.lat >= southEast.lat)
@@ -10,6 +10,10 @@ struct MapRect {
     init(north: Double, west: Double, south: Double, east: Double) {
         self.init(northWest: MapLocation(lat: north, lon: west),
                   southEast: MapLocation(lat: south, lon: east))
+    }
+
+    var description: String {
+        return "[\(north), \(west), \(south), \(east)]"
     }
 
     var northWest: MapLocation
@@ -30,6 +34,11 @@ struct MapRect {
     func contains(_ location: MapLocation) -> Bool {
         return location.lat >= self.minLat && location.lat < self.maxLat &&
                location.lon >= self.minLon && location.lon < self.maxLon
+    }
+
+    func contains(_ rect: MapRect) -> Bool {
+        return rect.minLat >= self.minLat && rect.maxLat <= self.maxLat &&
+               rect.minLon >= self.minLon && rect.maxLon <= self.maxLon
     }
 
     func intersects(_ rect: MapRect) -> Bool {

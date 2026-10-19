@@ -2,10 +2,12 @@ import Foundation
 
 class MapNode {
     
-    init(rect: MapRect, sites: [Site]) {
+    init(sites: [Site], rect: MapRect? = nil, depth: Int = 0) {
+        let rect = rect ?? MapNode.boundingRect(of: sites)
         assert(rect.maxLat > rect.minLat)
         assert(rect.maxLon > rect.minLon)
         self.rect = rect
+        self.depth = depth
         add(sites: sites)
     }
 
@@ -24,11 +26,15 @@ class MapNode {
     }
 
     let rect: MapRect
+    let depth: Int
 
+    /*
     static let all = load() // XXX
+
+    
     static func load() -> MapNode {
         let profiler = Profiler(name: "read sites.bin")
-        let url = Bundle.main.url(forResource: "sites", withExtension: "bin")!
+        let url = Bundle.main.url(forResource: "sites_top", withExtension: "bin")!
         let reader = BinaryReader(url: url)
 
         let count = reader.readUInt32()
@@ -48,33 +54,104 @@ class MapNode {
         assert(reader.isAtEnd)
         profiler.mark(label: "read \(count) sites")
 
-        let node = MapNode(rect: rect, sites: sites)
+        let node = MapNode(sites: sites, rect: rect)
         profiler.mark(label: "build tree")
 
         profiler.stop()
 
-        //node.printNode()
         print("depth: \(node.maxDepth())")
 
         return node
     }
+        */
 
-    func printNode(depth: Int = 0) {
-        var s = ""
-        for _ in 0..<depth { s += "  " }
-        
+    // Breadth-first: prints the site counts of all nodes at each level, one level per line.
+    func printNode() {
+        var level = [self]
+        var depth = 0
+        while !level.isEmpty {
+            let counts = level.map { $0.siteCount() }.filter { $0 > 0 }
+            print("level \(depth): " + counts.map { String($0) }.joined(separator: " "))
+            level = level.flatMap { $0.nodes ?? [] }
+            depth += 1
+        }
+    }
+
+    func siteCount() -> Int {
+        if let sites = self.sites { return sites.count }
+        return self.nodes!.reduce(0) { $0 + $1.siteCount() }
+    }
+
+    func maxDepth() -> Int {
+        guard let nodes = self.nodes else { return 0 }
+        return 1 + nodes.map { $0.maxDepth() }.max()!
+    }
+
+    func getSites() -> [Site] {
         if let sites = self.sites {
-            print("\(s)\(sites.count)")
-            assert(self.nodes == nil)
+            return sites
         }
         else {
-            print("\(s)-")
-            assert(self.sites == nil)
-            assert(self.nodes!.count == 4)
+            var all = [Site]()
             for node in self.nodes! {
-                node.printNode(depth: depth+1)
+                all.append(contentsOf: node.getSites())
+            }
+            return all
+        }
+    }
+
+    func writeBinary(writer: BinaryWriter) {
+        let sites = getSites()
+        self.rect.writeBinary(writer: writer)
+        writer.writeUInt32(UInt32(sites.count))
+        for site in sites {
+            site.writeBinary(writer: writer)
+        }
+    }
+
+    func writeBinary(url: URL) throws {
+        let writer = BinaryWriter()
+        writeBinary(writer: writer)
+        try writer.write(to: url)
+    }
+
+    static func readBinaryRect(url: URL) throws -> MapRect {
+        let reader = BinaryReader(url: url)
+        return MapRect.readBinary(reader: reader)
+    }
+
+    static func readBinary(url: URL) throws -> MapNode {
+        let reader = BinaryReader(url: url)
+
+        let rect = MapRect.readBinary(reader: reader)
+        let count = reader.readUInt32()
+
+        var sites: [Site] = []
+        sites.reserveCapacity(Int(count))
+
+        for _ in 0..<count {
+            sites.append(Site.readBinary(reader: reader))
+        }
+        assert(reader.isAtEnd)
+
+        return MapNode(sites: sites, rect: rect)
+    }
+
+    func writeTiles(maxSites: Int, outDir: URL, baseName: String = "sites_tile_") throws {
+        let siteCount = siteCount()
+        if siteCount < maxSites {
+            if siteCount > 0 {
+                let url = outDir.appendingPathComponent("\(baseName).bin")
+                print("writing \(url) (\(siteCount) sites)")
+                try writeBinary(url: url)
             }
         }
+        else {
+            for (index,node) in self.nodes!.enumerated() {
+                try node.writeTiles(maxSites: maxSites, outDir: outDir, baseName: "\(baseName)\(index)")
+            }
+        }
+
     }
 
     ////////////////////////////////////////
@@ -82,17 +159,13 @@ class MapNode {
     private var sites: [Site]? = nil
     private var nodes: [MapNode]? = nil 
 
-    private let maxSites = 32
+    private let MAX_SITES = 32
     
     private let northWest = 0
     private let northEast = 1
     private let southWest = 2
     private let southEast = 3
 
-    private func maxDepth() -> Int {
-        guard let nodes = self.nodes else { return 0 }
-        return 1 + nodes.map { $0.maxDepth() }.max()!
-    }
 
 
     private static let metersPerDegree = 111_320.0
@@ -126,6 +199,20 @@ class MapNode {
         }
     }
 
+    // MapRect.contains excludes the max edges, so nudge them to include every site.
+    private static func boundingRect(of sites: [Site]) -> MapRect {
+        assert(!sites.isEmpty)
+        var minLat = Double.infinity, maxLat = -Double.infinity
+        var minLon = Double.infinity, maxLon = -Double.infinity
+        for site in sites {
+            minLat = min(minLat, site.location.lat)
+            maxLat = max(maxLat, site.location.lat)
+            minLon = min(minLon, site.location.lon)
+            maxLon = max(maxLon, site.location.lon)
+        }
+        return MapRect(north: maxLat + maxLat.ulp, west: minLon, south: minLat, east: maxLon + maxLon.ulp)
+    }
+
     private func find(rect: MapRect, result: inout [Site]) {
         if !rect.intersects(self.rect) { return }
 
@@ -140,7 +227,7 @@ class MapNode {
     }
 
     private func add(sites: [Site]) {
-        if (sites.count <= self.maxSites) {
+        if (sites.count <= self.MAX_SITES) {
             self.sites = sites
         }
         else {
@@ -162,10 +249,10 @@ class MapNode {
                 nodeSites[index].append(site)
             }
             self.nodes = [
-                MapNode(rect: MapRect(north: self.rect.north, west: self.rect.west, south: self.rect.midLat, east: self.rect.midLon), sites: nodeSites[0]),
-                MapNode(rect: MapRect(north: self.rect.north, west: self.rect.midLon, south: self.rect.midLat, east: self.rect.east), sites: nodeSites[1]),
-                MapNode(rect: MapRect(north: self.rect.midLat, west: self.rect.west, south: self.rect.south, east: self.rect.midLon), sites: nodeSites[2]),
-                MapNode(rect: MapRect(north: self.rect.midLat, west: self.rect.midLon, south: self.rect.south, east: self.rect.east), sites: nodeSites[3]),
+                MapNode(sites: nodeSites[0], rect: MapRect(north: self.rect.north, west: self.rect.west, south: self.rect.midLat, east: self.rect.midLon), depth: self.depth+1),
+                MapNode(sites: nodeSites[1], rect: MapRect(north: self.rect.north, west: self.rect.midLon, south: self.rect.midLat, east: self.rect.east), depth: self.depth+1),
+                MapNode(sites: nodeSites[2], rect: MapRect(north: self.rect.midLat, west: self.rect.west, south: self.rect.south, east: self.rect.midLon), depth: self.depth+1),
+                MapNode(sites: nodeSites[3], rect: MapRect(north: self.rect.midLat, west: self.rect.midLon, south: self.rect.south, east: self.rect.east), depth: self.depth+1),
             ]
         }
     }

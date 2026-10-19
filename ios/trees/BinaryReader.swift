@@ -3,7 +3,7 @@ import Foundation
 class BinaryReader {
 
     init(url: URL) {
-        self.data = try! Data(contentsOf: url)
+        self.data = try! Data(contentsOf: url, options: .mappedIfSafe)
     }
 
     var isAtEnd: Bool {

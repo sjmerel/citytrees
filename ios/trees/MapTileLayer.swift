@@ -43,17 +43,17 @@ class MapTileLayer: GMSSyncTileLayer {
         )
         let rect = MapRect(northWest: northWest, southEast: southEast)
         let selectedSite = self.selectedSite
-        var sites = MapNode.all.find(rect: rect)
+        var sites = MapDb.instance.find(rect: rect)
 
         if sites.isEmpty && selectedSite == nil { return kGMSTileLayerNoTile }
 
         if sites.count > MAX_SITES {
             let oldCount = sites.count
             sites = Site.decimate(sites: sites, n: MAX_SITES)
-            print("decimated \(oldCount) -> \(sites.count)")
+            //print("decimated \(oldCount) -> \(sites.count)")
         }
 
-        let profiler = Profiler(name: "tile \(x),\(y) \(zoom) (\(sites.count) sites)")
+        //let profiler = Profiler(name: "tile \(x),\(y) \(zoom) (\(sites.count) sites)")
         // note: we get an assertion if we use UIGraphicsImageRenderer
         let pixelSize = Int(TILE_SIZE)
         let bytesPerRow = pixelSize * 4
@@ -91,6 +91,19 @@ class MapTileLayer: GMSSyncTileLayer {
             draw(selectedSite)
         }
 
+        // debug: outline the extent of every sites_tile_*.bin file
+        context.setStrokeColor(UIColor.systemPink.cgColor)
+        context.setLineWidth(2)
+        for tileRect in MapDb.instance.tileRects where tileRect.intersects(rect) {
+            let (west, north) = project(location: tileRect.northWest)
+            let (east, south) = project(location: tileRect.southEast)
+            let left = (west * tileCount - Double(x)) * Double(TILE_SIZE)
+            let top = (north * tileCount - Double(y)) * Double(TILE_SIZE)
+            let right = (east * tileCount - Double(x)) * Double(TILE_SIZE)
+            let bottom = (south * tileCount - Double(y)) * Double(TILE_SIZE)
+            context.stroke(CGRect(x: left, y: top, width: right - left, height: bottom - top))
+        }
+
         // draw tile borders
         context.setStrokeColor(UIColor.cyan.cgColor)
         context.setLineWidth(1)
@@ -99,7 +112,7 @@ class MapTileLayer: GMSSyncTileLayer {
                               height: CGFloat(pixelSize - 1)))
 
         let image = context.makeImage()!
-        profiler.stop()
+        // profiler.stop()
         return UIImage(cgImage: image, scale: 1, orientation: .up)
     }
 

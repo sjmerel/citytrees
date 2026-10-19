@@ -14,18 +14,28 @@ let typesUrl = dataDir.appendingPathComponent("types.json")
 let types = try JSONDecoder().decode([TreeType].self, from: Data(contentsOf: typesUrl))
 print("read \(types.count) types")
 
+print("writing types.bin")
+try TreeType.writeBinary(types: types, url: outDir.appendingPathComponent("types.bin"))
+
+
 print("reading sites.json")
 let sitesUrl = dataDir.appendingPathComponent("sites.json")
 var sites = try JSONDecoder().decode([Site].self, from: Data(contentsOf: sitesUrl))
 print("read \(sites.count) sites")
 
-sites = Site.decimate(sites: sites, n: 50000)
-print("decimated to \(sites.count) sites")
+print("building top tree")
+let topSitesCount = 50000
+let topSites = Site.decimate(sites: sites, n: topSitesCount)
+let topNode = MapNode(sites: topSites)
+print("writing top tree")
+try! topNode.writeBinary(url: outDir.appendingPathComponent("sites_top.bin"))
 
-print("writing types.bin")
-try TreeType.writeBinary(types: types, url: outDir.appendingPathComponent("types.bin"))
+print("building full tree")
+let fullNode = MapNode(sites: sites)
+print("writing tiles")
+let tileSitesCount = 200000
+try! fullNode.writeTiles(maxSites: tileSitesCount, outDir: outDir)
+//node.printNode()
 
-print("writing sites.bin")
-try Site.writeBinary(sites: sites, url: outDir.appendingPathComponent("sites.bin"))
 
 p.stop()

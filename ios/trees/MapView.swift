@@ -109,16 +109,13 @@ struct MapView: UIViewRepresentable {
             select(site: nearestSite(to: coordinate, in: mapView))
         }
 
-        /*
-        func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-            print("Tapped marker: \(marker.title ?? "Untitled")")
-            return false // Return false to allow default behavior (shows info window and centers)
+        func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+            //print("view at \(position)")
+            let visibleRegion = mapView.projection.visibleRegion()
+            let bounds = GMSCoordinateBounds(region: visibleRegion)
+            let newTile = MapDb.instance.loadTile(rect: MapRect(north: bounds.northEast.latitude, west: bounds.southWest.longitude, south: bounds.southWest.latitude, east: bounds.northEast.longitude))
+            if newTile { parent.tileLayer.clearTileCache() }
         }
-
-        func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-            // Called when camera stops moving
-        }
-        */
 
         ////////////////////////////////////////
         // CLLocationManagerDelegate
@@ -149,7 +146,7 @@ struct MapView: UIViewRepresentable {
             let radius = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
                 .distance(from: CLLocation(latitude: edge.latitude, longitude: edge.longitude))
 
-            return MapNode.all.findNearest(location: MapLocation(lat: coordinate.latitude, lon: coordinate.longitude),
+            return MapDb.instance.findNearest(location: MapLocation(lat: coordinate.latitude, lon: coordinate.longitude),
                                            maxDistance: radius)
         }
 
