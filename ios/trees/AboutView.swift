@@ -7,21 +7,17 @@ struct AboutView: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        NavigationStack {
-            HTMLView(resource: "about")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button(action: { dismiss() }) {
-                            Image(systemName: "xmark")
-                                .font(.system(size: 12, weight: .semibold))
-                                .foregroundColor(.gray)
-                                .padding(8)
-                        }
-                        .accessibilityLabel("Close")
-                    }
+        HTMLView(resource: "about")
+            .overlay(alignment: .topTrailing) {
+                Button(action: { dismiss() }) {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundColor(.gray)
+                        .padding(8)
                 }
-        }
+                .accessibilityLabel("Close")
+                .padding(8)
+            }
     }
 }
 
@@ -54,7 +50,7 @@ struct HTMLView: UIViewRepresentable {
         guard let url = Bundle.main.url(forResource: "cities", withExtension: "json"),
               let data = try? Data(contentsOf: url),
               let cities = try? JSONDecoder().decode([City].self, from: data) else { return "" }
-        let sections = [("US", "United States"), ("CA", "Canada"), ("GB", "United Kingdom")]
+        let sections = [("US", "United States"), ("CA", "Canada"), ("GB", "United Kingdom"), ("AU", "Australia")]
         return sections.map { code, title in
             let items = cities.filter { $0.country == code }
                 .map { city in city.state.map { "\(city.name), \($0)" } ?? city.name }
