@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import { fail } from 'node:assert';
 import { canonicalizeNames } from './botanical_names';
 import { lookupCommonNames } from './common_names';
+import { lookupWikipediaUrls } from './wikipedia';
 import { cleanName, normalizeName } from './name_cleanup';
 
 
@@ -170,9 +171,16 @@ async function main() {
   let withCommonNames = commonNames.filter(n => n.length > 0).length;
   console.log(`  ${withCommonNames} of ${names.length} types have common names`);
 
+  // wikipedia articles
+  console.log();
+  console.log('looking up wikipedia urls...');
+  let wikipediaUrls = await lookupWikipediaUrls(names);
+  console.log(`  ${wikipediaUrls.filter(u => u).length} of ${names.length} types have wikipedia urls`);
+
   let types = names.map((o, i) => ({
     canonical_name: o,
-    common_names: commonNames[i]
+    common_names: commonNames[i],
+    ...(wikipediaUrls[i] ? { wikipedia_url: wikipediaUrls[i] } : {})
   }));
 
   console.log();

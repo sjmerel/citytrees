@@ -4,6 +4,7 @@ struct TreeType {
 
     let canonicalName: String
     var commonNames: [String] = []
+    var wikipediaUrl: String?
 
     // Index into `palette`. The most common genera each get their own color (assigned by
     // build_data); index 0 is shared by everything else.
@@ -45,7 +46,9 @@ struct TreeType {
                 let length = Int(reader.readUInt16())
                 commonNames.append(reader.readString(count: length))
             }
-            types.append(TreeType(canonicalName: name, commonNames: commonNames, colorIndex: colorIndex))
+            let urlLength = Int(reader.readUInt16())
+            let wikipediaUrl = urlLength > 0 ? reader.readString(count: urlLength) : nil
+            types.append(TreeType(canonicalName: name, commonNames: commonNames, wikipediaUrl: wikipediaUrl, colorIndex: colorIndex))
         }
 
         assert(reader.isAtEnd)
@@ -85,5 +88,10 @@ struct TreeType {
             writer.writeUInt16(UInt16(bytes.count))
             writer.writeString(name)
         }
+
+        let urlBytes = Data((wikipediaUrl ?? "").utf8)
+        assert(urlBytes.count <= Int(UInt16.max))
+        writer.writeUInt16(UInt16(urlBytes.count))
+        if !urlBytes.isEmpty { writer.writeString(wikipediaUrl!) }
     }
 }
