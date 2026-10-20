@@ -7,6 +7,9 @@ struct MapView: UIViewRepresentable {
     // Type index of the selected site, shown by the selection card in ContentView.
     @Binding var selectedTypeIndex: Int?
 
+    // True while waiting for the device location; shown by BusyView in ContentView.
+    @Binding var isBusy: Bool
+
     ////////////////////////////////////////
 
     func makeUIView(context: Context) -> GMSMapView {
@@ -129,31 +132,24 @@ struct MapView: UIViewRepresentable {
         var hasCenteredOnLocation = false
 
         // A modal overlay (it blocks touches) shown while the initial location is pending.
-        private var spinnerOverlay: UIView?
         private let SPINNER_TIMEOUT_SECONDS = 10.0
 
         private func showSpinner(in mapView: GMSMapView) {
-            let overlay = UIView(frame: mapView.bounds)
-            overlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            overlay.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-            let spinner = UIActivityIndicatorView(style: .large)
-            spinner.color = .white
-            spinner.center = CGPoint(x: overlay.bounds.midX, y: overlay.bounds.midY)
-            spinner.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin,
-                                        .flexibleLeftMargin, .flexibleRightMargin]
-            spinner.startAnimating()
-            overlay.addSubview(spinner)
-            mapView.addSubview(overlay)
-            spinnerOverlay = overlay
-
+            setBusy(true)
             DispatchQueue.main.asyncAfter(deadline: .now() + SPINNER_TIMEOUT_SECONDS) { [weak self] in
                 self?.hideSpinner()
             }
         }
 
         private func hideSpinner() {
-            spinnerOverlay?.removeFromSuperview()
-            spinnerOverlay = nil
+            setBusy(false)
+        }
+
+        // Deferred, since this can be called while SwiftUI is updating the view.
+        private func setBusy(_ busy: Bool) {
+            DispatchQueue.main.async { [weak self] in
+                self?.parent.isBusy = busy
+            }
         }
 
         // The selection is a marker rather than part of the tile layer, so selecting a site

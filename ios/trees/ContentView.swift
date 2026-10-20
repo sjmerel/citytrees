@@ -4,10 +4,18 @@ import GoogleMaps
 struct ContentView: View {
 
     @State private var selectedTypeIndex: Int?
+    @State private var isBusy = false
 
     var body: some View {
-        MapView(selectedTypeIndex: $selectedTypeIndex)
+        MapView(selectedTypeIndex: $selectedTypeIndex, isBusy: $isBusy)
             .ignoresSafeArea(edges: .bottom)
+            .overlay {
+                if isBusy {
+                    Color.black.opacity(0.3)
+                        .ignoresSafeArea()
+                    BusyView(text: "Finding your location")
+                }
+            }
             .overlay(alignment: .top) {
                 if let selectedTypeIndex {
                     SelectionCard(type: TreeType.all[selectedTypeIndex], colorIndex: Int(TreeType.colorIndices[selectedTypeIndex])) {
