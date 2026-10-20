@@ -72,29 +72,56 @@ struct MapView: UIViewRepresentable {
             updateLocationControls()
 
             if locationManager.authorizationStatus == .notDetermined {
+                if !hasCenteredOnLocation { showSpinner(in: mapView) }
                 locationManager.requestWhenInUseAuthorization()
             }
-            else {
+            else if !hasCenteredOnLocation && isAuthorized {
+                showSpinner(in: mapView)
                 locationManager.requestLocation()
             }
         }
 
         func configureSelectionLabel(for mapView: GMSMapView) {
+            let card = selectionCard
+            card.isHidden = true
+            card.backgroundColor = .white
+            card.layer.cornerRadius = 10
+            card.layer.shadowColor = UIColor.black.cgColor
+            card.layer.shadowOpacity = 0.3
+            card.layer.shadowRadius = 5
+            card.layer.shadowOffset = CGSize(width: 0, height: 2)
+            card.translatesAutoresizingMaskIntoConstraints = false
+
+            let dot = selectionDot
+            dot.layer.cornerRadius = 8
+            dot.layer.borderWidth = 1
+            dot.layer.borderColor = UIColor.black.withAlphaComponent(0.4).cgColor
+            dot.translatesAutoresizingMaskIntoConstraints = false
+
             let label = selectionLabel
-            label.isHidden = true
             label.font = .italicSystemFont(ofSize: 16)
-            label.textAlignment = .center
+            label.textAlignment = .left
             label.numberOfLines = 0
-            label.textColor = .white
-            label.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-            label.layer.cornerRadius = 8
-            label.layer.masksToBounds = true
+            label.textColor = .black
             label.translatesAutoresizingMaskIntoConstraints = false
-            mapView.addSubview(label)
+
+            card.addSubview(dot)
+            card.addSubview(label)
+            mapView.addSubview(card)
             NSLayoutConstraint.activate([
-                label.topAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.topAnchor, constant: 8),
-                label.centerXAnchor.constraint(equalTo: mapView.centerXAnchor),
-                label.widthAnchor.constraint(lessThanOrEqualTo: mapView.widthAnchor, constant: -32),
+                card.topAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.topAnchor, constant: 5),
+                card.leadingAnchor.constraint(equalTo: mapView.leadingAnchor, constant: 5),
+                card.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -5),
+
+                dot.leadingAnchor.constraint(equalTo: card.leadingAnchor, constant: 12),
+                dot.centerYAnchor.constraint(equalTo: card.centerYAnchor),
+                dot.widthAnchor.constraint(equalToConstant: 16),
+                dot.heightAnchor.constraint(equalToConstant: 16),
+
+                label.leadingAnchor.constraint(equalTo: dot.trailingAnchor, constant: 10),
+                label.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -12),
+                label.topAnchor.constraint(equalTo: card.topAnchor, constant: 10),
+                label.bottomAnchor.constraint(equalTo: card.bottomAnchor, constant: -10),
             ])
         }
 
@@ -111,8 +138,12 @@ struct MapView: UIViewRepresentable {
 
         func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
             updateLocationControls()
-            if !hasCenteredOnLocation && isAuthorized {
+            if hasCenteredOnLocation { return }
+            if isAuthorized {
                 manager.requestLocation()
+            }
+            else if manager.authorizationStatus != .notDetermined {
+                hideSpinner()
             }
         }
 
@@ -120,17 +151,47 @@ struct MapView: UIViewRepresentable {
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             guard !hasCenteredOnLocation, let location = locations.last else { return }
             hasCenteredOnLocation = true
+            hideSpinner()
             mapView?.moveCamera(GMSCameraUpdate.setTarget(location.coordinate, zoom: 16))
         }
 
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
             print("location unavailable: \(error)")
+            hideSpinner()
         }
 
 
         ////////////////////////////////////////
 
         var hasCenteredOnLocation = false
+
+        // A modal overlay (it blocks touches) shown while the initial location is pending.
+        private var spinnerOverlay: UIView?
+        private let SPINNER_TIMEOUT_SECONDS = 10.0
+
+        private func showSpinner(in mapView: GMSMapView) {
+            let overlay = UIView(frame: mapView.bounds)
+            overlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            overlay.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+            let spinner = UIActivityIndicatorView(style: .large)
+            spinner.color = .white
+            spinner.center = CGPoint(x: overlay.bounds.midX, y: overlay.bounds.midY)
+            spinner.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin,
+                                        .flexibleLeftMargin, .flexibleRightMargin]
+            spinner.startAnimating()
+            overlay.addSubview(spinner)
+            mapView.addSubview(overlay)
+            spinnerOverlay = overlay
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + SPINNER_TIMEOUT_SECONDS) { [weak self] in
+                self?.hideSpinner()
+            }
+        }
+
+        private func hideSpinner() {
+            spinnerOverlay?.removeFromSuperview()
+            spinnerOverlay = nil
+        }
 
         // The selection is a marker rather than part of the tile layer, so selecting a site
         // doesn't require redrawing tiles.
@@ -158,7 +219,9 @@ struct MapView: UIViewRepresentable {
             return status == .authorizedWhenInUse || status == .authorizedAlways
         }
 
-        private let selectionLabel = PaddedLabel()
+        private let selectionCard = UIView()
+        private let selectionDot = UIView()
+        private let selectionLabel = UILabel()
         private let SELECTION_RADIUS_POINTS = 20.0
 
         private func select(site: QuantizedSite?) {
@@ -172,7 +235,10 @@ struct MapView: UIViewRepresentable {
                 selectionMarker = marker
             }
             selectionLabel.text = site?.type.canonicalName
-            selectionLabel.isHidden = site == nil
+            if let site {
+                selectionDot.backgroundColor = TreeType.palette[Int(TreeType.colorIndices[Int(site.typeIndex)])]
+            }
+            selectionCard.isHidden = site == nil
         }
 
         // Nearest site to the tap, if within SELECTION_RADIUS_POINTS on screen.
@@ -215,19 +281,5 @@ enum SavedCamera {
               abs(v[0]) <= 90, abs(v[1]) <= 180 else { return nil }
         return GMSCameraPosition(latitude: v[0], longitude: v[1], zoom: Float(v[2]),
                                  bearing: v[3], viewingAngle: v[4])
-    }
-}
-
-final class PaddedLabel: UILabel {
-    private let insets = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
-
-    override func drawText(in rect: CGRect) {
-        super.drawText(in: rect.inset(by: insets))
-    }
-
-    override var intrinsicContentSize: CGSize {
-        let size = super.intrinsicContentSize
-        return CGSize(width: size.width + insets.left + insets.right,
-                      height: size.height + insets.top + insets.bottom)
     }
 }
