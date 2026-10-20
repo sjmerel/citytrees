@@ -8,7 +8,13 @@ struct MapView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> GMSMapView {
         let mapView = GMSMapView()
-        mapView.moveCamera(GMSCameraUpdate.fit(MapDb.instance.dataBounds, withPadding: 20))
+        if let saved = SavedCamera.load() {
+            mapView.camera = saved
+            context.coordinator.hasCenteredOnLocation = true
+        }
+        else {
+            mapView.moveCamera(GMSCameraUpdate.fit(MapDb.instance.dataBounds, withPadding: 20))
+        }
         mapView.delegate = context.coordinator
 
         self.tileLayer.map = mapView
@@ -92,6 +98,10 @@ struct MapView: UIViewRepresentable {
             ])
         }
 
+        func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+            SavedCamera.save(position)
+        }
+
         func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
             select(site: nearestSite(to: coordinate, in: mapView))
         }
@@ -120,7 +130,7 @@ struct MapView: UIViewRepresentable {
 
         ////////////////////////////////////////
 
-        private var hasCenteredOnLocation = false
+        var hasCenteredOnLocation = false
 
         // The selection is a marker rather than part of the tile layer, so selecting a site
         // doesn't require redrawing tiles.
@@ -189,6 +199,23 @@ struct MapView: UIViewRepresentable {
 
     }
 
+}
+
+enum SavedCamera {
+    private static let key = "savedCamera"
+
+    static func save(_ position: GMSCameraPosition) {
+        UserDefaults.standard.set([position.target.latitude, position.target.longitude,
+                                   Double(position.zoom), position.bearing, position.viewingAngle],
+                                  forKey: key)
+    }
+
+    static func load() -> GMSCameraPosition? {
+        guard let v = UserDefaults.standard.array(forKey: key) as? [Double], v.count == 5,
+              abs(v[0]) <= 90, abs(v[1]) <= 180 else { return nil }
+        return GMSCameraPosition(latitude: v[0], longitude: v[1], zoom: Float(v[2]),
+                                 bearing: v[3], viewingAngle: v[4])
+    }
 }
 
 final class PaddedLabel: UILabel {
