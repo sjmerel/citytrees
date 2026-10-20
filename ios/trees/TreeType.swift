@@ -5,11 +5,22 @@ struct TreeType {
     let canonicalName: String
     // let commonNames: [String]
 
+    // Index into `palette`. The most common genera each get their own color (assigned by
+    // build_data); index 0 is shared by everything else.
+    var colorIndex: Int = 0
+
+    // Number of colors in the app's palette (see TreeType+Color.swift), including color 0.
+    static let colorCount = 25
+
+    // Color index of every type, by type index.
+    static private(set) var colorIndices: [UInt8] = []
+
     static private(set) var all: [TreeType]!
 
     static func load() {
         let url = Bundle.main.url(forResource: "types", withExtension: "bin")!
         Self.all = readBinary(url: url)
+        Self.colorIndices = Self.all.map { UInt8($0.colorIndex) }
     }
 
 
@@ -26,7 +37,9 @@ struct TreeType {
         for _ in 0..<count {
             let nameLength = Int(reader.readUInt16())
             let name = reader.readString(count: nameLength)
-            types.append(TreeType(canonicalName: name))
+            let colorIndex = Int(reader.readUInt8())
+            assert(colorIndex < colorCount)
+            types.append(TreeType(canonicalName: name, colorIndex: colorIndex))
         }
 
         assert(reader.isAtEnd)
@@ -56,5 +69,6 @@ struct TreeType {
         assert(bytes.count <= Int(UInt16.max))
         writer.writeUInt16(UInt16(bytes.count))
         writer.writeString(canonicalName)
+        writer.writeUInt8(UInt8(colorIndex))
     }
 }

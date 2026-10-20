@@ -30,7 +30,6 @@ class MapTileLayer: GMSSyncTileLayer {
 
         if tiles.isEmpty { return kGMSTileLayerNoTile }
 
-        //let profiler = Profiler(name: "tile \(x),\(y) \(zoom) (\(sites.count) sites)")
         // note: we get an assertion if we use UIGraphicsImageRenderer
         let pixelSize = Int(TILE_SIZE)
         let bytesPerRow = pixelSize * 4
@@ -46,7 +45,6 @@ class MapTileLayer: GMSSyncTileLayer {
 
         context.translateBy(x: 0, y: CGFloat(pixelSize))
         context.scaleBy(x: 1, y: -1)
-        context.setFillColor(UIColor.red.cgColor)
 
         // tile pixel position of a world coordinate
         let pixelsPerUnit = tileCount * Double(TILE_SIZE) / WorldCoord.scale
@@ -55,17 +53,18 @@ class MapTileLayer: GMSSyncTileLayer {
         let lowest = -radius
         let highest = Double(TILE_SIZE) + radius
 
-        func draw(_ site: QuantizedSite) {
-            let tileX = Double(site.x) * pixelsPerUnit - originX
-            let tileY = Double(site.y) * pixelsPerUnit - originY
-            if tileX < lowest || tileX > highest || tileY < lowest || tileY > highest { return }
-            context.fillEllipse(in: CGRect(x: tileX - radius, y: tileY - radius,
-                                           width: diameter, height: diameter))
-        }
-
-        for (_, tile) in tiles {
-            for site in tile.sites {
-                draw(site)
+        // one pass per color, so the fill color is set only once per color
+        let colorIndices = TreeType.colorIndices
+        for (colorIndex, color) in TreeType.palette.enumerated() {
+            context.setFillColor(color.cgColor)
+            for (_, tile) in tiles {
+                for site in tile.sites where Int(colorIndices[Int(site.typeIndex)]) == colorIndex {
+                    let tileX = Double(site.x) * pixelsPerUnit - originX
+                    let tileY = Double(site.y) * pixelsPerUnit - originY
+                    if tileX < lowest || tileX > highest || tileY < lowest || tileY > highest { continue }
+                    context.fillEllipse(in: CGRect(x: tileX - radius, y: tileY - radius,
+                                                   width: diameter, height: diameter))
+                }
             }
         }
 
@@ -91,7 +90,6 @@ class MapTileLayer: GMSSyncTileLayer {
         */
 
         let image = context.makeImage()!
-        // profiler.stop()
         return UIImage(cgImage: image, scale: 1, orientation: .up)
     }
 

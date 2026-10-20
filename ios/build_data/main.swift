@@ -15,12 +15,8 @@ try FileManager.default.createDirectory(at: outDir, withIntermediateDirectories:
 
 print("reading types.json")
 let typesUrl = dataDir.appendingPathComponent("types.json")
-let types = try JSONDecoder().decode([TreeType].self, from: Data(contentsOf: typesUrl))
+var types = try JSONDecoder().decode([TreeType].self, from: Data(contentsOf: typesUrl))
 print("read \(types.count) types")
-
-print("writing types.bin")
-try TreeType.writeBinary(types: types, url: outDir.appendingPathComponent("types.bin"))
-
 
 print("reading sites.json")
 let sitesUrl = dataDir.appendingPathComponent("sites.json")
@@ -30,6 +26,30 @@ print("read \(siteCount) sites")
 
 // Deterministic shuffle: a site's position is its priority, so each tile's sample of its
 // area is stable and nested in the samples of the tiles below it.
+
+// The most common genera each get a color; all other genera share color 0.
+var genusCounts: [String: Int] = [:]
+var typeCounts = [Int](repeating: 0, count: types.count)
+for site in sites { typeCounts[site.typeIndex] += 1 }
+func genus(_ type: TreeType) -> String {
+    String(type.canonicalName.split(separator: " ").first ?? "")
+}
+for (index, type) in types.enumerated() {
+    genusCounts[genus(type), default: 0] += typeCounts[index]
+}
+let topGenera = genusCounts.sorted { ($0.value, $1.key) > ($1.value, $0.key) }
+    .prefix(TreeType.colorCount - 1)
+var genusColors: [String: Int] = [:]
+for (rank, entry) in topGenera.enumerated() {
+    genusColors[entry.key] = rank + 1
+    print(String(format: "color %2d: %@ (%d)", rank + 1, entry.key, entry.value))
+}
+for index in types.indices {
+    types[index].colorIndex = genusColors[genus(types[index])] ?? 0
+}
+
+print("writing types.bin")
+try TreeType.writeBinary(types: types, url: outDir.appendingPathComponent("types.bin"))
 
 print("quantizing")
 var quantized = sites.map { QuantizedSite($0) }
