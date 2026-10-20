@@ -2,3 +2,6 @@
 /*.json
 !/cities.json
 /cities/*.json
+!/non_botanical_names.json
+!/manual_botanical_names.json
+!/known_hybrids.json

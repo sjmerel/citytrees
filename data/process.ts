@@ -1,8 +1,10 @@
 #!/usr/bin/env npx tsx
 
-import axios from 'axios';
 import fs from 'node:fs';
-import assert from 'node:assert';
+import { fail } from 'node:assert';
+import { canonicalizeNames } from './botanical_names';
+import { lookupCommonNames } from './common_names';
+import { cleanName, normalizeName } from './name_cleanup';
 
 
 async function main() {
@@ -16,8 +18,10 @@ async function main() {
     let cityData = JSON.parse(fs.readFileSync(`cities/${city}.json`, 'utf8'));
     console.log(`  ${city}: ${cityData.length} sites`);
     for (let d of cityData) {
-      if (!(d.name && d.lat && d.lon && Number.isFinite(d.lat) && Number.isFinite(d.lon))) { console.log(d); }
-      assert(d.name && d.lat && d.lon && Number.isFinite(d.lat) && Number.isFinite(d.lon));
+      if (!(d.name && d.lat && d.lon && Number.isFinite(d.lat) && Number.isFinite(d.lon))) { 
+        console.log(d); 
+        fail();
+      }
       data.push(d);
     }
   }
@@ -26,14 +30,37 @@ async function main() {
 
 
   ////////////////////////////////////////
-  // preprocess and strip cultivar
+  // remove sites with non-botanical names, like "Stump" or "Vacant site"
   console.log();
-  console.log('preprocessing botanical names...');
+  console.log('removing non-botanical names...');
+
+  let nonBotanical = new Set<string>(JSON.parse(fs.readFileSync('non_botanical_names.json', 'utf8')).map(normalizeName));
+  let removed = 0;
+  let removeNonBotanical = () => {
+    data = data.filter(d => {
+      if (nonBotanical.has(normalizeName(d.name))) {
+        ++removed;
+        return false;
+      }
+      return true;
+    });
+  };
+  removeNonBotanical();
+
+
+
+  ////////////////////////////////////////
+  // normalize names: strip cultivars, trade marks and placeholders
+  console.log();
+  console.log('normalizing botanical names...');
+
+  // names with a manual entry are matched as written, before any cleanup
+  let manualNames = new Set<string>(Object.keys(JSON.parse(fs.readFileSync('manual_botanical_names.json', 'utf8'))).map(normalizeName));
   let strippedMap = {}
   let unstrippedMap = {}
   for (let d of data) {
     let oldName = d.name;
-    let newName = stripCultivar(oldName.trim());
+    let newName = manualNames.has(normalizeName(oldName)) ? oldName.trim() : cleanName(oldName);
     if (newName != oldName) {
       strippedMap[oldName] = newName;
     }
@@ -45,6 +72,10 @@ async function main() {
   fs.writeFileSync('debug_preprocess_stripped.json', JSON.stringify(strippedMap, null, 2));
   fs.writeFileSync('debug_preprocess_unstripped.json', JSON.stringify(unstrippedMap, null, 2));
 
+  // normalization can reveal non-botanical names, e.g. "Unknown spp." becomes "Unknown"
+  removeNonBotanical();
+  console.log(`  ${removed} sites with non-botanical names removed`);
+
 
 
   ////////////////////////////////////////
@@ -52,66 +83,20 @@ async function main() {
   console.log();
   console.log('canonicalizing botanical names...');
   let inputNames = [...new Set(data.map(o => o.name))];
-  let canonicalizedMap = {}
-  let failedMap = {}
-  let acceptedRanks = new Set([
-    'GENUS',
-    'SUBGENUS',
-    'SECTION',
-    'SUBSECTION',
-    'SERIES',
-    'SUBSERIES',
-    'SPECIES',
-    'SPECIES_AGGREGATE',
-    'SUBSPECIES',
-    'SUBVARIETY',
-    'VARIETY',
-    'SUBFORM',
-    'FORM',
-    'CULTIVAR'
-  ]);
-
-  for (let start = 0; start < inputNames.length; start += 1000) {
-    let batch = inputNames.slice(start, start + 1000);
-    let payload = batch.map(name => ({
-      scientificName: name,
-      kingdom: 'Plantae',
-      strict: false
-    }));
-    let response = await axios.post(
-      'https://api.gbif.org/v2/species/match',
-      payload,
-      { headers: { 'Content-Type': 'application/json' } }
-    );
-    let matches = response.data;
-    assert(matches.length == batch.length);
-    console.log(`  ... ${start+batch.length}/${inputNames.length}`);
-
-    for (let i = 0; i < batch.length; i++) {
-      let name = batch[i];
-      let match = matches[i];
-      let canonicalName = match?.usage?.canonicalName ?? null;
-      let rank = match?.usage?.rank ?? null;
-      let confidence = match?.diagnostics?.confidence ?? null;
-
-      if (canonicalName && acceptedRanks.has(rank) && confidence >= 80) {
-        canonicalizedMap[name] = canonicalName;
-      } else {
-        let reason = !canonicalName
-          ? 'No canonical name matched'
-          : !acceptedRanks.has(rank)
-            ? `Rank ${rank ?? 'unknown'} is less specific than genus`
-            : `Confidence ${confidence ?? 'unknown'} is below 85`;
-        failedMap[name] = { canonicalName, rank, confidence, reason };
-      }
-    }
-  }
+  let { canonical: canonicalizedMap, failed: failedMap } = await canonicalizeNames(inputNames);
   let failedCount = Object.keys(failedMap).length;
   let successCount = Object.keys(canonicalizedMap).length;
   console.log(`  ${successCount} names canonicalized`);
   console.log(`  ${failedCount} names could not be canonicalized (${(failedCount/(failedCount+successCount)*100).toFixed(0)}%)`);
 
+  // count the sites affected by each failure, to prioritize fixing them
+  let siteCounts = new Map<string, number>();
+  for (let d of data) {
+    siteCounts.set(d.name, (siteCounts.get(d.name) ?? 0) + 1);
+  }
+
   // discard sites whose names could not be canonicalized
+  let hybrids: Record<string, string> = JSON.parse(fs.readFileSync('known_hybrids.json', 'utf8'));
   let discarded = 0;
   data = data.filter(d => {
     let canonicalName = canonicalizedMap[d.name];
@@ -119,23 +104,26 @@ async function main() {
       ++discarded
       return false;
     }
-    d.name = canonicalName;
+    d.name = hybrids[canonicalName] ?? canonicalName;
     return true;
   });
   console.log(`  ${discarded} sites discarded (${(discarded/(discarded+data.length)*100).toFixed(0)}%)`);
 
   // write debug files
   fs.writeFileSync('debug_canonicalize.json', JSON.stringify(canonicalizedMap, null, 2));
-  let failedMapSorted = Object.fromEntries(
-    Object.entries(failedMap).sort(([, a], [, b]) =>
-      (b.confidence ?? -Infinity) - (a.confidence ?? -Infinity)
-    )
-  );
-  fs.writeFileSync('debug_canonicalize_fail.json', JSON.stringify(failedMapSorted, null, 2));
+  let failedWithSites = Object.entries(failedMap)
+    .map(([name, failure]) => [name, { sites: siteCounts.get(name) ?? 0, ...failure }] as const)
+    .sort(([, a], [, b]) => b.sites - a.sites);
+  fs.writeFileSync('debug_canonicalize_fail.json', JSON.stringify(Object.fromEntries(failedWithSites), null, 2));
+  console.log('  most affected failures:');
+  for (let [name, failure] of failedWithSites.slice(0, 10)) {
+    console.log(`    ${failure.sites} sites: ${name} (${failure.reason})`);
+  }
+
 
 
   ////////////////////////////////////////
-  // handle sites with same location:
+  // handle sites with multiple trees in the same location:
   // keep them only if they are the same species.
 
   console.log();
@@ -173,8 +161,18 @@ async function main() {
     type: names.indexOf(o.name)
   }));
 
-  let types = names.map(o => ({
-    canonical_name: o
+
+  ////////////////////////////////////////
+  // common names (looked up for the final, canonicalized names)
+  console.log();
+  console.log('looking up common names...');
+  let commonNames = await lookupCommonNames(names);
+  let withCommonNames = commonNames.filter(n => n.length > 0).length;
+  console.log(`  ${withCommonNames} of ${names.length} types have common names`);
+
+  let types = names.map((o, i) => ({
+    canonical_name: o,
+    common_names: commonNames[i]
   }));
 
   console.log();
@@ -182,44 +180,21 @@ async function main() {
   console.log(`  ${sites.length} sites`);
   console.log(`  ${types.length} unique types`);
   fs.writeFileSync('types.json', JSON.stringify(types, null, 2));
-  fs.writeFileSync('sites.json', JSON.stringify(sites, null, 2));
+  // written in chunks, since the full string can exceed Node's maximum string length
+  let fd = fs.openSync('sites.json', 'w');
+  fs.writeSync(fd, '[');
+  for (let i = 0; i < sites.length; i += 50000) {
+    let chunk = sites.slice(i, i + 50000).map(s => JSON.stringify(s, null, 2).replace(/^/gm, '  ')).join(',\n');
+    fs.writeSync(fd, (i > 0 ? ',\n' : '\n') + chunk);
+  }
+  fs.writeSync(fd, '\n]\n');
+  fs.closeSync(fd);
 }
+
 
 ////////////////////////////////////////
 
-function stripCultivar(name: string): string {
-  // normalize quotes
-  name = name.replace(/(?:\\"|["`‘’“”])/g, "'");
-
-  // handle possessives
-  //  Cornus kousa 'Champion's Gold' -> Cornus kousa 'Champion’s Gold'
-  name = name.replace(/(\S)'(s )/g, '$1’$2');
-
-  const cultivarStart = name.search(/\s+'/);
-  if (cultivarStart < 0) {
-    return name;
-  }
-
-  const cultivar = name.slice(cultivarStart + 1);
-  const quoteCount = (cultivar.match(/'/g) ?? []).length;
-  if (cultivar.endsWith("'") || quoteCount === 1) {
-    return name.slice(0, cultivarStart).trimEnd();
-  }
-
-  return name;
-}
-
-////////////////////////////////////////
-
-(async () => {
-
-try {
-  await main();
-  process.exit(0);
-}
-catch(error) {
-  console.log(error);
-  process.exit(1);
-}
-
-}) ();
+main().catch(error => {
+  console.error(error);
+  process.exitCode = 1;
+});
