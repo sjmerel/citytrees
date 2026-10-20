@@ -34,6 +34,7 @@
 				MapLocation.swift,
 				MapNode.swift,
 				MapRect.swift,
+				MapTile.swift,
 				Profiler.swift,
 				Site.swift,
 				Stopwatch.swift,

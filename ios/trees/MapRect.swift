@@ -31,6 +31,11 @@ struct MapRect: CustomStringConvertible {
     var midLat: Double { return (self.north + self.south)/2 }
     var maxLat: Double { return self.north }
 
+    static let global = MapRect(north: 90, west: 0, south: -90, east: 180)
+
+
+    ////////////////////////////////////////
+
     func contains(_ location: MapLocation) -> Bool {
         return location.lat >= self.minLat && location.lat < self.maxLat &&
                location.lon >= self.minLon && location.lon < self.maxLon
@@ -48,6 +53,8 @@ struct MapRect: CustomStringConvertible {
                  self.minLon >= rect.maxLon)
     }
 
+
+    ////////////////////////////////////////
 
     static func readBinary(reader: BinaryReader) -> MapRect {
         let northWest = MapLocation.readBinary(reader: reader)

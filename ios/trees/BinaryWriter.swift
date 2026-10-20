@@ -2,11 +2,19 @@ import Foundation
 
 class BinaryWriter {
 
+    func writeUInt8(_ value: UInt8) {
+        data.append(value)
+    }
+
     func writeUInt16(_ value: UInt16) {
         withUnsafeBytes(of: value.littleEndian) { data.append(contentsOf: $0) }
     }
 
     func writeUInt32(_ value: UInt32) {
+        withUnsafeBytes(of: value.littleEndian) { data.append(contentsOf: $0) }
+    }
+
+    func writeUInt64(_ value: UInt64) {
         withUnsafeBytes(of: value.littleEndian) { data.append(contentsOf: $0) }
     }
 
@@ -30,5 +38,5 @@ class BinaryWriter {
 
     ////////////////////////////////////////
 
-    private var data = Data()
+    private(set) var data = Data()
 }

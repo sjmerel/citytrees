@@ -34,7 +34,7 @@ struct Site {
 
     ////////////////////////////////////////
 
-    private let typeIndex: Int
+    let typeIndex: Int
 
 
 }

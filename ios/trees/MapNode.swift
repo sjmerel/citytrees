@@ -2,12 +2,8 @@ import Foundation
 
 class MapNode {
     
-    init(sites: [Site], rect: MapRect? = nil, depth: Int = 0) {
-        let rect = rect ?? MapNode.boundingRect(of: sites)
-        assert(rect.maxLat > rect.minLat)
-        assert(rect.maxLon > rect.minLon)
+    init(sites: [Site], rect: MapRect) {
         self.rect = rect
-        self.depth = depth
         add(sites: sites)
     }
 
@@ -26,45 +22,9 @@ class MapNode {
     }
 
     let rect: MapRect
-    let depth: Int
+
 
     /*
-    static let all = load() // XXX
-
-    
-    static func load() -> MapNode {
-        let profiler = Profiler(name: "read sites.bin")
-        let url = Bundle.main.url(forResource: "sites_top", withExtension: "bin")!
-        let reader = BinaryReader(url: url)
-
-        let count = reader.readUInt32()
-
-        // stored rect is min/max; nudge max so all sites are contained
-        var rect = MapRect.readBinary(reader: reader)
-        rect.northWest.lat += rect.northWest.lat.ulp
-        rect.southEast.lon += rect.southEast.lon.ulp
-
-        profiler.mark(label: "read start")
-        var sites: [Site] = []
-        sites.reserveCapacity(Int(count))
-
-        for _ in 0..<count {
-            sites.append(Site.readBinary(reader: reader))
-        }
-        assert(reader.isAtEnd)
-        profiler.mark(label: "read \(count) sites")
-
-        let node = MapNode(sites: sites, rect: rect)
-        profiler.mark(label: "build tree")
-
-        profiler.stop()
-
-        print("depth: \(node.maxDepth())")
-
-        return node
-    }
-        */
-
     // Breadth-first: prints the site counts of all nodes at each level, one level per line.
     func printNode() {
         var level = [self]
@@ -76,6 +36,7 @@ class MapNode {
             depth += 1
         }
     }
+    */
 
     func siteCount() -> Int {
         if let sites = self.sites { return sites.count }
@@ -85,34 +46,6 @@ class MapNode {
     func maxDepth() -> Int {
         guard let nodes = self.nodes else { return 0 }
         return 1 + nodes.map { $0.maxDepth() }.max()!
-    }
-
-    func getSites() -> [Site] {
-        if let sites = self.sites {
-            return sites
-        }
-        else {
-            var all = [Site]()
-            for node in self.nodes! {
-                all.append(contentsOf: node.getSites())
-            }
-            return all
-        }
-    }
-
-    func writeBinary(writer: BinaryWriter) {
-        let sites = getSites()
-        self.rect.writeBinary(writer: writer)
-        writer.writeUInt32(UInt32(sites.count))
-        for site in sites {
-            site.writeBinary(writer: writer)
-        }
-    }
-
-    func writeBinary(url: URL) throws {
-        let writer = BinaryWriter()
-        writeBinary(writer: writer)
-        try writer.write(to: url)
     }
 
     static func readBinaryRect(url: URL) throws -> MapRect {
@@ -135,23 +68,6 @@ class MapNode {
         assert(reader.isAtEnd)
 
         return MapNode(sites: sites, rect: rect)
-    }
-
-    func writeTiles(maxSites: Int, outDir: URL, baseName: String = "sites_tile_") throws {
-        let siteCount = siteCount()
-        if siteCount < maxSites {
-            if siteCount > 0 {
-                let url = outDir.appendingPathComponent("\(baseName).bin")
-                print("writing \(url) (\(siteCount) sites)")
-                try writeBinary(url: url)
-            }
-        }
-        else {
-            for (index,node) in self.nodes!.enumerated() {
-                try node.writeTiles(maxSites: maxSites, outDir: outDir, baseName: "\(baseName)\(index)")
-            }
-        }
-
     }
 
     ////////////////////////////////////////
@@ -199,20 +115,6 @@ class MapNode {
         }
     }
 
-    // MapRect.contains excludes the max edges, so nudge them to include every site.
-    private static func boundingRect(of sites: [Site]) -> MapRect {
-        assert(!sites.isEmpty)
-        var minLat = Double.infinity, maxLat = -Double.infinity
-        var minLon = Double.infinity, maxLon = -Double.infinity
-        for site in sites {
-            minLat = min(minLat, site.location.lat)
-            maxLat = max(maxLat, site.location.lat)
-            minLon = min(minLon, site.location.lon)
-            maxLon = max(maxLon, site.location.lon)
-        }
-        return MapRect(north: maxLat + maxLat.ulp, west: minLon, south: minLat, east: maxLon + maxLon.ulp)
-    }
-
     private func find(rect: MapRect, result: inout [Site]) {
         if !rect.intersects(self.rect) { return }
 
@@ -249,10 +151,10 @@ class MapNode {
                 nodeSites[index].append(site)
             }
             self.nodes = [
-                MapNode(sites: nodeSites[0], rect: MapRect(north: self.rect.north, west: self.rect.west, south: self.rect.midLat, east: self.rect.midLon), depth: self.depth+1),
-                MapNode(sites: nodeSites[1], rect: MapRect(north: self.rect.north, west: self.rect.midLon, south: self.rect.midLat, east: self.rect.east), depth: self.depth+1),
-                MapNode(sites: nodeSites[2], rect: MapRect(north: self.rect.midLat, west: self.rect.west, south: self.rect.south, east: self.rect.midLon), depth: self.depth+1),
-                MapNode(sites: nodeSites[3], rect: MapRect(north: self.rect.midLat, west: self.rect.midLon, south: self.rect.south, east: self.rect.east), depth: self.depth+1),
+                MapNode(sites: nodeSites[0], rect: MapRect(north: self.rect.north, west: self.rect.west, south: self.rect.midLat, east: self.rect.midLon)),
+                MapNode(sites: nodeSites[1], rect: MapRect(north: self.rect.north, west: self.rect.midLon, south: self.rect.midLat, east: self.rect.east)),
+                MapNode(sites: nodeSites[2], rect: MapRect(north: self.rect.midLat, west: self.rect.west, south: self.rect.south, east: self.rect.midLon)),
+                MapNode(sites: nodeSites[3], rect: MapRect(north: self.rect.midLat, west: self.rect.midLon, south: self.rect.south, east: self.rect.east)),
             ]
         }
     }
