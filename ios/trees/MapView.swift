@@ -4,6 +4,9 @@ import CoreLocation
 
 struct MapView: UIViewRepresentable {
 
+    // Type index of the selected site, shown by the selection card in ContentView.
+    @Binding var selectedTypeIndex: Int?
+
     ////////////////////////////////////////
 
     func makeUIView(context: Context) -> GMSMapView {
@@ -33,7 +36,6 @@ struct MapView: UIViewRepresentable {
         */
 
         context.coordinator.configureLocation(for: mapView)
-        context.coordinator.configureSelectionLabel(for: mapView)
 
         // custom map style
         do 
@@ -46,7 +48,12 @@ struct MapView: UIViewRepresentable {
         return mapView
     }
 
-    func updateUIView(_ mapView: GMSMapView, context: Context) {}
+    func updateUIView(_ mapView: GMSMapView, context: Context) {
+        context.coordinator.parent = self
+        if selectedTypeIndex == nil {
+            context.coordinator.clearSelectionMarker()
+        }
+    }
 
     let tileLayer = MapTileLayer()
 
@@ -79,50 +86,6 @@ struct MapView: UIViewRepresentable {
                 showSpinner(in: mapView)
                 locationManager.requestLocation()
             }
-        }
-
-        func configureSelectionLabel(for mapView: GMSMapView) {
-            let card = selectionCard
-            card.isHidden = true
-            card.backgroundColor = .white
-            card.layer.cornerRadius = 10
-            card.layer.shadowColor = UIColor.black.cgColor
-            card.layer.shadowOpacity = 0.3
-            card.layer.shadowRadius = 5
-            card.layer.shadowOffset = CGSize(width: 0, height: 2)
-            card.translatesAutoresizingMaskIntoConstraints = false
-
-            let dot = selectionDot
-            dot.layer.cornerRadius = 8
-            dot.layer.borderWidth = 1
-            dot.layer.borderColor = UIColor.black.withAlphaComponent(0.4).cgColor
-            dot.translatesAutoresizingMaskIntoConstraints = false
-
-            let label = selectionLabel
-            label.font = .italicSystemFont(ofSize: 16)
-            label.textAlignment = .left
-            label.numberOfLines = 0
-            label.textColor = .black
-            label.translatesAutoresizingMaskIntoConstraints = false
-
-            card.addSubview(dot)
-            card.addSubview(label)
-            mapView.addSubview(card)
-            NSLayoutConstraint.activate([
-                card.topAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.topAnchor, constant: 5),
-                card.leadingAnchor.constraint(equalTo: mapView.leadingAnchor, constant: 5),
-                card.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -5),
-
-                dot.leadingAnchor.constraint(equalTo: card.leadingAnchor, constant: 12),
-                dot.centerYAnchor.constraint(equalTo: card.centerYAnchor),
-                dot.widthAnchor.constraint(equalToConstant: 16),
-                dot.heightAnchor.constraint(equalToConstant: 16),
-
-                label.leadingAnchor.constraint(equalTo: dot.trailingAnchor, constant: 10),
-                label.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -12),
-                label.topAnchor.constraint(equalTo: card.topAnchor, constant: 10),
-                label.bottomAnchor.constraint(equalTo: card.bottomAnchor, constant: -10),
-            ])
         }
 
         func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
@@ -219,14 +182,15 @@ struct MapView: UIViewRepresentable {
             return status == .authorizedWhenInUse || status == .authorizedAlways
         }
 
-        private let selectionCard = UIView()
-        private let selectionDot = UIView()
-        private let selectionLabel = UILabel()
         private let SELECTION_RADIUS_POINTS = 20.0
 
-        private func select(site: QuantizedSite?) {
+        func clearSelectionMarker() {
             selectionMarker?.map = nil
             selectionMarker = nil
+        }
+
+        private func select(site: QuantizedSite?) {
+            clearSelectionMarker()
             if let site, let mapView {
                 let location = site.location
                 let marker = makeSelectionMarker()
@@ -234,11 +198,7 @@ struct MapView: UIViewRepresentable {
                 marker.map = mapView
                 selectionMarker = marker
             }
-            selectionLabel.text = site?.type.canonicalName
-            if let site {
-                selectionDot.backgroundColor = TreeType.palette[Int(TreeType.colorIndices[Int(site.typeIndex)])]
-            }
-            selectionCard.isHidden = site == nil
+            parent.selectedTypeIndex = site.map { Int($0.typeIndex) }
         }
 
         // Nearest site to the tap, if within SELECTION_RADIUS_POINTS on screen.

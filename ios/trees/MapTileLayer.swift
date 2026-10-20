@@ -98,6 +98,6 @@ class MapTileLayer: GMSSyncTileLayer {
 
     private let TILE_SIZE = 512
     private let SITES_DIAMETER_METERS = 4.0
-    private let MIN_DIAMETER_POINTS = 4.0
+    private let MIN_DIAMETER_POINTS = 6.0
     private let MAP_TILE_SIZE_POINTS = 256.0
 }
