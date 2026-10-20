@@ -3,7 +3,10 @@ import Foundation
 // Tiles follow the Google Maps / Web Mercator scheme: tile (z, x, y) is the quadtree node
 // at depth z, covering the world square cell x, y of a 2^z by 2^z grid.
 
-struct TileKey: Hashable, Comparable {
+struct TileKey: Hashable, Comparable, CustomStringConvertible {
+
+    var description: String { "\(z)/\(x)/\(y)" }
+
     let z: Int
     let x: Int
     let y: Int
@@ -17,6 +20,8 @@ struct TileKey: Hashable, Comparable {
 
     // Relative path used when the tile is hosted for download.
     var path: String { "\(z)/\(x)/\(y).bin" }
+
+    var parent: TileKey { TileKey(z: z - 1, x: x >> 1, y: y >> 1) }
 
     var rect: MapRect {
         let count = Double(1 << z)
@@ -48,6 +53,11 @@ enum WorldCoord {
         return MapLocation(lat: lat, lon: lon)
     }
 
+    static func metersPerUnit(atLatitude lat: Double) -> Double {
+        // Web Mercator uses the WGS 84 equatorial radius as its spherical Earth radius.
+        cos(lat * .pi / 180) * 2 * .pi * 6_378_137 / scale
+    }
+
     private static func quantize(_ fraction: Double) -> UInt32 {
         UInt32(min(max(fraction * scale, 0), scale - 1))
     }
@@ -69,6 +79,14 @@ struct QuantizedSite {
         let (x, y) = WorldCoord.project(site.location)
         self.init(x: x, y: y, typeIndex: UInt16(site.typeIndex))
     }
+
+    var location: MapLocation {
+        WorldCoord.location(x: Double(x) / WorldCoord.scale, y: Double(y) / WorldCoord.scale)
+    }
+
+    var type: TreeType {
+        TreeType.all[Int(typeIndex)]
+    }
 }
 
 
@@ -89,7 +107,7 @@ struct MapTile {
     static let leafFlag: UInt8 = 1
 
     let isLeaf: Bool
-    let sites: [Site]
+    let sites: [QuantizedSite]
 
     static func write(sites: ArraySlice<QuantizedSite>, isLeaf: Bool, writer: BinaryWriter) {
         var minX = UInt32.max, minY = UInt32.max
@@ -131,13 +149,12 @@ struct MapTile {
         let minX = UInt64(reader.readUInt32())
         let minY = UInt64(reader.readUInt32())
 
-        var sites: [Site] = []
+        var sites: [QuantizedSite] = []
         sites.reserveCapacity(count)
         for _ in 0..<count {
-            let x = Double(minX + (UInt64(reader.readUInt16()) << shift))
-            let y = Double(minY + (UInt64(reader.readUInt16()) << shift))
-            let location = WorldCoord.location(x: x / WorldCoord.scale, y: y / WorldCoord.scale)
-            sites.append(Site(location: location, typeIndex: Int(reader.readUInt16())))
+            let x = UInt32(min(minX + (UInt64(reader.readUInt16()) << shift), UInt64(UInt32.max)))
+            let y = UInt32(min(minY + (UInt64(reader.readUInt16()) << shift), UInt64(UInt32.max)))
+            sites.append(QuantizedSite(x: x, y: y, typeIndex: reader.readUInt16()))
         }
         assert(reader.isAtEnd)
         return MapTile(isLeaf: flags & leafFlag != 0, sites: sites)

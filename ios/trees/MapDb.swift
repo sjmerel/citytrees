@@ -1,67 +1,112 @@
 import Foundation
 
-class MapDb {
+// Provides the sites in the tile pyramid (see MapTile.swift). Safe to use from any thread.
+final class MapDb {
 
     static let instance = MapDb()
 
+    // A region of the world square, as fractions 0...1 of its width and height.
+    struct WorldRect {
+        var minX: Double, minY: Double, maxX: Double, maxY: Double
+    }
 
-    // Loads the first tile that completely contains rect into tileNode.
-    func loadTile(rect: MapRect) -> Bool {
-        print("db loadTile \(rect)")
-        let prevName = self.tileName
-        if let tile = tiles.first(where: { $0.rect.contains(rect) }) {
-            print("found tile")
-            if tile.name != tileName { 
-                let url = Bundle.main.resourceURL!.appendingPathComponent(tile.name)
-                self.tileNode = try! MapNode.readBinary(url: url)
-                self.tileName = tile.name
+    // The tiles needed to show a region at a zoom level. Zoom levels deeper than the data
+    // use the deepest tiles.
+    func tiles(covering rect: WorldRect, zoom: Int) -> [(key: TileKey, tile: MapTile)] {
+        let z = min(zoom, maxZoom)
+        let count = 1 << z
+        func index(_ fraction: Double) -> Int {
+            min(max(Int((fraction * Double(count)).rounded(.down)), 0), count - 1)
+        }
+
+        var keys = Set<TileKey>()
+        for y in index(rect.minY)...index(rect.maxY) {
+            for x in index(rect.minX)...index(rect.maxX) {
+                var key = TileKey(z: z, x: x, y: y)
+                if tileExists.contains(key) {
+                    keys.insert(key)
+                    continue
+                }
+                // A missing tile is either empty, or inside an ancestor that is a leaf
+                // (which holds every site in its area).
+                while key.z > 0 {
+                    key = key.parent
+                    if leaves.contains(key) {
+                        keys.insert(key)
+                        break
+                    }
+                }
             }
         }
-        else {
-            print("no tile")
-            self.tileNode = nil
-            self.tileName = nil
+        return keys.sorted().map { ($0, tile($0)) }
+    }
+
+    func findNearest(location: MapLocation, maxDistance: Double, zoom: Int) -> QuantizedSite? {
+        let center = WorldCoord.project(location)
+        let radius = maxDistance / WorldCoord.metersPerUnit(atLatitude: location.lat)
+        let scale = WorldCoord.scale
+        let rect = WorldRect(minX: (Double(center.x) - radius) / scale,
+                             minY: (Double(center.y) - radius) / scale,
+                             maxX: (Double(center.x) + radius) / scale,
+                             maxY: (Double(center.y) + radius) / scale)
+
+        var best: QuantizedSite?
+        var bestDistance = radius * radius
+        for (_, tile) in tiles(covering: rect, zoom: zoom) {
+            for site in tile.sites {
+                let dx = Double(site.x) - Double(center.x)
+                let dy = Double(site.y) - Double(center.y)
+                let distance = dx * dx + dy * dy
+                if distance <= bestDistance {
+                    best = site
+                    bestDistance = distance
+                }
+            }
         }
-        return prevName != self.tileName
+        return best
     }
-
-    func find(rect: MapRect) -> [Site] {
-        let node = self.tileNode ?? self.topNode
-        return node.find(rect: rect)
-    }
-
-    func findNearest(location: MapLocation, maxDistance: Double) -> Site? {
-        let node = self.tileNode ?? self.topNode
-        return node.findNearest(location: location, maxDistance: maxDistance)
-    }
-
-    // for debugging
-    var tileRects: [MapRect] { return tiles.map { $0.rect } }
 
     ////////////////////////////////////////
 
-    struct TileInfo {
-        let name: String
-        let rect: MapRect
-    }
+    private let tileExists: Set<TileKey>
+    private let leaves: Set<TileKey>
+    private let maxZoom: Int
 
-    private let topNode: MapNode
-    private let tiles: [TileInfo]
-    private var tileNode: MapNode? = nil
-    private var tileName: String? = nil
+    private let lock = NSLock()
+    private var cache: [TileKey: MapTile] = [:]
+    private var recentKeys: [TileKey] = []  // least recently used first
+    private let CACHE_CAPACITY = 64
 
     private init() {
-        let topUrl = Bundle.main.url(forResource: "sites_top", withExtension: "bin")!
-        self.topNode = try! MapNode.readBinary(url: topUrl)
+        let url = Bundle.main.url(forResource: "tiles_manifest", withExtension: "bin")!
+        let entries = TileManifest.readBinary(url: url)
+        tileExists = Set(entries.map { $0.key })
+        leaves = Set(entries.filter { $0.isLeaf }.map { $0.key })
+        maxZoom = entries.map { $0.key.z }.max() ?? 0
+    }
 
-        let urls = Bundle.main.urls(forResourcesWithExtension: "bin", subdirectory: nil) ?? []
-        self.tiles = urls
-            .filter { $0.lastPathComponent.hasPrefix("sites_tile_") }
-            .sorted { $0.lastPathComponent < $1.lastPathComponent }
-            .map { url in
-                let rect = try! MapNode.readBinaryRect(url: url)
-                print("\(url.lastPathComponent): \(rect)")
-                return TileInfo(name: url.lastPathComponent, rect: rect)
-            }
+    private func tile(_ key: TileKey) -> MapTile {
+        lock.lock()
+        defer { lock.unlock() }
+
+        if let tile = cache[key] {
+            recentKeys.removeAll { $0 == key }
+            recentKeys.append(key)
+            return tile
+        }
+
+        let url = Bundle.main.resourceURL!.appendingPathComponent(key.fileName)
+        let profiler = Profiler(name: "load tile \(key)")
+        let tile = MapTile.readBinary(url: url)
+        profiler.stop()
+        cache[key] = tile
+        recentKeys.append(key)
+        if recentKeys.count > CACHE_CAPACITY {
+            let evicted = recentKeys.removeFirst()
+            cache[evicted] = nil
+            print("unload tile \(evicted)")
+        }
+        print("tile cache: \(cache.count) tiles")
+        return tile
     }
 }

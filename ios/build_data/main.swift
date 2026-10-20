@@ -91,13 +91,16 @@ let typeCount = types.count
 for entry in entries.enumerated().filter({ $0.offset % 25 == 0 }).map({ $0.element }) {
     let tile = MapTile.readBinary(url: builder.urls[entry.key]!)
     assert(tile.sites.count == entry.siteCount)
-    let rect = entry.key.rect
-    let slack = 1e-6
+    // sites are rounded to the tile's quantization step, so allow a little slack
+    let size = Double(1 << (32 - entry.key.z))
+    let slack = Double(1 << 16)
+    let minX = Double(entry.key.x) * size - slack, maxX = minX + size + 2 * slack
+    let minY = Double(entry.key.y) * size - slack, maxY = minY + size + 2 * slack
     for site in tile.sites {
-        assert(site.location.lat <= rect.maxLat + slack && site.location.lat >= rect.minLat - slack &&
-               site.location.lon >= rect.minLon - slack && site.location.lon <= rect.maxLon + slack,
+        assert(Double(site.x) >= minX && Double(site.x) <= maxX &&
+               Double(site.y) >= minY && Double(site.y) <= maxY,
                "site outside tile \(entry.key)")
-        assert(site.typeIndex < typeCount)
+        assert(Int(site.typeIndex) < typeCount)
     }
 }
 print("checks passed")

@@ -109,14 +109,6 @@ struct MapView: UIViewRepresentable {
             select(site: nearestSite(to: coordinate, in: mapView))
         }
 
-        func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-            //print("view at \(position)")
-            let visibleRegion = mapView.projection.visibleRegion()
-            let bounds = GMSCoordinateBounds(region: visibleRegion)
-            let newTile = MapDb.instance.loadTile(rect: MapRect(north: bounds.northEast.latitude, west: bounds.southWest.longitude, south: bounds.southWest.latitude, east: bounds.northEast.longitude))
-            if newTile { parent.tileLayer.clearTileCache() }
-        }
-
         ////////////////////////////////////////
         // CLLocationManagerDelegate
 
@@ -130,14 +122,14 @@ struct MapView: UIViewRepresentable {
         private let selectionLabel = PaddedLabel()
         private let SELECTION_RADIUS_POINTS = 20.0
 
-        private func select(site: Site?) {
+        private func select(site: QuantizedSite?) {
             parent.tileLayer.selectedSite = site
             selectionLabel.text = site?.type.canonicalName
             selectionLabel.isHidden = site == nil
         }
 
         // Nearest site to the tap, if within SELECTION_RADIUS_POINTS on screen.
-        private func nearestSite(to coordinate: CLLocationCoordinate2D, in mapView: GMSMapView) -> Site? {
+        private func nearestSite(to coordinate: CLLocationCoordinate2D, in mapView: GMSMapView) -> QuantizedSite? {
             let projection = mapView.projection
             let tap = projection.point(for: coordinate)
 
@@ -146,8 +138,10 @@ struct MapView: UIViewRepresentable {
             let radius = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
                 .distance(from: CLLocation(latitude: edge.latitude, longitude: edge.longitude))
 
-            return MapDb.instance.findNearest(location: MapLocation(lat: coordinate.latitude, lon: coordinate.longitude),
-                                           maxDistance: radius)
+            return MapDb.instance.findNearest(
+                location: MapLocation(lat: coordinate.latitude, lon: coordinate.longitude),
+                maxDistance: radius,
+                zoom: Int(mapView.camera.zoom.rounded()))
         }
 
         private func updateLocationControls() {

@@ -52,18 +52,4 @@ struct MapRect: CustomStringConvertible {
                  self.maxLon <= rect.minLon ||
                  self.minLon >= rect.maxLon)
     }
-
-
-    ////////////////////////////////////////
-
-    static func readBinary(reader: BinaryReader) -> MapRect {
-        let northWest = MapLocation.readBinary(reader: reader)
-        let bottomRight = MapLocation.readBinary(reader: reader)
-        return MapRect(northWest: northWest, southEast: bottomRight)
-    }
-
-    func writeBinary(writer: BinaryWriter) {
-        northWest.writeBinary(writer: writer)
-        southEast.writeBinary(writer: writer)
-    }
 }
