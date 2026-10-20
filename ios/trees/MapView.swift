@@ -4,19 +4,11 @@ import CoreLocation
 
 struct MapView: UIViewRepresentable {
 
-    var coordinate: CLLocationCoordinate2D
-    var zoom: Float
-
     ////////////////////////////////////////
 
     func makeUIView(context: Context) -> GMSMapView {
-        let camera = GMSCameraPosition(
-            latitude: coordinate.latitude,
-            longitude: coordinate.longitude,
-            zoom: zoom
-        )
         let mapView = GMSMapView()
-        mapView.camera = camera
+        mapView.moveCamera(GMSCameraUpdate.fit(MapDb.instance.dataBounds, withPadding: 20))
         mapView.delegate = context.coordinator
 
         self.tileLayer.map = mapView
@@ -48,15 +40,7 @@ struct MapView: UIViewRepresentable {
         return mapView
     }
 
-    func updateUIView(_ mapView: GMSMapView, context: Context) {
-        // Animate camera to new target if coordinate/zoom changes
-        let camera = GMSCameraPosition(
-            latitude: coordinate.latitude,
-            longitude: coordinate.longitude,
-            zoom: zoom
-        )
-        mapView.animate(to: camera)
-    }
+    func updateUIView(_ mapView: GMSMapView, context: Context) {}
 
     let tileLayer = MapTileLayer()
 
@@ -83,6 +67,9 @@ struct MapView: UIViewRepresentable {
 
             if locationManager.authorizationStatus == .notDetermined {
                 locationManager.requestWhenInUseAuthorization()
+            }
+            else {
+                locationManager.requestLocation()
             }
         }
 
@@ -114,16 +101,66 @@ struct MapView: UIViewRepresentable {
 
         func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
             updateLocationControls()
+            if !hasCenteredOnLocation && isAuthorized {
+                manager.requestLocation()
+            }
+        }
+
+        // The first fix centers the map; if there is none, the map keeps showing all the data.
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            guard !hasCenteredOnLocation, let location = locations.last else { return }
+            hasCenteredOnLocation = true
+            mapView?.moveCamera(GMSCameraUpdate.setTarget(location.coordinate, zoom: 16))
+        }
+
+        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+            print("location unavailable: \(error)")
         }
 
 
         ////////////////////////////////////////
 
+        private var hasCenteredOnLocation = false
+
+        // The selection is a marker rather than part of the tile layer, so selecting a site
+        // doesn't require redrawing tiles.
+        private var selectionMarker: GMSMarker?
+
+        // A new marker is created for each selection, because moving an existing one
+        // doesn't reliably update its position.
+        private func makeSelectionMarker() -> GMSMarker {
+            let size: CGFloat = 12
+            let icon = UIGraphicsImageRenderer(size: CGSize(width: size, height: size)).image { context in
+                UIColor.yellow.setFill()
+                UIColor.black.setStroke()
+                let rect = CGRect(x: 1, y: 1, width: size - 2, height: size - 2)
+                context.cgContext.fillEllipse(in: rect)
+                context.cgContext.strokeEllipse(in: rect)
+            }
+            let marker = GMSMarker()
+            marker.icon = icon
+            marker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
+            marker.zIndex = 1
+            return marker
+        }
+        private var isAuthorized: Bool {
+            let status = locationManager.authorizationStatus
+            return status == .authorizedWhenInUse || status == .authorizedAlways
+        }
+
         private let selectionLabel = PaddedLabel()
         private let SELECTION_RADIUS_POINTS = 20.0
 
         private func select(site: QuantizedSite?) {
-            parent.tileLayer.selectedSite = site
+            selectionMarker?.map = nil
+            selectionMarker = nil
+            if let site, let mapView {
+                let location = site.location
+                let marker = makeSelectionMarker()
+                marker.position = CLLocationCoordinate2D(latitude: location.lat, longitude: location.lon)
+                marker.map = mapView
+                selectionMarker = marker
+            }
             selectionLabel.text = site?.type.canonicalName
             selectionLabel.isHidden = site == nil
         }
@@ -145,8 +182,6 @@ struct MapView: UIViewRepresentable {
         }
 
         private func updateLocationControls() {
-            let status = locationManager.authorizationStatus
-            let isAuthorized = status == .authorizedWhenInUse || status == .authorizedAlways
             mapView?.isMyLocationEnabled = isAuthorized
             mapView?.settings.compassButton = isAuthorized
             mapView?.settings.myLocationButton = isAuthorized

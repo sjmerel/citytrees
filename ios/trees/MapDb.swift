@@ -1,4 +1,5 @@
 import Foundation
+import GoogleMaps
 
 // Provides the sites in the tile pyramid (see MapTile.swift). Safe to use from any thread.
 final class MapDb {
@@ -64,6 +65,17 @@ final class MapDb {
             }
         }
         return best
+    }
+
+    // Bounds of the included data, from the root tile (a sample of all the sites).
+    var dataBounds: GMSCoordinateBounds {
+        var bounds = GMSCoordinateBounds()
+        for site in tile(TileKey(z: 0, x: 0, y: 0)).sites {
+            let location = site.location
+            bounds = bounds.includingCoordinate(
+                CLLocationCoordinate2D(latitude: location.lat, longitude: location.lon))
+        }
+        return bounds
     }
 
     ////////////////////////////////////////

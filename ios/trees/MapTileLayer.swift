@@ -8,15 +8,6 @@ class MapTileLayer: GMSSyncTileLayer {
         self.fadeIn = true
     }
 
-    // Safe to set from the main thread while tiles render on background threads.
-    var selectedSite: QuantizedSite? {
-        get { selectionLock.withLock { _selectedSite } }
-        set {
-            selectionLock.withLock { _selectedSite = newValue }
-            clearTileCache()
-        }
-    }
-
     override func tileFor(x: UInt, y: UInt, zoom: UInt) -> UIImage? {
         let tileCount = pow(2.0, Double(zoom))
         let tileCenter = WorldCoord.location(
@@ -35,10 +26,9 @@ class MapTileLayer: GMSSyncTileLayer {
                                      minY: (Double(y) - padding) / tileCount,
                                      maxX: (Double(x) + 1 + padding) / tileCount,
                                      maxY: (Double(y) + 1 + padding) / tileCount)
-        let selectedSite = self.selectedSite
         let tiles = MapDb.instance.tiles(covering: region, zoom: Int(zoom))
 
-        if tiles.isEmpty && selectedSite == nil { return kGMSTileLayerNoTile }
+        if tiles.isEmpty { return kGMSTileLayerNoTile }
 
         //let profiler = Profiler(name: "tile \(x),\(y) \(zoom) (\(sites.count) sites)")
         // note: we get an assertion if we use UIGraphicsImageRenderer
@@ -79,12 +69,6 @@ class MapTileLayer: GMSSyncTileLayer {
             }
         }
 
-        // drawn last so it is always visible
-        if let selectedSite {
-            context.setFillColor(UIColor.yellow.cgColor)
-            draw(selectedSite)
-        }
-
         /*
         // debug: outline the data tiles used
         context.setStrokeColor(UIColor.systemPink.cgColor)
@@ -113,9 +97,6 @@ class MapTileLayer: GMSSyncTileLayer {
 
 
     ////////////////////////////////////////
-
-    private let selectionLock = NSLock()
-    private var _selectedSite: QuantizedSite?
 
     private let TILE_SIZE = 512
     private let SITES_DIAMETER_METERS = 4.0
