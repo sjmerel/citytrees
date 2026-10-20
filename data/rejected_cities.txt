@@ -36,7 +36,6 @@ Hoboken: web map item reports its subscription was canceled.
 Medford, MA: 752 records, no species field.
 Kirkland, WA: only a niche park fruit tree layer.
 Rockville, MD and Fairfax County, VA: canopy polygons only.
-Jersey City: promising FeatureServer (JC_TreeInventory_20210902) but not verified.
 Culver City (recheck): https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfCulverCity_iTree_Canopy_benefits_WFL1/FeatureServer/0 has 15k trees but common names only.
 Glendale CA (recheck): "Glendale_Tree_Survey" ArcGIS services are Glendale, UK (common names only); no Glendale, CA inventory found.
 Burbank (recheck): no city per-tree inventory found (only CalPoly UFEI zip-code summary layers).
@@ -57,3 +56,72 @@ Laguna Beach: Laguna_Beach_Tree requires a token.
 Oxnard: maps.oxnard.org ParksLayers returns 403.
 Maywood and Bell: WCA inventories (2.2k and 2.8k trees) too small.
 Upland, Rancho Cucamonga, Fontana, Corona, Santa Barbara: WCA/iTree layers exist but are outside the intended LA-area scope; not added. La Canada Flintridge: WCA layer has no usable species field names.
+
+Chicago metro (2026 recheck):
+Chicago: no newly verified public per-tree scientific-name inventory found; Chicago Forestry / Park District / CRTI searches surfaced planting or regional layers, not a citywide inventory usable by this pipeline.
+Skokie, IL: no public municipal tree inventory with per-tree botanical names found in the city open-data/ArcGIS search.
+Waukegan, IL: the candidate Waukegan Park District ArcGIS layer is explicitly labeled "Data is for sample use only"; excluded.
+Yonkers, NY: the verified city-owned Trees___Public service has 18,217 point records, but its fields contain no species or botanical name. https://services1.arcgis.com/gBhxGcfCoIWU5257/arcgis/rest/services/Trees___Public/FeatureServer/0
+New Rochelle, NY: the 2024 inventory (15,590 trees) is described on the official city page, but no public per-tree download/service with botanical names was located; the page says the data is under review. https://www.newrochelleny.gov/treeinventory
+White Plains, NY; Stamford, CT; Bridgeport, CT; Hempstead, NY: no verifiable public city-maintained per-tree inventory with scientific names was identified in the candidate search.
+Montclair, NJ: public ArcGIS inventory layers expose scientific names and about 2,553 points, but are university-owned and no city-maintained source or license was verified; not added.
+Westchester County, NY: the ArcGIS result named Westchester_Public_Trees is not local; its records are located near Chicago (around 41.8 N, 87.9 W), not Westchester County.
+
+West / Pacific NW / Southwest recheck:
+Peoria, AZ: the PW/TreeInventory service (gis.peoriagov.org) is actually Peoria, Illinois (coordinates near 40.7 N, 89.6 W) and uses numeric species codes. https://gis.peoriagov.org/server/rest/services/PW/TreeInventory/MapServer/0
+Petaluma: PetalumaTrees_10_10_24 (5.6k) has common names only. https://services5.arcgis.com/BqxiHToJxUMLZkJn/arcgis/rest/services/PetalumaTrees_10_10_24/FeatureServer/0
+Santa Fe, NM: Santa Fe Public Spaces Tree Inventory (8.4k, LatinName) is hosted by a private contractor account (SeedsofWisdomLLC); provenance unclear. https://services3.arcgis.com/XQV8LA8nMUXfZshp/arcgis/rest/services/2026_City_Managed_Santa_Fe_Public_Spaces_Tree_Inventory_WFL1/FeatureServer/0
+Sunnyvale: county-hosted layer capped at exactly 10,000 records (partial); scientific name only inside parentheses with vacant sites. https://services.arcgis.com/NkcnS0qk4w2wasOJ/arcgis/rest/services/Tree_Inventories_in_Santa_Clara_County_WFL1/FeatureServer/1
+Olympia, WA: 2007 Olympia Street Tree Inventory (4.2k) is stale. https://services3.arcgis.com/ZFfRIhKaRX21TuR9/arcgis/rest/services/2007%20Olympia%20Street%20Tree%20Inventory/FeatureServer/0
+Gilbert, AZ: Gilbert_Tree Inventory_WFL1 has 15 records. Scottsdale: only a student "Tree Points" shade map. Chico, CA: Chico Tree Inventory layers have 79 and 15 records. Folsom (28) and Peoria AZ SavaTree survey (424): too small. Visalia: construction-project sheet, no species.
+San Luis Obispo: san_luis_obispo_trees is a Cal Poly UFEI university-hosted copy; unclear provenance.
+Stockton: only student/university-derived layers (Pacific, UCLA); no city inventory.
+Fresno, Bakersfield, Santa Rosa, Santa Barbara, Santa Cruz, San Rafael/Marin, Napa, Vallejo, Modesto, Salinas, Reno, Sparks, Henderson, Phoenix, Chandler, Glendale AZ, Tucson, Eugene, Salem OR, Everett, Bellingham, Kirkland, Anchorage, Albuquerque, Salt Lake City, Colorado Springs, Fort Collins: no public municipal per-tree inventory with scientific names found via ArcGIS Online search. Tucson: only canopy/equity layers; Honolulu: only the already-rejected volunteer layer and canopy layers; Beaverton "Street of Trees", Boise BPR_Park_And_Street_Trees, Hillsboro, Loveland and Roseville candidates were not reachable at a public URL.
+
+Northeast/Southeast/Mid-Atlantic (2026 search):
+Buffalo, NY: BGPD_Trees_Public (3.6k) is Buffalo Olmsted Parks only, species field is common names; Buffalo_Trees_WFL1 is a SUNY Buffalo student layer. https://services2.arcgis.com/JrBERCKW51jzWFCi/arcgis/rest/services/BGPD_Trees_Public/FeatureServer
+Providence "Forestry_Tree_Sites" ArcGIS hit is Marysville, Ohio; Providence used the city Socrata dataset instead.
+Hartford, CT: only neighborhood/volunteer layers (Asylum Hill 484, Temple 383); too small.
+New Haven, CT: New_Haven_Street_Trees_02 (32k, owner kbeechem, unclear provenance); Species/Genus fields mostly empty, COMM_NAME common names only. https://services1.arcgis.com/7uJv7I3kgh2y7Pe0/arcgis/rest/services/New_Haven_Street_Trees_02/FeatureServer/0
+Albany, NY: only MVCC (Mohawk Valley) and 30-record survey layers; no city inventory.
+Worcester, Newton, Quincy (MA), Waltham: no public per-tree inventory found (Waltham hit is the NYC 2015 census copy; Quincy hit has 22 records; Newton hit is a land-use layer). Medford hit is Medford, Oregon.
+Norfolk-area ODU/cmccabe "Trees_3D" layers (Norfolk, Charleston, Roanoke, Lynchburg; 13k-475k) are modeled/university-derived canopy data, not municipal inventories; Norfolk used data.norfolk.gov instead.
+Virginia Beach, Durham NC, Greensboro, Charleston SC, Asheville, Orlando, Jacksonville, Fort Lauderdale, Gainesville FL, Memphis, Chattanooga, Lexington KY, Cleveland, Dayton: no municipal per-tree inventory with scientific names found (hits were tiny survey/notable-tree layers, e.g. Fort Lauderdale FTL_MM_Tree_Collection 3.5k; Lexington <600; Cleveland CSU 1.3k; Durham hits are Whitby, Ontario; Chattanooga_Tree_Points is a 5M-point modeled layer).
+Grand Rapids, MI: Inventory_Snapshot is a 2015 snapshot (2.3k records); Grand Rapids and Lansing were added separately by another agent.
+Lancaster PA: City_Trees_view is Lancaster, Ohio. Springfield: Tree_Inventory is Springfield, Missouri. Camden NJ: TreesMap is Camden, London (UK).
+Tallahassee Canopy_Road_Tree_Inventory_Public (5.7k) not added separately (overlaps Tree_2023 city survey). Concord NH (1.7k), Harrisburg (1.4k), Annapolis (1.5k), Bethesda (1.3k): too small. Nashville_Trees (2.9k): unclear provenance.
+UK (Bristol, Glasgow, Manchester, Birmingham, Leeds, Liverpool, Newcastle, Cardiff, Nottingham, Leicester, Cambridge, Oxford, Brighton, Southampton, Plymouth, Bath): no official per-tree council inventory with botanical names found via ArcGIS Online search/data.gov.uk in limited search; only TPO layers or university/student/derived canopy data (e.g. https://services1.arcgis.com/FQMgDfaSplXrXkUI/arcgis/rest/services/Bristol_Comprehensive_Tree_Map__2023__WFL1/FeatureServer is student work). Worth a deeper manual search.
+Casey, VIC: City of Casey owned Trees (data.casey.vic.gov.au council_trees_pt_t1eam, 205k) has botanicname = 'To Be Determined' for every record; no species. https://data.casey.vic.gov.au/explore/dataset/council_trees_pt_t1eam/
+Hobart, TAS: City of Hobart BYDA 'Tree' layer (22k) has no species/botanical name populated; Significant Trees is tiny. https://services1.arcgis.com/NHqdsnvwfSTg42I8/arcgis/rest/services/City_of_Hobart_BYDA_Layers/FeatureServer/18
+Moreton Bay, QLD: 'Street Tree' layer is polylines (street segments) with no species. https://services-ap1.arcgis.com/152ojN3Ts9H3cdtl/arcgis/rest/services/CMB_Council_Assets/FeatureServer/9
+Wyndham, VIC: Wyndham tree inspection data has common names only. https://data.gov.au/dataset/0254dee0-5b26-484f-a5ae-5ca3cab46601
+Parramatta, NSW: only Greening Parramatta planting-program layers, not a full inventory. https://services6.arcgis.com/NrOjMi9LSYL3MUze/arcgis/rest/services/Tree_GreeningParramatta/FeatureServer/0
+Brisbane, Gold Coast, Logan, Darwin, Stonnington, Boroondara (significant trees only), Merri-bek, Randwick, Waverley, Inner West, North Sydney, Fremantle: no public per-tree inventory with scientific names found on data.gov.au/ArcGIS Online. Brisbane 'Street - Tree - Species' is a species list; Sydney Tree Species List/Register of Significant Trees are lists/small.
+Brimbank, Manningham, Greater Bendigo, Colac Otway (data.gov.au geoserver WFS): endpoints returned HTTP 400/500 during this session; not retried.
+
+Midwest / South-Central / Mountain (2026 search):
+St. Louis: city layers (Tornado Zone EASEMENT_TREES 135k) have common names only; "Trees in St Louis" requires a token. https://services6.arcgis.com/HZXbCkpCSqbGd0vK/arcgis/rest/services/Tornado_Zone_Street_Tree_Replanting__Round_1___DRAFT_2_WFL1/FeatureServer/8
+St. Paul, Minneapolis (street trees): no public per-tree boulevard inventory with species; Minneapolis layers are park trees / planting sites / sale addresses.
+Des Moines, Cedar Rapids, Iowa City, Ames: only the Iowa DNR Urban Tree Inventory (343k, https://services2.arcgis.com/r6iFVcMJeA4kB4GC/arcgis/rest/services/Iowa_DNR_Urban_Tree_Inventory_Public/FeatureServer/0), which has 4-letter species codes (SPCODE, e.g. CEOC) and no names; the DNR MapServer returns 403.
+Omaha: Parks_TreeRemovePrune has only 1.5k records. Fort Worth: only Heritage Trees (small) and survey layers. Oklahoma City, Colorado Springs, El Paso, Corpus Christi, Albuquerque, Wichita, Salt Lake City, Dallas, Houston, San Antonio, Arlington TX: no public per-tree inventory found (Salt Lake Park_Memorial_Tree_Locations, Arlington TX Park_Tree_Data are small/park summaries; TreesSA requires a token).
+Fort Collins: fort_collins_street_trees (CSU-hosted) has only 48 records. Bozeman: only university (MSU) layers.
+Columbus OH: Current_Columbus_City_Owned_Trees (146k, https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Current_Columbus_City_Owned_Trees/FeatureServer/0) has SP_CODE only; maps2.columbus.gov returns 403.
+Springfield MO: Tree_Inventory SCI_NAME holds 8-letter codes (e.g. ACERRUBR). Peoria IL: species is a numeric code. Toledo OH: species is "COMMON - CODE". Longmont CO: SPECIES codes (HBYWES). Lawrence KS: Tree_Viewer has speciesid only. Cincinnati: Trees layer has type codes only.
+Bloomington IN: TreeKeeper Inventory (31k) has common names only. https://data.bloomington.in.gov/resource/ndfd-h5qf.json
+Overland Park KS: Trees (37k) common names only. Laramie WY and Pocatello ID: common names only. Overland Park Park Trees (3.4k) too small.
+Mesa AZ and Tempe AZ: already added by another agent.
+Dryad "5 million city trees" compilation (includes Albuquerque etc.): aggregated research dataset of mixed provenance; not used.
+Suburban search (Houston/Phoenix/Dallas/etc. metros) - rejected: Glenview Park District & Wheaton Park District (common names only); The Woodlands TX STREETS_TREE_INVENTORY (common names, 2.4k); Dublin OH Street_Trees (common names; park trees used instead); Kenosha_Tree_Inventory_PublicView (species codes; WI DNR layer used); HCFCD flood-control layer (not municipal); Detroit-area DRG Trees_public (no species populated); Grand Rapids Inventory_Snapshot (2.3k); Chanhassen MN (3.1k crowdsourced); UNT/Baylor/UMN/Purdue campus layers (university); Saint Paul Bikeway study (3.8k project layer); EdinaTestTrees (test data). No usable public per-tree inventories found for: Houston suburbs, Scottsdale, Chandler, Gilbert, Fort Worth, Frisco, Garland, Irving, McKinney, Pearland, Sugar Land, Katy, San Antonio area, Minneapolis suburbs, Charlotte area, Nashville area, Tampa area, Kansas City area, Cincinnati area, Tucson area, Skokie and other Chicago suburbs.
+Ajax ON: Town Trees (53.9k) has species codes only. https://ajaxmaps.ajax.ca/gisernie/rest/services/Public/Ajax_Open_Data/MapServer/8
+Burlington ON: City Owned Trees (77.6k) common names only. https://mapping.burlington.ca/arcgisweb/rest/services/COB/Urban_Forestry/MapServer/0
+Kamloops BC: TreeSite (19.7k) common names only. https://maps.kamloops.ca/arcgis/rest/services/OpenData/OpenDataParks/MapServer/12
+Mississauga ON: City Owned Tree Inventory (499k) has BOTNAME codes (e.g. MASIOO), no scientific names. https://services6.arcgis.com/hM5ymMLbxIyWTjn2/arcgis/rest/services/2023_City_Owned_Tree_Inventory/FeatureServer/0
+Moncton NB: Trees (12.7k) BOTNAME codes only (e.g. BirGre). https://services1.arcgis.com/E26PuSoie2Y7bbyI/arcgis/rest/services/Trees/FeatureServer/0
+Niagara Falls ON: 31k trees, common names only. https://services9.arcgis.com/oMFQlUUrLd1Uh1bd/arcgis/rest/services/Niagara_Falls_Trees_Inventory_WGS_1984/FeatureServer/0
+Windsor ON: City Trees In Right Of Way (68k) taxon empty, common names only. https://mappmycity.ca/arcgis/rest/services/OpenDataServices/ParksEnvironment/MapServer/1
+London ON: Tree layer (868k) is CAD symbol layer, no species. https://maps.london.ca/server/rest/services/OpenData/OpenData_Environment/MapServer/12
+North Vancouver (District) BC: StreetTrees only 192 records. https://services9.arcgis.com/8Y7Trd8yKyEknquW/arcgis/rest/services/StreetTrees/FeatureServer/0
+Abbotsford BC: Park Trees 2019 only 1,362 records, consultant-hosted. https://services8.arcgis.com/ZYlQy38aWlfDG1Qh/arcgis/rest/services/Tree_Inventory_2019/FeatureServer/0
+Milton: TreeInventory_view is Milton WI (3k), not Ontario. https://services9.arcgis.com/Wwu3LbczaClU3E4O/arcgis/rest/services/TreeInventory_view/FeatureServer/0
+Penticton BC: 6.4k records but very messy names, dropped for quality. https://services1.arcgis.com/ (Parks_PRD/FeatureServer/1355)
+Brampton, Markham, Vaughan, Richmond Hill, Guelph, Regina, Saskatoon, Surrey, Richmond BC, Burnaby, Nanaimo, Saanich, Laval, Gatineau, Sherbrooke, St. John's, Lethbridge, Oshawa, Coquitlam, New Westminster: no public municipal per-tree inventory with scientific names found via ArcGIS/Socrata/CKAN (only consultant/student/university/planting/specimen-only layers or TreePlotter grids).

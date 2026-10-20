@@ -8,21 +8,40 @@ import { lookupWikipediaUrls } from './wikipedia';
 import { cleanName, normalizeName } from './name_cleanup';
 
 
+// sites farther than this from the median position of their city are dropped
+const MAX_CITY_RADIUS_DEGREES = 1;
+
+function median(values: number[]): number {
+  let sorted = [...values].sort((a, b) => a - b);
+  return sorted[Math.floor(sorted.length / 2)];
+}
+
 async function main() {
 
   ////////////////////////////////////////
   // read all data
-  let cities: string[] = JSON.parse(fs.readFileSync('cities.json', 'utf8')).map((city: { code: string }) => city.code);
+  let cityList: { code: string, maxRadiusDegrees?: number }[] = JSON.parse(fs.readFileSync('cities.json', 'utf8'));
   let data = [];
   console.log('loading...');
-  for (let city of cities) {
-    let cityData = JSON.parse(fs.readFileSync(`cities/${city}.json`, 'utf8'));
-    console.log(`  ${city}: ${cityData.length} sites`);
+  for (let { code, maxRadiusDegrees } of cityList) {
+    let cityData = JSON.parse(fs.readFileSync(`cities/${code}.json`, 'utf8'));
     for (let d of cityData) {
       if (!(d.name && d.lat && d.lon && Number.isFinite(d.lat) && Number.isFinite(d.lon))) { 
         console.log(d); 
         fail();
       }
+    }
+
+    // drop stray points far from the rest of the city (bad coordinates, wrong projection, etc.)
+    let medLat = median(cityData.map((d: { lat: number }) => d.lat));
+    let medLon = median(cityData.map((d: { lon: number }) => d.lon));
+    let maxRadius = maxRadiusDegrees ?? MAX_CITY_RADIUS_DEGREES;
+    let kept = cityData.filter((d: { lat: number, lon: number }) =>
+      Math.abs(d.lat - medLat) <= maxRadius &&
+      Math.abs(d.lon - medLon) * Math.cos(medLat * Math.PI / 180) <= maxRadius);
+    let dropped = cityData.length - kept.length;
+    console.log(`  ${code}: ${kept.length} sites` + (dropped ? `  (dropped ${dropped} outside ${maxRadius} degrees of the city center)` : ''));
+    for (let d of kept) {
       data.push(d);
     }
   }
@@ -129,25 +148,40 @@ async function main() {
 
   console.log();
   console.log('handling duplicate locations...');
-  let byLocation = new Map<string, any[]>();
-  for (let d of data) {
-    let key = `${d.lat},${d.lon}`;
-    let group = byLocation.get(key);
-    if (group) { group.push(d); } else { byLocation.set(key, [d]); }
+  // Sorts site indices by location instead of grouping in a Map of arrays, which runs out of memory
+  // with millions of sites. Ties are broken by index, so the first site in each group is kept.
+  let count = data.length;
+  let lats = new Float64Array(count);
+  let lons = new Float64Array(count);
+  for (let i = 0; i < count; ++i) {
+    lats[i] = data[i].lat;
+    lons[i] = data[i].lon;
   }
+  let order = new Uint32Array(count);
+  for (let i = 0; i < count; ++i) { order[i] = i; }
+  order.sort((a, b) => (lats[a] - lats[b]) || (lons[a] - lons[b]) || (a - b));
+
+  let keep = new Uint8Array(count);
   let dedupedSame = 0;
   let droppedMixed = 0;
-  data = [];
-  for (let group of byLocation.values()) {
-    if (group.length == 1) {
-      data.push(group[0]);
-    } else if (group.every(d => d.name == group[0].name)) {
-      data.push(group[0]);
-      dedupedSame += group.length - 1;
-    } else {
-      droppedMixed += group.length;
+  for (let start = 0; start < count; ) {
+    let first = order[start];
+    let end = start + 1;
+    let allSame = true;
+    while (end < count && lats[order[end]] == lats[first] && lons[order[end]] == lons[first]) {
+      if (data[order[end]].name != data[first].name) { allSame = false; }
+      ++end;
     }
+    let size = end - start;
+    if (size == 1 || allSame) {
+      keep[first] = 1;
+      dedupedSame += size - 1;
+    } else {
+      droppedMixed += size;
+    }
+    start = end;
   }
+  data = data.filter((_, i) => keep[i]);
   console.log(`  ${dedupedSame} duplicate same-species sites merged`);
   console.log(`  ${droppedMixed} mixed-species co-located sites dropped`);
 
@@ -156,10 +190,11 @@ async function main() {
 
   let names = [...new Set(data.map(o => o.name))];
 
+  let typeIndex = new Map<string, number>(names.map((name, i) => [name, i]));
   let sites = data.map(o => ({
     lat: o.lat,
     lon: o.lon,
-    type: names.indexOf(o.name)
+    type: typeIndex.get(o.name)!
   }));
 
 

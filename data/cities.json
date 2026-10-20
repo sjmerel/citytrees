@@ -18,6 +18,12 @@
     "country": "US"
   },
   {
+    "code": "jerseycity_nj_us",
+    "name": "Jersey City",
+    "state": "NJ",
+    "country": "US"
+  },
+  {
     "code": "pasadena_ca_us",
     "name": "Pasadena",
     "state": "CA",
@@ -74,6 +80,26 @@
   {
     "code": "london_gb",
     "name": "London",
+    "country": "GB"
+  },
+  {
+    "code": "edinburgh_gb",
+    "name": "Edinburgh",
+    "country": "GB"
+  },
+  {
+    "code": "belfast_gb",
+    "name": "Belfast",
+    "country": "GB"
+  },
+  {
+    "code": "york_gb",
+    "name": "York",
+    "country": "GB"
+  },
+  {
+    "code": "sheffield_gb",
+    "name": "Sheffield",
     "country": "GB"
   },
   {
@@ -381,5 +407,659 @@
     "name": "Yorba Linda",
     "state": "CA",
     "country": "US"
+  },
+  {
+    "code": "evanston_il_us",
+    "name": "Evanston",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "oakpark_il_us",
+    "name": "Oak Park",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "berwyn_il_us",
+    "name": "Berwyn",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "wilmette_il_us",
+    "name": "Wilmette",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "naperville_il_us",
+    "name": "Naperville",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "bend_or_us",
+    "name": "Bend",
+    "state": "OR",
+    "country": "US"
+  },
+  {
+    "code": "escondido_ca_us",
+    "name": "Escondido",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "pleasanton_ca_us",
+    "name": "Pleasanton",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "cupertino_ca_us",
+    "name": "Cupertino",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "losgatos_ca_us",
+    "name": "Los Gatos",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "milpitas_ca_us",
+    "name": "Milpitas",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "encinitas_ca_us",
+    "name": "Encinitas",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "mesa_az_us",
+    "name": "Mesa",
+    "state": "AZ",
+    "country": "US"
+  },
+  {
+    "code": "tempe_az_us",
+    "name": "Tempe",
+    "state": "AZ",
+    "country": "US"
+  },
+  {
+    "code": "spokane_wa_us",
+    "name": "Spokane",
+    "state": "WA",
+    "country": "US"
+  },
+  {
+    "code": "bellevue_wa_us",
+    "name": "Bellevue",
+    "state": "WA",
+    "country": "US"
+  },
+  {
+    "code": "doral_fl_us",
+    "name": "Doral",
+    "state": "FL",
+    "country": "US"
+  },
+  {
+    "code": "plano_tx_us",
+    "name": "Plano",
+    "state": "TX",
+    "country": "US"
+  },
+  {
+    "code": "bexley_oh_us",
+    "name": "Bexley",
+    "state": "OH",
+    "country": "US"
+  },
+  {
+    "code": "marysville_oh_us",
+    "name": "Marysville",
+    "state": "OH",
+    "country": "US"
+  },
+  {
+    "code": "upperarlington_oh_us",
+    "name": "Upper Arlington",
+    "state": "OH",
+    "country": "US"
+  },
+  {
+    "code": "dublin_oh_us",
+    "name": "Dublin",
+    "state": "OH",
+    "country": "US"
+  },
+  {
+    "code": "rochester_ny_us",
+    "name": "Rochester",
+    "state": "NY",
+    "country": "US"
+  },
+  {
+    "code": "syracuse_ny_us",
+    "name": "Syracuse",
+    "state": "NY",
+    "country": "US"
+  },
+  {
+    "code": "ithaca_ny_us",
+    "name": "Ithaca",
+    "state": "NY",
+    "country": "US"
+  },
+  {
+    "code": "providence_ri_us",
+    "name": "Providence",
+    "state": "RI",
+    "country": "US"
+  },
+  {
+    "code": "arlington_ma_us",
+    "name": "Arlington",
+    "state": "MA",
+    "country": "US"
+  },
+  {
+    "code": "allentown_pa_us",
+    "name": "Allentown",
+    "state": "PA",
+    "country": "US"
+  },
+  {
+    "code": "montgomerycounty_md_us",
+    "name": "Montgomery County",
+    "state": "MD",
+    "country": "US"
+  },
+  {
+    "code": "norfolk_va_us",
+    "name": "Norfolk",
+    "state": "VA",
+    "country": "US"
+  },
+  {
+    "code": "tallahassee_fl_us",
+    "name": "Tallahassee",
+    "state": "FL",
+    "country": "US"
+  },
+  {
+    "code": "sarasotacounty_fl_us",
+    "name": "Sarasota County",
+    "state": "FL",
+    "country": "US"
+  },
+  {
+    "code": "batonrouge_la_us",
+    "name": "Baton Rouge",
+    "state": "LA",
+    "country": "US"
+  },
+  {
+    "code": "annarbor_mi_us",
+    "name": "Ann Arbor",
+    "state": "MI",
+    "country": "US"
+  },
+  {
+    "code": "milwaukee_wi_us",
+    "name": "Milwaukee",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "wauwatosa_wi_us",
+    "name": "Wauwatosa",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "westallis_wi_us",
+    "name": "West Allis",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "greenfield_wi_us",
+    "name": "Greenfield",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "franklin_wi_us",
+    "name": "Franklin",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "oakcreek_wi_us",
+    "name": "Oak Creek",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "whitefishbay_wi_us",
+    "name": "Whitefish Bay",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "foxpoint_wi_us",
+    "name": "Fox Point",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "shorewood_wi_us",
+    "name": "Shorewood",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "menomoneefalls_wi_us",
+    "name": "Menomonee Falls",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "newberlin_wi_us",
+    "name": "New Berlin",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "waukesha_wi_us",
+    "name": "Waukesha",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "racine_wi_us",
+    "name": "Racine",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "kenosha_wi_us",
+    "name": "Kenosha",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "indianapolis_in_us",
+    "name": "Indianapolis",
+    "state": "IN",
+    "country": "US"
+  },
+  {
+    "code": "carmel_in_us",
+    "name": "Carmel",
+    "state": "IN",
+    "country": "US"
+  },
+  {
+    "code": "plainfield_in_us",
+    "name": "Plainfield",
+    "state": "IN",
+    "country": "US"
+  },
+  {
+    "code": "brownsburg_in_us",
+    "name": "Brownsburg",
+    "state": "IN",
+    "country": "US"
+  },
+  {
+    "code": "fortwayne_in_us",
+    "name": "Fort Wayne",
+    "state": "IN",
+    "country": "US"
+  },
+  {
+    "code": "evansville_in_us",
+    "name": "Evansville",
+    "state": "IN",
+    "country": "US"
+  },
+  {
+    "code": "lafayette_in_us",
+    "name": "Lafayette",
+    "state": "IN",
+    "country": "US"
+  },
+  {
+    "code": "bloomington_in_us",
+    "name": "Bloomington",
+    "state": "IN",
+    "country": "US"
+  },
+  {
+    "code": "michigancity_in_us",
+    "name": "Michigan City",
+    "state": "IN",
+    "country": "US"
+  },
+  {
+    "code": "allen_tx_us",
+    "name": "Allen",
+    "state": "TX",
+    "country": "US"
+  },
+  {
+    "code": "durham_nc_us",
+    "name": "Durham",
+    "state": "NC",
+    "country": "US"
+  },
+  {
+    "code": "highland_in_us",
+    "name": "Highland",
+    "state": "IN",
+    "country": "US"
+  },
+  {
+    "code": "southelgin_il_us",
+    "name": "South Elgin",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "melbourne_vic_au",
+    "name": "Melbourne",
+    "state": "VIC",
+    "country": "AU"
+  },
+  {
+    "code": "sydney_nsw_au",
+    "name": "Sydney",
+    "state": "NSW",
+    "country": "AU"
+  },
+  {
+    "code": "adelaide_sa_au",
+    "name": "Adelaide",
+    "state": "SA",
+    "country": "AU"
+  },
+  {
+    "code": "perth_wa_au",
+    "name": "Perth",
+    "state": "WA",
+    "country": "AU"
+  },
+  {
+    "code": "ballarat_vic_au",
+    "name": "Ballarat",
+    "state": "VIC",
+    "country": "AU"
+  },
+  {
+    "code": "portphillip_vic_au",
+    "name": "Port Phillip",
+    "state": "VIC",
+    "country": "AU"
+  },
+  {
+    "code": "yarra_vic_au",
+    "name": "Yarra",
+    "state": "VIC",
+    "country": "AU"
+  },
+  {
+    "code": "wodonga_vic_au",
+    "name": "Wodonga",
+    "state": "VIC",
+    "country": "AU"
+  },
+  {
+    "code": "cockburn_wa_au",
+    "name": "Cockburn",
+    "state": "WA",
+    "country": "AU"
+  },
+  {
+    "code": "gleneira_vic_au",
+    "name": "Glen Eira",
+    "state": "VIC",
+    "country": "AU"
+  },
+  {
+    "code": "hobsonsbay_vic_au",
+    "name": "Hobsons Bay",
+    "state": "VIC",
+    "country": "AU"
+  },
+  {
+    "code": "shepparton_vic_au",
+    "name": "Greater Shepparton",
+    "state": "VIC",
+    "country": "AU"
+  },
+  {
+    "code": "macedonranges_vic_au",
+    "name": "Macedon Ranges",
+    "state": "VIC",
+    "country": "AU"
+  },
+  {
+    "code": "burnside_sa_au",
+    "name": "Burnside",
+    "state": "SA",
+    "country": "AU"
+  },
+  {
+    "code": "launceston_tas_au",
+    "name": "Launceston",
+    "state": "TAS",
+    "country": "AU"
+  },
+  {
+    "code": "lincoln_ne_us",
+    "name": "Lincoln",
+    "state": "NE",
+    "country": "US"
+  },
+  {
+    "code": "lansing_mi_us",
+    "name": "Lansing",
+    "state": "MI",
+    "country": "US"
+  },
+  {
+    "code": "grandrapids_mi_us",
+    "name": "Grand Rapids",
+    "state": "MI",
+    "country": "US"
+  },
+  {
+    "code": "urbana_il_us",
+    "name": "Urbana",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "normal_il_us",
+    "name": "Normal",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "milwaukeecounty_wi_us",
+    "name": "Milwaukee County Parks",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "siouxfalls_sd_us",
+    "name": "Sioux Falls",
+    "state": "SD",
+    "country": "US"
+  },
+  {
+    "code": "tulsa_ok_us",
+    "name": "Tulsa",
+    "state": "OK",
+    "country": "US"
+  },
+  {
+    "code": "richardson_tx_us",
+    "name": "Richardson",
+    "state": "TX",
+    "country": "US"
+  },
+  {
+    "code": "boise_id_us",
+    "name": "Boise",
+    "state": "ID",
+    "country": "US"
+  },
+  {
+    "code": "missoula_mt_us",
+    "name": "Missoula",
+    "state": "MT",
+    "country": "US"
+  },
+  {
+    "code": "santafe_nm_us",
+    "name": "Santa Fe",
+    "state": "NM",
+    "country": "US"
+  },
+  {
+    "code": "coralsprings_fl_us",
+    "name": "Coral Springs",
+    "state": "FL",
+    "country": "US"
+  },
+  {
+    "code": "canberra_act_au",
+    "name": "Canberra",
+    "state": "ACT",
+    "country": "AU"
+  },
+  {
+    "code": "calgary_ab_ca",
+    "name": "Calgary",
+    "state": "AB",
+    "country": "CA"
+  },
+  {
+    "code": "edmonton_ab_ca",
+    "name": "Edmonton",
+    "state": "AB",
+    "country": "CA"
+  },
+  {
+    "code": "winnipeg_mb_ca",
+    "name": "Winnipeg",
+    "state": "MB",
+    "country": "CA"
+  },
+  {
+    "code": "barrie_on_ca",
+    "name": "Barrie",
+    "state": "ON",
+    "country": "CA"
+  },
+  {
+    "code": "halifax_ns_ca",
+    "name": "Halifax",
+    "state": "NS",
+    "country": "CA"
+  },
+  {
+    "code": "hamilton_on_ca",
+    "name": "Hamilton",
+    "state": "ON",
+    "country": "CA"
+  },
+  {
+    "code": "kelowna_bc_ca",
+    "name": "Kelowna",
+    "state": "BC",
+    "country": "CA"
+  },
+  {
+    "code": "kitchener_on_ca",
+    "name": "Kitchener",
+    "state": "ON",
+    "country": "CA"
+  },
+  {
+    "code": "langley_bc_ca",
+    "name": "Langley",
+    "state": "BC",
+    "country": "CA"
+  },
+  {
+    "code": "mapleridge_bc_ca",
+    "name": "Maple Ridge",
+    "state": "BC",
+    "country": "CA"
+  },
+  {
+    "code": "medicinehat_ab_ca",
+    "name": "Medicine Hat",
+    "state": "AB",
+    "country": "CA"
+  },
+  {
+    "code": "oakville_on_ca",
+    "name": "Oakville",
+    "state": "ON",
+    "country": "CA"
+  },
+  {
+    "code": "peterborough_on_ca",
+    "name": "Peterborough",
+    "state": "ON",
+    "country": "CA"
+  },
+  {
+    "code": "princegeorge_bc_ca",
+    "name": "Prince George",
+    "state": "BC",
+    "country": "CA"
+  },
+  {
+    "code": "whitby_on_ca",
+    "name": "Whitby",
+    "state": "ON",
+    "country": "CA"
+  },
+  {
+    "code": "fredericton_nb_ca",
+    "name": "Fredericton",
+    "state": "NB",
+    "country": "CA"
+  },
+  {
+    "code": "stalbert_ab_ca",
+    "name": "St. Albert",
+    "state": "AB",
+    "country": "CA"
+  },
+  {
+    "code": "quebeccity_qc_ca",
+    "name": "Quebec City",
+    "state": "QC",
+    "country": "CA"
+  },
+  {
+    "code": "ottawa_on_ca",
+    "name": "Ottawa",
+    "state": "ON",
+    "country": "CA"
   }
 ]
