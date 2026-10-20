@@ -1,3 +1,4 @@
 /*.csv
 /*.json
 !/cities.json
+/cities/*.json

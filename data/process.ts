@@ -13,7 +13,7 @@ async function main() {
   let data = [];
   console.log('loading...');
   for (let city of cities) {
-    let cityData = JSON.parse(fs.readFileSync(`${city}.json`, 'utf8'));
+    let cityData = JSON.parse(fs.readFileSync(`cities/${city}.json`, 'utf8'));
     console.log(`  ${city}: ${cityData.length} sites`);
     for (let d of cityData) {
       if (!(d.name && d.lat && d.lon && Number.isFinite(d.lat) && Number.isFinite(d.lon))) { console.log(d); }
