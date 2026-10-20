@@ -1,241 +1,385 @@
 [
   {
-    "code": "beverlyhills",
+    "code": "beverlyhills_ca_us",
     "name": "Beverly Hills",
     "state": "CA",
     "country": "US"
   },
   {
-    "code": "losangeles",
+    "code": "losangeles_ca_us",
     "name": "Los Angeles",
     "state": "CA",
     "country": "US"
   },
   {
-    "code": "newyorkcity",
+    "code": "newyorkcity_ny_us",
     "name": "New York City",
     "state": "NY",
     "country": "US"
   },
   {
-    "code": "pasadena",
+    "code": "pasadena_ca_us",
     "name": "Pasadena",
     "state": "CA",
     "country": "US"
   },
   {
-    "code": "sanfrancisco",
+    "code": "sanfrancisco_ca_us",
     "name": "San Francisco",
     "state": "CA",
     "country": "US"
   },
   {
-    "code": "santamonica",
+    "code": "santamoni_ca_us",
     "name": "Santa Monica",
     "state": "CA",
     "country": "US"
   },
   {
-    "code": "seattle",
+    "code": "seattle_wa_us",
     "name": "Seattle",
     "state": "WA",
     "country": "US"
   },
   {
-    "code": "westhollywood",
+    "code": "westhollywood_ca_us",
     "name": "West Hollywood",
     "state": "CA",
     "country": "US"
   },
   {
-    "code": "austin",
+    "code": "austin_tx_us",
     "name": "Austin",
     "state": "TX",
     "country": "US"
   },
   {
-    "code": "berkeley",
+    "code": "berkeley_ca_us",
     "name": "Berkeley",
     "state": "CA",
     "country": "US"
   },
   {
-    "code": "cambridge",
+    "code": "cambridge_ma_us",
     "name": "Cambridge",
     "state": "MA",
     "country": "US"
   },
   {
-    "code": "denver",
+    "code": "denver_co_us",
     "name": "Denver",
     "state": "CO",
     "country": "US"
   },
   {
-    "code": "london",
+    "code": "london_gb",
     "name": "London",
     "country": "GB"
   },
   {
-    "code": "montreal",
+    "code": "montreal_qc_ca",
     "name": "Montreal",
     "state": "QC",
     "country": "CA"
   },
   {
-    "code": "oakland",
+    "code": "oakland_ca_us",
     "name": "Oakland",
     "state": "CA",
     "country": "US"
   },
   {
-    "code": "philadelphia",
+    "code": "philadelphia_pa_us",
     "name": "Philadelphia",
     "state": "PA",
     "country": "US"
   },
   {
-    "code": "portlandor",
+    "code": "portland_or_us",
     "name": "Portland",
     "state": "OR",
     "country": "US"
   },
   {
-    "code": "sacramento",
+    "code": "sacramento_ca_us",
     "name": "Sacramento",
     "state": "CA",
     "country": "US"
   },
   {
-    "code": "sanjose",
+    "code": "sanjose_ca_us",
     "name": "San Jose",
     "state": "CA",
     "country": "US"
   },
   {
-    "code": "toronto",
+    "code": "toronto_on_ca",
     "name": "Toronto",
     "state": "ON",
     "country": "CA"
   },
   {
-    "code": "vancouver",
+    "code": "vancouver_bc_ca",
     "name": "Vancouver",
     "state": "BC",
     "country": "CA"
   },
   {
-    "code": "victoria",
+    "code": "victoria_bc_ca",
     "name": "Victoria",
     "state": "BC",
     "country": "CA"
   },
   {
-    "code": "washingtondc",
+    "code": "washington_dc_us",
     "name": "Washington",
     "state": "DC",
     "country": "US"
   },
   {
-    "code": "waterloo",
+    "code": "waterloo_on_ca",
     "name": "Waterloo",
     "state": "ON",
     "country": "CA"
   },
   {
-    "code": "atlanta",
+    "code": "atlanta_ga_us",
     "name": "Atlanta",
     "state": "GA",
     "country": "US"
   },
   {
-    "code": "baltimore",
+    "code": "baltimore_md_us",
     "name": "Baltimore",
     "state": "MD",
     "country": "US"
   },
   {
-    "code": "boston",
+    "code": "boston_ma_us",
     "name": "Boston",
     "state": "MA",
     "country": "US"
   },
   {
-    "code": "neworleans",
+    "code": "neworleans_la_us",
     "name": "New Orleans",
     "state": "LA",
     "country": "US"
   },
   {
-    "code": "sandiego",
+    "code": "sandiego_ca_us",
     "name": "San Diego",
     "state": "CA",
     "country": "US"
   },
   {
-    "code": "pittsburgh",
+    "code": "pittsburgh_pa_us",
     "name": "Pittsburgh",
     "state": "PA",
     "country": "US"
   },
   {
-    "code": "paloalto",
+    "code": "paloalto_ca_us",
     "name": "Palo Alto",
     "state": "CA",
     "country": "US"
   },
   {
-    "code": "fremont",
+    "code": "fremont_ca_us",
     "name": "Fremont",
     "state": "CA",
     "country": "US"
   },
   {
-    "code": "boulder",
+    "code": "boulder_co_us",
     "name": "Boulder",
     "state": "CO",
     "country": "US"
   },
   {
-    "code": "brookline",
+    "code": "brookline_ma_us",
     "name": "Brookline",
     "state": "MA",
     "country": "US"
   },
   {
-    "code": "louisville",
+    "code": "louisville_ky_us",
     "name": "Louisville",
     "state": "KY",
     "country": "US"
   },
   {
-    "code": "lasvegas",
+    "code": "lasvegas_nv_us",
     "name": "Las Vegas",
     "state": "NV",
     "country": "US"
   },
   {
-    "code": "richmond",
+    "code": "richmond_va_us",
     "name": "Richmond",
     "state": "VA",
     "country": "US"
   },
   {
-    "code": "madison",
+    "code": "madison_wi_us",
     "name": "Madison",
     "state": "WI",
     "country": "US"
   },
   {
-    "code": "aurora",
+    "code": "aurora_co_us",
     "name": "Aurora",
     "state": "CO",
     "country": "US"
   },
   {
-    "code": "portlandme",
+    "code": "portland_me_us",
     "name": "Portland",
     "state": "ME",
+    "country": "US"
+  },
+  {
+    "code": "hermosabeach_ca_us",
+    "name": "Hermosa Beach",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "elsegundo_ca_us",
+    "name": "El Segundo",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "claremont_ca_us",
+    "name": "Claremont",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "signalhill_ca_us",
+    "name": "Signal Hill",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "montereypark_ca_us",
+    "name": "Monterey Park",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "camarillo_ca_us",
+    "name": "Camarillo",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "riverside_ca_us",
+    "name": "Riverside",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "lakewood_ca_us",
+    "name": "Lakewood",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "glendora_ca_us",
+    "name": "Glendora",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "anaheim_ca_us",
+    "name": "Anaheim",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "fullerton_ca_us",
+    "name": "Fullerton",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "azusa_ca_us",
+    "name": "Azusa",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "buenapark_ca_us",
+    "name": "Buena Park",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "santaclarita_ca_us",
+    "name": "Santa Clarita",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "carson_ca_us",
+    "name": "Carson",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "laverne_ca_us",
+    "name": "La Verne",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "brea_ca_us",
+    "name": "Brea",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "templecity_ca_us",
+    "name": "Temple City",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "agourahills_ca_us",
+    "name": "Agoura Hills",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "costamesa_ca_us",
+    "name": "Costa Mesa",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "montebello_ca_us",
+    "name": "Montebello",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "ventura_ca_us",
+    "name": "Ventura",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "rosemead_ca_us",
+    "name": "Rosemead",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "yorbalinda_ca_us",
+    "name": "Yorba Linda",
+    "state": "CA",
     "country": "US"
   }
 ]

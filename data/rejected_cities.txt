@@ -37,3 +37,23 @@ Medford, MA: 752 records, no species field.
 Kirkland, WA: only a niche park fruit tree layer.
 Rockville, MD and Fairfax County, VA: canopy polygons only.
 Jersey City: promising FeatureServer (JC_TreeInventory_20210902) but not verified.
+Culver City (recheck): https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfCulverCity_iTree_Canopy_benefits_WFL1/FeatureServer/0 has 15k trees but common names only.
+Glendale CA (recheck): "Glendale_Tree_Survey" ArcGIS services are Glendale, UK (common names only); no Glendale, CA inventory found.
+Burbank (recheck): no city per-tree inventory found (only CalPoly UFEI zip-code summary layers).
+Inglewood: Inglewood_Trees_Public (services7.arcgis.com/SSGq1Z3HBab5z1C7) requires a token; other hits are TreePeople fruit-tree/planting-site layers.
+Manhattan Beach: https://services1.arcgis.com/0j6vZbECadDEXdAS/arcgis/rest/services/Manhattan_Beach_Trimmed/FeatureServer/1 (7.9k trees with botanical names) is a Cal Poly UFEI university-hosted copy with no license or city attribution; unclear provenance.
+Redondo Beach, Torrance, Santa Ana, Huntington Beach, Whittier, Downey, Alhambra, South Pasadena, San Marino, Monrovia, Cerritos, Gardena, Hawthorne, Lawndale, Inglewood, Calabasas, Thousand Oaks, Simi Valley, Palos Verdes, Rolling Hills, Pomona (city): no public per-tree inventory with scientific names found on ArcGIS Online / city open data portals.
+Long Beach (recheck): still only vacant planting-site layers (Tree_Vacant_Sites, 2024 Potential Tree Sites) and newspaper magnolia/jacaranda maps.
+Santa Ana: SantaAna253_* layers are a 2011/2018 OC Parks sample with no species fields.
+Arcadia CA: "CityOfArcadiaTrees" is Arcadia, Wisconsin.
+Costa Mesa (CalPoly "Census_07102024_CostaMesa", 70k): student/university census of unclear provenance; used the WCA city inventory instead.
+Pomona: pomona_trees_inventory* services are tiny student/class datasets (50 records).
+LA County Landscape Maintenance District Trees (Santa Clarita/Stevenson Ranch area): common names only.
+Marina del Rey (LA County): MDR_Tree_Inventory has only 2,275 records (too small).
+Port Hueneme: COPH_Trees_WFL1 has botanical names but only 3,306 records (too small).
+San Fernando: San_Fernando_Trees requires a token; TreePeople layers only.
+Tustin: Tustin_Park_Trees has no species field.
+Laguna Beach: Laguna_Beach_Tree requires a token.
+Oxnard: maps.oxnard.org ParksLayers returns 403.
+Maywood and Bell: WCA inventories (2.2k and 2.8k trees) too small.
+Upland, Rancho Cucamonga, Fontana, Corona, Santa Barbara: WCA/iTree layers exist but are outside the intended LA-area scope; not added. La Canada Flintridge: WCA layer has no usable species field names.
