@@ -1,5 +1,6 @@
 /*.csv
 /*.json
+/tiles
 !/cities.json
 /cities/*.json
 !/non_botanical_names.json

@@ -26,7 +26,7 @@ function main() {
   let args = process.argv.slice(2);
   let dryRun = false;
   let version = 'v1';
-  let dir = '../ios/tiles';
+  let dir = './tiles';
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--dry-run') dryRun = true;
     else if (args[i] === '--version') version = args[++i];
