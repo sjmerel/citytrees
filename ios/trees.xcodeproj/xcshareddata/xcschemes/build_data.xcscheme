@@ -59,6 +59,10 @@
             argument = "&quot;$(SRCROOT)/trees/db&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;$(SRCROOT)/tiles&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction

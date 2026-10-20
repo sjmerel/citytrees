@@ -24,6 +24,9 @@ struct MapView: UIViewRepresentable {
         mapView.delegate = context.coordinator
 
         self.tileLayer.map = mapView
+        MapDb.instance.onTilesDownloaded = { [weak tileLayer] in
+            tileLayer?.clearTileCache()
+        }
 
         /*
         for tree in Site.all.prefix(100) {

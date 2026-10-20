@@ -25,7 +25,7 @@ final class MapDb {
             for x in index(rect.minX)...index(rect.maxX) {
                 var key = TileKey(z: z, x: x, y: y)
                 if tileExists.contains(key) {
-                    keys.insert(key)
+                    keys.insert(availableTile(for: key))
                     continue
                 }
                 // A missing tile is either empty, or inside an ancestor that is a leaf
@@ -33,7 +33,7 @@ final class MapDb {
                 while key.z > 0 {
                     key = key.parent
                     if leaves.contains(key) {
-                        keys.insert(key)
+                        keys.insert(availableTile(for: key))
                         break
                     }
                 }
@@ -78,8 +78,26 @@ final class MapDb {
         return bounds
     }
 
+    // Called on the main thread when more tiles became available, so the map can redraw.
+    var onTilesDownloaded: (() -> Void)? {
+        get { store.onTilesDownloaded }
+        set { store.onTilesDownloaded = newValue }
+    }
+
     ////////////////////////////////////////
 
+    // The tile itself if it is on the device; otherwise starts downloading it, and uses its
+    // closest ancestor that is available (a coarser sample of the same area) in the meantime.
+    // Tiles up to the bundled zoom level are always available.
+    private func availableTile(for key: TileKey) -> TileKey {
+        var key = key
+        while key.z > 0 && store.url(for: key) == nil {
+            key = key.parent
+        }
+        return key
+    }
+
+    private let store: TileStore
     private let tileExists: Set<TileKey>
     private let leaves: Set<TileKey>
     private let maxZoom: Int
@@ -92,6 +110,7 @@ final class MapDb {
     private init() {
         let url = Bundle.main.url(forResource: "tiles_manifest", withExtension: "bin")!
         let entries = TileManifest.readBinary(url: url)
+        store = TileStore(entries: Dictionary(uniqueKeysWithValues: entries.map { ($0.key, $0) }))
         tileExists = Set(entries.map { $0.key })
         leaves = Set(entries.filter { $0.isLeaf }.map { $0.key })
         maxZoom = entries.map { $0.key.z }.max() ?? 0
@@ -107,7 +126,8 @@ final class MapDb {
             return tile
         }
 
-        let url = Bundle.main.resourceURL!.appendingPathComponent(key.fileName)
+        // the file can be missing if the system cleared the caches directory
+        guard let url = store.url(for: key) else { return MapTile(isLeaf: false, sites: []) }
         let profiler = Profiler(name: "load tile \(key)")
         let tile = MapTile.readBinary(url: url)
         profiler.stop()

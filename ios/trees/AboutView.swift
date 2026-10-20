@@ -12,7 +12,13 @@ struct AboutView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .confirmationAction) {
-                        Button("Done") { dismiss() }
+                        Button(action: { dismiss() }) {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 12, weight: .semibold))
+                                .foregroundColor(.gray)
+                                .padding(8)
+                        }
+                        .accessibilityLabel("Close")
                     }
                 }
         }
@@ -26,14 +32,38 @@ struct HTMLView: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
-        if let url = Bundle.main.url(forResource: resource, withExtension: "html") {
+        if let url = Bundle.main.url(forResource: resource, withExtension: "html"),
+           var html = try? String(contentsOf: url, encoding: .utf8) {
+            html = html.replacingOccurrences(of: "[CITIES]", with: Self.citiesHTML())
             // read access to the bundle lets the page load its stylesheet
-            webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
+            webView.loadHTMLString(html, baseURL: url.deletingLastPathComponent())
         }
         return webView
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {}
+
+    private struct City: Decodable {
+        let name: String
+        let state: String?
+        let country: String
+    }
+
+    // The cities in cities.json (copied into the app by process.ts), as an HTML list per country.
+    private static func citiesHTML() -> String {
+        guard let url = Bundle.main.url(forResource: "cities", withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let cities = try? JSONDecoder().decode([City].self, from: data) else { return "" }
+        let sections = [("US", "United States"), ("CA", "Canada"), ("GB", "United Kingdom")]
+        return sections.map { code, title in
+            let items = cities.filter { $0.country == code }
+                .map { city in city.state.map { "\(city.name), \($0)" } ?? city.name }
+                .sorted()
+                .map { "<li>\($0.htmlEscaped)</li>" }
+            if items.isEmpty { return "" }
+            return "<h3>\(title)</h3><ul>\(items.joined())</ul>"
+        }.joined()
+    }
 
     func makeCoordinator() -> Coordinator {
         Coordinator()
@@ -51,6 +81,12 @@ struct HTMLView: UIViewRepresentable {
                 decisionHandler(.allow)
             }
         }
+    }
+}
+
+private extension String {
+    var htmlEscaped: String {
+        replacingOccurrences(of: "&", with: "&amp;").replacingOccurrences(of: "<", with: "&lt;")
     }
 }
 

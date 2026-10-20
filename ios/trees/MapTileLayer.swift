@@ -5,7 +5,7 @@ class MapTileLayer: GMSSyncTileLayer {
     override init() {
         super.init()
         self.tileSize = TILE_SIZE
-        self.fadeIn = true
+        self.fadeIn = false
     }
 
     override func tileFor(x: UInt, y: UInt, zoom: UInt) -> UIImage? {

@@ -188,6 +188,8 @@ async function main() {
   console.log(`  ${sites.length} sites`);
   console.log(`  ${types.length} unique types`);
   fs.writeFileSync('types.json', JSON.stringify(types, null, 2));
+  // the app lists the cities in its about page
+  fs.copyFileSync('cities.json', '../ios/trees/cities.json');
   // written in chunks, since the full string can exceed Node's maximum string length
   let fd = fs.openSync('sites.json', 'w');
   fs.writeSync(fd, '[');

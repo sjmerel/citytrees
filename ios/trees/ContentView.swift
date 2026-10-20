@@ -10,10 +10,10 @@ struct ContentView: View {
     var body: some View {
         MapView(selectedTypeIndex: $selectedTypeIndex, isBusy: $isBusy)
             .ignoresSafeArea(edges: .bottom)
-            .overlay(alignment: .bottomLeading) {
+            .overlay(alignment: .bottomTrailing) {
                 InfoButton { showingAbout = true }
-                    .padding(.leading, 16)
-                    .padding(.bottom, 32)
+                    .padding(.trailing, 16)
+                    .padding(.bottom, 80)
             }
             .sheet(isPresented: $showingAbout) {
                 AboutView()
@@ -35,3 +35,4 @@ struct ContentView: View {
             }
     }
 }
+
