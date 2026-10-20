@@ -163,14 +163,8 @@ struct MapView: UIViewRepresentable {
         // A new marker is created for each selection, because moving an existing one
         // doesn't reliably update its position.
         private func makeSelectionMarker() -> GMSMarker {
-            let size: CGFloat = 12
-            let icon = UIGraphicsImageRenderer(size: CGSize(width: size, height: size)).image { context in
-                UIColor.yellow.setFill()
-                UIColor.black.setStroke()
-                let rect = CGRect(x: 1, y: 1, width: size - 2, height: size - 2)
-                context.cgContext.fillEllipse(in: rect)
-                context.cgContext.strokeEllipse(in: rect)
-            }
+            // vector asset, so it can be edited in Assets.xcassets
+            let icon = UIImage(named: "selection_ring")
             let marker = GMSMarker()
             marker.icon = icon
             marker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
