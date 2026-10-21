@@ -8,8 +8,13 @@ struct ContentView: View {
     @State private var showingAbout = false
 
     var body: some View {
-        MapView(selectedTypeIndex: $selectedTypeIndex, isBusy: $isBusy)
+        // the map extends under the top safe area too; the overlays stay below it
+        Color.clear
             .ignoresSafeArea(edges: .bottom)
+            .background {
+                MapView(selectedTypeIndex: $selectedTypeIndex, isBusy: $isBusy)
+                    .ignoresSafeArea()
+            }
             .overlay(alignment: .bottomTrailing) {
                 InfoButton { showingAbout = true }
                     .padding(.trailing, 16)
