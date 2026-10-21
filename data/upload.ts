@@ -4,7 +4,7 @@
 // public Google Cloud Storage bucket, under a version prefix.
 //
 // usage: npx tsx upload.ts [tiles dir] [--version v1] [--dry-run]
-//   tiles dir   defaults to ../ios/tiles (build_data's third argument)
+//   tiles dir   defaults to ./tiles (build_data's third argument)
 //   --version   path prefix in the bucket, defaults to v1; change it only when the binary
 //               format changes in a way older apps can't read
 //   --dry-run   only show what would be uploaded and deleted
