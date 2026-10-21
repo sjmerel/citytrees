@@ -14,7 +14,9 @@ Each city database contains thousands of entries in various formats. The data pi
 * Run build_data (Swift):
   * read types.json and sites.json; write binary versions that can take less space and can be loaded quickly by the app.
 
-When adding a new city, prefer government "open data" sites to community projects. Many cities have multiple databases available; if so, try to use the largest and most up-to-date one. If a possible city is rejected (e.g. because of inadequate tree data), add that city to data/rejected_cities.txt.
+Before researching or adding cities, read and follow [city instructions](instructions/city-data.instructions.md).
+
+Copilot may update `.github/instructions/city-data.instructions.md` as the city research workflow evolves, but must not modify `.github/copilot-instructions.md` unless the user explicitly requests it.
 
 
 ## App

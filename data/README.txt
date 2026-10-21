@@ -13,3 +13,10 @@
     * lower level (more detailed) tiles are written to data/tiles, to be uploaded to Google Cloud bucket
 * run upload.ts to upload tiles
 
+
+# City research
+
+City findings, source caveats, and importer notes are maintained in
+../.github/city_candidates.json (see ../.github/instructions/city-data.instructions.md
+for the schema and research workflow). data/cities.json remains authoritative
+for registered datasets. Historical notes in the ledger are not fresh verification.
