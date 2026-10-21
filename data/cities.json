@@ -613,138 +613,6 @@
     "country": "US"
   },
   {
-    "code": "milwaukee_wi_us",
-    "name": "Milwaukee",
-    "state": "WI",
-    "country": "US"
-  },
-  {
-    "code": "wauwatosa_wi_us",
-    "name": "Wauwatosa",
-    "state": "WI",
-    "country": "US"
-  },
-  {
-    "code": "westallis_wi_us",
-    "name": "West Allis",
-    "state": "WI",
-    "country": "US"
-  },
-  {
-    "code": "greenfield_wi_us",
-    "name": "Greenfield",
-    "state": "WI",
-    "country": "US"
-  },
-  {
-    "code": "franklin_wi_us",
-    "name": "Franklin",
-    "state": "WI",
-    "country": "US"
-  },
-  {
-    "code": "oakcreek_wi_us",
-    "name": "Oak Creek",
-    "state": "WI",
-    "country": "US"
-  },
-  {
-    "code": "whitefishbay_wi_us",
-    "name": "Whitefish Bay",
-    "state": "WI",
-    "country": "US"
-  },
-  {
-    "code": "foxpoint_wi_us",
-    "name": "Fox Point",
-    "state": "WI",
-    "country": "US"
-  },
-  {
-    "code": "shorewood_wi_us",
-    "name": "Shorewood",
-    "state": "WI",
-    "country": "US"
-  },
-  {
-    "code": "menomoneefalls_wi_us",
-    "name": "Menomonee Falls",
-    "state": "WI",
-    "country": "US"
-  },
-  {
-    "code": "newberlin_wi_us",
-    "name": "New Berlin",
-    "state": "WI",
-    "country": "US"
-  },
-  {
-    "code": "waukesha_wi_us",
-    "name": "Waukesha",
-    "state": "WI",
-    "country": "US"
-  },
-  {
-    "code": "racine_wi_us",
-    "name": "Racine",
-    "state": "WI",
-    "country": "US"
-  },
-  {
-    "code": "kenosha_wi_us",
-    "name": "Kenosha",
-    "state": "WI",
-    "country": "US"
-  },
-  {
-    "code": "indianapolis_in_us",
-    "name": "Indianapolis",
-    "state": "IN",
-    "country": "US"
-  },
-  {
-    "code": "carmel_in_us",
-    "name": "Carmel",
-    "state": "IN",
-    "country": "US"
-  },
-  {
-    "code": "plainfield_in_us",
-    "name": "Plainfield",
-    "state": "IN",
-    "country": "US"
-  },
-  {
-    "code": "brownsburg_in_us",
-    "name": "Brownsburg",
-    "state": "IN",
-    "country": "US"
-  },
-  {
-    "code": "fortwayne_in_us",
-    "name": "Fort Wayne",
-    "state": "IN",
-    "country": "US"
-  },
-  {
-    "code": "evansville_in_us",
-    "name": "Evansville",
-    "state": "IN",
-    "country": "US"
-  },
-  {
-    "code": "lafayette_in_us",
-    "name": "Lafayette",
-    "state": "IN",
-    "country": "US"
-  },
-  {
-    "code": "bloomington_in_us",
-    "name": "Bloomington",
-    "state": "IN",
-    "country": "US"
-  },
-  {
     "code": "michigancity_in_us",
     "name": "Michigan City",
     "state": "IN",
@@ -1061,5 +929,59 @@
     "name": "Ottawa",
     "state": "ON",
     "country": "CA"
+  },
+  {
+    "code": "highlandpark_nj_us",
+    "name": "Highland Park",
+    "state": "NJ",
+    "country": "US"
+  },
+  {
+    "code": "dedham_ma_us",
+    "name": "Dedham",
+    "state": "MA",
+    "country": "US"
+  },
+  {
+    "code": "springfield_mo_us",
+    "name": "Springfield",
+    "state": "MO",
+    "country": "US"
+  },
+  {
+    "code": "galesburg_il_us",
+    "name": "Galesburg",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "hoboken_nj_us",
+    "name": "Hoboken",
+    "state": "NJ",
+    "country": "US"
+  },
+  {
+    "code": "pinellascounty_fl_us",
+    "name": "Pinellas County",
+    "state": "FL",
+    "country": "US"
+  },
+  {
+    "code": "palmsprings_ca_us",
+    "name": "Palm Springs",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "wisconsin_wi_us",
+    "name": "Wisconsin (DNR communities)",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "indiana_in_us",
+    "name": "Indiana (ERI communities)",
+    "state": "IN",
+    "country": "US"
   }
 ]

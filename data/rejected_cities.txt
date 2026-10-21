@@ -32,7 +32,7 @@ Boise: the Forestry_Resource service redirects to a web page; no working public 
 Hayward, Alameda, Santa Clara (city), Culver City, Glendale CA, Burbank, Walnut Creek, Mountain View, Redwood City: no genuine city-specific public per-tree inventory found (search hits were other cities' data).
 San Mateo: only a county vegetation/land-cover layer.
 Emeryville: EmeryvilleTreeSites2023 has only 4,122 records and Trees_Authoritative_view 3,807 (too small).
-Hoboken: web map item reports its subscription was canceled.
+Hoboken: the previously checked TreeKeeper map reported its subscription canceled; a separate live city-owned 2023 tree inventory was verified and added. Source: https://services8.arcgis.com/LDmC4ZVHdfKcEzxl/arcgis/rest/services/2023_Tree_Inventory_/FeatureServer/0
 Medford, MA: 752 records, no species field.
 Kirkland, WA: only a niche park fruit tree layer.
 Rockville, MD and Fairfax County, VA: canopy polygons only.
@@ -125,3 +125,35 @@ Abbotsford BC: Park Trees 2019 only 1,362 records, consultant-hosted. https://se
 Milton: TreeInventory_view is Milton WI (3k), not Ontario. https://services9.arcgis.com/Wwu3LbczaClU3E4O/arcgis/rest/services/TreeInventory_view/FeatureServer/0
 Penticton BC: 6.4k records but very messy names, dropped for quality. https://services1.arcgis.com/ (Parks_PRD/FeatureServer/1355)
 Brampton, Markham, Vaughan, Richmond Hill, Guelph, Regina, Saskatoon, Surrey, Richmond BC, Burnaby, Nanaimo, Saanich, Laval, Gatineau, Sherbrooke, St. John's, Lethbridge, Oshawa, Coquitlam, New Westminster: no public municipal per-tree inventory with scientific names found via ArcGIS/Socrata/CKAN (only consultant/student/university/planting/specimen-only layers or TreePlotter grids).
+
+Beacon, NY: 1,128 records in the 2013 inventory, below the 2,000-tree minimum and stale. Dataset: https://services1.arcgis.com/0Lw2m57KEotYYFaA/arcgis/rest/services/Q_All_Trees/FeatureServer/0
+Vermont Municipal Tree Inventory: 32,341 multi-town points, but SPECIES contains common names only and there is no scientific-name field or joinable species-code lookup. Dataset: https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_ECOLOGIC_SP_NOCACHE_v1/MapServer/40
+Maryland Public Trees: only 292 records and locations are around Iowa (not Maryland); also below the 2,000-tree minimum. Dataset: https://services.arcgis.com/sLe4VrKqV1JxToKz/arcgis/rest/services/Maryland_Public_Trees/FeatureServer/0
+
+Midwest search: Fargo ND (results were Hamilton ON or empty), Kansas and Danville IL (common names only), Mahnomen MN (<2,000 records).
+
+Lexington, MA: 25,215 points have botanical names but the inventory attributes show only 2018–2019 survey dates and no current survey data despite a 2023 service title; excluded as stale. Dataset: https://services.arcgis.com/bP0owepHkr9WxF4V/arcgis/rest/services/TREES2023_arbortree/FeatureServer/0
+New Hope, PA: the 2023 municipal tree layer has only 484 records and Species contains common names only. Dataset: https://services.arcgis.com/VgmyyKiMPvUPgldo/arcgis/rest/services/2023_New_Hope_Street_Tree_Inventory/FeatureServer/0
+Cornell, NY: Cornell Tree Inventory (8,963 records) is located on the Cornell campus in Ithaca and is university-campus data, not a municipal inventory. Dataset: https://services1.arcgis.com/SR1muQK0r6SVF2nb/ArcGIS/rest/services/Cornell_Tree_Inventory_2022/FeatureServer/0
+Burlington, VT: the City Specimen Trees layer has 2,447 points but no species or scientific-name field (only tree-height/radius measurements); not a per-tree botanical inventory. Dataset: https://services1.arcgis.com/1bO0c7PxQdsGidPK/arcgis/rest/services/Specimen_Trees_June26_Update/FeatureServer/0
+Princeton, NJ: the official page describes a 19,000-location inventory, but the public source found is an interactive TreeKeeper viewer with no downloadable bulk dataset or public GIS service/API located. Source: https://www.princetonnj.gov/1402/Tree-Inventory
+
+Weaverville, NC: only 960 town trees (below the 2,000-record minimum). https://services5.arcgis.com/lA7fMEY4qaPiZF6g/arcgis/rest/services/Weaverville_Tree_Inventory/FeatureServer/0
+Cape Coral, FL: the exposed 34,287-record layer is a 2010–2013 inventory and its SPECIES field contains common names only, not botanical names. https://capeims.capecoral.gov/arcgis/rest/services/OpenData/Environmental/MapServer/0
+Leon County, FL canopy-road inventory: 5,743 records are dated around 2014 and substantially overlap the existing Tallahassee inventory; not added as a separate county dataset. https://services.arcgis.com/ptvDyBs1KkcwzQNJ/arcgis/rest/services/Canopy_Road_Tree_Inventory_Public/FeatureServer/0
+KY Statewide Tree Inventory: 9,945-record layer has an implausible statewide extent and sampled points fall in Cincinnati, Ohio (including test notes), so Kentucky coverage/provenance is not verifiable. https://services.arcgis.com/TosFUe3nXUAksqSj/arcgis/rest/services/Tree_Inventory11/FeatureServer/0
+Corvallis, OR: the official 14,822-record public inventory has SPECIES values as common names/abbreviations (e.g. "honeylocust", "mapl,red") rather than scientific names, and sample records date to 2007–2013; excluded. Dataset: https://services6.arcgis.com/NNPaUnXVoJt8FVVE/arcgis/rest/services/TreeInventory/FeatureServer/0
+Tualatin, OR: the official 11,249-record street-tree layer has common-name SPECIES values (e.g. "Gingko", "European Hornbeam") and no scientific-name field; excluded. Dataset: https://services7.arcgis.com/cw66lBk1O7OM8APn/arcgis/rest/services/Street_Trees_View_2/FeatureServer/0
+
+Manchester, NH: the 2022 Parks & Recreation tree-service endpoint requires a token, so its records are not publicly queryable. Dataset: https://maps.kimley-horn.com/server/rest/services/Hosted/Manchester_Trees_2022/FeatureServer
+
+Harrisonburg, VA: 2,788 city tree points, but only 108 records have GENUS populated (many records are common-name-only), far below the minimum; most surveyed records date to 2017. Dataset: https://services5.arcgis.com/RnpJxEjCkCrMvNB1/arcgis/rest/services/City_Trees/FeatureServer/0
+Utah Urban Tree Inventory: the 97k-record statewide collaborative layer is not suitable for the scientific-name requirement: Species is a common-name category (e.g. "Honeylocust"), ESRIgenus contains incorrect or generic genera (Honeylocust paired with Robinia), and sampled records date to 2013; excluded. Dataset: https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_Urban_Tree_Inventory_Public_View/FeatureServer/0
+SeaTac, WA: the official managed-tree feature layer contains 1,624 records, below the 2,000-tree minimum. Dataset: https://services3.arcgis.com/DLryYCwhA8W7Jq7Q/arcgis/rest/services/Trees/FeatureServer/0
+Turlock, CA: the public CSU Stanislaus-hosted candidate is only a 165-record Crane Park survey, below the 2,000-tree minimum and not a citywide municipal inventory. Dataset: https://services6.arcgis.com/rX5atNlsxFq7LIpv/arcgis/rest/services/Turlock_Tree_Inventory_(public)/FeatureServer/0
+Livermore, CA: the official public tree-related layer is an 8-feature polygon pruning schedule, not per-tree point inventory data. Dataset: https://services7.arcgis.com/BJisQXdgVScP0JMy/arcgis/rest/services/livermore_tree_pruning_schedule/FeatureServer/0
+
+Sandy Springs, GA: 2,900 public-right-of-way tree planting points, but only 1,749 have both GENUS and SPECIES fields populated, below the 2,000 scientifically named-record minimum. Dataset: https://services5.arcgis.com/buITjRsK0rZsAXbQ/arcgis/rest/services/Tree_Plantings_Public/FeatureServer/0
+
+Fayetteville, NC: its public municipal inventory totals 9,090 points across survey phases, but the main data are dated 2014–2017 and the 2020 phase has only 23 records; excluded as stale. Sources: https://services.arcgis.com/j3zNT485kmwrBtMJ/arcgis/rest/services/Tree_Inventory_Phase_1/FeatureServer/0 ; https://services.arcgis.com/j3zNT485kmwrBtMJ/arcgis/rest/services/Tree_Inventory_Phase_2/FeatureServer/0 ; https://services.arcgis.com/j3zNT485kmwrBtMJ/arcgis/rest/services/Phase3_trees_2017/FeatureServer/0 ; https://services.arcgis.com/j3zNT485kmwrBtMJ/arcgis/rest/services/Tree_Survey_2020/FeatureServer/0
+Florence, KY: the public municipal tree-assets view has 6,334 non-retired records (6,035 also lack an ownership-warning status), but CommonSpecies contains common names only and no reliable scientific-name crosswalk was available; excluded. Dataset: https://services5.arcgis.com/k53ynt03QzpiJz3I/arcgis/rest/services/Trees_view/FeatureServer/0

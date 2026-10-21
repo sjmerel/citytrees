@@ -34,6 +34,22 @@ export namespace DataUtil {
     }
   }
 
+  // Transient server errors (502/503/504) and network errors are common on long paged downloads.
+  async function getWithRetry(url: string, config: object, attempts = 5) {
+    for (let i = 1; ; ++i) {
+      try {
+        return await axios.get(url, config);
+      }
+      catch (error: any) {
+        let status = error?.response?.status;
+        let transient = status === undefined || status === 429 || status >= 500;
+        if (i >= attempts || !transient) throw error;
+        console.log(`request failed (${status ?? error.code}), retrying (${i}/${attempts - 1})...`);
+        await new Promise(resolve => setTimeout(resolve, 2000 * i));
+      }
+    }
+  }
+
   export async function fetchArcGis(endpoint: string, options: {
     where?: string;
     fields?: string;
@@ -50,7 +66,7 @@ export namespace DataUtil {
     let objectIdField = layer.objectIdField ?? layer.objectIdFieldName ?? 'OBJECTID';
 
     for (;;) {
-      let response = await axios.get(`${endpoint}/query`, {
+      let response = await getWithRetry(`${endpoint}/query`, {
         params: {
           where: options.where ?? '1=1',
           outFields: options.fields ?? '*',
