@@ -14,6 +14,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FE0000000000000000000003 /* ios-secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "../secrets/ios-secrets.xcconfig"; sourceTree = SOURCE_ROOT; };
 		000000000000000000000120 /* trees.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trees.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA77FDAE308430F200DF9258 /* build_data */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = build_data; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -81,6 +82,7 @@
 		000000000000000000000001 = {
 			isa = PBXGroup;
 			children = (
+				FE0000000000000000000003 /* ios-secrets.xcconfig */,
 				000000000000000000000010 /* trees */,
 				AA77FDAF308430F200DF9258 /* build_data */,
 				AA1BE9BC307DA10A00B8B8B2 /* Frameworks */,
@@ -366,6 +368,7 @@
 		};
 		000000000000000111000000 /* Debug configuration for PBXNativeTarget "trees" */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE0000000000000000000003 /* ios-secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -407,6 +410,7 @@
 		};
 		000000000000000112000000 /* Release configuration for PBXNativeTarget "trees" */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE0000000000000000000003 /* ios-secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
