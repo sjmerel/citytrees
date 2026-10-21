@@ -6,6 +6,9 @@ final class MapDb {
 
     static let instance = MapDb()
 
+    // Leaf tiles partition the full dataset; other levels contain overlapping samples.
+    let siteCount: Int
+
     // A region of the world square, as fractions 0...1 of its width and height.
     struct WorldRect {
         var minX: Double, minY: Double, maxX: Double, maxY: Double
@@ -110,6 +113,7 @@ final class MapDb {
     private init() {
         let url = Bundle.main.url(forResource: "tiles_manifest", withExtension: "bin")!
         let entries = TileManifest.readBinary(url: url)
+        siteCount = entries.lazy.filter { $0.isLeaf }.reduce(0) { $0 + $1.siteCount }
         store = TileStore(entries: Dictionary(uniqueKeysWithValues: entries.map { ($0.key, $0) }))
         tileExists = Set(entries.map { $0.key })
         leaves = Set(entries.filter { $0.isLeaf }.map { $0.key })
