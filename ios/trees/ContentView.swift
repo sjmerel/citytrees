@@ -30,7 +30,7 @@ struct ContentView: View {
                     SelectionCard(type: TreeType.all[selectedTypeIndex], colorIndex: Int(TreeType.colorIndices[selectedTypeIndex])) {
                         self.selectedTypeIndex = nil
                     }
-                        .padding(5)
+                        .padding(12)
                 }
             }
     }
