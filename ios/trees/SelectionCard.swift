@@ -29,13 +29,17 @@ struct SelectionCard: View {
         .overlay(alignment: .bottomTrailing) {
             if let url = type.wikipediaUrl.flatMap({ URL(string: $0) }) {
                 Button { openURL(url) } label: {
-                    Text("W")
-                        .font(.custom("Times New Roman", size: 16).weight(.bold))
-                        .foregroundColor(.white)
-                        .frame(width: 26, height: 26)
-                        .background(Color.black.opacity(0.75), in: Circle())
+                    Image("wikipedia")
+                        .resizable()
+                        .scaledToFit()
+                        .padding(3)
+                        .frame(width: 28, height: 28)
+                        .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 6))
+                        .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.black, lineWidth: 1))
                 }
                 .accessibilityLabel("Open Wikipedia article")
+                .padding(.trailing, 5)
             }
         }
         .overlay(alignment: .topTrailing) {
@@ -67,7 +71,7 @@ struct SelectionCard: View {
 #Preview {
     SelectionCard(
         type: TreeType(canonicalName: "Platanus × acerifolia",
-                       commonNames: ["London plane", "Hybrid plane"],
+                       //commonNames: ["London plane", "Hybrid plane"],
                        wikipediaUrl: "https://en.wikipedia.org/wiki/London_plane",
                        colorIndex: 3),
         colorIndex: 3,
