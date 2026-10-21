@@ -14,7 +14,7 @@ async function main() {
   for await (let row of parser) {
     let lat = parseFloat(row.Latitude);
     let lon = parseFloat(row.Longitude);
-    if (!row.Essence_latin || !Number.isFinite(lat) || !Number.isFinite(lon)) || lat < 10 || lon > -20) {
+    if (!row.Essence_latin || !Number.isFinite(lat) || !Number.isFinite(lon)) {
       continue;
     }
     trees.push({ name: row.Essence_latin.trim(), lat, lon });

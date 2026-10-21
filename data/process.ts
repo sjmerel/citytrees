@@ -9,7 +9,7 @@ import { cleanName, normalizeName } from './name_cleanup';
 
 
 // sites farther than this from the median position of their city are dropped
-const MAX_CITY_RADIUS_DEGREES = 1;
+const MAX_CITY_RADIUS_DEGREES = 2;
 
 function median(values: number[]): number {
   let sorted = [...values].sort((a, b) => a - b);
@@ -27,7 +27,8 @@ async function main() {
     let cityData = JSON.parse(fs.readFileSync(`cities/${code}.json`, 'utf8'));
     for (let d of cityData) {
       if (!(d.name && d.lat && d.lon && Number.isFinite(d.lat) && Number.isFinite(d.lon))) { 
-        console.log(d); 
+        console.log(`${code}:`); 
+        console.log(d)
         fail();
       }
     }

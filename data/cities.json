@@ -975,13 +975,703 @@
   {
     "code": "wisconsin_wi_us",
     "name": "Wisconsin (DNR communities)",
+    "maxRadiusDegrees": 5,
     "state": "WI",
     "country": "US"
   },
   {
     "code": "indiana_in_us",
     "name": "Indiana (ERI communities)",
+    "maxRadiusDegrees": 5,
     "state": "IN",
+    "country": "US"
+  },
+  {
+    "code": "surrey_bc_ca",
+    "name": "Surrey",
+    "state": "BC",
+    "country": "CA"
+  },
+  {
+    "code": "zagreb_hr",
+    "name": "Zagreb",
+    "country": "HR"
+  },
+  {
+    "code": "wellington_nz",
+    "name": "Wellington",
+    "country": "NZ"
+  },
+  {
+    "code": "fingalcounty_ie",
+    "name": "Fingal County",
+    "country": "IE"
+  },
+  {
+    "code": "fareham_gb",
+    "name": "Fareham",
+    "country": "GB"
+  },
+  {
+    "code": "stgeorge_ut_us",
+    "name": "St. George",
+    "state": "UT",
+    "country": "US"
+  },
+  {
+    "code": "oxnard_ca_us",
+    "name": "Oxnard",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "albury_nsw_au",
+    "name": "Albury",
+    "state": "NSW",
+    "country": "AU"
+  },
+  {
+    "code": "unley_sa_au",
+    "name": "Unley",
+    "state": "SA",
+    "country": "AU"
+  },
+  {
+    "code": "placentia_ca_us",
+    "name": "Placentia",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "shoreline_wa_us",
+    "name": "Shoreline",
+    "state": "WA",
+    "country": "US"
+  },
+  {
+    "code": "gaithersburg_md_us",
+    "name": "Gaithersburg",
+    "state": "MD",
+    "country": "US"
+  },
+  {
+    "code": "brisbaneca_ca_us",
+    "name": "Brisbane",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "bassendean_wa_au",
+    "name": "Bassendean",
+    "state": "WA",
+    "country": "AU"
+  },
+  {
+    "code": "miramar_fl_us",
+    "name": "Miramar",
+    "state": "FL",
+    "country": "US"
+  },
+  {
+    "code": "clarkcounty_nv_us",
+    "name": "Clark County",
+    "state": "NV",
+    "country": "US"
+  },
+  {
+    "code": "kingston_on_ca",
+    "name": "Kingston",
+    "state": "ON",
+    "country": "CA"
+  },
+  {
+    "code": "southdublin_ie",
+    "name": "South Dublin County",
+    "country": "IE"
+  },
+  {
+    "code": "salem_or_us",
+    "name": "Salem",
+    "state": "OR",
+    "country": "US"
+  },
+  {
+    "code": "tracy_ca_us",
+    "name": "Tracy",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "davenport_ia_us",
+    "name": "Davenport",
+    "state": "IA",
+    "country": "US"
+  },
+  {
+    "code": "menlopark_ca_us",
+    "name": "Menlo Park",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "houstonparks_tx_us",
+    "name": "Houston Parks",
+    "state": "TX",
+    "country": "US"
+  },
+  {
+    "code": "woodland_ca_us",
+    "name": "Woodland",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "fitchburg_wi_us",
+    "name": "Fitchburg",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "goldenvalley_mn_us",
+    "name": "Golden Valley",
+    "state": "MN",
+    "country": "US"
+  },
+  {
+    "code": "durango_co_us",
+    "name": "Durango",
+    "state": "CO",
+    "country": "US"
+  },
+  {
+    "code": "panamacity_fl_us",
+    "name": "Panama City",
+    "state": "FL",
+    "country": "US"
+  },
+  {
+    "code": "oconomowoc_wi_us",
+    "name": "Oconomowoc",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "sangabriel_ca_us",
+    "name": "San Gabriel",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "abbotsford_bc_ca",
+    "name": "Abbotsford",
+    "state": "BC",
+    "country": "CA"
+  },
+  {
+    "code": "oxford_ms_us",
+    "name": "Oxford",
+    "state": "MS",
+    "country": "US"
+  },
+  {
+    "code": "decatur_ga_us",
+    "name": "Decatur",
+    "state": "GA",
+    "country": "US"
+  },
+  {
+    "code": "ofallon_il_us",
+    "name": "O'Fallon",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "burien_wa_us",
+    "name": "Burien",
+    "state": "WA",
+    "country": "US"
+  },
+  {
+    "code": "kingston_ny_us",
+    "name": "Kingston",
+    "state": "NY",
+    "country": "US"
+  },
+  {
+    "code": "browndeer_wi_us",
+    "name": "Brown Deer",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "platteville_wi_us",
+    "name": "Platteville",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "grandchute_wi_us",
+    "name": "Grand Chute",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "christchurch_nz",
+    "name": "Christchurch",
+    "country": "NZ"
+  },
+  {
+    "code": "minneapolis_mn_us",
+    "name": "Minneapolis",
+    "state": "MN",
+    "country": "US"
+  },
+  {
+    "code": "guelph_on_ca",
+    "name": "Guelph",
+    "state": "ON",
+    "country": "CA"
+  },
+  {
+    "code": "kirkland_wa_us",
+    "name": "Kirkland",
+    "state": "WA",
+    "country": "US"
+  },
+  {
+    "code": "lethbridge_ab_ca",
+    "name": "Lethbridge",
+    "state": "AB",
+    "country": "CA"
+  },
+  {
+    "code": "orlandpark_il_us",
+    "name": "Orland Park",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "westerville_oh_us",
+    "name": "Westerville",
+    "state": "OH",
+    "country": "US"
+  },
+  {
+    "code": "champaign_il_us",
+    "name": "Champaign",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "sanmateo_ca_us",
+    "name": "San Mateo",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "reddeer_ab_ca",
+    "name": "Red Deer",
+    "state": "AB",
+    "country": "CA"
+  },
+  {
+    "code": "latrobe_vic_au",
+    "name": "Latrobe City",
+    "state": "VIC",
+    "country": "AU"
+  },
+  {
+    "code": "basingstoke_gb",
+    "name": "Basingstoke and Deane",
+    "country": "GB"
+  },
+  {
+    "code": "grandjunction_co_us",
+    "name": "Grand Junction",
+    "state": "CO",
+    "country": "US"
+  },
+  {
+    "code": "lascruces_nm_us",
+    "name": "Las Cruces",
+    "state": "NM",
+    "country": "US"
+  },
+  {
+    "code": "stlouispark_mn_us",
+    "name": "St. Louis Park",
+    "state": "MN",
+    "country": "US"
+  },
+  {
+    "code": "gary_in_us",
+    "name": "Gary",
+    "state": "IN",
+    "country": "US"
+  },
+  {
+    "code": "lamesa_ca_us",
+    "name": "La Mesa",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "kenmore_wa_us",
+    "name": "Kenmore",
+    "state": "WA",
+    "country": "US"
+  },
+  {
+    "code": "hutt_nz",
+    "name": "Lower Hutt",
+    "country": "NZ"
+  },
+  {
+    "code": "northfield_mn_us",
+    "name": "Northfield",
+    "state": "MN",
+    "country": "US"
+  },
+  {
+    "code": "sanjuancap_ca_us",
+    "name": "San Juan Capistrano",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "fallschurch_va_us",
+    "name": "Falls Church",
+    "state": "VA",
+    "country": "US"
+  },
+  {
+    "code": "tumwater_wa_us",
+    "name": "Tumwater",
+    "state": "WA",
+    "country": "US"
+  },
+  {
+    "code": "westchester_il_us",
+    "name": "Westchester",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "beachwood_oh_us",
+    "name": "Beachwood",
+    "state": "OH",
+    "country": "US"
+  },
+  {
+    "code": "shorewood_wi_us",
+    "name": "Shorewood",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "salem_ma_us",
+    "name": "Salem",
+    "state": "MA",
+    "country": "US"
+  },
+  {
+    "code": "morgantown_wv_us",
+    "name": "Morgantown",
+    "state": "WV",
+    "country": "US"
+  },
+  {
+    "code": "monroe_wi_us",
+    "name": "Monroe",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "hollandmi_mi_us",
+    "name": "Holland",
+    "state": "MI",
+    "country": "US"
+  },
+  {
+    "code": "hastingsdc_nz",
+    "name": "Hastings District",
+    "country": "NZ"
+  },
+  {
+    "code": "chicagoarea_il_us",
+    "name": "Chicago Area Tree Plantings (Openlands)",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "threeriverspark_mn_us",
+    "name": "Three Rivers Park District",
+    "state": "MN",
+    "country": "US"
+  },
+  {
+    "code": "willamalane_or_us",
+    "name": "Willamalane Park and Recreation District (Springfield)",
+    "state": "OR",
+    "country": "US"
+  },
+  {
+    "code": "waynecounty_in_us",
+    "name": "Wayne County",
+    "state": "IN",
+    "country": "US"
+  },
+  {
+    "code": "whitebearlake_mn_us",
+    "name": "White Bear Lake",
+    "state": "MN",
+    "country": "US"
+  },
+  {
+    "code": "cayugaheights_ny_us",
+    "name": "Cayuga Heights",
+    "state": "NY",
+    "country": "US"
+  },
+  {
+    "code": "emeryville_ca_us",
+    "name": "Emeryville",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "yorkregion_on_ca",
+    "name": "York Region",
+    "state": "ON",
+    "country": "CA"
+  },
+  {
+    "code": "bristol_gb",
+    "name": "Bristol",
+    "country": "GB"
+  },
+  {
+    "code": "redlands_ca_us",
+    "name": "Redlands",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "stockton_ca_us",
+    "name": "Stockton",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "mountainview_ca_us",
+    "name": "Mountain View",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "bozeman_mt_us",
+    "name": "Bozeman",
+    "state": "MT",
+    "country": "US"
+  },
+  {
+    "code": "palmettobay_fl_us",
+    "name": "Palmetto Bay",
+    "state": "FL",
+    "country": "US"
+  },
+  {
+    "code": "palmdesert_ca_us",
+    "name": "Palm Desert",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "manteca_ca_us",
+    "name": "Manteca",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "dubuque_ia_us",
+    "name": "Dubuque",
+    "state": "IA",
+    "country": "US"
+  },
+  {
+    "code": "sandysprings_ga_us",
+    "name": "Sandy Springs",
+    "state": "GA",
+    "country": "US"
+  },
+  {
+    "code": "oshkosh_wi_us",
+    "name": "Oshkosh",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "sunprairie_wi_us",
+    "name": "Sun Prairie",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "hillsboroughcounty_fl_us",
+    "name": "Hillsborough County",
+    "state": "FL",
+    "country": "US"
+  },
+  {
+    "code": "aspen_co_us",
+    "name": "Aspen",
+    "state": "CO",
+    "country": "US"
+  },
+  {
+    "code": "sandusky_oh_us",
+    "name": "Sandusky",
+    "state": "OH",
+    "country": "US"
+  },
+  {
+    "code": "penticton_bc_ca",
+    "name": "Penticton",
+    "state": "BC",
+    "country": "CA"
+  },
+  {
+    "code": "fortstjohn_bc_ca",
+    "name": "Fort St. John",
+    "state": "BC",
+    "country": "CA"
+  },
+  {
+    "code": "snohomish_wa_us",
+    "name": "Snohomish",
+    "state": "WA",
+    "country": "US"
+  },
+  {
+    "code": "watertown_wi_us",
+    "name": "Watertown",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "charlottesville_va_us",
+    "name": "Charlottesville",
+    "state": "VA",
+    "country": "US"
+  },
+  {
+    "code": "wellesley_ma_us",
+    "name": "Wellesley",
+    "state": "MA",
+    "country": "US"
+  },
+  {
+    "code": "onalaska_wi_us",
+    "name": "Onalaska",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "stoughton_wi_us",
+    "name": "Stoughton",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "mountlaketerrace_wa_us",
+    "name": "Mountlake Terrace",
+    "state": "WA",
+    "country": "US"
+  },
+  {
+    "code": "yankton_sd_us",
+    "name": "Yankton",
+    "state": "SD",
+    "country": "US"
+  },
+  {
+    "code": "auburn_me_us",
+    "name": "Auburn",
+    "state": "ME",
+    "country": "US"
+  },
+  {
+    "code": "bellevue_wi_us",
+    "name": "Bellevue",
+    "state": "WI",
+    "country": "US"
+  },
+  {
+    "code": "montpelier_vt_us",
+    "name": "Montpelier",
+    "state": "VT",
+    "country": "US"
+  },
+  {
+    "code": "amherst_ma_us",
+    "name": "Amherst",
+    "state": "MA",
+    "country": "US"
+  },
+  {
+    "code": "warrenville_il_us",
+    "name": "Warrenville",
+    "state": "IL",
+    "country": "US"
+  },
+  {
+    "code": "phoenixville_pa_us",
+    "name": "Phoenixville",
+    "state": "PA",
+    "country": "US"
+  },
+  {
+    "code": "orangecounty_ca_us",
+    "name": "Orange County",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "saltlakecounty_ut_us",
+    "name": "Salt Lake County",
+    "state": "UT",
+    "country": "US"
+  },
+  {
+    "code": "honolulu_hi_us",
+    "name": "Honolulu",
+    "state": "HI",
+    "country": "US"
+  },
+  {
+    "code": "gigharbor_wa_us",
+    "name": "Gig Harbor",
+    "state": "WA",
+    "country": "US"
+  },
+  {
+    "code": "newmexico_nm_us",
+    "name": "New Mexico (statewide)",
+    "maxRadiusDegrees": 5,
+    "state": "NM",
+    "country": "US"
+  },
+  {
+    "code": "padcnr_pa_us",
+    "name": "Pennsylvania (DCNR TreeVitalize)",
+    "maxRadiusDegrees": 5,
+    "state": "PA",
+    "country": "US"
+  },
+  {
+    "code": "bismarck_nd_us",
+    "name": "Bismarck",
+    "state": "ND",
     "country": "US"
   }
 ]
