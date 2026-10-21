@@ -2,6 +2,13 @@ import GoogleMaps
 
 class MapTileLayer: GMSSyncTileLayer {
 
+    // Draws a white border around each site so it stands out on satellite imagery.
+    var outlined = false {
+        didSet {
+            if outlined != oldValue { clearTileCache() }
+        }
+    }
+
     override init() {
         super.init()
         self.tileSize = TILE_SIZE
@@ -20,7 +27,9 @@ class MapTileLayer: GMSSyncTileLayer {
             MIN_DIAMETER_POINTS * Double(TILE_SIZE) / MAP_TILE_SIZE_POINTS
         let diameter = max(minimumDiameterPixels, SITES_DIAMETER_METERS / metersPerPixel)
         let radius = diameter / 2
-        let padding = radius / Double(TILE_SIZE)
+        let outlined = self.outlined
+        let outerRadius = outlined ? radius + BORDER_PIXELS : radius
+        let padding = outerRadius / Double(TILE_SIZE)
 
         let region = MapDb.WorldRect(minX: (Double(x) - padding) / tileCount,
                                      minY: (Double(y) - padding) / tileCount,
@@ -50,8 +59,22 @@ class MapTileLayer: GMSSyncTileLayer {
         let pixelsPerUnit = tileCount * Double(TILE_SIZE) / WorldCoord.scale
         let originX = Double(x) * Double(TILE_SIZE)
         let originY = Double(y) * Double(TILE_SIZE)
-        let lowest = -radius
-        let highest = Double(TILE_SIZE) + radius
+        let lowest = -outerRadius
+        let highest = Double(TILE_SIZE) + outerRadius
+
+        // borders first, so a neighbor's border never covers a site
+        if outlined {
+            context.setFillColor(UIColor.white.cgColor)
+            for (_, tile) in tiles {
+                for site in tile.sites {
+                    let tileX = Double(site.x) * pixelsPerUnit - originX
+                    let tileY = Double(site.y) * pixelsPerUnit - originY
+                    if tileX < lowest || tileX > highest || tileY < lowest || tileY > highest { continue }
+                    context.fillEllipse(in: CGRect(x: tileX - outerRadius, y: tileY - outerRadius,
+                                                   width: outerRadius * 2, height: outerRadius * 2))
+                }
+            }
+        }
 
         // one pass per color, so the fill color is set only once per color
         let colorIndices = TreeType.colorIndices
@@ -98,6 +121,7 @@ class MapTileLayer: GMSSyncTileLayer {
 
     private let TILE_SIZE = 512
     private let SITES_DIAMETER_METERS = 4.0
+    private let BORDER_PIXELS = 2.0
     private let MIN_DIAMETER_POINTS = 6.0
     private let MAP_TILE_SIZE_POINTS = 256.0
 }

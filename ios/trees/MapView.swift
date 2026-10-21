@@ -10,6 +10,9 @@ struct MapView: UIViewRepresentable {
     // True while waiting for the device location; shown by BusyView in ContentView.
     @Binding var isBusy: Bool
 
+    // Satellite imagery instead of the normal map.
+    var satellite: Bool
+
     ////////////////////////////////////////
 
     func makeUIView(context: Context) -> GMSMapView {
@@ -23,7 +26,9 @@ struct MapView: UIViewRepresentable {
         }
         mapView.delegate = context.coordinator
 
-        self.tileLayer.map = mapView
+        // the layer is kept by the coordinator, since this struct is recreated on every SwiftUI update
+        let tileLayer = context.coordinator.tileLayer
+        tileLayer.map = mapView
         MapDb.instance.onTilesDownloaded = { [weak tileLayer] in
             tileLayer?.clearTileCache()
         }
@@ -56,12 +61,12 @@ struct MapView: UIViewRepresentable {
 
     func updateUIView(_ mapView: GMSMapView, context: Context) {
         context.coordinator.parent = self
+        mapView.mapType = satellite ? .satellite : .normal
+        context.coordinator.tileLayer.outlined = satellite
         if selectedTypeIndex == nil {
             context.coordinator.clearSelectionMarker()
         }
     }
-
-    let tileLayer = MapTileLayer()
 
     ////////////////////////////////////////
 
@@ -71,6 +76,7 @@ struct MapView: UIViewRepresentable {
 
     class Coordinator: NSObject, GMSMapViewDelegate, CLLocationManagerDelegate {
         var parent: MapView
+        let tileLayer = MapTileLayer()
         private let locationManager = CLLocationManager()
         private weak var mapView: GMSMapView?
 
