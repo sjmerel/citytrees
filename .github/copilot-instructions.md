@@ -14,8 +14,10 @@ Each city database contains thousands of entries in various formats. The data pi
 * Run build_data (Swift):
   * read types.json and sites.json; write binary versions that can take less space and can be loaded quickly by the app.
 
-Before researching or adding cities, Copilot should read and follow [city instructions](instructions/city-data.instructions.md).
-When adding a new city, prefer government "open data" sites to community projects. Many cities have multiple databases available; if so, try to use the largest and most up-to-date one.
+Before researching or adding cities, Copilot should read and follow [city instructions](instructions/city-data.instructions.md). 
+Cities that have been considered previously should be stored in the [candidate list](city-candidates.json).
+When looking for data for a city, prefer government "open data" sites to community projects. Many cities have multiple databases available; if so, try to use the largest and most up-to-date one.
+When asked to find additional cities, in the absence of other specific criteria specified, consider candidates in the candidate list first. 
 Copilot may update `.github/instructions/city-data.instructions.md` as the city research workflow evolves, but must not modify `.github/copilot-instructions.md` unless the user explicitly requests it. The goal of the city data instructions is to help Copilot add more databases efficiently.
 
 

@@ -843,10 +843,6 @@
       "next_step": "Verify municipal provenance and licensing of the university-hosted 2,553-point botanical inventory, or locate the city's original source."
     },
     {
-      "place": "Moorhead, MN, US",
-      "next_step": "Validate genus-level coverage in Treeplotter_Inventory (about 35,874 records); species epithets were missing, but valid genera are acceptable."
-    },
-    {
       "place": "Nanaimo, BC, CA",
       "next_step": "Earlier catalog searches found no usable municipal botanical inventory; revisit official sources and check current regional coverage."
     },
@@ -919,10 +915,6 @@
     {
       "place": "Plymouth, UK",
       "next_step": "Limited ArcGIS/data.gov.uk search found no official botanical inventory; check council GIS and CSV/GeoJSON/WFS downloads."
-    },
-    {
-      "place": "Port Hueneme, CA, US",
-      "next_step": "Recheck COPH_Trees_WFL1: about 3,306 records with botanical names, previously excluded only for size."
     },
     {
       "place": "Princeton, NJ, US",
@@ -1023,13 +1015,6 @@
       "next_step": "Earlier catalog searches found no usable municipal botanical inventory; revisit official sources and check current regional coverage."
     },
     {
-      "place": "SeaTac, WA, US",
-      "next_step": "Recheck the official 1,624-record inventory; the old size cutoff alone should not exclude it.",
-      "urls": [
-        "https://services3.arcgis.com/DLryYCwhA8W7Jq7Q/arcgis/rest/services/Trees/FeatureServer/0"
-      ]
-    },
-    {
       "place": "Sherbrooke, QC, CA",
       "next_step": "Earlier catalog searches found no usable municipal botanical inventory; revisit official sources and check current regional coverage."
     },
@@ -1095,13 +1080,6 @@
     {
       "place": "Waverley, NSW, AU",
       "next_step": "Earlier data.gov.au/ArcGIS search found no usable botanical inventory; check council GIS/downloads and verify per-tree coverage."
-    },
-    {
-      "place": "Weaverville, NC, US",
-      "next_step": "Recheck the 960-record town inventory for botanical names and useful coverage; the old size cutoff alone should not exclude it.",
-      "urls": [
-        "https://services5.arcgis.com/lA7fMEY4qaPiZF6g/arcgis/rest/services/Weaverville_Tree_Inventory/FeatureServer/0"
-      ]
     },
     {
       "place": "Welland, ON, CA",

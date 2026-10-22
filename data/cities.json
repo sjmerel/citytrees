@@ -1673,5 +1673,29 @@
     "name": "Bismarck",
     "state": "ND",
     "country": "US"
+  },
+  {
+    "code": "moorhead_mn_us",
+    "name": "Moorhead",
+    "state": "MN",
+    "country": "US"
+  },
+  {
+    "code": "porthueneme_ca_us",
+    "name": "Port Hueneme",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "seatac_wa_us",
+    "name": "SeaTac",
+    "state": "WA",
+    "country": "US"
+  },
+  {
+    "code": "weaverville_nc_us",
+    "name": "Weaverville",
+    "state": "NC",
+    "country": "US"
   }
 ]
