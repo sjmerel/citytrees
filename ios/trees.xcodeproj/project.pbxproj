@@ -51,6 +51,9 @@
 				AA1BE9BB307DA05000B8B8B2 /* Exceptions for "trees" folder in "trees" target */,
 				AA77FDB830845C7700DF9258 /* Exceptions for "trees" folder in "build_data" target */,
 			);
+			explicitFolders = (
+				tiles,
+			);
 			path = trees;
 			sourceTree = "<group>";
 		};

@@ -15,10 +15,7 @@ struct TileKey: Hashable, Comparable, CustomStringConvertible {
         (a.z, a.x, a.y) < (b.z, b.x, b.y)
     }
 
-    // Name used when the tile is a (flat) bundle resource.
-    var fileName: String { "tile_\(z)_\(x)_\(y).bin" }
-
-    // Relative path used when the tile is hosted for download.
+    // Relative path in both bundled and hosted tile directories.
     var path: String { "\(z)/\(x)/\(y).bin" }
 
     var parent: TileKey { TileKey(z: z - 1, x: x >> 1, y: y >> 1) }

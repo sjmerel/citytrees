@@ -19,7 +19,7 @@ struct TreeType {
     static private(set) var all: [TreeType]!
 
     static func load() {
-        let url = Bundle.main.url(forResource: "types", withExtension: "bin")!
+        let url = Bundle.main.url(forResource: "types", withExtension: "bin", subdirectory: "tiles")!
         Self.all = readBinary(url: url)
         Self.colorIndices = Self.all.map { UInt8($0.colorIndex) }
     }

@@ -27,7 +27,7 @@ final class TileStore {
     // The file holding the tile, if it is available now. Otherwise starts a download (if the
     // tile exists) and returns nil.
     func url(for key: TileKey) -> URL? {
-        let bundled = Bundle.main.resourceURL!.appendingPathComponent(key.fileName)
+        let bundled = Bundle.main.resourceURL!.appendingPathComponent("tiles").appendingPathComponent(key.path)
         if FileManager.default.fileExists(atPath: bundled.path) { return bundled }
 
         guard let entry = entries[key] else { return nil }

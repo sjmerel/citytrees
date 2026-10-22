@@ -6,8 +6,8 @@ import Foundation
 // sites and add the rest. A tile holding every site in its area is a leaf.
 final class TileBuilder {
 
-    // Tiles up to bundleMaxZoom are written flat into bundleDir (for the app bundle); deeper
-    // tiles go to downloadDir as z/x/y.bin. Without a downloadDir everything goes to bundleDir.
+    // Both directories use z/x/y.bin. Tiles up to bundleMaxZoom go to bundleDir;
+    // deeper tiles go to downloadDir. Without a downloadDir everything goes to bundleDir.
     init(maxSites: Int, maxZoom: Int, bundleMaxZoom: Int, bundleDir: URL, downloadDir: URL?) {
         self.maxSites = maxSites
         self.maxZoom = maxZoom
@@ -70,10 +70,10 @@ final class TileBuilder {
         let url: URL
         if let downloadDir, key.z > bundleMaxZoom {
             url = downloadDir.appendingPathComponent(key.path)
-            try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
         } else {
-            url = bundleDir.appendingPathComponent(key.fileName)
+            url = bundleDir.appendingPathComponent(key.path)
         }
+        try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
         try writer.write(to: url)
 
         entries.append(TileManifestEntry(key: key, isLeaf: isLeaf, siteCount: sites.count,

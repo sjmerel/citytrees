@@ -7,9 +7,10 @@
   * canonicalizes botanical names
   * looks for Wikipedia URLs for each species
 * run macOS build_data utility 
-  * build ios/trees/types.bin from types.json
+  * build ios/trees/tiles/types.bin from types.json
   * build binary tiles from sites.json
-    * top level (less-detailed) tiles are written to ios/trees/db and bundled with app
+    * manifest.bin describes overall tree structure
+    * top level (less-detailed) tiles are written to ios/trees/tiles/<z>/<x>/<y>.bin
     * lower level (more detailed) tiles are written to data/tiles, to be uploaded to Google Cloud bucket
 * run upload.ts to upload tiles
 
