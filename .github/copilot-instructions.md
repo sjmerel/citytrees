@@ -23,7 +23,8 @@ Copilot may update `.github/instructions/city-data.instructions.md` as the city 
 
 ## App
 
-Data is drawn on a Google Map.
+Tree data is drawn on a Google Map.
+Primary development is done on iOS; changes are then ported to Android.
+When porting, keep in mind that keeping the Kotlin code roughly analogous to the Swift code makes maintenance easier.
 
-Code conventions:
-* use assert() instead of precondition().
+Throw or print errors only for situations that arise due to situations beyond our control (such as network errors, running out of storage space, etc).  If, for example, some binary data is not in the expected format, this is a situation that indicates an error on our part, so the code should assert, or just crash.  So, prefer non-nil asserts ("!" in Swift) to guard statements when a value really should be non-nil, as an example.
