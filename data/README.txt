@@ -37,10 +37,9 @@
 * to add a city, add a script to cities/, and add an entry for the city to cities.json.
 * run process.ts (see above) to build the data with the new city.
 * you may want to update the manually mantained JSON files described above to handle any new names. (Typically this is done with an AI agent.)
-  * look in normalize_debug_stripped.json and normalize_debug_unstripped.json for any keys that are obviously not botanical names ("stump", "vacant site", common names like etc), and add them to discard_manual.json.
+  * look in normalize_debug_stripped.json and normalize_debug_unstripped.json for any keys that are obviously not botanical names ("stump", "vacant site", common names like "palm" that do not correspond to a specific genus, etc), and add them to discard_manual.json.
   * look in normalize_debug_stripped.json and normalize_debug_unstripped.json for obvious normalization mistakes (e.g. where cultivar is obviously still present in the value) and add a corrected entry to normalize_manual.json.
   * look in normalize_debug_stripped.json for entries where the cultivar was stripped leaving only a genus (for example, "ilex 'Wilsonii'" -> "ilex").  If the cultivar and genus provide enough information to identify a species, put that mapping into normalize_genus_cultivar_manual.json (e.g. "ilex x altaclarensis").
   * look in canonicalize_debug_failed.json for entries that failed canonicalization from the GBIF API but for which a canonicalization is obvious (for example "cedrus" fails, but clearly should be the genus "cedrus"; or "freeman maple" can pretty confidently be mapped to "acer × freemanii").  Add these to canonicalize_manual.json.
   * look in canonicalize_debug_succeeded.json for entries that are obviously wrong (for example, stripping a species from a valid botanical name), and add corrections to canonicalize_manual.json.
-  * ...
   * when updating *_manual.json files, add entries only when you're reasonably sure that mapping is correct, to prevent erroneous mappings.

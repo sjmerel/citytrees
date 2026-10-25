@@ -1,100 +1,102 @@
-// Looks up English common names for canonical botanical names (currently using the ITIS web
-// service).
-// Results are cached in common_names_cache.json ({ "<canonical name>": { tsn, names } | null, where
-// null means ITIS has no such name), so only names not seen before are queried.
+#!/usr/bin/env npx tsx
 
+import { fileURLToPath } from 'node:url';
+import assert, { fail } from 'node:assert';
+import process from 'node:process';
 import axios from 'axios';
-import fs from 'node:fs';
+import http from 'http';
+import https from 'https';
+import { Normalize } from './normalize';
 
-const ITIS = 'https://www.itis.gov/ITISWebService/jsonservice';
-const CACHE_FILE = 'common_names_cache.json';
-const CONCURRENCY = 4;
+const urlBase = 'https://www.itis.gov/ITISWebService/jsonservice';
 
-async function itis(endpoint: string, params: Record<string, string>): Promise<any> {
-  for (let attempt = 0; ; attempt++) {
-    try {
-      // some responses are Latin-1 rather than UTF-8
-      let response = await axios.get(`${ITIS}/${endpoint}`, { params, responseType: 'arraybuffer', timeout: 30000 });
-      let buffer = Buffer.from(response.data);
-      let text: string;
-      try {
-        text = new TextDecoder('utf-8', { fatal: true }).decode(buffer);
-      }
-      catch {
-        text = new TextDecoder('latin1').decode(buffer);
-      }
-      return JSON.parse(text);
+const itisClient = axios.create({
+  // Disable keep-alive to prevent "socket hang up" from stale server resets
+  httpAgent: new http.Agent({ keepAlive: false }),
+  httpsAgent: new https.Agent({ keepAlive: false }),
+});
+
+export namespace CommonNames {
+
+  export async function lookup(name: string, debug: boolean = false) {
+    /*
+    if (name.contains(Normalize.hybridMarker)) {
+       return doLookup results if not empty.
+       otherwise, replace hybridMarker with 'X'; return doLookup results if not empty.
+       otherwise, remove hybridMarker; return doLookup results.
     }
-    catch (error) {
-      if (attempt >= 4) throw error;
-      await new Promise(resolve => setTimeout(resolve, 1000 * 2 ** attempt));
+    else {
+      return doLookup results if not empty.
+      otherwise, if contains subsp/var/f etc, remove that (e.g. 'koelreuteria elegans subsp formosana' -> 'koelreuteria elegans'); return doLookup results if not empty.
+      otherwise, if contains species, remove that (e.g. 'koelreuteria elegans' -> 'koelreuteria'); retur doLookup results.
+    }
+    */
+
+    return doLookup(name, debug);
+  }
+
+}
+
+
+////////////////////////////////////////
+
+async function itisQuery(endpoint: string, params: any, debug = false) {
+  let response = await itisClient.get(`${urlBase}/${endpoint}`, { params: params });
+  let result = response.data;
+  if (debug) { console.log(result); }
+  return result;
+}
+
+async function doLookup(name: string, debug = false) {
+  let result = await itisQuery('searchByScientificName', { srchKey: name }, debug);
+
+  let scientificNames = result.scientificNames;
+  if (scientificNames) {
+    // find an exact match to the name
+    let match = scientificNames.find(o => o.kingdom == 'Plantae' && Normalize.normalizeText(o.combinedName) == Normalize.normalizeText(name));
+    if (match) {
+      let tsn = match.tsn;
+      let usage = await itisQuery('getTaxonomicUsageFromTSN', { tsn }, debug);
+
+      if (usage.taxonUsageRating === 'not accepted' || usage.taxonUsageRating === 'invalid') {
+        let result = await itisQuery('getAcceptedNamesFromTSN', { tsn }, debug);
+        let accepted = result.acceptedNames.filter(o => o);
+
+        // Don't arbitrarily choose if ITIS provides multiple accepted taxa.
+        if (accepted.length !== 1) {
+          // TODO should we though?
+          console.log(`ITIS: ${name} has ${accepted.length} accepted-name targets`);
+          return [];
+        }
+        tsn = accepted[0].acceptedTsn;
+      }
+
+      // get common names
+      let result = await itisQuery('getCommonNamesFromTSN', { tsn: match.tsn }, debug);
+      return result.commonNames.filter(o => o && o.language == 'English').map(o => sentenceCase(o.commonName));
     }
   }
+
+  return [];
 }
 
-// ITIS writes hybrids as "Acer X freemanii".
-function normalize(name: string): string {
-  return name.toLowerCase().replace(/\s+/g, ' ').trim();
-}
-
-async function lookupOne(name: string): Promise<{ tsn: string, names: string[] } | null> {
-  let search = await itis('searchByScientificName', { srchKey: name });
-  let match = (search.scientificNames ?? []).find(
-    (n: any) => n && n.kingdom === 'Plantae' && normalize(n.combinedName) === normalize(name));
-  if (!match) return null;
-
-  let result = await itis('getCommonNamesFromTSN', { tsn: match.tsn });
-  let names: string[] = [];
-  for (let c of result.commonNames ?? []) {
-    if (!c || c.language !== 'English' || !c.commonName) continue;
-    let commonName = c.commonName.trim();
-    if (!names.includes(commonName)) {
-      names.push(commonName);
-    }
-  }
-  return { tsn: match.tsn, names };
-}
-
-// Only the first letter is changed, so proper nouns in the source ("Callery pear") are kept.
 function sentenceCase(name: string): string {
   return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
-// "honey-locust" and "honey locust" are the same name; the first spelling wins.
-function dedupe(names: string[]): string[] {
-  const key = (n: string) => n.toLowerCase().replace(/[\s-]+/g, '');
-  let seen = new Set<string>();
-  return names.filter(n => !seen.has(key(n)) && seen.add(key(n)));
+////////////////////////////////////////
+
+
+async function main() {
+  let arg = process.argv[2];
+  let result = await CommonNames.lookup(arg, true);
+  console.log(result);
 }
 
-// Returns the common names of each canonical name (empty if there are none), in the same order.
-export async function lookupCommonNames(canonicalNames: string[]): Promise<string[][]> {
-  let cache: Record<string, { tsn: string, names: string[] } | null> =
-    fs.existsSync(CACHE_FILE) ? JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8')) : {};
-
-  let todo = canonicalNames.filter(name => !(name in cache));
-  console.log(`  ${canonicalNames.length - todo.length} names cached, ${todo.length} to look up`);
-
-  let done = 0;
-  let next = 0;
-  async function worker() {
-    while (next < todo.length) {
-      let name = todo[next++];
-      try {
-        cache[name] = await lookupOne(name);
-      }
-      catch (error) {
-        // not cached, so it is retried on the next run
-        console.log(`  ${name}: lookup failed (${(error as Error).message})`);
-      }
-      if (++done % 100 == 0) {
-        console.log(`  ${done}/${todo.length}`);
-        fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 1));
-      }
-    }
-  }
-  await Promise.all(Array.from({ length: CONCURRENCY }, worker));
-  if (todo.length > 0) fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 1));
-
-  return canonicalNames.map(name => dedupe(cache[name]?.names ?? []).map(sentenceCase));
+if (process.argv[1] && import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
 }
+

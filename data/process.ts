@@ -2,10 +2,10 @@
 
 import fs from 'node:fs';
 import assert, { fail } from 'node:assert';
-import { lookupCommonNames } from './common_names';
 import { lookupWikipediaUrls } from './wikipedia';
 import { Normalize } from './normalize';
 import { Canonicalize } from './canonicalize';
+import { CommonNames } from './common_names';
 
 
 function median(values: number[]): number {
@@ -74,15 +74,19 @@ async function main() {
     type: typeIndex.get(o.name)!
   }));
 
+  let types = names.map(o => ({ 
+    canonical_name: o,
+  }));
 
-  /*
+
   ////////////////////////////////////////
-  // common names (looked up for the final, canonicalized names)
+  // get common names
+
   console.log();
   console.log('looking up common names...');
-  let commonNames = await lookupCommonNames(names);
-  let withCommonNames = commonNames.filter(n => n.length > 0).length;
-  console.log(`  ${withCommonNames} of ${names.length} types have common names`);
+  types = await getCommonNames(types);
+
+  /*
 
   // wikipedia articles
   console.log();
@@ -97,9 +101,6 @@ async function main() {
   }));
   */
 
-  let types = names.map(o => ({ 
-    canonical_name: o,
-  }));
 
   console.log();
   console.log('writing json files...');
@@ -212,7 +213,7 @@ function normalizeNames(data: any[]): any[] {
 }
 
 
-async function canonicalizeNames(data: any[]): any[] {
+async function canonicalizeNames(data: any[]): Promise<any[]> {
   // manually maintaned canonicalizations
   let manualNames = normalizeMap(loadObject('canonicalize_manual.json'));
 
@@ -228,20 +229,30 @@ async function canonicalizeNames(data: any[]): any[] {
   for (let [index, name] of names.entries()) {
     let newName = manualNames[name];
     if (!newName) {
+      let fetched = false;
       let canonicalObj = canonicalizeCache[name];
       if (!canonicalObj) {
+        fetched = true;
         console.log(`  canonicalize: ${name} (${index}/${names.length})`);
         canonicalObj = await Canonicalize.canonicalizeName(name);
-        if (n % 100 == 0) {   saveObject('canonicalize_cache.json', canonicalizeCache); }
+
         canonicalizeCache[name] = canonicalObj;
         ++n;
+        if (n % 100 == 0) { saveObject('canonicalize_cache.json', canonicalizeCache); }
       }
-      if (canonicalObj && canonicalObj.confidence >= 80) { // 80 is actually the lowest confidence it ever returns...
+
+      if (canonicalObj.confidence >= 80) { // 80 is actually the lowest confidence it ever returns...
+        if (fetched && canonicalObj.name != name) {
+          console.log(`             -> ${canonicalObj.name} [${canonicalObj.confidence}]`);
+        }
         newName = canonicalObj.name;
         succeededMap[name] = newName;
         assert(canonicalObj.name);
       }
       else {
+        if (fetched) {
+          console.log('                * failed');
+        }
         failedMap[name] = null;
       }
     }
@@ -250,9 +261,15 @@ async function canonicalizeNames(data: any[]): any[] {
     canonicalizeMap[name] = manualHybrids[newName] ?? newName;
   }
 
-  // apply new names
+  let failedSiteCounts = new Map<string, number>();
+
+  // apply new names, with correct casing
   for (let d of data) {
-    d.name = canonicalizeMap[d.name];
+    if (Object.hasOwn(failedMap, d.name)) {
+      failedSiteCounts.set(d.name, (failedSiteCounts.get(d.name) ?? 0) + 1);
+    }
+    let name = canonicalizeMap[d.name];
+    d.name = name ? Canonicalize.canonicalizeCase(name) : undefined;
   }
   data = data.filter(o => o.name);
 
@@ -268,55 +285,14 @@ async function canonicalizeNames(data: any[]): any[] {
   saveObject('canonicalize_debug_failed.json', failedMap);
   saveObject('canonicalize_debug_succeeded.json', succeededMap);
 
+  console.log('  canonicalization failures with the most sites:');
+  for (let [name, count] of [...failedSiteCounts].sort((a, b) => b[1] - a[1]).slice(0, 10)) {
+    console.log(`    ${count} sites: ${name}`);
+  }
+
   return data;
-
-  // TODO handle hybrids
-  // TODO print list of failed names with the most sites
-
-  /*
-  let { canonical: canonicalizedMap, failed: failedMap } = await Canonicalize.canonicalizeNames(names);
-
-  let failedCount = Object.keys(failedMap).length;
-  let successCount = Object.keys(canonicalizedMap).length;
-  console.log(`  ${successCount} names canonicalized`);
-  console.log(`  ${failedCount} names could not be canonicalized (${(failedCount/(failedCount+successCount)*100).toFixed(0)}%)`);
-
-  // count the sites affected by each failure, to prioritize fixing them
-  let siteCounts = new Map<string, number>();
-  for (let d of data) {
-    siteCounts.set(d.name, (siteCounts.get(d.name) ?? 0) + 1);
-  }
-
-  // discard sites whose names could not be canonicalized
-  //let hybrids: Record<string, string> = JSON.parse(fs.readFileSync('known_hybrids.json', 'utf8'));
-  let discarded = 0;
-  data = data.filter(d => {
-    let canonicalName = canonicalizedMap[d.name];
-    if (!canonicalName) {
-      ++discarded
-      return false;
-    }
-    else {
-      //d.name = hybrids[canonicalName] ?? canonicalName;
-      d.name = canonicalName;
-      return true;
-    }
-  });
-  console.log(`  ${discarded} sites discarded (${(discarded/(discarded+data.length)*100).toFixed(0)}%)`);
-
-  // write debug files
-  fs.writeFileSync('canonicalize_debug_succeeded.json', JSON.stringify(canonicalizedMap, null, 2));
-  let failedWithSites = Object.entries(failedMap)
-    .map(([name, failure]) => [name, { sites: siteCounts.get(name) ?? 0, ...failure }] as const)
-    .sort(([, a], [, b]) => b.sites - a.sites);
-  fs.writeFileSync('canonicalize_debug_failed.json', JSON.stringify(Object.fromEntries(failedWithSites), null, 2));
-  console.log('  most affected failures:');
-  for (let [name, failure] of failedWithSites.slice(0, 10)) {
-    console.log(`    ${failure.sites} sites: ${name} (${failure.reason})`);
-  }
- */
-
 }
+
 
 function handleDuplicateLocations(data: any[]): any[] {
   // Sorts site indices by location instead of grouping in a Map of arrays, which runs out of memory
@@ -356,6 +332,32 @@ function handleDuplicateLocations(data: any[]): any[] {
   console.log(`  ${dedupedSame} duplicate same-species sites merged`);
   console.log(`  ${droppedMixed} mixed-species co-located sites dropped`);
   return data;
+}
+
+
+async function getCommonNames(types: any[]): Promise<any[]> {
+  let commonNamesCache = loadCache('common_names_cache.json');
+  let n = 0;
+  for (let [index, type] of types.entries()) {
+    let name = type.canonical_name;
+    let commonNames = commonNamesCache[name];
+    if (!commonNames) {
+      console.log(`  look up common name: ${name} (${index}/${types.length})`);
+      commonNames = await CommonNames.lookup(name);
+      if (commonNames.length) {
+        console.log(`     -> ${commonNames}`);
+      }
+      type.common_names = commonNames;
+
+      commonNamesCache[name] = commonNames;
+      ++n;
+      if (n % 100 == 0) { saveObject('common_names_cache.json', commonNamesCache); }
+    }
+  }
+
+  saveObject('common_names_cache.json', commonNamesCache);
+
+  return types;
 }
 
 ////////////////////////////////////////

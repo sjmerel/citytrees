@@ -5,6 +5,9 @@ import process from 'node:process';
 
 export namespace Normalize {
 
+  // unicode multiplication sign
+  export const hybridMarker = '×';
+
   export function normalizeText(name: string): string {
     name = name.toLowerCase();
     name = normalizeSpaces(name);
@@ -12,11 +15,16 @@ export namespace Normalize {
     // replace runs of various quotes with single quotes
     name = name.replace(/(?:['"`“”‘’])+/g, "'");
 
-    // replace "x" with unicode × for hybrids
-    name = name.replace(' x ', ' × ');
-    name = name.replace(/ x$/, ' ×');
-    name = name.replace(/^x /, '× ');
+    name = normalizeHybridMarker(name);
 
+    return name;
+  }
+
+  export function normalizeHybridMarker(name: string): string {
+    // replace "x" with unicode × for hybrids
+    name = name.replace(' x ', ` ${hybridMarker} `);
+    name = name.replace(/ x$/, ` ${hybridMarker}`);
+    name = name.replace(/^x /, `${hybridMarker} `);
     return name;
   }
 

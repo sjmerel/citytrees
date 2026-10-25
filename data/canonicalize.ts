@@ -1,7 +1,6 @@
 #!/usr/bin/env npx tsx
 
 import { fileURLToPath } from 'node:url';
-import assert, { fail } from 'node:assert';
 import process from 'node:process';
 import axios from 'axios';
 import { Normalize } from './normalize';
@@ -23,22 +22,13 @@ const ACCEPTED_RANKS = new Set([
   //'CULTIVAR'
 ]);
 
-const foo = new Set([
-   'SUBGENUS',
-   'SECTION',
-   'SUBSECTION',
-   'SERIES',
-   'SUBSERIES',
-   'SPECIES_AGGREGATE',
-  'CULTIVAR'
-]);
 
 export namespace Canonicalize {
 
   export async function canonicalizeName(name: string, debug: boolean = false) {
     let response = await axios.get('https://api.gbif.org/v2/species/match', {
       params: { 
-        scientificName: sentenceCase(name), 
+        scientificName: canonicalizeCase(name), 
         kingdom: 'Plantae' 
       } 
     });
@@ -46,11 +36,6 @@ export namespace Canonicalize {
     if (debug) { console.log(result); }
 
     let taxon = result.acceptedUsage ?? result.usage;
-    if (foo.has(taxon.rank)) {
-      console.log('*****');
-      console.log(result);
-      fail();
-    }
     if (ACCEPTED_RANKS.has(taxon.rank)) {
       let name = Normalize.normalizeText(taxon.canonicalName);
 
@@ -68,7 +53,7 @@ export namespace Canonicalize {
       }
 
       return {
-        name: canonicalizeCase(name),
+        name: name,
         confidence: result.diagnostics.confidence
       };
     }
@@ -80,6 +65,29 @@ export namespace Canonicalize {
     }
   }
 
+  export function canonicalizeCase(name: string): string {
+    // Capitalize genera, e.g.:
+    //   Acer rubrum
+    //   Acer × freemanii
+    //   × Chitalpa tashkentensis,
+    //   Acer rubrum × Acer saccharinum
+    //   Acer rubrum × Acer × freemanii.
+    // Keep omitted-genus epithets lowercase (Acer rubrum × saccharinum), as well as rank markers (subsp., var., f.).
+    let components = name.toLowerCase().split(' ');
+    let firstGenus = components[0] === '×' ? 1 : 0;
+    components[firstGenus] = sentenceCase(components[firstGenus]);
+    for (let i = firstGenus + 1; i < components.length - 2; ++i) {
+      if (i === firstGenus + 1) { continue; } // A marker immediately after the genus names a hybrid.
+      let epithet = components[i + 2] === '×' ? components[i + 3] : components[i + 2];
+      if (components[i] === '×' &&
+          epithet && epithet !== '×' &&
+          !/^(subsp|subvar|var|subf|f)\.$/.test(epithet)) {
+        components[i + 1] = sentenceCase(components[i + 1]);
+        if (components[i + 2] === '×') { i += 2; }
+      }
+    }
+    return components.join(' ');
+  }
 }
 
 
@@ -91,25 +99,10 @@ function sentenceCase(name: string): string {
 
 function addMarker(name: string, marker: string): string {
   let components = name.split(' ');
-  return components.splice(components.length, 0, marker).join(' ');
-}
-
-function canonicalizeCase(name: string): string {
-  // Capitalize genera: Acer rubrum, Acer × freemanii, × Chitalpa tashkentensis,
-  // and Acer rubrum × Acer saccharinum. Keep omitted-genus epithets lowercase
-  // (Acer rubrum × saccharinum), as well as rank markers (subsp., var., f.).
-  let components = name.toLowerCase().split(' ');
-  let firstGenus = components[0] === '×' ? 1 : 0;
-  components[firstGenus] = sentenceCase(components[firstGenus]);
-  for (let i = firstGenus + 1; i < components.length - 2; ++i) {
-    if (components[i] === '×' &&
-        components[i + 2] !== '×' &&
-        !/^(subsp|subvar|var|subf|f)\.$/.test(components[i + 2])) {
-      components[i + 1] = sentenceCase(components[i + 1]);
-    }
-  }
+  components.splice(components.length-1, 0, marker);
   return components.join(' ');
 }
+
 
 ////////////////////////////////////////
 
