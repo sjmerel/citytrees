@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://gis.portlandmaine.gov/maps/rest/services/ParksRec/Trees/MapServer/1';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'BotanicalName',
     where: "TreeStatus IN ('Good', 'Fair', 'Other', 'Poor/Remove') AND BotanicalName IS NOT NULL AND BotanicalName <> ''",
     returnGeometry: true

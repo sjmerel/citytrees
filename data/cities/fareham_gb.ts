@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://maps.fareham.gov.uk/server/rest/services/Corporate/Trees/MapServer/1';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPECIES',
     where: "SPECIES IS NOT NULL",
     returnGeometry: true

@@ -2,13 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
 
   let endpoint = 'https://services5.arcgis.com/7nsPwEMP38bSkCjy/arcgis/rest/services/Trees_Data_Bureau_of_Street_Services/FeatureServer/0';
 
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
       fields: 'TOOLTIP',
       where: "Type_Description IN ('Tree', 'Tree in Tree Well')",
       returnGeometry: true

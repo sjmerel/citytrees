@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPECIES_NAME,LATITUDE,LONGITUDE',
     where: "SPECIES_NAME IS NOT NULL AND SPECIES_NAME <> '' AND MAPNG_STAT_CD <> 'RM' AND LATITUDE IS NOT NULL AND LONGITUDE IS NOT NULL"
   });

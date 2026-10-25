@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // LOGIS-hosted White Bear Lake forestry tree inventory
 async function main() {
   const endpoint = 'https://utility.arcgis.com/usrsvcs/servers/af97912e86f04c97b770e4f8d1b05a52/rest/services/WhiteBearLake/WBL_Forestry_Tree_Inventory_2026/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Genus,Species',
     where: "Genus IS NOT NULL AND Genus <> ''",
     returnGeometry: true

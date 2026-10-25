@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services5.arcgis.com/buITjRsK0rZsAXbQ/arcgis/rest/services/Public_Trees/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPP_BOT',
     where: "SPP_BOT IS NOT NULL AND SPP_BOT <> ''",
     returnGeometry: true

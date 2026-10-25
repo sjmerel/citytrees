@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Hastings District Council (Hawke's Bay, New Zealand) tree layer; tree_species holds the botanical name.
 async function main() {
   const endpoint = 'https://services1.arcgis.com/8L3DQUzjrkgEmDpQ/arcgis/rest/services/Hastings_DC_Trees/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'tree_species',
     where: "tree_species IS NOT NULL AND tree_species <> ''",
     returnGeometry: true

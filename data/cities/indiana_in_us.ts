@@ -2,13 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Indiana University Environmental Resilience Institute compilation of Indiana municipal inventories
 // (active trees only). Highland is excluded because it has its own source.
 async function main() {
   let endpoint = 'https://services.arcgis.com/tKsJAIiLjd90D5q2/arcgis/rest/services/Bloomington_and_Indianapolis_Tree_Inventories/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPECIES,GENUS',
     where: "LOCATION <> 'Highland' AND (SPECIES IS NOT NULL OR GENUS IS NOT NULL)",
     returnGeometry: true

@@ -2,13 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
 
   let endpoint = 'https://services9.arcgis.com/l0PUGx9JqRxaCPsG/arcgis/rest/services/Lakewood_Geodatabase_Feature_Layer/FeatureServer/38';
 
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
       fields: 'BOTANICALN',
       where: "BOTANICALN IS NOT NULL AND BOTANICALN <> '' AND BOTANICALN NOT LIKE '%acant%'",
       returnGeometry: true

@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of Morgantown current-inspection tree layer
 async function main() {
   const endpoint = 'https://services7.arcgis.com/lE5mQkgxehcTjzKf/arcgis/rest/services/Trees_currentinspection_dfc382653d0a4cce8f60666470281bf5/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'genus,species',
     where: "genus IS NOT NULL AND genus <> ''",
     returnGeometry: true

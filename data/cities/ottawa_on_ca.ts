@@ -3,7 +3,7 @@
 import axios from 'axios';
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://maps.ottawa.ca/arcgis/rest/services/Forestry/MapServer/0';
@@ -13,7 +13,7 @@ async function main() {
   let domain = layer.fields.find((f: any) => f.name === 'SPECIES').domain.codedValues;
   let scientific = new Map<string, string>(domain.map((v: any) => [v.code, v.name]));
 
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPECIES',
     where: "SPECIES IS NOT NULL AND STATUS = 'Active'",
     returnGeometry: true

@@ -2,13 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Statewide NM Tree Plotter inventory (2019); Santa Fe is excluded because it is
 // already covered by its own santafe_nm_us script using a different source.
 async function main() {
   let endpoint = 'https://services.arcgis.com/LGtNQDlIZBdntoA9/arcgis/rest/services/NM_PublicTree_Map/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'CITY,SPECIES_LA',
     where: "SPECIES_LA IS NOT NULL AND SPECIES_LA <> '' AND SPECIES_LA <> 'N/A' AND CITY <> 'Santa Fe'",
     returnGeometry: true

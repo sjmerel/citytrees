@@ -2,13 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
 
   let endpoint = 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Combined_Tree_Point/FeatureServer/0';
 
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
       fields: 'SCIENTIFIC_NAME',
       where: "SCIENTIFIC_NAME IS NOT NULL AND SCIENTIFIC_NAME <> ''",
       returnGeometry: true

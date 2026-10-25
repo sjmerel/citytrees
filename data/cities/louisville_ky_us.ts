@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services1.arcgis.com/79kfd2K6fskCAkyg/ArcGIS/rest/services/URBAN_FORESTRY_TREES_(PUBLIC_DATA_VIEW)/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Tree_Name_Genus_Species',
     where: "Status IN ('StreetTree', 'ParkTree') AND Tree_Name_Genus_Species IS NOT NULL AND Tree_Name_Genus_Species <> '' AND Tree_Name_Genus_Species NOT LIKE '%unknown%'",
     returnGeometry: true

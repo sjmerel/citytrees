@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services1.arcgis.com/WUqVDRuvIiIiH2Pl/arcgis/rest/services/City_Trees/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'TR_GENUS',
     where: "TR_GENUS IS NOT NULL AND TR_GENUS <> '' AND TR_GENUS NOT LIKE '%aceae'",
     returnGeometry: true

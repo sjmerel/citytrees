@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of Grand Junction tree asset layer; ScientificName holds the botanical name (Title Case).
 async function main() {
   const endpoint = 'https://external25-gis.gjcity.org/arcgis/rest/services/Hub/City_Hub/MapServer/1';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'ScientificName',
     where: "ScientificName IS NOT NULL AND ScientificName <> ''",
     returnGeometry: true

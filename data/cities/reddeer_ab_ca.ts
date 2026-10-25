@@ -2,7 +2,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of Red Deer in-service park trees; CmnNameSpecies embeds the scientific binomial
 // in the last/deepest parenthetical group, e.g.
@@ -37,7 +37,7 @@ async function main() {
   const endpoint = 'https://arcgis.reddeer.ca/arcgis/rest/services/CoRD_View_Layers/PARK_Trees_inservice/FeatureServer/0';
   // NOTE: a combined multi-clause WHERE filter (NULL/blank/NOT LIKE) triggers this
   // server's WAF with an HTTP 403, so fetch everything and filter client-side instead.
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'CmnNameSpecies',
     where: '1=1',
     returnGeometry: true

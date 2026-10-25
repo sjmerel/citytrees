@@ -2,10 +2,10 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
-  let rows = await DataUtil.fetchArcGis(
+  let rows = await CityUtil.fetchArcGis(
     'https://services-ap1.arcgis.com/w6r4LlwgJu8O0neQ/arcgis/rest/services/Street_and_reserve_trees/FeatureServer/0',
     { where: "genus IS NOT NULL AND species IS NOT NULL", fields: 'genus,species', returnGeometry: true });
   let trees = [];

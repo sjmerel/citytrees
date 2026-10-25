@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   const endpoint = 'https://services1.arcgis.com/ze0XBzU1FXj94DJq/arcgis/rest/services/HPSTI_2022_AllSticks_ForWeb/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'LatinGenus,LatinSpeci',
     where: "Status22 NOT IN ('Dead', 'Trunk') AND LatinGenus IS NOT NULL AND LatinGenus <> '' AND UPPER(LatinGenus) <> 'DEAD'",
     returnGeometry: true

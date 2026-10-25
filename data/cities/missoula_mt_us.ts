@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services.arcgis.com/HfwHS0BxZBQ1E5DY/arcgis/rest/services/TreeLocations_mso/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'species_botanical',
     where: "site_type = 'Tree' AND species_botanical IS NOT NULL AND species_botanical <> ''",
     returnGeometry: true

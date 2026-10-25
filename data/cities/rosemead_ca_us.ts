@@ -2,13 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
 
   let endpoint = 'https://services5.arcgis.com/0fqb8Dy41NtYm1ZO/arcgis/rest/services/Rosemead_Master_Asset_Map_2026_WFL1/FeatureServer/3';
 
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
       fields: 'BotanicalName',
       where: "BotanicalName IS NOT NULL AND BotanicalName <> '' AND BotanicalName NOT LIKE '%acant%'",
       returnGeometry: true

@@ -36,7 +36,7 @@
     "country": "US"
   },
   {
-    "code": "santamoni_ca_us",
+    "code": "santamonica_ca_us",
     "name": "Santa Monica",
     "state": "CA",
     "country": "US"
@@ -975,7 +975,7 @@
   {
     "code": "wisconsin_wi_us",
     "name": "Wisconsin (DNR communities)",
-    "maxRadiusDegrees": 5,
+    "maxRadiusDegrees": 10,
     "state": "WI",
     "country": "US"
   },

@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services8.arcgis.com/01oq2N3cUfdKDUBU/arcgis/rest/services/GLUF_Michigan_City_Trees_for_Public_View_8_19_25/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'LATIN_NAME',
     where: "TREE_STATUS IN ('ACTIVE TREE', 'PRIORITY REMOVAL-VISITED') AND LATIN_NAME IS NOT NULL AND LATIN_NAME <> ''",
     returnGeometry: true

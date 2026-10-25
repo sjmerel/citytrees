@@ -2,7 +2,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of Moorhead's public TreePlotter mirror, Trees layer (not work orders or requests).
 // https://www.arcgis.com/home/item.html?id=efd9f39819d54020b610ef0f5f0c0c04
@@ -10,7 +10,7 @@ import { DataUtil } from '../data_util';
 // No scientific epithets are supplied; retain genus only, never infer species from common names.
 async function main() {
   const endpoint = 'https://services.arcgis.com/t2tplTEKxuL7eSvF/arcgis/rest/services/Treeplotter_Inventory/FeatureServer/2';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'species_genus,status,archived',
     where: "status = 'Alive'",
     returnGeometry: true

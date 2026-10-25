@@ -2,14 +2,14 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of Guelph street-tree ownership layer. This MapServer layer does not return
 // geometry (always null) even when requested, but it does expose LAT/LONG attribute
 // fields directly, along with a clean SPECIES_SCIENTIFIC field (upper case binomial).
 async function main() {
   const endpoint = 'https://gismaps.guelph.ca/hosting/rest/services/Forestry/StreetTreeOwnership/MapServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPECIES_SCIENTIFIC,LAT,LONG',
     where: "SPECIES_SCIENTIFIC IS NOT NULL AND SPECIES_SCIENTIFIC <> ''",
     returnGeometry: false

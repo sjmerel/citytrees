@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services3.arcgis.com/XQV8LA8nMUXfZshp/arcgis/rest/services/2026_City_Managed_Santa_Fe_Public_Spaces_Tree_Inventory_WFL1/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'LatinName',
     where: "LatinName IS NOT NULL AND LatinName <> ' ' AND LatinName <> ''",
     returnGeometry: true

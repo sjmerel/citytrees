@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services1.arcgis.com/WHM6qC35aMtyAAlN/arcgis/rest/services/BPR_Park_And_Street_Trees/FeatureServer/1';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Genus,Species',
     where: "Status = 'Active' AND Genus IS NOT NULL AND Genus <> ''",
     returnGeometry: true

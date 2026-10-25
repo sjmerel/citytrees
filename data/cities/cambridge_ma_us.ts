@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://data.cambridgema.gov/resource/82zb-7qc9.json';
-  let rows = await DataUtil.fetchSocrata(endpoint, {
+  let rows = await CityUtil.fetchSocrata(endpoint, {
     select: 'scientific,treeid,the_geom',
     where: 'scientific IS NOT NULL AND the_geom IS NOT NULL',
     order: 'treeid'

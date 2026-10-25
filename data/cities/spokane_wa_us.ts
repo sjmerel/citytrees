@@ -2,14 +2,14 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Entries that are not actual trees
 const skip = /vacant|unknown|^none$|stump|^other$|no tree|not specified|n\/a/i;
 
 async function main() {
   let endpoint = 'https://services.arcgis.com/3PDwyTturHqnGCu0/arcgis/rest/services/Tree_Inventory/FeatureServer/8';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Genus',
     where: "Genus IS NOT NULL",
     returnGeometry: true

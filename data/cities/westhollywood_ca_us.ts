@@ -2,13 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
 
   let endpoint = 'https://data.weho.org/resource/qqwt-wx9z.json';
 
-  let rows = await DataUtil.fetchSocrata(endpoint, {
+  let rows = await CityUtil.fetchSocrata(endpoint, {
     where: 'location_1.latitude != 0 AND location_1.longitude != 0',
     order: ':id'
   });

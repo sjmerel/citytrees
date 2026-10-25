@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of Westerville public tree layer; excludes blank/'Unknown' scientific names (mostly plantable/vacant sites).
 async function main() {
   const endpoint = 'https://services.arcgis.com/OrM4sGBhxpl5PoQe/arcgis/rest/services/Westerville_Trees_(Public)/FeatureServer/1';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'tree_scientific_name',
     where: "tree_scientific_name IS NOT NULL AND tree_scientific_name <> '' AND tree_scientific_name <> 'Unknown'",
     returnGeometry: true

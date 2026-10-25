@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of La Mesa tree inventory; BotanicalName excludes vacant sites.
 async function main() {
   const endpoint = 'https://services3.arcgis.com/iYP51zxNr6TITn6r/arcgis/rest/services/Tree_Inventory/FeatureServer/4';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'BotanicalName',
     where: "BotanicalName IS NOT NULL AND BotanicalName <> '' AND BotanicalName NOT LIKE '%acant site%'",
     returnGeometry: true

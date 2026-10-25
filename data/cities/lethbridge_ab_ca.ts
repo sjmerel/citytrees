@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // OpenLethbridge municipal tree layer; botn_name already holds the full botanical name (with cultivar where applicable).
 async function main() {
   const endpoint = 'https://gis.lethbridge.ca/gisopendata/rest/services/OpenData/odl_trees/MapServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'botn_name',
     where: "botn_name IS NOT NULL AND botn_name <> ''",
     returnGeometry: true

@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://data.edmonton.ca/resource/eecg-fc54.json';
-  let rows = await DataUtil.fetchSocrata(endpoint, {
+  let rows = await CityUtil.fetchSocrata(endpoint, {
     select: 'genus,species_2,latitude,longitude',
     where: 'genus IS NOT NULL AND latitude IS NOT NULL AND longitude IS NOT NULL',
     order: ':id'

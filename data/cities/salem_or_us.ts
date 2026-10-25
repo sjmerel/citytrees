@@ -2,14 +2,14 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Field format is "Genus species - (Common name)"; genus-only entries use "spp." and are skipped.
 const skip = /\bspp?\.?$/i;
 
 async function main() {
   const endpoint = 'https://services.arcgis.com/kIA6yS9KDGqZL7U3/arcgis/rest/services/CityTrees/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'TREE_GENUS_SPECIES',
     where: "TREE_GENUS_SPECIES IS NOT NULL",
     returnGeometry: true

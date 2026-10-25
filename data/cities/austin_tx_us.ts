@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://data.austintexas.gov/resource/7aq7-a66u.json';
-  let rows = await DataUtil.fetchSocrata(endpoint, {
+  let rows = await CityUtil.fetchSocrata(endpoint, {
     select: 'species,the_geom',
     where: 'species IS NOT NULL AND the_geom IS NOT NULL',
     order: 'objectid'

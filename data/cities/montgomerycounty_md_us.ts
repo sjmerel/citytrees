@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://montgomeryplans.org/server/rest/services/Arboriculture/TreeInventory_Pt/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPP_BOT',
     where: "SPP_BOT IS NOT NULL AND SPP_BOT NOT IN ('Vacant site', 'Stump', '_Work', 'N/A') AND SPP_BOT NOT LIKE '%acant%' AND SPP_BOT LIKE '____%'",
     returnGeometry: true

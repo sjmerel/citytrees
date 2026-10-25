@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of Emeryville WCA tree inventory; BotanicalN holds the scientific name, excludes vacant/unidentified sites.
 async function main() {
   const endpoint = 'https://services3.arcgis.com/ljOdqLVbHpS7dOJQ/arcgis/rest/services/WCA_Tree_Inventory/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'BotanicalN',
     where: "BotanicalN IS NOT NULL AND BotanicalN NOT LIKE '%acant site%' AND BotanicalN NOT LIKE '%nidentified%'",
     returnGeometry: true

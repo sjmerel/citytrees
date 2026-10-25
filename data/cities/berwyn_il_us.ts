@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services7.arcgis.com/DbKiZP6rBmETqLvl/arcgis/rest/services/City_of_Berwyn_Tree_Inventory/FeatureServer/1';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'LATIN_NAME',
     where: "LATIN_NAME IS NOT NULL AND LATIN_NAME <> ''",
     returnGeometry: true

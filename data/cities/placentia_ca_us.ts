@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services1.arcgis.com/3CyDafKD7aN8Dr8M/arcgis/rest/services/Tree_Inventory_2021/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'BOTANICALN',
     where: "BOTANICALN IS NOT NULL AND UPPER(BOTANICALN) NOT LIKE '%VACANT%' AND UPPER(BOTANICALN) NOT LIKE '%STUMP%'",
     returnGeometry: true

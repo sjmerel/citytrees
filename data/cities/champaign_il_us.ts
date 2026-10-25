@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // University of Illinois-hosted 2024 Champaign city-owned tree inventory; SPP holds the scientific name, excludes vacant sites.
 async function main() {
   const endpoint = 'https://services.arcgis.com/GL0fWlNkwysZaKeV/arcgis/rest/services/Bruce_2024_Champaign_Owned_Trees/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPP',
     where: "SPP IS NOT NULL AND SPP <> '' AND SPP NOT LIKE 'vacant%'",
     returnGeometry: true

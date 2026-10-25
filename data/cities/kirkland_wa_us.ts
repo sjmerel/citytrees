@@ -2,14 +2,14 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of Kirkland public tree layer; GENUS is the full genus name, SPECIES_BOTANICAL
 // is an abbreviated binomial like "A. platanoides" (genus abbreviated, epithet full).
 // Combine the full genus with the epithet extracted from SPECIES_BOTANICAL.
 async function main() {
   const endpoint = 'https://services2.arcgis.com/loGMwowmR0OPlOQb/arcgis/rest/services/Trees_-_Public_View/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'GENUS,SPECIES_BOTANICAL',
     where: "GENUS IS NOT NULL AND GENUS <> ''",
     returnGeometry: true

@@ -2,10 +2,10 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
-  let rows = await DataUtil.fetchArcGis(
+  let rows = await CityUtil.fetchArcGis(
     'https://services7.arcgis.com/v8XBa2naYNQGOjlG/arcgis/rest/services/PKS_AST_TREESMASTER_PV/FeatureServer/0',
     { where: "BOTANICAL_NAME IS NOT NULL", fields: 'BOTANICAL_NAME', returnGeometry: true });
   let trees = [];

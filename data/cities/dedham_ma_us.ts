@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   const endpoint = 'https://services1.arcgis.com/me41C4ZTLmDO2rPK/arcgis/rest/services/production_DBO_Trees/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Species_bot',
     where: "Species_bot IS NOT NULL AND Species_bot <> '' AND UPPER(Species_bot) <> 'STUMP' AND DateRemoved IS NULL",
     returnGeometry: true

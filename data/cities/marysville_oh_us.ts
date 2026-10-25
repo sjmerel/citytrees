@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services3.arcgis.com/ccRMrVzOSHBUG6X2/arcgis/rest/services/Tree_Sites_Public/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'latin_genus,latin_specific_epithet',
     where: "status = 'active' AND latin_genus IS NOT NULL AND latin_genus <> '' AND latin_genus <> 'Vacant'",
     returnGeometry: true

@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   const endpoint = 'https://services8.arcgis.com/ZYlQy38aWlfDG1Qh/arcgis/rest/services/Tree_Inventory_2019/FeatureServer/1';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPP',
     where: "SPP IS NOT NULL",
     returnGeometry: true

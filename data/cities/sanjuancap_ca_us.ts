@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of San Juan Capistrano parkway/ROW tree inventory; BOTANICAL holds the scientific name.
 async function main() {
   const endpoint = 'https://services5.arcgis.com/NUp4yl2gULzlAcEm/arcgis/rest/services/ParkwaysROW_Hosted/FeatureServer/3';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'BOTANICAL',
     where: "BOTANICAL IS NOT NULL AND BOTANICAL <> ''",
     returnGeometry: true

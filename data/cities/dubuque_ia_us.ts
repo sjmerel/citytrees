@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://maps.cityofdubuque.org/arcgisweb2/rest/services/Tree_Management/Tree_Collection_Publishing_Public_Version/FeatureServer/5';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'GENUS,SPECIES',
     where: "GENUS IS NOT NULL AND GENUS <> ''",
     returnGeometry: true

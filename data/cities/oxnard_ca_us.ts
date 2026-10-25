@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://maps.oxnard.org/arcgis/rest/services/ParksLayers/MapServer/1';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'BOTANICALN',
     where: "BOTANICALN IS NOT NULL AND UPPER(BOTANICALN) NOT LIKE '%VACANT%' AND UPPER(BOTANICALN) NOT LIKE '%STUMP%'",
     returnGeometry: true

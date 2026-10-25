@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Houston Parks Board tree inventory (park trees only, not a full city-wide inventory).
 async function main() {
   const endpoint = 'https://services6.arcgis.com/Xv3JMHA0Kl8GN3tJ/arcgis/rest/services/HPB_Tree_Inventory_new/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPP_BOT',
     where: "SPP_BOT IS NOT NULL",
     returnGeometry: true

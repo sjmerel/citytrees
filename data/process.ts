@@ -1,15 +1,12 @@
 #!/usr/bin/env npx tsx
 
 import fs from 'node:fs';
-import { fail } from 'node:assert';
-import { canonicalizeNames } from './botanical_names';
+import assert, { fail } from 'node:assert';
 import { lookupCommonNames } from './common_names';
 import { lookupWikipediaUrls } from './wikipedia';
-import { cleanName, normalizeName } from './name_cleanup';
+import { Normalize } from './normalize';
+import { Canonicalize } from './canonicalize';
 
-
-// sites farther than this from the median position of their city are dropped
-const MAX_CITY_RADIUS_DEGREES = 2;
 
 function median(values: number[]): number {
   let sorted = [...values].sort((a, b) => a - b);
@@ -20,91 +17,265 @@ async function main() {
 
   ////////////////////////////////////////
   // read all data
-  let cityList: { code: string, maxRadiusDegrees?: number }[] = JSON.parse(fs.readFileSync('cities.json', 'utf8'));
-  let data = [];
+  // discard dubious locations
+  // normalize raw text
+
   console.log('loading...');
-  for (let { code, maxRadiusDegrees } of cityList) {
-    let cityData = JSON.parse(fs.readFileSync(`cities/${code}.json`, 'utf8'));
-    for (let d of cityData) {
-      if (!(d.name && d.lat && d.lon && Number.isFinite(d.lat) && Number.isFinite(d.lon))) { 
-        console.log(`${code}:`); 
-        console.log(d)
-        fail();
-      }
-    }
-
-    // drop stray points far from the rest of the city (bad coordinates, wrong projection, etc.)
-    let medLat = median(cityData.map((d: { lat: number }) => d.lat));
-    let medLon = median(cityData.map((d: { lon: number }) => d.lon));
-    let maxRadius = maxRadiusDegrees ?? MAX_CITY_RADIUS_DEGREES;
-    let kept = cityData.filter((d: { lat: number, lon: number }) =>
-      Math.abs(d.lat - medLat) <= maxRadius &&
-      Math.abs(d.lon - medLon) * Math.cos(medLat * Math.PI / 180) <= maxRadius);
-    let dropped = cityData.length - kept.length;
-    console.log(`  ${code}: ${kept.length} sites` + (dropped ? `  (dropped ${dropped} outside ${maxRadius} degrees of the city center)` : ''));
-    for (let d of kept) {
-      data.push(d);
-    }
-  }
-  console.log(`  TOTAL: ${data.length} sites`);
-
+  let data = loadCityData();
+  console.log(`  = TOTAL: ${data.length} sites`);
 
 
   ////////////////////////////////////////
-  // remove sites with non-botanical names, like "Stump" or "Vacant site"
+  // discard sites with non-botanical names (e.g. "stump", "vacant site")
+
   console.log();
-  console.log('removing non-botanical names...');
-
-  let nonBotanical = new Set<string>(JSON.parse(fs.readFileSync('non_botanical_names.json', 'utf8')).map(normalizeName));
-  let removed = 0;
-  let removeNonBotanical = () => {
-    data = data.filter(d => {
-      if (nonBotanical.has(normalizeName(d.name))) {
-        ++removed;
-        return false;
-      }
-      return true;
-    });
-  };
-  removeNonBotanical();
-
+  console.log('discarding non-botanical names...');
+  data = discardNonBotanicalNames(data);
+  console.log(`  = TOTAL: ${data.length} sites`);
 
 
   ////////////////////////////////////////
-  // normalize names: strip cultivars, trade marks and placeholders
+  // normalize names: strip cultivars, remove 'spp' at end, etc
+
   console.log();
   console.log('normalizing botanical names...');
-
-  // names with a manual entry are matched as written, before any cleanup
-  let manualNames = new Set<string>(Object.keys(JSON.parse(fs.readFileSync('manual_botanical_names.json', 'utf8'))).map(normalizeName));
-  let strippedMap = {}
-  let unstrippedMap = {}
-  for (let d of data) {
-    let oldName = d.name;
-    let newName = manualNames.has(normalizeName(oldName)) ? oldName.trim() : cleanName(oldName);
-    if (newName != oldName) {
-      strippedMap[oldName] = newName;
-    }
-    else {
-      unstrippedMap[oldName] = newName;
-    }
-    d.name = newName;
-  }
-  fs.writeFileSync('debug_preprocess_stripped.json', JSON.stringify(strippedMap, null, 2));
-  fs.writeFileSync('debug_preprocess_unstripped.json', JSON.stringify(unstrippedMap, null, 2));
-
-  // normalization can reveal non-botanical names, e.g. "Unknown spp." becomes "Unknown"
-  removeNonBotanical();
-  console.log(`  ${removed} sites with non-botanical names removed`);
-
+  data = normalizeNames(data);
+  console.log(`  = TOTAL: ${data.length} sites`);
 
 
   ////////////////////////////////////////
   // canonicalize names
+
   console.log();
   console.log('canonicalizing botanical names...');
-  let inputNames = [...new Set(data.map(o => o.name))];
-  let { canonical: canonicalizedMap, failed: failedMap } = await canonicalizeNames(inputNames);
+  data = await canonicalizeNames(data);
+  console.log(`  = TOTAL: ${data.length} sites`);
+
+
+  ////////////////////////////////////////
+  // handle sites with multiple trees in the same location:
+  // keep them only if they are the same species.
+
+  console.log();
+  console.log('handling duplicate locations...');
+  data = await handleDuplicateLocations(data);
+  console.log(`  = TOTAL: ${data.length} sites`);
+
+
+  ////////////////////////////////////////
+
+  let names = [...new Set(data.map(o => o.name))];
+
+  let typeIndex = new Map<string, number>(names.map((name, i) => [name, i]));
+
+  let sites = data.map(o => ({
+    lat: o.lat,
+    lon: o.lon,
+    type: typeIndex.get(o.name)!
+  }));
+
+
+  /*
+  ////////////////////////////////////////
+  // common names (looked up for the final, canonicalized names)
+  console.log();
+  console.log('looking up common names...');
+  let commonNames = await lookupCommonNames(names);
+  let withCommonNames = commonNames.filter(n => n.length > 0).length;
+  console.log(`  ${withCommonNames} of ${names.length} types have common names`);
+
+  // wikipedia articles
+  console.log();
+  console.log('looking up wikipedia urls...');
+  let wikipediaUrls = await lookupWikipediaUrls(names);
+  console.log(`  ${wikipediaUrls.filter(u => u).length} of ${names.length} types have wikipedia urls`);
+
+  let types = names.map((o, i) => ({
+    canonical_name: o,
+    common_names: commonNames[i],
+    ...(wikipediaUrls[i] ? { wikipedia_url: wikipediaUrls[i] } : {})
+  }));
+  */
+
+  let types = names.map(o => ({ 
+    canonical_name: o,
+  }));
+
+  console.log();
+  console.log('writing json files...');
+  console.log(`  ${sites.length} sites`);
+  writeArray(types, 'types.json');
+  console.log(`  ${types.length} unique types`);
+  writeArray(sites, 'sites.json');
+}
+
+
+
+
+////////////////////////////////////////
+
+// write large array in chunks, if the full string is too long
+function writeArray(array: [any], path: string) {
+  let fd = fs.openSync(path, 'w');
+  fs.writeSync(fd, '[');
+  for (let i = 0; i < array.length; i += 50000) {
+    let chunk = array.slice(i, i + 50000).map(s => JSON.stringify(s, null, 2).replace(/^/gm, '  ')).join(',\n');
+    fs.writeSync(fd, (i > 0 ? ',\n' : '\n') + chunk);
+  }
+  fs.writeSync(fd, '\n]\n');
+  fs.closeSync(fd);
+}
+
+////////////////////////////////////////
+
+function loadCityData(): any[] {
+  let cities = loadObject('cities.json');
+  let data = [];
+  for (let cityObj of cities) {
+    let cityData = loadObject(`cities/${cityObj.code}.json`);
+    for (let d of cityData) {
+      assert(d.name && d.lat && d.lon && Number.isFinite(d.lat) && Number.isFinite(d.lon));
+    }
+
+    // drop suspicious points far from the city center
+    let medLat = median(cityData.map(o => o.lat));
+    let medLon = median(cityData.map(o => o.lon));
+    let maxRadius = cityObj.maxRadiusDegrees ?? 2;
+    let latThresh = maxRadius;
+    let lonThresh = maxRadius * Math.cos(medLat * Math.PI / 180);
+    let prevCount = cityData.length;
+    cityData = cityData.filter(o => Math.abs(o.lat - medLat) <= latThresh &&
+                                    Math.abs(o.lon - medLon) <= lonThresh);
+    let droppedCount = prevCount - cityData.length;
+    console.log(`  ${cityObj.code}: ${cityData.length} sites` + (droppedCount ? `  (dropped ${droppedCount} outliers)` : ''));
+   /*
+    console.log(`  ${cityObj.code}: ${cityData.length} sites (XXX not checking for outliers)`);
+    */
+
+    // add to full array, normalizing text
+    for (let d of cityData) {
+      d.name = Normalize.normalizeText(d.name);
+      data.push(d);
+    }
+  }
+
+  return data;
+}
+
+
+function discardNonBotanicalNames(data: any[]): any[] {
+  let discardNames = new Set<string>(loadObject('discard_manual.json').map(o => Normalize.normalizeText(o)));
+  let prevLength = data.length;
+  data = data.filter(o => !discardNames.has(o.name));
+  console.log(`  ${prevLength - data.length} sites discarded`);
+  return data;
+}
+
+
+function normalizeNames(data: any[]): any[] {
+  // normalize with a manually maintained list for where the algorithmically stripped name obviously fails 
+  //  (e.g. still contains cultivars)
+  let manualNames = normalizeMap(loadObject('normalize_manual.json'));
+
+  // some species are labeled only by genus and cultivar (e.g. "ilex 'Wilsonii'" is ilex x altaclarensis);
+  // normalize those manually also.
+  let manualNamesGc = normalizeMap(loadObject('normalize_genus_cultivar_manual.json'));
+
+  // normalize with the dictionaries read above, or else normalize with a heuristic.
+  let names = [...new Set(data.map(o => o.name))];
+  let normalizedMap = {}
+  let strippedMap = {}
+  let unstrippedMap = {}
+  for (let name of names) {
+    let newName = manualNames[name] ?? manualNamesGc[name];
+    if (!newName) {
+      newName = Normalize.normalizeName(name);
+      if (newName != name) {
+        strippedMap[name] = newName;
+      }
+      else {
+        unstrippedMap[name] = newName;
+      }
+    }
+    normalizedMap[name] = newName;
+  }
+
+  for (let d of data) {
+    d.name = normalizedMap[d.name];
+  }
+  data = data.filter(o => o.name); // remove any sites with now-empty names
+
+  saveObject('normalize_debug_stripped.json', strippedMap);
+  saveObject('normalize_debug_unstripped.json', unstrippedMap);
+
+  return data;
+}
+
+
+async function canonicalizeNames(data: any[]): any[] {
+  // manually maintaned canonicalizations
+  let manualNames = normalizeMap(loadObject('canonicalize_manual.json'));
+
+  // some canonicalizations do not correctly indicate hybrids, so correct that:
+  let manualHybrids = normalizeMap(loadObject('canonicalize_hybrids_manual.json'));
+
+  let names = [...new Set(data.map(o => o.name))];
+  let canonicalizeCache = loadCache('canonicalize_cache.json');
+  let canonicalizeMap = {};
+  let succeededMap = {};
+  let failedMap = {};
+  let n = 0;
+  for (let [index, name] of names.entries()) {
+    let newName = manualNames[name];
+    if (!newName) {
+      let canonicalObj = canonicalizeCache[name];
+      if (!canonicalObj) {
+        console.log(`  canonicalize: ${name} (${index}/${names.length})`);
+        canonicalObj = await Canonicalize.canonicalizeName(name);
+        if (n % 100 == 0) {   saveObject('canonicalize_cache.json', canonicalizeCache); }
+        canonicalizeCache[name] = canonicalObj;
+        ++n;
+      }
+      if (canonicalObj && canonicalObj.confidence >= 80) { // 80 is actually the lowest confidence it ever returns...
+        newName = canonicalObj.name;
+        succeededMap[name] = newName;
+        assert(canonicalObj.name);
+      }
+      else {
+        failedMap[name] = null;
+      }
+    }
+
+    // some canonicalizations do not correctly indicate hybrids, so correct that:
+    canonicalizeMap[name] = manualHybrids[newName] ?? newName;
+  }
+
+  // apply new names
+  for (let d of data) {
+    d.name = canonicalizeMap[d.name];
+  }
+  data = data.filter(o => o.name);
+
+  // remove unused names from cache
+  let usedNames = new Set(names);
+  for (let name of Object.keys(canonicalizeCache)) {
+    if (!usedNames.has(name)) {
+      delete canonicalizeCache[name];
+    }
+  }
+
+  saveObject('canonicalize_cache.json', canonicalizeCache);
+  saveObject('canonicalize_debug_failed.json', failedMap);
+  saveObject('canonicalize_debug_succeeded.json', succeededMap);
+
+  return data;
+
+  // TODO handle hybrids
+  // TODO print list of failed names with the most sites
+
+  /*
+  let { canonical: canonicalizedMap, failed: failedMap } = await Canonicalize.canonicalizeNames(names);
+
   let failedCount = Object.keys(failedMap).length;
   let successCount = Object.keys(canonicalizedMap).length;
   console.log(`  ${successCount} names canonicalized`);
@@ -117,7 +288,7 @@ async function main() {
   }
 
   // discard sites whose names could not be canonicalized
-  let hybrids: Record<string, string> = JSON.parse(fs.readFileSync('known_hybrids.json', 'utf8'));
+  //let hybrids: Record<string, string> = JSON.parse(fs.readFileSync('known_hybrids.json', 'utf8'));
   let discarded = 0;
   data = data.filter(d => {
     let canonicalName = canonicalizedMap[d.name];
@@ -125,30 +296,29 @@ async function main() {
       ++discarded
       return false;
     }
-    d.name = hybrids[canonicalName] ?? canonicalName;
-    return true;
+    else {
+      //d.name = hybrids[canonicalName] ?? canonicalName;
+      d.name = canonicalName;
+      return true;
+    }
   });
   console.log(`  ${discarded} sites discarded (${(discarded/(discarded+data.length)*100).toFixed(0)}%)`);
 
   // write debug files
-  fs.writeFileSync('debug_canonicalize.json', JSON.stringify(canonicalizedMap, null, 2));
+  fs.writeFileSync('canonicalize_debug_succeeded.json', JSON.stringify(canonicalizedMap, null, 2));
   let failedWithSites = Object.entries(failedMap)
     .map(([name, failure]) => [name, { sites: siteCounts.get(name) ?? 0, ...failure }] as const)
     .sort(([, a], [, b]) => b.sites - a.sites);
-  fs.writeFileSync('debug_canonicalize_fail.json', JSON.stringify(Object.fromEntries(failedWithSites), null, 2));
+  fs.writeFileSync('canonicalize_debug_failed.json', JSON.stringify(Object.fromEntries(failedWithSites), null, 2));
   console.log('  most affected failures:');
   for (let [name, failure] of failedWithSites.slice(0, 10)) {
     console.log(`    ${failure.sites} sites: ${name} (${failure.reason})`);
   }
+ */
 
+}
 
-
-  ////////////////////////////////////////
-  // handle sites with multiple trees in the same location:
-  // keep them only if they are the same species.
-
-  console.log();
-  console.log('handling duplicate locations...');
+function handleDuplicateLocations(data: any[]): any[] {
   // Sorts site indices by location instead of grouping in a Map of arrays, which runs out of memory
   // with millions of sites. Ties are broken by index, so the first site in each group is kept.
   let count = data.length;
@@ -185,56 +355,38 @@ async function main() {
   data = data.filter((_, i) => keep[i]);
   console.log(`  ${dedupedSame} duplicate same-species sites merged`);
   console.log(`  ${droppedMixed} mixed-species co-located sites dropped`);
+  return data;
+}
 
+////////////////////////////////////////
 
-  ////////////////////////////////////////
-
-  let names = [...new Set(data.map(o => o.name))];
-
-  let typeIndex = new Map<string, number>(names.map((name, i) => [name, i]));
-  let sites = data.map(o => ({
-    lat: o.lat,
-    lon: o.lon,
-    type: typeIndex.get(o.name)!
-  }));
-
-
-  ////////////////////////////////////////
-  // common names (looked up for the final, canonicalized names)
-  console.log();
-  console.log('looking up common names...');
-  let commonNames = await lookupCommonNames(names);
-  let withCommonNames = commonNames.filter(n => n.length > 0).length;
-  console.log(`  ${withCommonNames} of ${names.length} types have common names`);
-
-  // wikipedia articles
-  console.log();
-  console.log('looking up wikipedia urls...');
-  let wikipediaUrls = await lookupWikipediaUrls(names);
-  console.log(`  ${wikipediaUrls.filter(u => u).length} of ${names.length} types have wikipedia urls`);
-
-  let types = names.map((o, i) => ({
-    canonical_name: o,
-    common_names: commonNames[i],
-    ...(wikipediaUrls[i] ? { wikipedia_url: wikipediaUrls[i] } : {})
-  }));
-
-  console.log();
-  console.log('writing json files...');
-  console.log(`  ${sites.length} sites`);
-  console.log(`  ${types.length} unique types`);
-  fs.writeFileSync('types.json', JSON.stringify(types, null, 2));
-  // the app lists the cities in its about page
-  fs.copyFileSync('cities.json', '../ios/trees/cities.json');
-  // written in chunks, since the full string can exceed Node's maximum string length
-  let fd = fs.openSync('sites.json', 'w');
-  fs.writeSync(fd, '[');
-  for (let i = 0; i < sites.length; i += 50000) {
-    let chunk = sites.slice(i, i + 50000).map(s => JSON.stringify(s, null, 2).replace(/^/gm, '  ')).join(',\n');
-    fs.writeSync(fd, (i > 0 ? ',\n' : '\n') + chunk);
+function loadCache(path: string): any {
+  if (fs.existsSync(path)) {
+    return loadObject(path);
   }
-  fs.writeSync(fd, '\n]\n');
-  fs.closeSync(fd);
+  else {
+    return {};
+  }
+}
+
+function normalizeMap(obj: Record<string, string>): Record<string, string> {
+  let normalized = {};
+  for (let [key, value] of Object.entries(obj)) {
+    let normalizedKey = Normalize.normalizeText(key);
+    let normalizedValue = Normalize.normalizeText(value);
+    assert(!Object.hasOwn(normalized, normalizedKey) ||
+           normalized[normalizedKey] === normalizedValue);
+    normalized[normalizedKey] = normalizedValue;
+  }
+  return normalized;
+}
+
+function loadObject(path: string): any {
+  return JSON.parse(fs.readFileSync(path, 'utf8'));
+}
+
+function saveObject(path: string, cache: any) {
+  fs.writeFileSync(path, JSON.stringify(cache, null, 2));
 }
 
 

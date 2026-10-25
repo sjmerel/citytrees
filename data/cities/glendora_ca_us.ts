@@ -2,13 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
 
   let endpoint = 'https://services2.arcgis.com/NQC8oBejgXkIxQpu/arcgis/rest/services/Glendora_Public_Map_WFL1/FeatureServer/5';
 
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
       fields: 'BOTANICAL',
       where: "BOTANICAL IS NOT NULL AND BOTANICAL <> '' AND BOTANICAL NOT LIKE '%acant%'",
       returnGeometry: true

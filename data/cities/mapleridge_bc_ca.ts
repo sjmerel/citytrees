@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://geoservices.mapleridge.ca/server/rest/services/DataCatalog/Environment/MapServer/5';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Genus,Species',
     where: "Status = 'Existing' AND Genus IS NOT NULL AND Genus <> ''",
     returnGeometry: true

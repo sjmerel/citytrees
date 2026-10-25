@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of Falls Church public tree layer; SPECIES holds the scientific name.
 async function main() {
   const endpoint = 'https://services1.arcgis.com/2hmXRAz4ofcdQP6p/arcgis/rest/services/Public_Trees/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPECIES',
     where: "SPECIES IS NOT NULL AND SPECIES <> ''",
     returnGeometry: true

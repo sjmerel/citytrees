@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of Las Cruces tree survey by PlanIT Geo; Scientific holds the botanical name.
 async function main() {
   const endpoint = 'https://services1.arcgis.com/ejcbAsQEUUGWEyzb/arcgis/rest/services/LasCrucesNM_TreeInventory__PlanITGeoINC_03_10_2026b/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Scientific',
     where: "Scientific IS NOT NULL AND Scientific <> ''",
     returnGeometry: true

@@ -2,10 +2,10 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
-  let rows = await DataUtil.fetchArcGis(
+  let rows = await CityUtil.fetchArcGis(
     'https://services1.arcgis.com/E5n4f1VY84i0xSjy/arcgis/rest/services/ACTGOV_Tree_Assets/FeatureServer/0',
     { where: "OPERATIONAL_STATE = 'ACTIVE' AND BOTANICAL_NAME IS NOT NULL", fields: 'BOTANICAL_NAME', returnGeometry: true });
   let trees = [];

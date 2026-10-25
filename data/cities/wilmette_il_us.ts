@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   // Wilmette Park District inventory; this covers park trees, not the full municipality.
   let endpoint = 'https://services3.arcgis.com/pDU8KsdKcu20KqRi/arcgis/rest/services/Public_Trees/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'BOTANICAL,TREE_STATUS',
     where: "TREE_STATUS = 'ACTIVE TREE' AND BOTANICAL IS NOT NULL AND BOTANICAL <> ''",
     returnGeometry: true

@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import axios from 'axios';
 
-// This service's layer metadata omits objectIdField, so DataUtil.fetchArcGis's
+// This service's layer metadata omits objectIdField, so CityUtil.fetchArcGis's
 // default orderByFields=OBJECTID fails with a 400. Page without an order
 // clause instead (dataset is static, so offset-based paging is stable).
 async function main() {

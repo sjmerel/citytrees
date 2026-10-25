@@ -2,13 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://utility.arcgis.com/usrsvcs/servers/a6a5b1e8237f466a8812424d719af26c/rest/services/ParkFeatures/FeatureServer/14';
   // the "Retired" field triggers a server-side error when paginated, so it is not requested;
   // a handful of removed/retired trees may remain in the output as a result
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Species',
     where: "Species IS NOT NULL AND Species <> ''",
     returnGeometry: true

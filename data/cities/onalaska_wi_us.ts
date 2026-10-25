@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services1.arcgis.com/VMiHKHuCDWhb8bY8/arcgis/rest/services/TreeInventory_Public/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Genus,Species',
     where: "Genus IS NOT NULL AND Genus <> ''",
     returnGeometry: true

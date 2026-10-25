@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // University of Minnesota-hosted reduced copy of the Minneapolis public street-tree inventory; SPP already holds full scientific names (occasionally with cultivar).
 async function main() {
   const endpoint = 'https://services.arcgis.com/8df8p0NlLFEShl0r/arcgis/rest/services/minneapolis_public_trees_reduced/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPP',
     where: "SPP IS NOT NULL AND SPP <> ''",
     returnGeometry: true

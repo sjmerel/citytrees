@@ -2,14 +2,14 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Entries that are not actual trees
 const skip = /vacant|unknown|^none$|stump|^other$|no tree|not specified|n\/a/i;
 
 async function main() {
   let endpoint = 'https://services.arcgis.com/lQySeXwbBg53XWDi/arcgis/rest/services/Tempe_iTreeResults_TempeAZJuly2024_WebMap_WFL1/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'BotanicalName',
     where: "BotanicalName IS NOT NULL",
     returnGeometry: true

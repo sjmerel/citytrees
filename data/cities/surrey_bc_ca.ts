@@ -2,7 +2,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 function titleCase(s: string) {
   return s.trim().replace(/^./, c => c.toUpperCase());
@@ -10,7 +10,7 @@ function titleCase(s: string) {
 
 async function main() {
   let endpoint = 'https://services5.arcgis.com/YRpe0VKTJytZSSIB/arcgis/rest/services/Park%20Specimen%20Trees/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'TREE_GENUS,TREE_SPECIES',
     where: "TREE_GENUS IS NOT NULL AND TREE_SPECIES IS NOT NULL",
     returnGeometry: true

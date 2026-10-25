@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of Kenmore public tree layer; SciName holds the scientific name.
 async function main() {
   const endpoint = 'https://gwa.kenmorewa.gov/arcgis/rest/services/Public_Trees/FeatureServer/22';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SciName',
     where: "SciName IS NOT NULL AND SciName <> ''",
     returnGeometry: true

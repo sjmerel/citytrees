@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Hutt City Council street-tree layer; Botanical_ holds the scientific name.
 async function main() {
   const endpoint = 'https://services1.arcgis.com/DlsnLEhGfXazS5Er/arcgis/rest/services/Street_Trees/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Botanical_',
     where: "Botanical_ IS NOT NULL AND Botanical_ <> ''",
     returnGeometry: true

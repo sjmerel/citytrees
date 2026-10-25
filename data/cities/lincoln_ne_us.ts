@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services8.arcgis.com/jzdN07B7ZhRTxuzU/arcgis/rest/services/Lincoln_Trees_2017/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Scientific',
     where: "LifeCycle = 'Active' AND Scientific IS NOT NULL AND Scientific <> ''",
     returnGeometry: true

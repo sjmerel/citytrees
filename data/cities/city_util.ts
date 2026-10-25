@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export namespace DataUtil {
+export namespace CityUtil {
 
   export async function fetchSocrata(endpoint: string, options: {
     where?: string;

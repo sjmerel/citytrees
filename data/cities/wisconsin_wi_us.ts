@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Wisconsin DNR Community Trees layer: municipal inventories compiled by the DNR, all communities.
 async function main() {
   let endpoint = 'https://services5.arcgis.com/Ul9AyFFeFTjf08DW/arcgis/rest/services/WI_Municipal_Trees_10_8_24/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Latin_Name',
     where: "Latin_Name IS NOT NULL AND Latin_Name <> '' AND Latin_Name <> 'N/A'",
     returnGeometry: true

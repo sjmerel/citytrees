@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services3.arcgis.com/HRuPlEcokYlz4mdz/arcgis/rest/services/Belfast_Trees_Open_Data/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPECIES',
     where: "SPECIES IS NOT NULL",
     returnGeometry: true

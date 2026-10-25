@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Christchurch City Council open-data tree layer
 async function main() {
   const endpoint = 'https://gis.ccc.govt.nz/server/rest/services/OpenData/Tree/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Genus,BotanicName',
     where: "Genus IS NOT NULL AND Genus <> ''",
     returnGeometry: true

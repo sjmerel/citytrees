@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services.arcgis.com/ebVVGQwOgDoHy4wd/arcgis/rest/services/Urbana_Street_Trees_view/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPP_bot',
     where: "active = 1 AND Is_Vacant = 0 AND SPP_bot IS NOT NULL AND SPP_bot <> ''",
     returnGeometry: true

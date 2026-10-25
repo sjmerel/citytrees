@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of Salem, Massachusetts street-tree layer; Sci_Name holds the botanical name, excludes stump/pit records.
 async function main() {
   const endpoint = 'https://services9.arcgis.com/nPsFhwkdebYjxn1R/arcgis/rest/services/Salem_Street_Trees/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Sci_Name',
     where: "Sci_Name IS NOT NULL AND Sci_Name <> '' AND Sci_Name <> 'n/a'",
     returnGeometry: true

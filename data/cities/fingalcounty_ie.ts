@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services5.arcgis.com/CI1e5PKQXvJgmJK8/arcgis/rest/services/Trees_FCC/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Species_Desc,Lat,Long',
     where: "Species_Desc IS NOT NULL"
   });

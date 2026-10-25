@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services5.arcgis.com/ImL8oyfZuCxsvjaT/arcgis/rest/services/Trees_view/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPP_bot',
     where: "Type = 'Tree' AND MT <> 'GONE' AND SPP_bot IS NOT NULL AND SPP_bot NOT IN ('N/A', 'HEDGE', 'SHRUB', '')",
     returnGeometry: true

@@ -2,14 +2,14 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Entries that are not a single identified species
 const skip = /^mixed |hedgerow|shrubbery/i;
 
 async function main() {
   const endpoint = 'https://services1.arcgis.com/PxbTDTskGHCe4sv6/arcgis/rest/services/Tree_Data_Survey_Oct_2022_SDCC/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Species',
     where: "Species IS NOT NULL AND Species <> ''",
     returnGeometry: true

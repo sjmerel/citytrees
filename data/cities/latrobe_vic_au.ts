@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Latrobe City Council tree inventory
 async function main() {
   const endpoint = 'https://services-ap1.arcgis.com/AtixmNNZDz8cwc9l/arcgis/rest/services/Tree_Inventory_All%20View/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'genus,species',
     where: "genus IS NOT NULL AND genus <> ''",
     returnGeometry: true

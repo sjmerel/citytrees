@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of Bismarck public tree inventory
 async function main() {
   const endpoint = 'https://services1.arcgis.com/XxHmL09eFqJWI0gE/arcgis/rest/services/Trees_public_3694a69174e146b3b4b24d82a90c198a/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'genus,species',
     where: "genus IS NOT NULL AND genus <> ''",
     returnGeometry: true

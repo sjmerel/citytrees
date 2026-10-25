@@ -2,13 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   // Jersey City's public 2020 tree inventory. Keep active records with a
   // botanical name; the other records are not usable tree-species points.
   let endpoint = 'https://services2.arcgis.com/UXbywc7dSkfgdPp4/arcgis/rest/services/JC_TreeInventory_20210902/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPP_BOT',
     where: "ACTIVE = 1 AND SPP_BOT IS NOT NULL AND SPP_BOT <> ''",
     returnGeometry: true

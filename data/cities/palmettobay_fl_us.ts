@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services5.arcgis.com/wUUM9nP0Ii27QynB/arcgis/rest/services/Historical_Tree_Inventory_(View)/FeatureServer/1';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Scientific',
     where: "Scientific IS NOT NULL AND Scientific <> ''",
     returnGeometry: true

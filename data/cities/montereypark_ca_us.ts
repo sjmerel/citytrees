@@ -2,13 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
 
   let endpoint = 'https://services9.arcgis.com/ivAMP6vRMPA12GAA/arcgis/rest/services/Monterey_Park_trees/FeatureServer/0';
 
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
       fields: 'BOTANICALN',
       where: "BOTANICALN IS NOT NULL AND BOTANICALN <> '' AND BOTANICALN NOT LIKE '%acant%'",
       returnGeometry: true

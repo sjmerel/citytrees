@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services5.arcgis.com/TBWAZXjd2RpkWRX5/arcgis/rest/services/Bexley_Tree_Inventory/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Botanical_Name,Active_Retired',
     where: "Botanical_Name IS NOT NULL AND Botanical_Name <> '' AND (Active_Retired IS NULL OR Active_Retired <> 'Retired')",
     returnGeometry: true

@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import axios from 'axios';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Combines the current (cwams) and legacy tree layers; both use the same coded TreeSpecies domain
 // ("Scientific name" per the domain description).
@@ -19,7 +19,7 @@ async function fetchCity(endpoint: string) {
   if (!Array.isArray(codedValues)) throw new Error(`TreeSpecies code lookup is unavailable for ${endpoint}`);
   const names = new Map(codedValues.map((item: any) => [String(item.code), String(item.name).trim()]));
 
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'TreeSpecies',
     where: "TreeSpecies IS NOT NULL",
     returnGeometry: true

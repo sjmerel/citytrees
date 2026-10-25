@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Field Museum-hosted Openlands 2022 Chicago-area tree-planting records; LatinName holds the scientific name.
 async function main() {
   const endpoint = 'https://services2.arcgis.com/dJOijx2lWTlGQBDJ/arcgis/rest/services/CW_4345/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'LatinName',
     where: "LatinName IS NOT NULL AND LatinName <> ''",
     returnGeometry: true

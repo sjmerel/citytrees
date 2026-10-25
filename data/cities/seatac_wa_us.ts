@@ -2,7 +2,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of SeaTac's managed-tree inventory, verified 2026-10-21.
 // https://www.arcgis.com/home/item.html?id=0fde99c1b49f4248a8f60caf3e117ea3
@@ -10,7 +10,7 @@ import { DataUtil } from '../data_util';
 // SpeciesType abbreviates the genus ("P. Calleryana"); "NA" retains genus-only coverage.
 async function main() {
   const endpoint = 'https://services3.arcgis.com/DLryYCwhA8W7Jq7Q/arcgis/rest/services/Trees/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'GenusType,SpeciesType,Status,Dead',
     where: "Status = 'Alive'",
     returnGeometry: true

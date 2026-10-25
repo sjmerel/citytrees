@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://utility.arcgis.com/usrsvcs/servers/511fd5299053486daf48c6466332320c/rest/services/Eng/City_Owned_Trees/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SCIENTIFIC_NAME,RETIRED_DATE',
     where: "SCIENTIFIC_NAME IS NOT NULL AND RETIRED_DATE IS NULL",
     returnGeometry: true

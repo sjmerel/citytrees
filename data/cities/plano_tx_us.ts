@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services2.arcgis.com/1DyhsVa6rviDKn5t/arcgis/rest/services/Shade_Map_WSL1/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Scientific_Name',
     where: "Scientific_Name IS NOT NULL AND Scientific_Name <> ' ' AND Scientific_Name <> ''",
     returnGeometry: true

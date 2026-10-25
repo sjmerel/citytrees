@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services.arcgis.com/efPDmjgxOd3NdvZV/arcgis/rest/services/MountlakeTerrace_TreeInventory_PlanITGeoINC_08222024/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Scientific',
     where: "Scientific IS NOT NULL AND Scientific <> ''",
     returnGeometry: true

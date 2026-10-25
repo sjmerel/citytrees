@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   const endpoint = 'https://gis.goldenvalleymn.gov/server/rest/services/GoldenMap/Golden_Park_Assets/FeatureServer/50';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPECIES',
     where: "SPECIES IS NOT NULL",
     returnGeometry: true

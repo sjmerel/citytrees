@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://gis.siouxfalls.gov/arcgis/rest/services/Data/Trees/MapServer/10';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SiteType,Genus,Species',
     where: "SiteType IN ('Tree', 'Treated', 'Memorial Tree', 'CommuniTree') AND Species IS NOT NULL AND Species <> ''",
     returnGeometry: true

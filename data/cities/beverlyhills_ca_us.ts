@@ -2,13 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
 
   let endpoint = 'https://mgis.beverlyhills.org/arcgis/rest/services/Hansen/CBH_IPS_GIS_UrbanForest_Feature/MapServer/0';
 
-  let rows = await DataUtil.fetchArcGis(endpoint, { 
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'BotanicalName,Latitude,Longitude',
     where: 'Latitude <> 0 AND Longitude <> 0'
   });

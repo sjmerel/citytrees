@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services5.arcgis.com/aymthbPDQOcCnuwg/arcgis/rest/services/VOP_Trees_6_2_21_Viewing/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPP_LATIN,REMOVED_DATE',
     where: "SPP_LATIN IS NOT NULL AND SPP_LATIN <> '' AND REMOVED_DATE IS NULL",
     returnGeometry: true

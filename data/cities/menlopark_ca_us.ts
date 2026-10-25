@@ -2,14 +2,14 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Entries that are not actual trees, and a handful of rows with (0, 0) placeholder coordinates
 const skip = /vacant site|not city planted/i;
 
 async function main() {
   const endpoint = 'https://services7.arcgis.com/uRrQ0O3z2aaiIWYU/arcgis/rest/services/Public_tree_inventory/FeatureServer/33';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'BOTANICALN',
     where: "BOTANICALN IS NOT NULL",
     returnGeometry: true

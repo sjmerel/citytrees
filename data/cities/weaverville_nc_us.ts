@@ -2,7 +2,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Town-published inventory, verified 2026-10-21; survey date is not established.
 // https://www.arcgis.com/home/item.html?id=c7b2caa071c04948ab4c20a00e8919f2
@@ -10,7 +10,7 @@ import { DataUtil } from '../data_util';
 // confirmed against Common ("Northern Red Oak" and "European beech").
 async function main() {
   const endpoint = 'https://services5.arcgis.com/lA7fMEY4qaPiZF6g/arcgis/rest/services/Weaverville_Tree_Inventory/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Botanical,Condition',
     returnGeometry: true
   });

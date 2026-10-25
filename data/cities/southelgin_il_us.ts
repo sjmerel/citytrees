@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services8.arcgis.com/CkRzPR57msMC2M1b/arcgis/rest/services/Environmental_Public_View/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPP',
     where: "Active = '1' AND SPP IS NOT NULL AND SPP <> '' AND SPP <> ' '",
     returnGeometry: true

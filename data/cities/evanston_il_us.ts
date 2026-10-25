@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://maps.cityofevanston.org/arcgis/rest/services/OpenData/ArcGISOpenData/MapServer/8';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPP,LifeCycle',
     where: "LifeCycle = 'Active Tree' AND SPP IS NOT NULL AND SPP <> ''",
     returnGeometry: true

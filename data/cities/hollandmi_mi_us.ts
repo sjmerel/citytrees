@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Holland Board of Public Works (City of Holland, Michigan) tree layer
 async function main() {
   const endpoint = 'https://services1.arcgis.com/QNHFBm4iXVHdb5Xv/arcgis/rest/services/Trees_public_ff9eaad404f64dceafb78f7aff40de10/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'genus,species',
     where: "genus IS NOT NULL AND genus <> ''",
     returnGeometry: true

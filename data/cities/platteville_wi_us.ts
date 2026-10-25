@@ -2,14 +2,14 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Non-tree placeholder rows (vacant sites, stumps, and the joke Latin "Truncus perplexaturum") are excluded.
 const skip = /vacant|stump|truncus/i;
 
 async function main() {
   const endpoint = 'https://services3.arcgis.com/YwCuPGYdQw7hiTj1/arcgis/rest/services/Public_Trees_(View)/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'BOTANICAL',
     where: "BOTANICAL IS NOT NULL",
     returnGeometry: true

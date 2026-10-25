@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import axios from 'axios';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   const endpoint = 'https://services1.arcgis.com/aOss8CrQf3pARS5q/arcgis/rest/services/Tree_Inventory/FeatureServer/34';
@@ -13,7 +13,7 @@ async function main() {
   if (!Array.isArray(codedValues)) throw new Error('Springfield SCI_NAME code lookup is unavailable');
 
   const names = new Map(codedValues.map((item: any) => [String(item.code), String(item.name).trim()]));
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SCI_NAME',
     where: "SCI_NAME IS NOT NULL AND SCI_NAME NOT IN ('OVERSTORY', 'UNDERSTORY', 'UNKNTREE')",
     returnGeometry: true

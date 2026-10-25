@@ -2,10 +2,10 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
-  let rows = await DataUtil.fetchSocrata('https://data.norfolk.gov/resource/cmvv-agyb.json', {
+  let rows = await CityUtil.fetchSocrata('https://data.norfolk.gov/resource/cmvv-agyb.json', {
     select: 'genus,species,latitude,longitude',
     where: "genus IS NOT NULL AND latitude IS NOT NULL AND longitude IS NOT NULL",
     order: ':id'

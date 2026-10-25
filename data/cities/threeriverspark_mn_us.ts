@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Three Rivers Park District (MN) managed-trees layer; ScientificName holds the botanical name.
 async function main() {
   const endpoint = 'https://gis.trpdmn.org/hostserver/rest/services/ManagedTrees_Public_Viewing/MapServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'ScientificName',
     where: "ScientificName IS NOT NULL AND ScientificName <> ''",
     returnGeometry: true

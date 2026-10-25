@@ -2,7 +2,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Source "vrsta" values are ALL CAPS "GENUS EPITHET [CULTIVAR/VARIETY...]" (e.g. "PRUNUS
 // CERASIFERA NIGRA" or "PLATANUS x ACERIFOLIA"); keep only genus + epithet (handling the
@@ -19,7 +19,7 @@ function toBotanicalName(raw: string): string | undefined {
 
 async function main() {
   let endpoint = 'https://services-eu1.arcgis.com/6BlpNMAIwm2EjKih/arcgis/rest/services/ZG3D_stabla_2025_Z/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'vrsta',
     where: "vrsta IS NOT NULL",
     returnGeometry: true

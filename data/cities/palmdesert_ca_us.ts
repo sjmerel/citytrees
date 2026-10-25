@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://services2.arcgis.com/i4mrGZu1Isvl0rWt/arcgis/rest/services/PD_Trees/FeatureServer/6';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'BOTANICALN',
     where: "BOTANICALN IS NOT NULL AND BOTANICALN <> ''",
     returnGeometry: true

@@ -2,14 +2,14 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Entries that are not actual trees
 const skip = /vacant|unknown|^none$|stump|^other$|no tree|not specified|n\/a/i;
 
 async function main() {
   let endpoint = 'https://coemapservices.encinitasca.gov/hypegis/rest/services/PublicServices/Trees_PWSM/MapServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'BOTANICALNAME,LifeCycleStatus',
     where: "LifeCycleStatus = 'ACT' AND BOTANICALNAME IS NOT NULL",
     returnGeometry: true

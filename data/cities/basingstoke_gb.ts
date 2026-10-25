@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Basingstoke and Deane Borough Council tree inspections layer; Species holds the scientific name.
 async function main() {
   const endpoint = 'https://gis.basingstoke.gov.uk/server/rest/services/AGOL/TreesInspections/FeatureServer/6';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Species',
     where: "Species IS NOT NULL AND Species <> ''",
     returnGeometry: true

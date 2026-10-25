@@ -2,10 +2,10 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
-  let rows = await DataUtil.fetchArcGis(
+  let rows = await CityUtil.fetchArcGis(
     'https://services1.arcgis.com/cNVyNtjGVZybOQWZ/arcgis/rest/services/Trees/FeatureServer/0',
     { where: "SpeciesName IS NOT NULL", fields: 'SpeciesName', returnGeometry: true });
   let trees = [];

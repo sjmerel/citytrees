@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Village of Westchester, Illinois public tree layer; LATIN_NAME holds the scientific name.
 async function main() {
   const endpoint = 'https://services.arcgis.com/0ofY9RQ0ZCO4aRRx/arcgis/rest/services/Westchester_Public_Trees/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'LATIN_NAME',
     where: "LATIN_NAME IS NOT NULL AND LATIN_NAME <> ''",
     returnGeometry: true

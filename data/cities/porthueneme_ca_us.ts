@@ -2,7 +2,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of Port Hueneme Public Works Department's inventory, verified 2026-10-21.
 // https://www.arcgis.com/home/item.html?id=e4cd87554f534bf28639bd35237d7fdc
@@ -10,7 +10,7 @@ import { DataUtil } from '../data_util';
 // to avoid uncertain coverage and overlap with the existing Oxnard inventory.
 async function main() {
   const endpoint = 'https://services5.arcgis.com/vow2JQrQyQruqkp7/arcgis/rest/services/COPH_Trees_WFL1/FeatureServer/0';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'LatinName,City,Status,Condition,Archived',
     where: "City = 'Port Hueneme' AND Status = 'Alive'",
     returnGeometry: true

@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://gispub.normal.org/tongis/rest/services/Hosted/Town_of_Normal_Tree_Inventory_Public/FeatureServer/0';
-  let rows = await DataUtil.fetchArcGis(endpoint, {
+  let rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'genus,species,spacestatus,treestatus',
     where: "spacestatus = 'Planted' AND treestatus = 'Active' AND genus IS NOT NULL AND genus <> ''",
     returnGeometry: true

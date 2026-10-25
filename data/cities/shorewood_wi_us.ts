@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // Village of Shorewood, Wisconsin tree inventory
 async function main() {
   const endpoint = 'https://services6.arcgis.com/WCuPctHy89ccTjFo/arcgis/rest/services/Tree_Inventory_Viewer/FeatureServer/1';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Genus,species_1',
     where: "Genus IS NOT NULL AND Genus <> ''",
     returnGeometry: true

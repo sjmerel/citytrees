@@ -2,7 +2,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 const endpoint = 'https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_County_Tree_Inventory/FeatureServer/23';
 const speciesByCode: Record<string, string> = JSON.parse(
@@ -11,7 +11,7 @@ const speciesByCode: Record<string, string> = JSON.parse(
 
 async function main() {
   const codes = Object.keys(speciesByCode).map(code => `'${code.replace(/'/g, "''")}'`).join(',');
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'SPECIES',
     where: `SPECIES IN (${codes})`,
     returnGeometry: true

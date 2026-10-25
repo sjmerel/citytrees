@@ -2,13 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
 
   let endpoint = 'https://data.cityofnewyork.us/resource/hn5i-inap.json';
 
-  let rows = await DataUtil.fetchSocrata(endpoint, {
+  let rows = await CityUtil.fetchSocrata(endpoint, {
       select: 'genusspecies,location',
       order: 'objectid',
       where: "tpstructure = 'Full' AND genusspecies IS NOT NULL AND location IS NOT NULL"

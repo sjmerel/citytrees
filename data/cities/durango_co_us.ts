@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // This layer never returns geometry even with returnGeometry=true, so Latitude/Longitude attributes are used instead.
 async function main() {
   const endpoint = 'https://gis.durangoco.gov/map/rest/services/ParksFeatureAccess/MapServer/6';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'Scientific,Latitude,Longitude',
     where: "Scientific IS NOT NULL AND Scientific <> ' '",
     returnGeometry: false

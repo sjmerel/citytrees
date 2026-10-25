@@ -1,9 +1,5 @@
-/*.csv
-/*.json
 /tiles
-!/cities.json
-/cities/*.json
-!/non_botanical_names.json
-!/manual_botanical_names.json
-!/known_hybrids.json
-!/cities/pinellascounty_fl_us_species.json
+/types.json
+/sites.json
+/*_cache.json
+/*_debug_*.json

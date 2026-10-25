@@ -2,11 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 async function main() {
   let endpoint = 'https://data.winnipeg.ca/resource/hfwk-jp4h.json';
-  let rows = await DataUtil.fetchSocrata(endpoint, {
+  let rows = await CityUtil.fetchSocrata(endpoint, {
     select: 'botanical_name,point',
     where: 'botanical_name IS NOT NULL AND point IS NOT NULL',
     order: ':id'

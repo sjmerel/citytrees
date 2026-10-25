@@ -2,12 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DataUtil } from '../data_util';
+import { CityUtil } from './city_util';
 
 // City of St. Louis Park tree layer
 async function main() {
   const endpoint = 'https://utility.arcgis.com/usrsvcs/servers/d8e68ae495d24f06a9adc233bf6e4c55/rest/services/AGO/Parks/MapServer/1';
-  const rows = await DataUtil.fetchArcGis(endpoint, {
+  const rows = await CityUtil.fetchArcGis(endpoint, {
     fields: 'GENUS,SPECIES',
     where: "GENUS IS NOT NULL AND GENUS <> ''",
     returnGeometry: true
