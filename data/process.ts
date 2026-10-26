@@ -233,7 +233,7 @@ async function canonicalizeNames(data: any[]): Promise<any[]> {
       let canonicalObj = canonicalizeCache[name];
       if (!canonicalObj) {
         fetched = true;
-        console.log(`  canonicalize: ${name} (${index}/${names.length})`);
+        console.log(`  canonicalize: ${name} (${index+1}/${names.length})`);
         canonicalObj = await Canonicalize.canonicalizeName(name);
 
         canonicalizeCache[name] = canonicalObj;
@@ -336,26 +336,41 @@ function handleDuplicateLocations(data: any[]): any[] {
 
 
 async function getCommonNames(types: any[]): Promise<any[]> {
+  // TODO add some manual overrides:  e.g. to remove non-english (nuez encarcelada for carya illinoinensis), or add missing (hong kong orchid for bauhinia)
+  // TODO use a curated genus list (since some like Prunus return too-specific (chokecherry))
+  let manualNames = loadObject('common_names_manual.json');
+
   let commonNamesCache = loadCache('common_names_cache.json');
+  let succeededMap = {};
+  let failedMap = {};
   let n = 0;
   for (let [index, type] of types.entries()) {
     let name = type.canonical_name;
-    let commonNames = commonNamesCache[name];
-    if (!commonNames) {
-      console.log(`  look up common name: ${name} (${index}/${types.length})`);
-      commonNames = await CommonNames.lookup(name);
+    let result = manualNames[name] ?? commonNamesCache[name];
+    if (!result) {
+      console.log(`  look up common names: ${name} (${index+1}/${types.length})`);
+      result = await CommonNames.lookup(name);
       if (commonNames.length) {
         console.log(`     -> ${commonNames}`);
       }
-      type.common_names = commonNames;
 
       commonNamesCache[name] = commonNames;
       ++n;
       if (n % 100 == 0) { saveObject('common_names_cache.json', commonNamesCache); }
     }
+    type.common_names = commonNames;
+
+    if (commonNames.length) {
+      succeededMap[name] = commonNames;
+    }
+    else {
+      failedMap[name] = null;
+    }
   }
 
   saveObject('common_names_cache.json', commonNamesCache);
+  saveObject('common_names_debug_failed.json', failedMap);
+  saveObject('common_names_debug_succeeded.json', succeededMap);
 
   return types;
 }
