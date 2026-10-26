@@ -1697,5 +1697,17 @@
     "name": "Weaverville",
     "state": "NC",
     "country": "US"
+  },
+  {
+    "code": "eugene_or_us",
+    "name": "Eugene",
+    "state": "OR",
+    "country": "US"
+  },
+  {
+    "code": "loveland_co_us",
+    "name": "Loveland",
+    "state": "CO",
+    "country": "US"
   }
 ]
