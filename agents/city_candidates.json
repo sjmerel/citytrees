@@ -83,6 +83,14 @@
       "reason": "191k trees, common names only."
     },
     {
+      "place": "Chapel Hill, NC, US",
+      "reason": "Official Trees layer has 242 points but explicitly represents approved planting plans, not field-verified post-construction inventory. Do not import as existing trees.",
+      "urls": [
+        "https://services2.arcgis.com/7KRXAKALbBGlCW77/arcgis/rest/services/Trees/FeatureServer/1"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Chattanooga, TN, US",
       "reason": "5.3M modeled/remote-sensed canopy clusters, not a ground-surveyed tree inventory."
     },
@@ -148,8 +156,24 @@
       ]
     },
     {
+      "place": "Edina, MN, US",
+      "reason": "GreenCity public tree layer has common-name categories (e.g. Ash, Other), not botanical names; sampled records were from 2014-2015.",
+      "urls": [
+        "https://services.arcgis.com/WgElToYhbLt94zKA/arcgis/rest/services/Edina_GreenCity_GIS_Read_Only/FeatureServer/17"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Fort Collins, CO, US",
       "reason": "CSU-hosted street-tree candidate contained only 48 records; no broader municipal source was found."
+    },
+    {
+      "place": "Frisco, TX, US",
+      "reason": "Public Tree_Inventory/Frisco_trees_testing layer supplies common-name Variety categories, no botanical-name field or verified crosswalk.",
+      "urls": [
+        "https://services6.arcgis.com/OGXLcOSnuy0GwFwi/arcgis/rest/services/Frisco_trees_testing/FeatureServer/0"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Glendale, CA, US",
@@ -198,6 +222,14 @@
     {
       "place": "Laramie, WY, US",
       "reason": "Candidate supplied common names only."
+    },
+    {
+      "place": "Lewisville, TX, US",
+      "reason": "Municipal inventory survey exposes common-name tree_species categories, not botanical names or a verified botanical crosswalk.",
+      "urls": [
+        "https://services2.arcgis.com/kXGqZY4GIOcEYxoF/arcgis/rest/services/survey123_4df90a1bf21644ce850f960e57167ecd_form/FeatureServer/0"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Leon County, FL, US",
@@ -472,12 +504,36 @@
       "next_step": "Earlier ArcGIS/city-portal search found no usable botanical inventory; check official sources for newer publications."
     },
     {
+      "place": "Amarillo, TX, US",
+      "next_step": "Initial catalog search found only unrelated fire/weather/tree layers, not a verified municipal botanical inventory. Seek an official Parks/Urban Forestry export.",
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Anchorage, AK, US",
       "next_step": "Earlier ArcGIS search found no usable municipal botanical inventory; check official sources and alternative download formats."
     },
     {
       "place": "Asheville, NC, US",
       "next_step": "Earlier catalog search found no usable municipal botanical inventory; search official municipal sources beyond ArcGIS."
+    },
+    {
+      "place": "Augusta, GA, US",
+      "next_step": "Georgia Forestry Commission's 2017-2018 TreesAugustaInventory has individual local points but only common-name Species values (including Other Hardwood), no botanical field/crosswalk. Seek a larger city inventory or authoritative botanical crosswalk; do not infer species from comments/common names.",
+      "urls": [
+        "https://services2.arcgis.com/iXA1dC6ldRMKRwra/arcgis/rest/services/TreesAugustaInventory/FeatureServer/0",
+        "https://www.arcgis.com/home/item.html?id=e1ca2b17fd1b4177bebf6d146358a411"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
+      "place": "Aurora, IL, US",
+      "next_step": "GrafGIS publishes 1,009 parks-tree points with LATIN botanical names and Aurora, Illinois coordinates in a 2019-named export. The city parks/tree pages did not establish municipal endorsement or survey dates. Confirm city/park-district provenance and reuse terms, or obtain a larger official inventory; do not confuse Aurora, Colorado's maps with Illinois.",
+      "urls": [
+        "https://services1.arcgis.com/WK6JRyyNiFsxCE3s/arcgis/rest/services/Aurora_Trees_7_7_19_PUBLIC/FeatureServer/0",
+        "https://www.aurora.il.us/Recreation-and-Amenities/Parks",
+        "https://www.aurora.il.us/City-Services/Environment-and-Sustainability/Trees"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Bakersfield, CA, US",
@@ -496,17 +552,17 @@
       "checked_on": "2026-10-26"
     },
     {
-      "place": "Bell, CA, US",
-      "next_step": "WCA's February-2026-named export has 2,827 points; 2,826 have botanical names, valid status, geometry, and non-dead condition. Locations are in Bell. Confirm city attribution/reuse terms and whether a newer or larger municipal source exists before importing; export date is not a verified survey date.",
-      "urls": [
-        "https://cityofbell-urbanforest.wca.app/",
-        "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Bell_Tree_Inventory_Benefits_WFL1/FeatureServer/0"
-      ],
-      "checked_on": "2026-10-26"
-    },
-    {
       "place": "Bellingham, WA, US",
       "next_step": "Earlier ArcGIS search found no usable municipal botanical inventory; check official sources and alternative download formats."
+    },
+    {
+      "place": "Birmingham, AL, US",
+      "next_step": "No verified public botanical inventory found in the initial catalog search. Cawaco describes a city/agency pilot in East Lake, John Hawkins and Wahouma parks using i-Tree, but no bulk tree records were linked. Seek the pilot's public export or municipal inventory, not canopy aggregates.",
+      "urls": [
+        "https://cawaco.org/mapping-birmingham-city-trees/",
+        "https://gisweb.birminghamal.gov/"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Birmingham, GB",
@@ -531,6 +587,14 @@
     {
       "place": "Brisbane, QLD, AU",
       "next_step": "Earlier data.gov.au/ArcGIS search found no usable botanical inventory; check council GIS/downloads and verify per-tree coverage."
+    },
+    {
+      "place": "Brownsville, TX, US",
+      "next_step": "Initial catalog search found no verified botanical inventory; Brownsville Tree Guard Bench is an unrelated survey, not a local tree inventory. Seek an official Parks/Urban Forestry export through city GIS.",
+      "urls": [
+        "https://www.brownsvilletx.gov/653/Geographic-Information-System-GIS-Maps"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Burbank, CA, US",
@@ -572,6 +636,14 @@
       "next_step": "Earlier catalog search found no usable municipal botanical inventory; search official municipal sources beyond ArcGIS."
     },
     {
+      "place": "Chesapeake, VA, US",
+      "next_step": "Official arboretum layer has 34 points with botanical/name fields null in inspected records; the 230-record Camellias layer is a specialized shrub/garden collection. Seek a usable street/parks botanical inventory rather than treating these as citywide coverage.",
+      "urls": [
+        "https://services1.arcgis.com/OAphVRUvJVpBRovs/arcgis/rest/services/Chesapeake_Arboretum/FeatureServer/22"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Chicago, IL, US",
       "next_step": "no newly verified public per-tree scientific-name inventory found; Chicago Forestry / Park District / CRTI searches surfaced planting or regional layers, not a citywide inventory usable by this pipeline. Search official municipal GIS pages and downloads beyond the earlier catalog search."
     },
@@ -588,6 +660,11 @@
       "next_step": "Earlier ArcGIS search found no usable municipal botanical inventory; check official sources and alternative download formats."
     },
     {
+      "place": "Columbus, GA, US",
+      "next_step": "Targeted catalog search found no verified local botanical inventory. Seek a city forestry GIS layer or public inventory export.",
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Columbus, OH, US",
       "next_step": "Investigate SP_CODE domains or official botanical crosswalks for Current_Columbus_City_Owned_Trees (about 146,000 records); another server returned 403.",
       "urls": [
@@ -599,12 +676,25 @@
       "next_step": "Earlier catalog searches found no usable municipal botanical inventory; revisit official sources and check current regional coverage."
     },
     {
+      "place": "Corpus Christi, TX, US",
+      "next_step": "Initial official-portal/catalog search found no verified individual-tree botanical inventory. Seek a Parks/Urban Forestry export beyond the catalog.",
+      "urls": [
+        "https://gis-corpus.opendata.arcgis.com/"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Crystal River, FL, US",
       "next_step": "Candidate required an authentication token; find a public view or export."
     },
     {
-      "place": "Dallas, TX, US",
-      "next_step": "partial TreeKeeper viewer, no open API. Retry public access or locate an official public export."
+      "place": "Dallas, TX, US (additional coverage)",
+      "next_step": "The largest public Trees2024 layer is imported. Assess the 10,310-site TreeSites and 46,480-site SmartTreeInventory layers for additional surveyed coverage and resolve spatial overlap before combining. SmartTreeInventory uses guest Species field SITE_ATTR3, not SITE_ATTR1; distinguish field inventory from modeled detections. Ash/EAB layers are alternate views, not additional trees.",
+      "urls": [
+        "https://dallascityhall.com/projects/forestry/Pages/Inventory.aspx",
+        "https://dallastx.treekeepersoftware.com/index.cfm?deviceWidth=1920"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Darwin, NT, AU",
@@ -619,6 +709,25 @@
       "next_step": "Earlier ArcGIS/city-portal search found no usable botanical inventory; check official sources for newer publications."
     },
     {
+      "place": "El Paso, TX, US",
+      "next_step": "No import-ready botanical inventory found in the initial official/catalog search. Official 915TreePlanters map references tree-equity scores, districts, heat and roads, not individual trees; Parks services did not expose a tree inventory. Seek a separate Parks/Urban Forestry inventory export rather than importing equity/canopy data.",
+      "urls": [
+        "https://www.arcgis.com/home/item.html?id=a16c1767ec684356b21aef350302fd4f",
+        "https://gis.elpasotexas.gov/arcgis/rest/services/Parks",
+        "https://opendata.elpasotexas.gov/"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
+      "place": "Elk Grove, CA, US",
+      "next_step": "Official Landscaping_Hosted exposes 234 Laguna West tree wells but no botanical fields; these are infrastructure, not an identified-tree inventory. Seek the city's or Cosumnes CSD's actual botanical tree inventory. Distinguish Elk Grove Village, Illinois from California.",
+      "urls": [
+        "https://services1.arcgis.com/r6QlyAADl0kfhp1m/arcgis/rest/services/Landscaping_Hosted/FeatureServer/24",
+        "https://elkmap.maps.arcgis.com/home/"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Ellensburg, WA, US",
       "next_step": "the previously-indexed tree-inventory FeatureServer URL now 404s; service appears to have moved or been retired. Retry public access or locate an official public export."
     },
@@ -629,6 +738,16 @@
     {
       "place": "Fort Lauderdale, FL, US",
       "next_step": "Earlier catalog search found no usable municipal botanical inventory; search official municipal sources beyond ArcGIS."
+    },
+    {
+      "place": "Fort Worth, TX, US",
+      "next_step": "Initial official/catalog search found no general botanical inventory. Heritage_Trees_Test has 64 narrative landmark points (including whole groves), no structured botanical names; LakeArlington_Tree has 143 points with only Type (sample null). Natural Resources Vegetation Survey is plot-based and public queries return unsupported-operation errors. Seek a separate Forestry inventory/export; do not treat these sources as per-tree botanical coverage.",
+      "urls": [
+        "https://services5.arcgis.com/3ddLCBXe1bRt7mzj/arcgis/rest/services/Heritage_Trees_Test/FeatureServer/0",
+        "https://services5.arcgis.com/3ddLCBXe1bRt7mzj/arcgis/rest/services/LakeArlington_Tree/FeatureServer/88",
+        "https://services5.arcgis.com/3ddLCBXe1bRt7mzj/arcgis/rest/services/service_ecc27334070546bea6e834a000a96f40/FeatureServer/0"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Fremantle, WA, AU",
@@ -647,8 +766,21 @@
       "next_step": "Earlier ArcGIS/city-portal search found no usable botanical inventory; check official sources for newer publications."
     },
     {
+      "place": "Garland, TX, US",
+      "next_step": "Initial catalog search found RETREET requests and unrelated locations, not a verified existing-tree botanical inventory. Seek an official Parks/Urban Forestry export.",
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Gatineau, QC, CA",
       "next_step": "Earlier catalog searches found no usable municipal botanical inventory; revisit official sources and check current regional coverage."
+    },
+    {
+      "place": "Gilbert, AZ, US",
+      "next_step": "Gilbert_TreeInventory_WFL1 is actually in Thunder Bay, Ontario (approximately -89.33, 48.35), not Arizona. No local botanical inventory verified; seek a source linked from the official portal.",
+      "urls": [
+        "https://data.gilbertaz.gov/"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Glasgow, GB",
@@ -661,6 +793,14 @@
     {
       "place": "Gold Coast, QLD, AU",
       "next_step": "Earlier data.gov.au/ArcGIS search found no usable botanical inventory; check council GIS/downloads and verify per-tree coverage."
+    },
+    {
+      "place": "Grand Prairie, TX, US",
+      "next_step": "Tree-inventory catalog hits were for Grande Prairie, Alberta, not Texas. No local botanical inventory verified; seek a Parks/Urban Forestry export through the official portal.",
+      "urls": [
+        "https://maps-gptx.hub.arcgis.com/"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Grande Prairie, AB, CA",
@@ -698,6 +838,11 @@
       "next_step": "Earlier ArcGIS search found no usable municipal botanical inventory; check official sources and alternative download formats."
     },
     {
+      "place": "Hialeah, FL, US",
+      "next_step": "Initial catalog search found canopy/student layers, not a verified public botanical inventory. Seek a municipal Parks/Urban Forestry export.",
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Hillsboro, OR, US",
       "next_step": "Earlier ArcGIS search found no usable municipal botanical inventory; check official sources and alternative download formats."
     },
@@ -708,6 +853,14 @@
     {
       "place": "Huntington Beach, CA, US",
       "next_step": "Earlier ArcGIS/city-portal search found no usable botanical inventory; check official sources for newer publications."
+    },
+    {
+      "place": "Huntsville, AL, US",
+      "next_step": "Five Points Tree Survey has 122 points but only comments/date fields, no botanical identification. Botanical Garden class collections are not a municipal inventory. Seek an official street/parks export.",
+      "urls": [
+        "https://services9.arcgis.com/nnvieqznCLju57RK/arcgis/rest/services/Five_Points_Tree_Survey/FeatureServer/0"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Indianapolis, IN, US",
@@ -729,6 +882,14 @@
       ]
     },
     {
+      "place": "Irving, TX, US",
+      "next_step": "Official ArborTest source has only 13 records with botanical genus/species null in inspected samples; Trees_public requires a token (499). Seek a non-test public inventory export instead of revisiting the protected schema.",
+      "urls": [
+        "https://services3.arcgis.com/OfsJXUlu8pSkbl7B/arcgis/rest/services/Trees_6e1966242c964322be1799ec7fc18708/FeatureServer/0"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Jacksonville, FL, US",
       "next_step": "Earlier catalog search found no usable municipal botanical inventory; search official municipal sources beyond ArcGIS."
     },
@@ -741,12 +902,28 @@
       "next_step": "Retry Lakeland10_UrbanForest or find a replacement public export; BOTANICAL/GENUS fields were present but queries timed out."
     },
     {
+      "place": "Laredo, TX, US",
+      "next_step": "Initial official-portal/catalog search found no verified botanical inventory. Seek a public municipal Parks/Urban Forestry export beyond the catalog.",
+      "urls": [
+        "https://www.openlaredo.com/open-gis-portal.html"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Laval, QC, CA",
       "next_step": "Earlier catalog searches found no usable municipal botanical inventory; revisit official sources and check current regional coverage."
     },
     {
       "place": "Lawndale, CA, US",
       "next_step": "Earlier ArcGIS/city-portal search found no usable botanical inventory; check official sources for newer publications."
+    },
+    {
+      "place": "Lawrence, KS, US",
+      "next_step": "Municipal Tree_Viewer has 17,236 points but uses speciesid codes such as SPP-44 with common-name domains. Locate an official botanical species table before importing; sampled points had null speciesid.",
+      "urls": [
+        "https://services.arcgis.com/8O9UlSTnqjKptoda/arcgis/rest/services/Tree_Viewer/FeatureServer/0"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Leeds, GB",
@@ -761,11 +938,12 @@
       "next_step": "Earlier catalog search found no usable municipal botanical inventory; search official municipal sources beyond ArcGIS."
     },
     {
-      "place": "Lexington, MA, US",
-      "next_step": "Look for a newer survey or updates to the 25,215-record botanical inventory; sampled survey dates were 2018-2019 despite the 2023 service title.",
+      "place": "Little Rock, AR, US",
+      "next_step": "Initial catalog/official-portal search found no verified botanical inventory. Seek a city forestry inventory export beyond indexed map layers.",
       "urls": [
-        "https://services.arcgis.com/bP0owepHkr9WxF4V/arcgis/rest/services/TREES2023_arbortree/FeatureServer/0"
-      ]
+        "https://maps.littlerock.gov/"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Liverpool, GB",
@@ -774,6 +952,14 @@
     {
       "place": "Logan, QLD, AU",
       "next_step": "Earlier data.gov.au/ArcGIS search found no usable botanical inventory; check council GIS/downloads and verify per-tree coverage."
+    },
+    {
+      "place": "Lubbock, TX, US",
+      "next_step": "Official LBKTreesCount is a nonspatial table, and the public parks map did not expose a botanical inventory. Student Texas Tech vegetation data is not a municipal inventory. Seek a city parks/street-tree export.",
+      "urls": [
+        "https://services2.arcgis.com/eYXun6c1pgy8Qpta/arcgis/rest/services/LBKTreesCount/FeatureServer"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Manchester, England, GB",
@@ -799,7 +985,13 @@
     },
     {
       "place": "Marina del Rey, CA, US",
-      "next_step": "Recheck MDR_Tree_Inventory: about 2,275 records, previously excluded only for size; verify botanical names and coverage."
+      "next_step": "Official LA County Beaches and Harbors service has 1,727 individual points with botanical SPP and ACTIVE Yes/No fields. Compare the county's latest-pruning and MDR_Trees_Feature_Layer_2 exports with the older roughly 2,275-record inventory, then verify survey dates, status filters and usable counts. This is partial county-managed coverage in an unincorporated area, not a citywide inventory.",
+      "urls": [
+        "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Marina_del_Rey_Trees_Managed_by_LA_County_Beaches_and_Harbors_/FeatureServer/0",
+        "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/MDR_Tree_Inventory_Latest_Pruning_(Public_Dash)/FeatureServer/0",
+        "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/MDR_Trees_Feature_Layer_2/FeatureServer/0"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Markham, ON, CA",
@@ -807,11 +999,20 @@
     },
     {
       "place": "Maywood, CA, US",
-      "next_step": "WCA export has 2,228 points; 2,226 have botanical names, valid status, geometry, and non-dead condition in Maywood. Service was edited February 2025, not a verified survey date. The city's 2026 UFMP page links a TreePlotter map: compare that newer official source and confirm WCA attribution/reuse terms before choosing an import.",
+      "next_step": "The city's 2026 UFMP page links CEM/TreePlotter; its current public tree-map config reports 2,308 sites and serves point vector tiles with common-name codes. Obtain its authoritative botanical crosswalk/export before importing. The older WCA export has 2,228 points (2,226 botanical, valid, non-dead); compare newer coverage and establish WCA provenance rather than choosing the smaller source automatically. February 2025 service editing is not a survey date.",
       "urls": [
         "https://www.cityofmaywood.com/400/Urban-Forest-Management-and-Tree-Plantin",
         "https://cem.pg-cloud.com/MaywoodCA",
+        "https://cem.pg-cloud.com/customers/MaywoodCA/tree_map_config.json",
         "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Maywood_iTree_Inventory_WFL1/FeatureServer/0"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
+      "place": "McKinney, TX, US",
+      "next_step": "Initial catalog search found unrelated student data, not a verified city botanical inventory. Seek an official Parks/Urban Forestry export through city GIS.",
+      "urls": [
+        "https://www.mckinneytexas.org/158/GIS-Maps-Data-Sets"
       ],
       "checked_on": "2026-10-26"
     },
@@ -829,6 +1030,15 @@
       "urls": [
         "https://services6.arcgis.com/hM5ymMLbxIyWTjn2/arcgis/rest/services/2023_City_Owned_Tree_Inventory/FeatureServer/0"
       ]
+    },
+    {
+      "place": "Mobile, AL, US",
+      "next_step": "Official REST catalog lists TreeInventory, but opening that folder requires a token (499); inspected public general-map services have no tree layer. Seek a public inventory view/export rather than revisiting the protected folder.",
+      "urls": [
+        "https://maps.cityofmobile.org/arcgis/rest/services/TreeInventory",
+        "https://open-government-cityofmobile.hub.arcgis.com/"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Modesto, CA, US",
@@ -850,6 +1060,20 @@
       "next_step": "Verify municipal provenance and licensing of the university-hosted 2,553-point botanical inventory, or locate the city's original source."
     },
     {
+      "place": "Montgomery, AL, US",
+      "next_step": "No verified Alabama botanical inventory found in the initial catalog search; Tree_Inventory_Export is actually Montgomery Township, New Jersey (about -74.65, 40.43), and most other hits are Maryland/New York. Urban Forestry page returned 403. Seek a city-linked public inventory export.",
+      "urls": [
+        "https://opendata.montgomeryal.gov/pages/data",
+        "https://www.montgomeryal.gov/government/city-government/city-departments/community-development/land-use-division/urban-forestry"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
+      "place": "Moreno Valley, CA, US",
+      "next_step": "Initial catalog search found student heat/canopy layers, not a verified municipal botanical inventory. Seek an official Parks/Public Works tree export.",
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Nanaimo, BC, CA",
       "next_step": "Earlier catalog searches found no usable municipal botanical inventory; revisit official sources and check current regional coverage."
     },
@@ -869,6 +1093,22 @@
       "next_step": "Earlier catalog searches found no usable municipal botanical inventory; revisit official sources and check current regional coverage."
     },
     {
+      "place": "Newark, NJ, US",
+      "next_step": "TNC Newark Tree Planting Sites is 1,610 prospective planting pits, with TreeSpecies null/NA; Newark Trees at Work is aggregate census polygons. Seek a city existing-tree botanical export. Do not confuse Newark, Delaware datasets with New Jersey.",
+      "urls": [
+        "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/Newark_Tree_Planting_Sites_Survey123/FeatureServer/2"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
+      "place": "North Las Vegas, NV, US",
+      "next_step": "Tree Selector Tool Final Draft is a nonspatial species-selection table, not a tree inventory. Seek an actual city inventory and check overlap with the registered Clark County source first.",
+      "urls": [
+        "https://services5.arcgis.com/Y7XI8T2pEBpNKRDw/arcgis/rest/services/North_Las_Vegas_Tree_Selector_Tool_Final_Draft_/FeatureServer"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "North Sydney, NSW, AU",
       "next_step": "Earlier data.gov.au/ArcGIS search found no usable botanical inventory; check council GIS/downloads and verify per-tree coverage."
     },
@@ -882,6 +1122,16 @@
     {
       "place": "Nottingham, GB",
       "next_step": "Limited ArcGIS/data.gov.uk search found no official botanical inventory; check council GIS and CSV/GeoJSON/WFS downloads."
+    },
+    {
+      "place": "Oklahoma City, OK, US",
+      "next_step": "Initial public catalog search found canopy/aggregate assessment layers, not a downloadable botanical inventory. A published parks-inventory report is a lead, but its TreeKeeper/export availability and current survey coverage remain unverified. Locate the Parks inventory's official public export rather than revisiting canopy schemas.",
+      "urls": [
+        "https://open-okc.hub.arcgis.com/",
+        "https://services.arcgis.com/F3fwU7bP9u9L7CRX/arcgis/rest/services/Oklahoma_City_Tree_Canopy/FeatureServer",
+        "https://issuu.com/oklahomacitycommunityfoundation/docs/summary"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Omaha, NE, US",
@@ -922,13 +1172,6 @@
     {
       "place": "Plymouth, UK",
       "next_step": "Limited ArcGIS/data.gov.uk search found no official botanical inventory; check council GIS and CSV/GeoJSON/WFS downloads."
-    },
-    {
-      "place": "Princeton, NJ, US",
-      "next_step": "Check the official 19,000-location inventory and TreeKeeper viewer for a public bulk export or municipal GIS service.",
-      "urls": [
-        "https://www.princetonnj.gov/1402/Tree-Inventory"
-      ]
     },
     {
       "place": "Raleigh, NC, US",
@@ -986,6 +1229,14 @@
       "next_step": "no public per-tree dataset. Retry public access or locate an official public export."
     },
     {
+      "place": "San Bernardino, CA, US",
+      "next_step": "Initial catalog search mainly found county/national-forest sources, not a verified city botanical inventory. Seek a municipal Public Works/Parks export through city GIS.",
+      "urls": [
+        "https://www.sanbernardino.gov/1111/GIS-Mapping"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "San Fernando, CA, US",
       "next_step": "San_Fernando_Trees requires a token; TreePeople layers only. Retry public access or locate an official public export."
     },
@@ -1022,6 +1273,15 @@
       "next_step": "Earlier catalog searches found no usable municipal botanical inventory; revisit official sources and check current regional coverage."
     },
     {
+      "place": "Scottsdale, AZ, US",
+      "next_step": "Official Citizen Tree Inventory has 246 actual points and a botanical coded-value domain, but contributor validation and inspection dates remain unclear (planted dates include 2017). Verify its review process and usable records, or locate a larger official inventory; do not reject solely for size.",
+      "urls": [
+        "https://services6.arcgis.com/hvDuIN6e7bxkHpdO/arcgis/rest/services/TreeInventory_PublicViewer/FeatureServer/0",
+        "https://www.arcgis.com/home/item.html?id=dfa252a5994f4b4c9eb11d42f5b8b326"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Sherbrooke, QC, CA",
       "next_step": "Earlier catalog searches found no usable municipal botanical inventory; revisit official sources and check current regional coverage."
     },
@@ -1053,12 +1313,28 @@
       ]
     },
     {
+      "place": "St. Petersburg, FL, US",
+      "next_step": "Official urban-forestry material focuses on canopy/management; no public botanical inventory verified. Check existing Pinellas County coverage before seeking an additional municipal export.",
+      "urls": [
+        "https://www.stpete.org/residents/sustainability/trees.php"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Stonnington, VIC, AU",
       "next_step": "Earlier data.gov.au/ArcGIS search found no usable botanical inventory; check council GIS/downloads and verify per-tree coverage."
     },
     {
       "place": "Thousand Oaks, CA, US",
       "next_step": "Earlier ArcGIS/city-portal search found no usable botanical inventory; check official sources for newer publications."
+    },
+    {
+      "place": "Toledo, OH, US",
+      "next_step": "Official all-trees layer has roughly 143,000 records, but SpeciesFullName and coded-value domains are common-name-only; Species combines common labels/codes. Obtain an authoritative botanical crosswalk rather than guessing USDA codes. TreesPlanted2021-current is only a smaller subset, not a botanical replacement.",
+      "urls": [
+        "https://gis.toledo.oh.gov/arcgis/rest/services/Internal/ForestryEditing/FeatureServer/1"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Torrance, CA, US",
@@ -1071,6 +1347,16 @@
     {
       "place": "Vallejo, CA, US",
       "next_step": "Earlier ArcGIS search found no usable municipal botanical inventory; check official sources and alternative download formats."
+    },
+    {
+      "place": "Vancouver, WA, US",
+      "next_step": "Public TreePlotter CEM reports 88,208 sites but exposes common-name species codes, including proposed planting sites; verify a public botanical crosswalk/export from the primary viewer. WSU's official Vancouver campus view separately has 2,916 local points with genus/species and removed flags (sample surveys 2018), a possible partial-campus source if validated. Most Vancouver ArcGIS hits are British Columbia, not Washington.",
+      "urls": [
+        "https://cem.pg-cloud.com/VancouverWA/",
+        "https://pg-cloud.com/VancouverWA/",
+        "https://services6.arcgis.com/AK42VSd2ESNY4Vkp/arcgis/rest/services/WSU_Vancouver_Tree_Inventory_(ViewLayer)/FeatureServer/0"
+      ],
+      "checked_on": "2026-10-26"
     },
     {
       "place": "Vaughan, ON, CA",
@@ -1101,8 +1387,35 @@
       "next_step": "Earlier ArcGIS/city-portal search found no usable botanical inventory; check official sources for newer publications."
     },
     {
+      "place": "Wichita, KS, US",
+      "next_step": "Official Forestry Tree Editor web map identifies a per-tree service, but its referenced gismaps.wichita.gov/agsweb endpoint and tested service directories return HTTP 404. Locate a migrated official endpoint or public export; the accessible 2017 urban canopy tiles are not a botanical inventory.",
+      "urls": [
+        "https://www.arcgis.com/home/item.html?id=12ce3648360f446db4cb5a5a54073cd4",
+        "https://gismaps.wichita.gov/agsweb/rest/services/LucityMobile/Forestry_Mobile_Projects/FeatureServer/0",
+        "https://city-of-wichita-gis-cityofwichita.hub.arcgis.com/"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
       "place": "Wilsonville, OR, US",
       "next_step": "Development-server FeatureServer/48 and its root returned 404; locate a replacement public service."
+    },
+    {
+      "place": "Winston-Salem, NC, US",
+      "next_step": "Official public assets maps expose park amenities/canopy, not a verified individual-tree botanical inventory. Seek a city forestry inventory export.",
+      "urls": [
+        "https://www.cityofws.org/406/Maps-GIS-Data",
+        "https://services.arcgis.com/XAnuVx6VEMybNvyd/arcgis/rest/services/Public_Interactive_Maps/FeatureServer"
+      ],
+      "checked_on": "2026-10-26"
+    },
+    {
+      "place": "Worcester, MA, US",
+      "next_step": "Official Environmental service contains canopy, heat and wetlands, not an individual-tree botanical inventory. Seek an Urban Forestry inventory export beyond these environmental layers.",
+      "urls": [
+        "https://services1.arcgis.com/j8dqo2DJE7mVUBU1/arcgis/rest/services/Environmental/FeatureServer"
+      ],
+      "checked_on": "2026-10-26"
     }
   ]
 }

@@ -102,9 +102,11 @@ export namespace CityUtil {
   }
 
   // Select public map features in a guest session, then page the viewer's site grid.
-  // WFS supplies stable site IDs/coordinates; the grid supplies botanical labels and dates.
+  // WFS supplies stable site IDs; the grid supplies botanical labels and dates.
+  // Some guest grids expose WGS84 coordinates, avoiding a costly WFS geometry export.
   export async function fetchTreeKeeper(endpoint: string, layer: string, facility: number,
-    mapEndpoint = 'https://geocom2.daveytreekeeper.com/geoserver/Treekeeper/ows') {
+    mapEndpoint = 'https://geocom2.daveytreekeeper.com/geoserver/Treekeeper/ows',
+    options: { coordinatesFromGrid?: boolean } = {}) {
     interface Species {
       tree_name: string;
       tree_botanical: string;
@@ -115,6 +117,8 @@ export namespace CityUtil {
       SITE_ID: number;
       SITE_ATTR1: string | null;
       SITE_ACTIVE: number;
+      LATITUDE?: number | null;
+      LONGITUDE?: number | null;
       [key: string]: unknown;
     }
     interface FeaturePage {
@@ -156,7 +160,9 @@ export namespace CityUtil {
         params: {
           service: 'WFS', version: '2.0.0', request: 'GetFeature',
           typeNames: `Treekeeper:${layer}`, outputFormat: 'application/json',
-          srsName: 'EPSG:4326', sortBy: 'site_id', count: 1000, startIndex: offset
+          srsName: 'EPSG:4326', sortBy: 'site_id',
+          propertyName: options.coordinatesFromGrid ? 'site_id' : undefined,
+          count: options.coordinatesFromGrid ? 10000 : 1000, startIndex: offset
         },
         timeout: 60000
       });
@@ -169,6 +175,7 @@ export namespace CityUtil {
         assert(Number.isInteger(feature.properties.site_id));
         assert(!featureIds.has(feature.properties.site_id), 'Repeated TreeKeeper WFS site ID');
         featureIds.add(feature.properties.site_id);
+        if (options.coordinatesFromGrid) continue;
         if (feature.geometry === null) continue;
         assert.equal(feature.geometry.type, 'Point');
         assert.equal(feature.geometry.coordinates.length, 2);
@@ -176,6 +183,7 @@ export namespace CityUtil {
         coordinates.set(feature.properties.site_id, feature.geometry.coordinates);
       }
       offset += page.features.length;
+      if (options.coordinatesFromGrid) console.log(`${offset} public map sites`);
       if (offset >= page.numberMatched) {
         assert.equal(offset, page.numberMatched);
         break;
@@ -183,10 +191,11 @@ export namespace CityUtil {
       assert(page.features.length > 0, 'Incomplete TreeKeeper WFS download');
     }
 
-    assert(coordinates.size > 0, 'TreeKeeper public map contained no located sites');
+    let selectedIds = options.coordinatesFromGrid ? [...featureIds] : [...coordinates.keys()];
+    assert(selectedIds.length > 0, 'TreeKeeper public map contained no selectable sites');
     let uid = randomUUID().replaceAll('-', '').slice(0, 9);
     let selection = await axios.post(`${endpoint}/reports.cfc?method=getIDsAndInsertIntoMapSearchTable`, {
-      recordType: 'sites', idArray: [...coordinates.keys()], uid, display: true
+      recordType: 'sites', idArray: selectedIds, uid, display: true
     }, config);
     assert.equal(selection.data.trim(), '');
 
@@ -207,11 +216,20 @@ export namespace CityUtil {
       let page: { rowCount: number; data: Site[] } = response.data;
       assert(Number.isInteger(page.rowCount) && Array.isArray(page.data));
       total ??= page.rowCount;
-      assert.equal(total, coordinates.size, 'TreeKeeper guest selection is incomplete');
+      assert.equal(total, selectedIds.length, 'TreeKeeper guest selection is incomplete');
       assert.equal(page.rowCount, total, 'TreeKeeper inventory changed during download; retry');
       for (let site of page.data) {
         assert(!ids.has(site.SITE_ID), 'Repeated TreeKeeper grid site ID');
+        assert(featureIds.has(site.SITE_ID), 'TreeKeeper grid site missing from public map');
         ids.add(site.SITE_ID);
+        if (options.coordinatesFromGrid) {
+          assert(site.LATITUDE !== undefined && site.LONGITUDE !== undefined,
+            'TreeKeeper guest grid did not expose coordinates');
+          if (site.LATITUDE === null || site.LONGITUDE === null) continue;
+          assert(Number.isFinite(site.LATITUDE) && Number.isFinite(site.LONGITUDE));
+          assert(Math.abs(site.LATITUDE) <= 90 && Math.abs(site.LONGITUDE) <= 180);
+          coordinates.set(site.SITE_ID, [site.LONGITUDE, site.LATITUDE]);
+        }
       }
       sites.push(...page.data);
       console.log(`${sites.length}`);
@@ -222,7 +240,9 @@ export namespace CityUtil {
       assert(page.data.length > 0, 'Incomplete TreeKeeper grid download');
     }
 
-    return sites.filter(o => o.SITE_ATTR1 !== null).map(site => {
+    assert(coordinates.size > 0, 'TreeKeeper public inventory contained no located sites');
+    return sites.filter(o => o.SITE_ATTR1 !== null &&
+      (!options.coordinatesFromGrid || coordinates.has(o.SITE_ID))).map(site => {
       let entry = species.get(site.SITE_ATTR1!);
       assert(entry, `Unknown TreeKeeper species label: ${site.SITE_ATTR1}`);
       let point = coordinates.get(site.SITE_ID);

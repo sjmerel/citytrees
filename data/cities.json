@@ -1769,5 +1769,35 @@
     "name": "Newport News",
     "state": "VA",
     "country": "US"
+  },
+  {
+    "code": "bell_ca_us",
+    "name": "Bell",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "marietta_oh_us",
+    "name": "Marietta",
+    "state": "OH",
+    "country": "US"
+  },
+  {
+    "code": "princeton_nj_us",
+    "name": "Princeton",
+    "state": "NJ",
+    "country": "US"
+  },
+  {
+    "code": "lexington_ma_us",
+    "name": "Lexington",
+    "state": "MA",
+    "country": "US"
+  },
+  {
+    "code": "dallas_tx_us",
+    "name": "Dallas",
+    "state": "TX",
+    "country": "US"
   }
 ]
