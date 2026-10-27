@@ -1,13 +1,24 @@
 #!/usr/bin/env npx tsx
 
+import assert, { fail } from 'node:assert';
 import { fileURLToPath } from 'node:url';
 import process from 'node:process';
+
 
 export namespace Normalize {
 
   // unicode multiplication sign
   export const hybridMarker = '×';
 
+  export function normalizeHybridMarker(name: string): string {
+    // replace "x" with unicode "×" for hybrids
+    name = name.replace(' x ', ` ${hybridMarker} `);
+    name = name.replace(/ x$/, ` ${hybridMarker}`);
+    name = name.replace(/^x /, `${hybridMarker} `);
+    return name;
+  }
+
+  // normalize raw text (i.e. don't take into account botanical name syntax)
   export function normalizeText(name: string): string {
     name = name.toLowerCase();
     name = normalizeSpaces(name);
@@ -20,14 +31,8 @@ export namespace Normalize {
     return name;
   }
 
-  export function normalizeHybridMarker(name: string): string {
-    // replace "x" with unicode × for hybrids
-    name = name.replace(' x ', ` ${hybridMarker} `);
-    name = name.replace(/ x$/, ` ${hybridMarker}`);
-    name = name.replace(/^x /, `${hybridMarker} `);
-    return name;
-  }
-
+  // normalize botanical name 
+  //  (assumes normalizeText() has already been called)
   export function normalizeName(name: string): string {
     name = stripCultivar(name);
 
@@ -60,6 +65,7 @@ function stripCultivar(name: string): string {
   //   pyrus calleryana 'bradford' -> pyrus calleryana
   let quotePos = [...name.matchAll(/'/g)].map(o => o.index);
   switch (quotePos.length) {
+    case 0: break;
     case 1: {
       // assume truncated (e.g. "pyrus calleryana 'bradf"); delete to end
       name = name.slice(0, quotePos[0]);
@@ -74,6 +80,9 @@ function stripCultivar(name: string): string {
       // assume nested quote in cultivar (e.g. "plumeria rubra 'pu'u kahea'")
       name = name.slice(0, quotePos[0]) + name.slice(quotePos[2]+1);
       break;
+    }
+    default: {
+      fail(`"${name}": more quotes than we know what to do with; add to normalize_manual.json.`);
     }
   }
 

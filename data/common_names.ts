@@ -23,13 +23,26 @@ const itisClient = axios.create({
 export namespace CommonNames {
 
   export async function lookup(name: string, debug: boolean = false) {
-    let result = await doLookup(name, debug);
-    if (result) { return result; }
+    let noMatch = { matchedName: name, commonNames: [] };
+
+    let commonNames = await queryCommonNames(name, debug);
+    if (commonNames.length) { 
+      return {
+        matchedName: name,
+        commonNames: commonNames
+      };
+    }
 
     if (name.includes(Normalize.hybridMarker)) {
       // handle hybrids; lookups usually only succed with latin 'X' marker or no hybrid marker
-      result = await doLookup(name.replaceAll(Normalize.hybridMarker, 'X'), debug);
-      if (result) { return result; }
+      let queryName = name.replaceAll(Normalize.hybridMarker, 'X');
+      let commonNames = await queryCommonNames(queryName, debug);
+      if (commonNames.length) { 
+        return {
+          matchedName: queryName,
+          commonNames: commonNames
+        };
+      }
 
       // if lookup didn't return results, try without hybrid marker.
       //   Only remove a named-hybrid marker (Acer × freemanii or × Chitalpa tashkentensis),
@@ -42,24 +55,40 @@ export namespace CommonNames {
         console.log(`    retrying as: ${newName}`);
         return lookup(newName, debug);
       }
-      return null;
+      else {
+        return noMatch;
+      }
     }
     else {
       // try less specific names
       let speciesName = name.replace(/\s+(?:subsp|ssp|subvar|var|subf|f)\.?\s+.*$/i, '');
       if (speciesName !== name) {
         console.log(`    retrying as: ${speciesName}`);
-        result = await doLookup(speciesName, debug);
-        if (result) { return result; }
+        let commonNames = await queryCommonNames(speciesName, debug);
+        if (commonNames.length) {
+          return {
+            matchedName: speciesName,
+            commonNames: commonNames
+          }
+        };
       }
 
       let genus = speciesName.split(/\s+/)[0];
       if (genus === speciesName) {
-        return null;
+        return noMatch;
       }
       else {
         console.log(`    retrying as: ${genus}`);
-        return await doLookup(genus, debug);
+        let commonNames = await queryCommonNames(genus, debug);
+        if (commonNames.length) {
+          return {
+            matchedName: genus,
+            commonNames: commonNames
+          }
+        }
+        else {
+          return noMatch;
+        }
       }
     }
   }
@@ -92,7 +121,7 @@ async function itisQuery(endpoint: string, params: any, debug = false) {
   return result;
 }
 
-async function doLookup(name: string, debug = false) {
+async function queryCommonNames(name: string, debug = false) {
   let result = await itisQuery('searchByScientificName', { srchKey: name }, debug);
 
   let scientificNames = result.scientificNames;
@@ -107,31 +136,21 @@ async function doLookup(name: string, debug = false) {
         let result = await itisQuery('getAcceptedNamesFromTSN', { tsn }, debug);
         let accepted = result.acceptedNames.filter(o => o);
 
-        // Don't arbitrarily choose if ITIS provides multiple accepted taxa.
+        // Don't arbitrarily choose if ITIS provides multiple accepted taxa.  TODO should we, though?
         if (accepted.length !== 1) {
-          // TODO should we though?
           console.log(`ITIS: ${name} has ${accepted.length} accepted-name targets`);
-          return null;
+          return [];
         }
         tsn = accepted[0].acceptedTsn;
       }
 
       // get common names
       let result = await itisQuery('getCommonNamesFromTSN', { tsn }, debug);
-      let commonNames = result.commonNames.filter(o => o && o.language == 'English').map(o => sentenceCase(o.commonName)).filter(o => o !== name);
-      if (commonNames.length) {
-        return {
-          matchedName: name,
-          commonNames: commonNames,
-        }
-      }
-      else {
-        return null;
-      }
+      return result.commonNames.filter(o => o && o.language == 'English').map(o => sentenceCase(o.commonName)).filter(o => o !== name);
     }
   }
 
-  return null;
+  return [];
 }
 
 function sentenceCase(name: string): string {

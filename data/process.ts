@@ -8,10 +8,6 @@ import { Canonicalize } from './canonicalize';
 import { CommonNames } from './common_names';
 
 
-function median(values: number[]): number {
-  let sorted = [...values].sort((a, b) => a - b);
-  return sorted[Math.floor(sorted.length / 2)];
-}
 
 async function main() {
 
@@ -115,28 +111,15 @@ async function main() {
 
 ////////////////////////////////////////
 
-// write large array in chunks, if the full string is too long
-function writeArray(array: [any], path: string) {
-  let fd = fs.openSync(path, 'w');
-  fs.writeSync(fd, '[');
-  for (let i = 0; i < array.length; i += 50000) {
-    let chunk = array.slice(i, i + 50000).map(s => JSON.stringify(s, null, 2).replace(/^/gm, '  ')).join(',\n');
-    fs.writeSync(fd, (i > 0 ? ',\n' : '\n') + chunk);
-  }
-  fs.writeSync(fd, '\n]\n');
-  fs.closeSync(fd);
-}
-
-////////////////////////////////////////
-
 function loadCityData(): any[] {
   let cities = loadObject('cities.json');
   let data = [];
   for (let cityObj of cities) {
     let cityData = loadObject(`cities/${cityObj.code}.json`);
-    for (let d of cityData) {
-      assert(d.name && d.lat && d.lon && Number.isFinite(d.lat) && Number.isFinite(d.lon));
-    }
+    let prevLength = cityData.length;
+
+    cityData = cityData.filter(o => o.name && o.lat && o.lon && Number.isFinite(o.lat) && Number.isFinite(o.lon));
+    let droppedEmpty = cityData.length - prevLength;
 
     // drop suspicious points far from the city center
     let medLat = median(cityData.map(o => o.lat));
@@ -144,14 +127,19 @@ function loadCityData(): any[] {
     let maxRadius = cityObj.maxRadiusDegrees ?? 2;
     let latThresh = maxRadius;
     let lonThresh = maxRadius * Math.cos(medLat * Math.PI / 180);
-    let prevCount = cityData.length;
+
+    prevLength = cityData.length;
     cityData = cityData.filter(o => Math.abs(o.lat - medLat) <= latThresh &&
                                     Math.abs(o.lon - medLon) <= lonThresh);
-    let droppedCount = prevCount - cityData.length;
-    console.log(`  ${cityObj.code}: ${cityData.length} sites` + (droppedCount ? `  (dropped ${droppedCount} outliers)` : ''));
-   /*
-    console.log(`  ${cityObj.code}: ${cityData.length} sites (XXX not checking for outliers)`);
-    */
+    let droppedOutliers = prevLength - cityData.length;
+
+    console.log(`  ${cityObj.code}: ${cityData.length} sites`);
+    if (droppedEmpty) {
+      console.log(`   - dropped ${droppedEmpty} invalid sites`);
+    }
+    if (droppedOutliers) {
+      console.log(`   - dropped ${droppedOutliers} outliers`);
+    }
 
     // add to full array, normalizing text
     for (let d of cityData) {
@@ -163,6 +151,7 @@ function loadCityData(): any[] {
   return data;
 }
 
+////////////////////////////////////////
 
 function discardNonBotanicalNames(data: any[]): any[] {
   let discardNames = new Set<string>(loadObject('discard_manual.json').map(o => Normalize.normalizeText(o)));
@@ -172,6 +161,7 @@ function discardNonBotanicalNames(data: any[]): any[] {
   return data;
 }
 
+////////////////////////////////////////
 
 function normalizeNames(data: any[]): any[] {
   // normalize with a manually maintained list for where the algorithmically stripped name obviously fails 
@@ -191,6 +181,8 @@ function normalizeNames(data: any[]): any[] {
     let newName = manualNames[name] ?? manualNamesGc[name];
     if (!newName) {
       newName = Normalize.normalizeName(name);
+
+      // save for debugging
       if (newName != name) {
         strippedMap[name] = newName;
       }
@@ -206,12 +198,14 @@ function normalizeNames(data: any[]): any[] {
   }
   data = data.filter(o => o.name); // remove any sites with now-empty names
 
+  // save for debugging
   saveObject('normalize_debug_stripped.json', strippedMap);
   saveObject('normalize_debug_unstripped.json', unstrippedMap);
 
   return data;
 }
 
+////////////////////////////////////////
 
 async function canonicalizeNames(data: any[]): Promise<any[]> {
   // manually maintaned canonicalizations
@@ -232,22 +226,24 @@ async function canonicalizeNames(data: any[]): Promise<any[]> {
       let fetched = false;
       let canonicalObj = canonicalizeCache[name];
       if (!canonicalObj) {
-        fetched = true;
         console.log(`  canonicalize: ${name} (${index+1}/${names.length})`);
         canonicalObj = await Canonicalize.canonicalizeName(name);
+        fetched = true;
 
         canonicalizeCache[name] = canonicalObj;
+
         ++n;
         if (n % 100 == 0) { saveObject('canonicalize_cache.json', canonicalizeCache); }
       }
 
       if (canonicalObj.confidence >= 80) { // 80 is actually the lowest confidence it ever returns...
+        assert(canonicalObj.name);
+        newName = canonicalObj.name;
+
         if (fetched && canonicalObj.name != name) {
           console.log(`             -> ${canonicalObj.name} [${canonicalObj.confidence}]`);
         }
-        newName = canonicalObj.name;
         succeededMap[name] = newName;
-        assert(canonicalObj.name);
       }
       else {
         if (fetched) {
@@ -261,7 +257,18 @@ async function canonicalizeNames(data: any[]): Promise<any[]> {
     canonicalizeMap[name] = manualHybrids[newName] ?? newName;
   }
 
+  // count # of sites for each failed mapping, so we can triage manually
   let failedSiteCounts = new Map<string, number>();
+  for (let d of data) {
+    if (Object.hasOwn(failedMap, d.name)) {
+      failedSiteCounts.set(d.name, (failedSiteCounts.get(d.name) ?? 0) + 1);
+    }
+  }
+  console.log('  canonicalization failures with the most sites:');
+  for (let [name, count] of [...failedSiteCounts].sort((a, b) => b[1] - a[1]).slice(0, 10)) {
+    console.log(`    ${count} sites: ${name}`);
+  }
+
 
   // apply new names, with correct casing
   for (let d of data) {
@@ -273,7 +280,7 @@ async function canonicalizeNames(data: any[]): Promise<any[]> {
   }
   data = data.filter(o => o.name);
 
-  // remove unused names from cache
+  // remove unused names from cache to prevent bloat
   let usedNames = new Set(names);
   for (let name of Object.keys(canonicalizeCache)) {
     if (!usedNames.has(name)) {
@@ -285,14 +292,10 @@ async function canonicalizeNames(data: any[]): Promise<any[]> {
   saveObject('canonicalize_debug_failed.json', failedMap);
   saveObject('canonicalize_debug_succeeded.json', succeededMap);
 
-  console.log('  canonicalization failures with the most sites:');
-  for (let [name, count] of [...failedSiteCounts].sort((a, b) => b[1] - a[1]).slice(0, 10)) {
-    console.log(`    ${count} sites: ${name}`);
-  }
-
   return data;
 }
 
+////////////////////////////////////////
 
 function handleDuplicateLocations(data: any[]): any[] {
   // Sorts site indices by location instead of grouping in a Map of arrays, which runs out of memory
@@ -334,6 +337,7 @@ function handleDuplicateLocations(data: any[]): any[] {
   return data;
 }
 
+////////////////////////////////////////
 
 async function getCommonNames(types: any[]): Promise<any[]> {
   // TODO add some manual overrides:  e.g. to remove non-english (nuez encarcelada for carya illinoinensis), or add missing (hong kong orchid for bauhinia)
@@ -350,18 +354,23 @@ async function getCommonNames(types: any[]): Promise<any[]> {
     if (!result) {
       console.log(`  look up common names: ${name} (${index+1}/${types.length})`);
       result = await CommonNames.lookup(name);
-      if (commonNames.length) {
-        console.log(`     -> ${commonNames}`);
+      if (result.commonNames.length) {
+        console.log(`     -> ${result.commonNames}`);
       }
 
-      commonNamesCache[name] = commonNames;
+      commonNamesCache[name] = result;
       ++n;
       if (n % 100 == 0) { saveObject('common_names_cache.json', commonNamesCache); }
     }
-    type.common_names = commonNames;
 
-    if (commonNames.length) {
-      succeededMap[name] = commonNames;
+    // if common name search fell back to a more general rank, check if there is a manual entry for that one.
+    // e.g. Acer sieboldianum returns no common names, so we check Acer, which returns "Maples"; we override to "Maple".
+    result = manualNames[result.matchedName] ?? result;
+
+    type.common_names = result.commonNames;
+
+    if (result.commonNames.length) {
+      succeededMap[name] = result.commonNames;
     }
     else {
       failedMap[name] = null;
@@ -406,6 +415,22 @@ function saveObject(path: string, cache: any) {
   fs.writeFileSync(path, JSON.stringify(cache, null, 2));
 }
 
+// write large array in chunks, if the full string is too long
+function writeArray(array: [any], path: string) {
+  let fd = fs.openSync(path, 'w');
+  fs.writeSync(fd, '[');
+  for (let i = 0; i < array.length; i += 50000) {
+    let chunk = array.slice(i, i + 50000).map(s => JSON.stringify(s, null, 2).replace(/^/gm, '  ')).join(',\n');
+    fs.writeSync(fd, (i > 0 ? ',\n' : '\n') + chunk);
+  }
+  fs.writeSync(fd, '\n]\n');
+  fs.closeSync(fd);
+}
+
+function median(values: number[]): number {
+  let sorted = [...values].sort((a, b) => a - b);
+  return sorted[Math.floor(sorted.length / 2)];
+}
 
 ////////////////////////////////////////
 
