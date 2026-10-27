@@ -1,4 +1,4 @@
-#!/usr/bin/env npx tsx
+#!/usr/bin/env NODE_OPTIONS="--max-old-space-size=8192" npx tsx
 
 import fs from 'node:fs';
 import assert, { fail } from 'node:assert';

@@ -1799,5 +1799,15 @@
     "name": "Dallas",
     "state": "TX",
     "country": "US"
+  },
+  {
+    "code": "berlin_de",
+    "name": "Berlin",
+    "country": "DE"
+  },
+  {
+    "code": "madrid_es",
+    "name": "Madrid",
+    "country": "ES"
   }
 ]

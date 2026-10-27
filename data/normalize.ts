@@ -37,7 +37,7 @@ export namespace Normalize {
     name = stripCultivar(name);
 
     // remove "species", "spp", etc at end
-    name = name.replace(/(?:^|\s+)(?:genus|species|spp\.?|sp\.?|other|unknown)$/, '');
+    name = name.replace(/(?:^|\s+)(?:genus|species|spec\.|spp\.?|sp\.?|other|unknown)$/, '');
 
     return normalizeSpaces(name);
   }
