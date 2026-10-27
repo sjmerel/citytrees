@@ -1709,5 +1709,65 @@
     "name": "Loveland",
     "state": "CO",
     "country": "US"
+  },
+  {
+    "code": "arlington_tx_us",
+    "name": "Arlington",
+    "state": "TX",
+    "country": "US"
+  },
+  {
+    "code": "portstlucie_fl_us",
+    "name": "Port St. Lucie",
+    "state": "FL",
+    "country": "US"
+  },
+  {
+    "code": "fontana_ca_us",
+    "name": "Fontana",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "desmoines_ia_us",
+    "name": "Des Moines",
+    "state": "IA",
+    "country": "US"
+  },
+  {
+    "code": "knoxville_tn_us",
+    "name": "Knoxville",
+    "state": "TN",
+    "country": "US"
+  },
+  {
+    "code": "akron_oh_us",
+    "name": "Akron",
+    "state": "OH",
+    "country": "US"
+  },
+  {
+    "code": "clarksville_tn_us",
+    "name": "Clarksville",
+    "state": "TN",
+    "country": "US"
+  },
+  {
+    "code": "ontario_ca_us",
+    "name": "Ontario",
+    "state": "CA",
+    "country": "US"
+  },
+  {
+    "code": "cary_nc_us",
+    "name": "Cary",
+    "state": "NC",
+    "country": "US"
+  },
+  {
+    "code": "newportnews_va_us",
+    "name": "Newport News",
+    "state": "VA",
+    "country": "US"
   }
 ]

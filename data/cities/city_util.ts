@@ -1,4 +1,6 @@
 import axios from 'axios';
+import assert from 'node:assert/strict';
+import { randomUUID } from 'node:crypto';
 
 export namespace CityUtil {
 
@@ -63,7 +65,9 @@ export namespace CityUtil {
       throw new Error(`ArcGIS layer metadata request failed: ${JSON.stringify(layer.error)}`);
     }
     let pageSize = Math.min(layer.maxRecordCount ?? 1000, 1000);
-    let objectIdField = layer.objectIdField ?? layer.objectIdFieldName ?? 'OBJECTID';
+    let objectIdField = layer.objectIdField ?? layer.objectIdFieldName ??
+      layer.fields?.find((field: { name: string; type: string }) =>
+        field.type === 'esriFieldTypeOID')?.name ?? 'OBJECTID';
 
     for (;;) {
       let response = await getWithRetry(`${endpoint}/query`, {
@@ -95,6 +99,139 @@ export namespace CityUtil {
       }
       offset += page.length;
     }
+  }
+
+  // Select public map features in a guest session, then page the viewer's site grid.
+  // WFS supplies stable site IDs/coordinates; the grid supplies botanical labels and dates.
+  export async function fetchTreeKeeper(endpoint: string, layer: string, facility: number,
+    mapEndpoint = 'https://geocom2.daveytreekeeper.com/geoserver/Treekeeper/ows') {
+    interface Species {
+      tree_name: string;
+      tree_botanical: string;
+      tree_genusbotanical: string;
+      tree_type: string;
+    }
+    interface Site {
+      SITE_ID: number;
+      SITE_ATTR1: string | null;
+      SITE_ACTIVE: number;
+      [key: string]: unknown;
+    }
+    interface FeaturePage {
+      type: string;
+      numberMatched: number;
+      features: {
+        geometry: { type: string; coordinates: [number, number] } | null;
+        properties: { site_id: number };
+      }[];
+    }
+
+    let response = await getWithRetry(`${endpoint}/index.cfm`, {
+      params: { deviceWidth: 1920 }, timeout: 60000
+    });
+    let cookie = response.headers['set-cookie']?.map(o => o.split(';')[0]).join('; ');
+    assert(cookie, 'TreeKeeper did not establish a guest session');
+    let config = { headers: { Cookie: cookie }, timeout: 60000 };
+    let speciesResponse = await axios.post(`${endpoint}/application/APIRequests.cfc?method=makeAPIRequest`, {
+      type: 'GET', microserviceName: 'core', endpoint: '/project/species',
+      dataParams: {}, optionalHTTP: {}
+    }, config);
+    let speciesData: { status_code: number; data: Species[] } = JSON.parse(speciesResponse.data.filecontent);
+    assert.equal(speciesData.status_code, 200);
+    assert(Array.isArray(speciesData.data));
+    let species = new Map<string, Species>();
+    for (let item of speciesData.data) {
+      let existing = species.get(item.tree_name);
+      assert(!existing || (existing.tree_botanical === item.tree_botanical &&
+        existing.tree_type === item.tree_type), `Ambiguous TreeKeeper species: ${item.tree_name}`);
+      species.set(item.tree_name, item);
+    }
+
+    let coordinates = new Map<number, [number, number]>();
+    let featureIds = new Set<number>();
+    let offset = 0;
+    let featureCount: number | undefined;
+    for (;;) {
+      let response = await getWithRetry(mapEndpoint, {
+        params: {
+          service: 'WFS', version: '2.0.0', request: 'GetFeature',
+          typeNames: `Treekeeper:${layer}`, outputFormat: 'application/json',
+          srsName: 'EPSG:4326', sortBy: 'site_id', count: 1000, startIndex: offset
+        },
+        timeout: 60000
+      });
+      let page: FeaturePage = response.data;
+      assert.equal(page.type, 'FeatureCollection');
+      assert(Array.isArray(page.features) && Number.isInteger(page.numberMatched));
+      featureCount ??= page.numberMatched;
+      assert.equal(page.numberMatched, featureCount, 'TreeKeeper map changed during download; retry');
+      for (let feature of page.features) {
+        assert(Number.isInteger(feature.properties.site_id));
+        assert(!featureIds.has(feature.properties.site_id), 'Repeated TreeKeeper WFS site ID');
+        featureIds.add(feature.properties.site_id);
+        if (feature.geometry === null) continue;
+        assert.equal(feature.geometry.type, 'Point');
+        assert.equal(feature.geometry.coordinates.length, 2);
+        assert(feature.geometry.coordinates.every(Number.isFinite));
+        coordinates.set(feature.properties.site_id, feature.geometry.coordinates);
+      }
+      offset += page.features.length;
+      if (offset >= page.numberMatched) {
+        assert.equal(offset, page.numberMatched);
+        break;
+      }
+      assert(page.features.length > 0, 'Incomplete TreeKeeper WFS download');
+    }
+
+    assert(coordinates.size > 0, 'TreeKeeper public map contained no located sites');
+    let uid = randomUUID().replaceAll('-', '').slice(0, 9);
+    let selection = await axios.post(`${endpoint}/reports.cfc?method=getIDsAndInsertIntoMapSearchTable`, {
+      recordType: 'sites', idArray: [...coordinates.keys()], uid, display: true
+    }, config);
+    assert.equal(selection.data.trim(), '');
+
+    let sites: Site[] = [];
+    let ids = new Set<number>();
+    let total: number | undefined;
+    for (;;) {
+      let response = await axios.post(`${endpoint}/cffiles/grids.cfc`, {
+        filters: '[]',
+        sorts: JSON.stringify([{ name: 'SITE_ID', desc: false, priority: 0, type: 'number' }])
+      }, {
+        ...config,
+        params: {
+          method: 'getTreeKeeperGridOptionsData', session_id: uid,
+          layer_id: facility, gridType: 'sites', limit: 1000, offset: sites.length
+        }
+      });
+      let page: { rowCount: number; data: Site[] } = response.data;
+      assert(Number.isInteger(page.rowCount) && Array.isArray(page.data));
+      total ??= page.rowCount;
+      assert.equal(total, coordinates.size, 'TreeKeeper guest selection is incomplete');
+      assert.equal(page.rowCount, total, 'TreeKeeper inventory changed during download; retry');
+      for (let site of page.data) {
+        assert(!ids.has(site.SITE_ID), 'Repeated TreeKeeper grid site ID');
+        ids.add(site.SITE_ID);
+      }
+      sites.push(...page.data);
+      console.log(`${sites.length}`);
+      if (sites.length >= total) {
+        assert.equal(sites.length, total);
+        break;
+      }
+      assert(page.data.length > 0, 'Incomplete TreeKeeper grid download');
+    }
+
+    return sites.filter(o => o.SITE_ATTR1 !== null).map(site => {
+      let entry = species.get(site.SITE_ATTR1!);
+      assert(entry, `Unknown TreeKeeper species label: ${site.SITE_ATTR1}`);
+      let point = coordinates.get(site.SITE_ID);
+      assert(point, `TreeKeeper site missing from public map: ${site.SITE_ID}`);
+      return {
+        lat: point[1], lon: point[0], name: entry.tree_botanical.trim(),
+        genus: entry.tree_genusbotanical, speciesType: entry.tree_type, attributes: site
+      };
+    });
   }
 
 }
