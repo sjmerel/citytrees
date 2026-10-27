@@ -27,18 +27,21 @@ export namespace Wikipedia {
         }
       }
 
-      let genus = speciesName.split(/\s+/)[0];
-      if (genus === speciesName) {
-        return null;
-      }
-      else {
-        console.log(`    retrying as: ${genus}`);
-        let url = await lookup(genus, debug);
-        return url;
-      }
     }
 
-    return null;
+    let components = name.split(/\s+/);
+    let genus = components[0] === Normalize.hybridMarker
+      ? components.slice(0, 2).join(' ')
+      : components[0];
+    if (genus === name) return null;
+    // A cross between different genera has no single genus to fall back to.
+    if (components.some((component, index) =>
+      component === Normalize.hybridMarker && index > 1 &&
+      /^[A-Z]/.test(components[index + 1] ?? '') &&
+      components[index + 1] !== genus
+    )) return null;
+    console.log(`    retrying as: ${genus}`);
+    return await lookup(genus, debug);
   }
 }
 

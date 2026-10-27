@@ -42,12 +42,18 @@
 * to add a city, add a script to cities/, and add an entry for the city to cities.json.
 * run process.ts (see above) to build the data with the new city.
 * you may want to update the manually mantained JSON files described above to handle any new names. (Typically this is done with an AI agent.)
-  * look in normalize_debug_stripped.json and normalize_debug_unstripped.json for any keys that are obviously not botanical names ("stump", "vacant site", common names like "palm" that do not correspond to a specific genus, etc), and add them to discard_manual.json.
-  * look in normalize_debug_stripped.json and normalize_debug_unstripped.json for obvious normalization mistakes (e.g. where cultivar is obviously still present in the value) and add a corrected entry to normalize_manual.json.
-  * look in normalize_debug_stripped.json for entries where the cultivar was stripped leaving only a genus (for example, "ilex 'Wilsonii'" -> "ilex").  If the cultivar and genus provide enough information to identify a species, put that mapping into normalize_genus_cultivar_manual.json (e.g. "ilex x altaclarensis").
-  * look in canonicalize_debug_failed.json for entries that failed canonicalization from the GBIF API but for which a canonicalization is obvious (for example "cedrus" fails, but clearly should be the genus "cedrus"; or "freeman maple" can pretty confidently be mapped to "acer × freemanii").  Add these to canonicalize_manual.json.
-  * look in canonicalize_debug_succeeded.json for entries that are obviously wrong (for example, stripping a species from a valid botanical name), and add corrections to canonicalize_manual.json.
-  * look in common_names_debug_succeeded.json for entries that are obviously wrong, and add corrections to common_names_manual.json.
-    * some entries are clearly not English (and not a foreign name that is used in English), like "Laurier tulipier" for Magnolia
-    * some entries matched to a genus are plural (like "Acer" -> "Maples"); make them singular.
+  * normalization:
+    * look in normalize_debug_stripped.json and normalize_debug_unstripped.json for any keys that are obviously not botanical names ("stump", "vacant site", common names like "palm" that do not correspond to a specific genus, etc), and add them to discard_manual.json.
+    * look in normalize_debug_stripped.json and normalize_debug_unstripped.json for obvious normalization mistakes (e.g. where cultivar is obviously still present in the value) and add a corrected entry to normalize_manual.json.
+    * look in normalize_debug_stripped.json for entries where the cultivar was stripped leaving only a genus (for example, "ilex 'Wilsonii'" -> "ilex").  If the cultivar and genus provide enough information to identify a species, put that mapping into normalize_genus_cultivar_manual.json (e.g. "ilex x altaclarensis").
+    * normalization should be primarily a syntactical transformation.  Do not correct botanical names that are misspelled, or botanical synonyms, etc; that kind of correction should happen in the canonicalization step.
+  * canonicalization:
+    * look in canonicalize_debug_failed.json for entries that failed canonicalization from the GBIF API but for which a canonicalization is obvious (for example "cedrus" fails, but clearly should be the genus "cedrus"; or "freeman maple" can pretty confidently be mapped to "acer × freemanii").  Add these to canonicalize_manual.json.
+    * look in canonicalize_debug_succeeded.json for entries that are obviously wrong (for example, stripping a species from a valid botanical name), and add corrections to canonicalize_manual.json.
+  * common names:
+    * look in common_names_debug_succeeded.json for entries that are obviously wrong, and add corrections to common_names_manual.json.
+      * some entries are clearly not English (and not a foreign name that is used in English), like "Laurier tulipier" for Magnolia
+      * some entries matched to a genus are plural (like "Acer" -> "Maples"); make them singular.
+      * some entries matched to a genus are not correct for the genus as a whole (for example, ITIS returns "Plum" for the genus Prunus, but many Prunus species are not plums).  Remove these from the results.
+      * do not include common names that are the same as the botanical names.  (For example, the common name of Eucalyptus is "Eucalyptus", but it should not be included in the list.)
   * when updating *_manual.json files, add entries only when you're reasonably sure that mapping is correct, to prevent erroneous mappings.

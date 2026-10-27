@@ -21,5 +21,237 @@
   "Prunus × blireiana": {
     "matchedName": "Prunus",
     "commonNames": []
+  },
+  "Prunus": {
+    "matchedName": "Prunus",
+    "commonNames": []
+  },
+  "Juglans": {
+    "matchedName": "Juglans",
+    "commonNames": ["Walnut"]
+  },
+  "Tilia": {
+    "matchedName": "Tilia",
+    "commonNames": ["Lime tree", "Linden"]
+  },
+  "Carya": {
+    "matchedName": "Carya",
+    "commonNames": ["Hickory"]
+  },
+  "Berberis": {
+    "matchedName": "Berberis",
+    "commonNames": ["Barberry"]
+  },
+  "Mahonia": {
+    "matchedName": "Mahonia",
+    "commonNames": []
+  },
+  "Erythrina": {
+    "matchedName": "Erythrina",
+    "commonNames": ["Coral tree"]
+  },
+  "Crataegus": {
+    "matchedName": "Crataegus",
+    "commonNames": ["Hawthorn"]
+  },
+  "Arbutus": {
+    "matchedName": "Arbutus",
+    "commonNames": []
+  },
+  "Rhododendron": {
+    "matchedName": "Rhododendron",
+    "commonNames": []
+  },
+  "Styrax": {
+    "matchedName": "Styrax",
+    "commonNames": ["Snowbell"]
+  },
+  "Rubus": {
+    "matchedName": "Rubus",
+    "commonNames": ["Bramble"]
+  },
+  "Arctostaphylos": {
+    "matchedName": "Arctostaphylos",
+    "commonNames": []
+  },
+  "Diospyros": {
+    "matchedName": "Diospyros",
+    "commonNames": ["Persimmon"]
+  },
+  "Halesia": {
+    "matchedName": "Halesia",
+    "commonNames": ["Silverbell"]
+  },
+  "Psidium": {
+    "matchedName": "Psidium",
+    "commonNames": ["Guava"]
+  },
+  "Cyrilla": {
+    "matchedName": "Cyrilla",
+    "commonNames": ["Titi"]
+  },
+  "Aloe": {
+    "matchedName": "Aloe",
+    "commonNames": []
+  },
+  "Eugenia": {
+    "matchedName": "Eugenia",
+    "commonNames": []
+  },
+  "Vaccinium": {
+    "matchedName": "Vaccinium",
+    "commonNames": []
+  },
+  "Mespilus": {
+    "matchedName": "Mespilus",
+    "commonNames": ["Medlar"]
+  },
+  "Pseudocydonia": {
+    "matchedName": "Pseudocydonia",
+    "commonNames": ["Chinese quince"]
+  },
+  "Photinia": {
+    "matchedName": "Photinia",
+    "commonNames": []
+  },
+  "Acer japonicum": {
+    "matchedName": "Acer japonicum",
+    "commonNames": ["Fullmoon maple"]
+  },
+  "Acer tataricum subsp. ginnala": {
+    "matchedName": "Acer tataricum subsp. ginnala",
+    "commonNames": ["Amur maple"]
+  },
+  "Carya illinoinensis": {
+    "matchedName": "Carya illinoinensis",
+    "commonNames": ["Pecan"]
+  },
+  "Carya ovata": {
+    "matchedName": "Carya ovata",
+    "commonNames": ["Shagbark hickory"]
+  },
+  "Carya cordiformis": {
+    "matchedName": "Carya cordiformis",
+    "commonNames": ["Bitternut hickory"]
+  },
+  "Juglans nigra": {
+    "matchedName": "Juglans nigra",
+    "commonNames": ["Black walnut"]
+  },
+  "Magnolia virginiana": {
+    "matchedName": "Magnolia virginiana",
+    "commonNames": ["Swamp-bay", "Sweetbay"]
+  },
+  "Magnolia virginiana var. australis": {
+    "matchedName": "Magnolia virginiana var. australis",
+    "commonNames": ["Swamp-bay", "Sweetbay"]
+  },
+  "Liriodendron tulipifera": {
+    "matchedName": "Liriodendron tulipifera",
+    "commonNames": ["Yellow poplar", "Tulip poplar", "Tuliptree"]
+  },
+  "Eucalyptus camaldulensis": {
+    "matchedName": "Eucalyptus camaldulensis",
+    "commonNames": ["River redgum", "Murray red gum", "Red gum"]
+  },
+  "Eucalyptus camaldulensis subsp. obtusa": {
+    "matchedName": "Eucalyptus camaldulensis subsp. obtusa",
+    "commonNames": ["River redgum", "Murray red gum", "Red gum"]
+  },
+  "Prunus cerasifera": {
+    "matchedName": "Prunus cerasifera",
+    "commonNames": ["Myrobalan plum", "Cherry plum"]
+  },
+  "Prunus cerasifera var. pissardii": {
+    "matchedName": "Prunus cerasifera var. pissardii",
+    "commonNames": ["Myrobalan plum", "Cherry plum"]
+  },
+  "Schinus molle": {
+    "matchedName": "Schinus molle",
+    "commonNames": ["Peppertree", "American pepper", "False pepper", "Pepper tree", "Peruvian peppertree"]
+  },
+  "Tipuana tipu": {
+    "matchedName": "Tipuana tipu",
+    "commonNames": ["Tipa", "Tiputree"]
+  },
+  "Bauhinia forficata": {
+    "matchedName": "Bauhinia forficata",
+    "commonNames": ["Cow's-foot"]
+  },
+  "Berberis vulgaris": {
+    "matchedName": "Berberis vulgaris",
+    "commonNames": ["European barberry", "Common barberry"]
+  },
+  "Cornus mas": {
+    "matchedName": "Cornus mas",
+    "commonNames": ["Cornelian cherry"]
+  },
+  "Castanea pumila": {
+    "matchedName": "Castanea pumila",
+    "commonNames": ["Chinkapin", "Allegheny chinkapin"]
+  },
+  "Sabal minor": {
+    "matchedName": "Sabal minor",
+    "commonNames": ["Dwarf palmetto"]
+  },
+  "Yucca brevifolia": {
+    "matchedName": "Yucca brevifolia",
+    "commonNames": ["Joshua tree"]
+  },
+  "Quercus serrata": {
+    "matchedName": "Quercus serrata",
+    "commonNames": ["Konara oak"]
+  },
+  "Senna spectabilis": {
+    "matchedName": "Senna spectabilis",
+    "commonNames": ["Spectacular cassia"]
+  },
+  "Senna spectabilis var. excelsa": {
+    "matchedName": "Senna spectabilis var. excelsa",
+    "commonNames": ["Spectacular cassia"]
+  },
+  "Senna polyphylla": {
+    "matchedName": "Senna polyphylla",
+    "commonNames": ["Desert cassia"]
+  },
+  "Handroanthus chrysanthus": {
+    "matchedName": "Handroanthus chrysanthus",
+    "commonNames": ["Golden trumpet tree"]
+  },
+  "Pinus edulis": {
+    "matchedName": "Pinus edulis",
+    "commonNames": ["Twoneedle pinyon", "Nut pine", "Colorado pinyon", "Pinyon", "Two-leaf pinyon", "Two-needle pinyon", "Pinyon pine"]
+  },
+  "Pinus maximartinezii": {
+    "matchedName": "Pinus maximartinezii",
+    "commonNames": ["Big-cone pinyon"]
+  },
+  "Pinus nigra": {
+    "matchedName": "Pinus nigra",
+    "commonNames": ["Austrian pine", "European black pine"]
+  },
+  "Pinus densiflora": {
+    "matchedName": "Pinus densiflora",
+    "commonNames": ["Tanyosho pine", "Japanese red pine"]
+  },
+  "Quercus texana": {
+    "matchedName": "Quercus texana",
+    "commonNames": ["Nuttall oak"]
+  },
+  "Psidium guajava": {
+    "matchedName": "Psidium guajava",
+    "commonNames": ["Guava"]
+  },
+  "Prunus armeniaca": {
+    "matchedName": "Prunus armeniaca",
+    "commonNames": ["Siberian apricot", "Apricot"]
+  },
+  "Prunus amygdalus": {
+    "matchedName": "Prunus amygdalus",
+    "commonNames": ["Sweet almond", "Almond"]
+  },
+  "Cedrus libani": {
+    "matchedName": "Cedrus libani",
+    "commonNames": ["Cedar of Lebanon"]
   }
 }

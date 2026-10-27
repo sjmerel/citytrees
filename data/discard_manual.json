@@ -89,7 +89,6 @@
   "potential site",
   "private shrub",
   "private tree",
-  "privet",
   "rescon",
   "rescon comp",
   "rural road tree rural road tree",
@@ -384,5 +383,18 @@
   "w-ponding basin at site",
   "w-str light/stop sign in 15'",
   "w-utility obstructs",
-  "× not city property (do not plant- prune- or remove)"
+  "× not city property (do not plant- prune- or remove)",
+  "basin(s)",
+  "common",
+  "conifer",
+  "cycad",
+  "garden",
+  "large shrub 15' or more",
+  "n.v.t. (boom niet aanwezig)",
+  "panicle",
+  "shrub spp.",
+  "virgil's",
+  "pinophyta",
+  "fabaceae",
+  "ericales"
 ]
