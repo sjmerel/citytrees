@@ -1,135 +1,185 @@
-// Looks up the English Wikipedia article for canonical botanical names. Names are first matched
-// exactly against the taxon name on Wikidata, in batches; the rest fall back to fetching the
-// Wikipedia page of that title.
-// Results are cached in wikipedia_cache.json ({ "<canonical name>": url | null }, where null means
-// no suitable article exists), so only names not seen before are queried. The cache can be deleted
-// and recreated.
+#!/usr/bin/env npx tsx
 
+import assert from 'node:assert/strict';
+import process from 'node:process';
 import axios from 'axios';
-import fs from 'node:fs';
+import { Normalize } from './normalize';
 
-const API = 'https://en.wikipedia.org/api/rest_v1/page/summary';
-const CACHE_FILE = 'wikipedia_cache.json';
-const SPARQL = 'https://query.wikidata.org/sparql';
-const BATCH_SIZE = 150;
-const CONCURRENCY = 1;
-const DELAY_MS = 250;
+let userAgent = 'CityTrees/2.0 (https://github.com/sjmerel/trees; sjmerel@fastmail.net)';
 
-// Wikipedia redirects scientific names to the common-name article (e.g. Ulmus -> Elm), so a
-// result is only accepted if it looks like an article about plants.
-const PLANT_WORDS = /\b(species|genus|trees?|shrubs?|plants?|palms?|conifers?|cultivar|hybrid|family|plum|cherry|apple|pear|oak|maple|elm|pine|fir|spruce|cypress|willow|poplar)\b/i;
 
-async function lookupOne(name: string): Promise<string | null> {
-  for (let attempt = 0; ; attempt++) {
-    try {
-      let title = encodeURIComponent(name.replace(/ /g, '_'));
-      let response = await axios.get(`${API}/${title}`, {
-        headers: { 'User-Agent': 'trees-data-pipeline/1.0 (tree identification app)' },
-        timeout: 30000,
-        validateStatus: status => status === 200 || status === 404 || status === 429,
-      });
-      if (response.status === 429) {
-        // wait as long as the server asks, then try again
-        let wait = Number(response.headers['retry-after']) || 5 * 2 ** attempt;
-        console.log(`  ${name}: rate limited, waiting ${Math.min(wait, 60)}s`);
-        await new Promise(resolve => setTimeout(resolve, Math.min(wait, 60) * 1000));
+export namespace Wikipedia {
+
+  export async function lookupUrl(name: string, debug: boolean = false): Promise<string | null> {
+    let url = await lookup(name, debug);
+    if (url) {
+      return url;
+    }
+
+    if (!name.includes(Normalize.hybridMarker)) {
+      // try less specific names
+      let speciesName = name.replace(/\s+(?:subsp|ssp|subvar|var|subf|f)\.?\s+.*$/i, '');
+      if (speciesName !== name) {
+        console.log(`    retrying as: ${speciesName}`);
+        let url = await lookup(speciesName, debug);
+        if (url) {
+          return url;
+        }
+      }
+
+      let genus = speciesName.split(/\s+/)[0];
+      if (genus === speciesName) {
+        return null;
+      }
+      else {
+        console.log(`    retrying as: ${genus}`);
+        let url = await lookup(genus, debug);
+        return url;
+      }
+    }
+
+    return null;
+  }
+}
+
+
+////////////////////////////////////////
+
+async function lookup(name: string, debug: boolean) {
+  let url = await lookupWikidata(name, debug);
+  if (url) { return url; }
+  return await lookupTitle(name, debug);
+}
+
+
+async function lookupTitle(name: string, debug: boolean): Promise<string | null> {
+  let params: Record<string, string | number> = {
+    action: 'query',
+    titles: name,
+    redirects: 1,
+    prop: 'info|pageprops',
+    inprop: 'url',
+    ppprop: 'wikibase_item|disambiguation',
+    format: 'json',
+    formatversion: 2
+  };
+  let disambiguationId: number | undefined;
+  let continuation = {};
+  do {
+    let response = await axios.get('https://en.wikipedia.org/w/api.php', {
+      params: { ...params, ...continuation },
+      headers: { 'User-Agent': userAgent },
+      timeout: 60000
+    });
+    let data = response.data;
+    if (data.error) throw new Error(`Wikipedia: ${data.error.code}: ${data.error.info}`);
+    let pages = data.query?.pages ?? [];
+    if (debug) console.log(pages);
+
+    if (disambiguationId === undefined) {
+      let page = pages[0];
+      if (!page || page.missing) return null;
+      if (page.pageprops?.disambiguation !== undefined) {
+        disambiguationId = page.pageid;
+        assert(disambiguationId !== undefined, 'Missing disambiguation page ID');
+        delete params.titles;
+        params.pageids = disambiguationId;
+        params.generator = 'links';
+        params.gplnamespace = 0;
+        params.gpllimit = 'max';
         continue;
       }
-      if (response.status === 404) return null;
-      let page = response.data;
-      if (page.type !== 'standard') return null;
-      let text = `${page.description ?? ''} ${page.extract ?? ''}`;
-      if (!PLANT_WORDS.test(text)) return null;
-      return page.content_urls?.desktop?.page ?? null;
     }
-    catch (error) {
-      if (attempt >= 8) throw error;
-      await new Promise(resolve => setTimeout(resolve, 1000 * 2 ** attempt));
-    }
-  }
+
+    let url = await firstPlantPage(pages, debug);
+    if (url) return url;
+    if (!data.continue) return null;
+    continuation = data.continue;
+  } while (true);
 }
 
-// Wikidata spells hybrids both "Genus × epithet" and "Genus ×epithet".
-function wikidataSpellings(name: string): string[] {
-  return name.includes(' × ') ? [name, name.replace(' × ', ' ×')] : [name];
+async function firstPlantPage(pages: any[], debug: boolean): Promise<string | null> {
+  let candidates = pages.filter(page =>
+    !page.missing && page.canonicalurl && page.pageprops?.wikibase_item &&
+    page.pageprops.disambiguation === undefined
+  );
+  if (!candidates.length) return null;
+  let ids = [...new Set(candidates.map(page => page.pageprops!.wikibase_item!))];
+  let plants = await getPlantIds(ids, debug);
+  return candidates.find(page => plants.has(page.pageprops!.wikibase_item!))?.canonicalurl ?? null;
 }
 
-async function lookupWikidata(names: string[]): Promise<Map<string, string>> {
-  let found = new Map<string, string>();
-  for (let i = 0; i < names.length; i += BATCH_SIZE) {
-    let batch = names.slice(i, i + BATCH_SIZE);
-    let spellings = new Map<string, string>();
-    for (let name of batch) {
-      for (let spelling of wikidataSpellings(name)) spellings.set(spelling, name);
-    }
-    let values = [...spellings.keys()].map(n => JSON.stringify(n)).join(' ');
-    let query = `SELECT ?name ?article WHERE {
-      VALUES ?name { ${values} }
-      ?item wdt:P225 ?name .
-      ?article schema:about ?item ; schema:isPartOf <https://en.wikipedia.org/> .
-    }`;
-    for (let attempt = 0; ; attempt++) {
-      try {
-        let response = await axios.post(SPARQL, new URLSearchParams({ query }).toString(), {
-          headers: {
-            'User-Agent': 'trees-data-pipeline/1.0 (tree identification app)',
-            'Accept': 'application/sparql-results+json',
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          timeout: 60000,
-        });
-        for (let b of response.data.results.bindings) {
-          let name = spellings.get(b.name.value);
-          // an exact spelling wins over the hybrid variant
-          if (name && (!found.has(name) || b.name.value === name)) found.set(name, b.article.value);
+async function getPlantIds(ids: string[], debug: boolean): Promise<Set<string>> {
+  if (!ids.length) return new Set();
+  assert(ids.every(id => /^Q\d+$/.test(id)), 'Invalid Wikidata item');
+  // Explicit IDs keep the ancestry traversal bounded to these candidates.
+  let matches = await queryWikidata<{ item: { value: string } }>(`
+        SELECT DISTINCT ?item WHERE {
+          VALUES ?item { ${ids.map(id => `wd:${id}`).join(' ')} }
+          ?item wdt:P171* wd:Q756 .
+          hint:Prior hint:gearing "forward" .
         }
-        break;
-      }
-      catch (error) {
-        if (attempt >= 4) throw error;
-        await new Promise(resolve => setTimeout(resolve, 2000 * 2 ** attempt));
-      }
-    }
-    console.log(`  wikidata: ${Math.min(i + BATCH_SIZE, names.length)}/${names.length}`);
-  }
-  return found;
+      `);
+  if (debug) console.log(matches);
+  return new Set(matches.map(match => match.item.value.split('/').pop()!));
 }
 
-// Returns the Wikipedia URL of each canonical name (null if there is none), in the same order.
-export async function lookupWikipediaUrls(canonicalNames: string[]): Promise<(string | null)[]> {
-  let cache: Record<string, string | null> =
-    fs.existsSync(CACHE_FILE) ? JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8')) : {};
-
-  let todo = canonicalNames.filter(name => !(name in cache));
-  console.log(`  ${canonicalNames.length - todo.length} names cached, ${todo.length} to look up`);
-
-  let wikidata = todo.length > 0 ? await lookupWikidata(todo) : new Map<string, string>();
-  for (let [name, url] of wikidata) cache[name] = url;
-  if (todo.length > 0) fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 1));
-  todo = todo.filter(name => !wikidata.has(name));
-  console.log(`  ${wikidata.size} found on wikidata, ${todo.length} to look up directly`);
-
-  let done = 0;
-  let next = 0;
-  async function worker() {
-    while (next < todo.length) {
-      let name = todo[next++];
-      try {
-        cache[name] = await lookupOne(name);
-        await new Promise(resolve => setTimeout(resolve, DELAY_MS));
+async function lookupWikidata(name: string, debug: boolean): Promise<string | null> {
+  let query = `
+      SELECT DISTINCT ?name ?item ?article WHERE {
+        VALUES ?name { ${JSON.stringify(name)} }
+        ?item wdt:P225 ?name .
+        ?article schema:about ?item ;
+                 schema:isPartOf <https://en.wikipedia.org/> .
       }
-      catch (error) {
-        // not cached, so it is retried on the next run
-        console.log(`  ${name}: lookup failed (${(error as Error).message})`);
-      }
-      if (++done % 25 == 0) {
-        console.log(`  ${done}/${todo.length}`);
-        fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 1));
-      }
-    }
-  }
-  await Promise.all(Array.from({ length: CONCURRENCY }, worker));
-  if (todo.length > 0) fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 1));
+    `;
+  let matches = await queryWikidata<{
+    name: { value: string };
+    item: { value: string };
+    article: { value: string };
+  }>(query);
+  let ids = [...new Set(matches.map(match => match.item.value.split('/').pop()!))];
+  let plants = await getPlantIds(ids, debug);
+  matches = matches.filter(match => plants.has(match.item.value.split('/').pop()!));
+  if (debug) { console.log(matches); }
 
-  return canonicalNames.map(name => cache[name] ?? null);
+  let exact = matches.filter(match => match.name.value === name);
+  let best = exact.length ? exact : matches;
+  let urls = new Set(best.map(match => match.article.value));
+  if (urls.size > 1 && debug) console.log(`Ambiguous Wikipedia match for ${name}`);
+  return urls.size === 1 ? [...urls][0] : null;
+}
+
+async function queryWikidata<T>(query: string): Promise<T[]> {
+  let response = await axios.get<{ results: { bindings: T[] } }>('https://query.wikidata.org/sparql', {
+    params: {
+      query,
+      format: 'json'
+    },
+    headers: {
+      'User-Agent': userAgent,
+      'Accept': 'application/sparql-results+json'
+    },
+    timeout: 60000
+  });
+
+  let matches = response.data.results?.bindings;
+  assert(Array.isArray(matches), 'Invalid Wikidata query response');
+  return matches;
+}
+
+
+////////////////////////////////////////
+
+async function main() {
+  let arg = process.argv[2];
+  let result = await Wikipedia.lookupUrl(arg, true);
+  console.log(result);
+}
+
+if (process.argv[1] && import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
 }

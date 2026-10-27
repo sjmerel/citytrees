@@ -2,10 +2,10 @@
 
 import fs from 'node:fs';
 import assert, { fail } from 'node:assert';
-import { lookupWikipediaUrls } from './wikipedia';
 import { Normalize } from './normalize';
 import { Canonicalize } from './canonicalize';
 import { CommonNames } from './common_names';
+import { Wikipedia } from './wikipedia';
 
 
 
@@ -81,22 +81,20 @@ async function main() {
   console.log();
   console.log('looking up common names...');
   types = await getCommonNames(types);
+  console.log(`  ${types.filter(o => o.common_names.length).length} of ${types.length} types have common names`);
 
-  /*
 
-  // wikipedia articles
+  ////////////////////////////////////////
+  // find wikipedia links
+
   console.log();
   console.log('looking up wikipedia urls...');
-  let wikipediaUrls = await lookupWikipediaUrls(names);
-  console.log(`  ${wikipediaUrls.filter(u => u).length} of ${names.length} types have wikipedia urls`);
+  types = await getWikipediaUrls(types);
+  console.log(`  ${types.filter(o => o.wikipedial_url).length} of ${types.length} types have wikipedia urls`);
 
-  let types = names.map((o, i) => ({
-    canonical_name: o,
-    common_names: commonNames[i],
-    ...(wikipediaUrls[i] ? { wikipedia_url: wikipediaUrls[i] } : {})
-  }));
-  */
 
+  ////////////////////////////////////////
+  // write output files
 
   console.log();
   console.log('writing json files...');
@@ -340,8 +338,6 @@ function handleDuplicateLocations(data: any[]): any[] {
 ////////////////////////////////////////
 
 async function getCommonNames(types: any[]): Promise<any[]> {
-  // TODO add some manual overrides:  e.g. to remove non-english (nuez encarcelada for carya illinoinensis), or add missing (hong kong orchid for bauhinia)
-  // TODO use a curated genus list (since some like Prunus return too-specific (chokecherry))
   let manualNames = loadObject('common_names_manual.json');
 
   let commonNamesCache = loadCache('common_names_cache.json');
@@ -381,6 +377,45 @@ async function getCommonNames(types: any[]): Promise<any[]> {
   saveObject('common_names_debug_failed.json', failedMap);
   saveObject('common_names_debug_succeeded.json', succeededMap);
 
+  return types;
+}
+
+////////////////////////////////////////
+
+async function getWikipediaUrls(types: any[]): Promise<any[]> {
+  let wikipediaCache = loadCache('wikipedia_cache.json');
+  let succeededMap = {};
+  let failedMap = {};
+  let n = 0;
+  for (let [index, type] of types.entries()) {
+    let name = type.canonical_name;
+    let result = wikipediaCache[name];
+    if (!result) {
+      console.log(`  look up wikipedia urls: ${name} (${index+1}/${types.length})`);
+
+      result = await Wikipedia.lookupUrl(name);
+      if (result) {
+        console.log(`     -> ${result}`);
+      }
+
+      wikipediaCache[name] = result;
+      ++n;
+      if (n % 100 == 0) { saveObject('wikipedia_cache.json', wikipediaCache); }
+    }
+
+    type.wikipedia_url = result;
+
+    if (result) {
+      succeededMap[name] = result;
+    }
+    else {
+      failedMap[name] = null;
+    }
+  }
+
+  saveObject('wikipedia_cache.json', wikipediaCache);
+  saveObject('wikipedia_debug_failed.json', failedMap);
+  saveObject('wikipedia_debug_succeeded.json', succeededMap);
   return types;
 }
 
