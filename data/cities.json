@@ -1809,5 +1809,89 @@
     "code": "madrid_es",
     "name": "Madrid",
     "country": "ES"
+  },
+  {
+    "code": "brisbane_qld_au",
+    "name": "Brisbane (Sherwood Arboretum)",
+    "state": "QLD",
+    "country": "AU"
+  },
+  {
+    "code": "colacotway_vic_au",
+    "name": "Colac Otway",
+    "state": "VIC",
+    "country": "AU"
+  },
+  {
+    "code": "manningham_vic_au",
+    "name": "Manningham",
+    "state": "VIC",
+    "country": "AU"
+  },
+  {
+    "code": "nottingham_gb",
+    "name": "Nottingham",
+    "country": "GB"
+  },
+  {
+    "code": "welland_on_ca",
+    "name": "Welland",
+    "state": "ON",
+    "country": "CA"
+  },
+  {
+    "code": "vienna_at",
+    "name": "Vienna",
+    "country": "AT"
+  },
+  {
+    "code": "hamburg_de",
+    "name": "Hamburg",
+    "country": "DE"
+  },
+  {
+    "code": "milan_it",
+    "name": "Milan",
+    "country": "IT"
+  },
+  {
+    "code": "amsterdam_nl",
+    "name": "Amsterdam",
+    "country": "NL"
+  },
+  {
+    "code": "helsinki_fi",
+    "name": "Helsinki",
+    "country": "FI"
+  },
+  {
+    "code": "paris_fr",
+    "name": "Paris",
+    "country": "FR"
+  },
+  {
+    "code": "leipzig_de",
+    "name": "Leipzig",
+    "country": "DE"
+  },
+  {
+    "code": "frankfurt_de",
+    "name": "Frankfurt am Main",
+    "country": "DE"
+  },
+  {
+    "code": "utrecht_nl",
+    "name": "Utrecht",
+    "country": "NL"
+  },
+  {
+    "code": "toulouse_fr",
+    "name": "Toulouse Metropole",
+    "country": "FR"
+  },
+  {
+    "code": "bordeaux_fr",
+    "name": "Bordeaux Metropole",
+    "country": "FR"
   }
 ]

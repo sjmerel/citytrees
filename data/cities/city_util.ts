@@ -37,7 +37,7 @@ export namespace CityUtil {
   }
 
   // Transient server errors (502/503/504) and network errors are common on long paged downloads.
-  async function getWithRetry(url: string, config: object, attempts = 5) {
+  export async function getWithRetry(url: string, config: object, attempts = 5) {
     for (let i = 1; ; ++i) {
       try {
         return await axios.get(url, config);
@@ -52,10 +52,72 @@ export namespace CityUtil {
     }
   }
 
+  export async function fetchOpenDataSoft<T>(endpoint: string): Promise<T[]> {
+    async function getCount() {
+      let response = await getWithRetry(`${endpoint}/records`, {
+        params: { limit: 0 }, timeout: 120000
+      });
+      let count: number = response.data.total_count;
+      assert(Number.isSafeInteger(count) && count > 0);
+      return count;
+    }
+    let total = await getCount();
+    let response = await getWithRetry(`${endpoint}/exports/json`, { timeout: 240000 });
+    let rows: T[] = response.data;
+    assert(Array.isArray(rows));
+    assert.equal(rows.length, total, 'Incomplete OpenDataSoft export');
+    assert.equal(await getCount(), total, 'OpenDataSoft inventory changed during download; retry');
+    return rows;
+  }
+
+  export async function fetchWfs<T extends { properties: Record<string, unknown> }>(
+    endpoint: string, typeNames: string, idField = 'id'
+  ): Promise<T[]> {
+    let params = { service: 'WFS', version: '2.0.0', request: 'GetFeature', typeNames };
+    async function getCount() {
+      let response = await getWithRetry(endpoint, {
+        params: { ...params, resultType: 'hits' }, responseType: 'text', timeout: 120000
+      });
+      let match = response.data.match(/\bnumberMatched="(\d+)"/);
+      assert(match, 'WFS did not return a total');
+      let count = Number(match[1]);
+      assert(Number.isSafeInteger(count) && count > 0);
+      return count;
+    }
+    let total = await getCount();
+    let rows: T[] = [];
+    let ids = new Set<number>();
+    while (rows.length < total) {
+      let response = await getWithRetry(endpoint, {
+        params: {
+          ...params, outputFormat: 'application/json',
+          srsName: 'urn:ogc:def:crs:OGC::CRS84',
+          sortBy: idField, count: 10000, startIndex: rows.length
+        },
+        timeout: 120000
+      });
+      let page: { type: string; numberMatched?: number | null; features: T[] } = response.data;
+      assert.equal(page.type, 'FeatureCollection');
+      assert(Array.isArray(page.features) && page.features.length > 0, 'Incomplete WFS download');
+      if (page.numberMatched != null) assert.equal(page.numberMatched, total, 'WFS inventory changed; retry');
+      for (let feature of page.features) {
+        let id = feature.properties[idField];
+        assert(typeof id === 'number' && Number.isSafeInteger(id) && !ids.has(id), 'Invalid/repeated WFS tree ID');
+        ids.add(id);
+        rows.push(feature);
+      }
+      assert(rows.length <= total);
+      console.log(`${typeNames}: ${rows.length}/${total}`);
+    }
+    assert.equal(await getCount(), total, 'WFS inventory changed during download; retry');
+    return rows;
+  }
+
   export async function fetchArcGis(endpoint: string, options: {
     where?: string;
     fields?: string;
     returnGeometry?: boolean;
+    verifyComplete?: boolean;
   } = {}) {
 
     let rows = [];
@@ -68,6 +130,20 @@ export namespace CityUtil {
     let objectIdField = layer.objectIdField ?? layer.objectIdFieldName ??
       layer.fields?.find((field: { name: string; type: string }) =>
         field.type === 'esriFieldTypeOID')?.name ?? 'OBJECTID';
+    async function getCount() {
+      let response = await getWithRetry(`${endpoint}/query`, {
+        params: { f: 'json', where: options.where ?? '1=1', returnCountOnly: true },
+        timeout: 120000
+      });
+      if (response.data.error) {
+        throw new Error(`ArcGIS count failed: ${JSON.stringify(response.data.error)}`);
+      }
+      let count: number = response.data.count;
+      assert(Number.isSafeInteger(count) && count > 0);
+      return count;
+    }
+    let total = options.verifyComplete ? await getCount() : undefined;
+    let ids = new Set<number>();
 
     for (;;) {
       let response = await getWithRetry(`${endpoint}/query`, {
@@ -91,10 +167,22 @@ export namespace CityUtil {
         throw new Error('ArcGIS query response did not contain a features array');
       }
 
+      if (options.verifyComplete) {
+        for (let feature of page) {
+          let id = feature.attributes[objectIdField];
+          assert(Number.isSafeInteger(id) && !ids.has(id), 'Invalid/repeated ArcGIS tree ID');
+          ids.add(id);
+        }
+      }
       rows.push(...page);
+      if (total !== undefined) assert(rows.length <= total, 'ArcGIS inventory changed; retry');
       console.log(`${rows.length}`);
 
       if (page.length === 0 || (page.length < pageSize && !response.data.exceededTransferLimit)) {
+        if (total !== undefined) {
+          assert.equal(rows.length, total, 'Incomplete ArcGIS download');
+          assert.equal(await getCount(), total, 'ArcGIS inventory changed during download; retry');
+        }
         return rows;
       }
       offset += page.length;

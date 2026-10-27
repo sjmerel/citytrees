@@ -2,6 +2,7 @@ This is source code for an app so people can identify trees in their neighborhoo
 
 ## Data
 Data comes from publicly available city data maintained by their landscaping departments. We download and process the data initially using TypeScript scripts in the data/ directory.
+(Note that while we say "city" in this documentation, the databases could be from counties, provinces, states, etc.)
 
 Each city database contains thousands of entries in various formats. The data pipeline is as follows:
 * Download a city's data with the <city>.ts script (e.g. losangeles.ts). The data is saved in <city>.json, containing latitude, longitude, and botanical name for each tree. 
