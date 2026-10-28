@@ -45,10 +45,12 @@
   * normalization:
     * look in normalize_debug_stripped.json and normalize_debug_unstripped.json for any keys that are obviously not botanical names ("stump", "vacant site", common names like "palm" that do not correspond to a specific genus, etc), and add them to discard_manual.json.
     * look in normalize_debug_stripped.json and normalize_debug_unstripped.json for obvious normalization mistakes (e.g. where cultivar is obviously still present in the value) and add a corrected entry to normalize_manual.json.
+    * look in normalize_debug_stripped.json and normalize_debug_unstripped.json for places where a hybrid "x" is attached to the genus or species.  For example, "amelanchier xgrandiflora" should be "amelanchier x grandiflora".  Put these into normalize_manual.json.  (Note that some genus/species genuinely begin with "x"!)
+    * look in normalize_debug_stripped.json and normalize_debug_unstripped.json for common names for which a botanical name can be confidently assigned (for example, "freeman maple" is pretty certainly "acer × freemanii"), and add them to normalize_common_manual.json.
     * look in normalize_debug_stripped.json for entries where the cultivar was stripped leaving only a genus (for example, "ilex 'Wilsonii'" -> "ilex").  If the cultivar and genus provide enough information to identify a species, put that mapping into normalize_genus_cultivar_manual.json (e.g. "ilex x altaclarensis").
-    * normalization should be primarily a syntactical transformation.  Do not correct botanical names that are misspelled, or botanical synonyms, etc; that kind of correction should happen in the canonicalization step.
+    * Do not correct botanical names that are misspelled, or botanical synonyms, etc; that kind of correction should happen in the canonicalization step.
   * canonicalization:
-    * look in canonicalize_debug_failed.json for entries that failed canonicalization from the GBIF API but for which a canonicalization is obvious (for example "cedrus" fails, but clearly should be the genus "cedrus"; or "freeman maple" can pretty confidently be mapped to "acer × freemanii").  Add these to canonicalize_manual.json.
+    * look in canonicalize_debug_failed.json for entries that failed canonicalization from the GBIF API but for which a canonicalization is obvious (for example "cedrus" fails, but clearly should be the genus "cedrus").  Add these to canonicalize_manual.json.
     * look in canonicalize_debug_succeeded.json for entries that are obviously wrong (for example, stripping a species from a valid botanical name), and add corrections to canonicalize_manual.json.
   * common names:
     * look in common_names_debug_succeeded.json for entries that are obviously wrong, and add corrections to common_names_manual.json.

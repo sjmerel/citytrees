@@ -90,7 +90,7 @@ async function main() {
   console.log();
   console.log('looking up wikipedia urls...');
   types = await getWikipediaUrls(types);
-  console.log(`  ${types.filter(o => o.wikipedial_url).length} of ${types.length} types have wikipedia urls`);
+  console.log(`  ${types.filter(o => o.wikipedia_url).length} of ${types.length} types have wikipedia urls`);
 
 
   ////////////////////////////////////////
@@ -170,13 +170,16 @@ function normalizeNames(data: any[]): any[] {
   // normalize those manually also.
   let manualNamesGc = normalizeMap(loadObject('normalize_genus_cultivar_manual.json'));
 
+  // some species are identified by common name, but a botanical name is clear.
+  let manualNamesCommon = normalizeMap(loadObject('normalize_common_manual.json'));
+
   // normalize with the dictionaries read above, or else normalize with a heuristic.
   let names = [...new Set(data.map(o => o.name))];
   let normalizedMap = {}
   let strippedMap = {}
   let unstrippedMap = {}
   for (let name of names) {
-    let newName = manualNames[name] ?? manualNamesGc[name];
+    let newName = manualNames[name] ?? manualNamesGc[name] ?? manualNamesCommon[name];
     if (!newName) {
       newName = Normalize.normalizeName(name);
 
