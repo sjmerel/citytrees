@@ -1,19 +1,23 @@
 This is source code for an app so people can identify trees in their neighborhoods.
+This app is open source and non-commercial.
 
 ## Data
 Data comes from publicly available city data maintained by their landscaping departments. We download and process the data initially using TypeScript scripts in the data/ directory.
 (Note that while we say "city" in this documentation, the databases could be from counties, provinces, states, etc.)
 
 Each city database contains thousands of entries in various formats. The data pipeline is as follows:
-* Download a city's data with the <city>.ts script (e.g. losangeles.ts). The data is saved in <city>.json, containing latitude, longitude, and botanical name for each tree. 
-* Run process.ts:
-  * Combine all city data.
-  * Strip cultivars from botanical names, to make canonicalization easier later.  (We may at some point want to keep the cultivar information.)
-  * Canonicalize botanical names with a query to the GBIF API. 
-  * Build a global list of tree types and write it to types.json.
-  * Save a list of tree sites containing latitude/longitude and an index into the tree type list, to sites.json.
+* Download a city's data with the data/cities/<city>.ts script (e.g. losangeles_ca_us.ts). The data is saved in data/cities/<city>.json, containing latitude, longitude, and botanical name for each tree ("site").
+  * Combine all cities' site data.
+  * "Normalize" botanical names: strip cultivars, standardize spacing and capitalization and hybrid formatting, etc.
+  * "Canonicalize" botanical names with a query to the GBIF API to find an accepted latin name.
+  * Build a list of unique tree types from the list of sites, adding common names and Wikipedia URLs when available.
+  * Save the tree types to types.json.
+  * Convert the botanical name in each site to an index into the tree type list, and save the tree sites to sites.json.
 * Run build_data (Swift):
   * read types.json and sites.json; write binary versions that can take less space and can be loaded quickly by the app.
+* Run upload.ts to upload the binary data to a public storage bucket.
+
+There is more detailed information on how data is added and processed in the data [README](/data/README.txt).
 
 Before researching or adding cities, Agents should read and follow [city instructions](/agents/city-data.instructions.md). 
 Cities that have been considered previously should be stored in the [candidate list](/agents/city-candidates.json).
