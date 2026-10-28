@@ -54,6 +54,7 @@
   "no tree",
   "non-sufficient space",
   "none",
+  "norway",
   "not applicable",
   "not identified",
   "not known",
@@ -188,7 +189,6 @@
   "broadleaf medium",
   "broadleaf negundo",
   "broadleaf palustris",
-  "broadleaf polyanthemos",
   "broadleaf small",
   "callistemon 'kings park special' & melaleuca quinquenervia",
   "combo",
@@ -394,7 +394,9 @@
   "panicle",
   "shrub spp.",
   "virgil's",
+  "× ash - not adjacent to a target",
   "pinophyta",
   "fabaceae",
+  "white",
   "ericales"
 ]
