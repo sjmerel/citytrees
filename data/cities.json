@@ -15,7 +15,8 @@
     "code": "newyorkcity_ny_us",
     "name": "New York City",
     "state": "NY",
-    "country": "US"
+    "country": "US",
+    "license": "https://data.cityofnewyork.us/stories/s/Terms-of-Use/k9k7-3cje"
   },
   {
     "code": "jerseycity_nj_us",
@@ -33,7 +34,8 @@
     "code": "sanfrancisco_ca_us",
     "name": "San Francisco",
     "state": "CA",
-    "country": "US"
+    "country": "US",
+    "license": "http://opendatacommons.org/licenses/pddl/1.0/"
   },
   {
     "code": "santamonica_ca_us",
@@ -45,19 +47,22 @@
     "code": "seattle_wa_us",
     "name": "Seattle",
     "state": "WA",
-    "country": "US"
+    "country": "US",
+    "license": "https://data.seattle.gov/stories/s/Terms-of-Use/6ukr-wvup/"
   },
   {
     "code": "westhollywood_ca_us",
     "name": "West Hollywood",
     "state": "CA",
-    "country": "US"
+    "country": "US",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode"
   },
   {
     "code": "austin_tx_us",
     "name": "Austin",
     "state": "TX",
-    "country": "US"
+    "country": "US",
+    "license": "https://datahub.austintexas.gov/stories/s/ranj-cccq"
   },
   {
     "code": "berkeley_ca_us",
@@ -69,18 +74,21 @@
     "code": "cambridge_ma_us",
     "name": "Cambridge",
     "state": "MA",
-    "country": "US"
+    "country": "US",
+    "license": "http://opendatacommons.org/licenses/pddl/1.0/"
   },
   {
     "code": "denver_co_us",
     "name": "Denver",
     "state": "CO",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=f90e355dd3874744a25c30fd2ddfd45b"
   },
   {
     "code": "london_gb",
     "name": "London",
-    "country": "GB"
+    "country": "GB",
+    "license": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
   },
   {
     "code": "edinburgh_gb",
@@ -90,23 +98,28 @@
   {
     "code": "belfast_gb",
     "name": "Belfast",
-    "country": "GB"
+    "country": "GB",
+    "license": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
   },
   {
     "code": "york_gb",
     "name": "York",
-    "country": "GB"
+    "country": "GB",
+    "license": "https://www.arcgis.com/home/item.html?id=30f38f358843467daa2d93074a03b8d5"
   },
   {
     "code": "sheffield_gb",
     "name": "Sheffield",
-    "country": "GB"
+    "country": "GB",
+    "license": "https://www.arcgis.com/home/item.html?id=7b2df397e9994ca5984bad0b679ce6d9",
+    "license_comment": "INSPIRE end-user terms require review before distributing processed data."
   },
   {
     "code": "montreal_qc_ca",
     "name": "Montreal",
     "state": "QC",
-    "country": "CA"
+    "country": "CA",
+    "license": "http://creativecommons.org/licenses/by/4.0/"
   },
   {
     "code": "oakland_ca_us",
@@ -118,13 +131,15 @@
     "code": "philadelphia_pa_us",
     "name": "Philadelphia",
     "state": "PA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=dc6826e1319c4b35a7b662bc6be68104"
   },
   {
     "code": "portland_or_us",
     "name": "Portland",
     "state": "OR",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.portlandmaps.com/bps/arpa/tos.pdf"
   },
   {
     "code": "sacramento_ca_us",
@@ -142,31 +157,37 @@
     "code": "toronto_on_ca",
     "name": "Toronto",
     "state": "ON",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://open.toronto.ca/open-data-licence/"
   },
   {
     "code": "vancouver_bc_ca",
     "name": "Vancouver",
     "state": "BC",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://vancouver.ca/your-government/terms-of-use.aspx",
+    "license_comment": "Applicable terms could not be inspected (HTTP 403); redistribution permission remains unverified."
   },
   {
     "code": "victoria_bc_ca",
     "name": "Victoria",
     "state": "BC",
-    "country": "CA"
+    "country": "CA",
+    "license": "http://opendata.victoria.ca/pages/open-data-licence"
   },
   {
     "code": "washington_dc_us",
     "name": "Washington",
     "state": "DC",
-    "country": "US"
+    "country": "US",
+    "license": "https://dc.gov/page/terms-and-conditions-use-district-data"
   },
   {
     "code": "waterloo_on_ca",
     "name": "Waterloo",
     "state": "ON",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://data.waterloo.ca/pages/open-data-licence"
   },
   {
     "code": "atlanta_ga_us",
@@ -178,13 +199,15 @@
     "code": "baltimore_md_us",
     "name": "Baltimore",
     "state": "MD",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.baltimorecity.gov/publicworks/terms-of-use-and-disclaimer-policy"
   },
   {
     "code": "boston_ma_us",
     "name": "Boston",
     "state": "MA",
-    "country": "US"
+    "country": "US",
+    "license": "http://www.opendefinition.org/licenses/odc-pddl"
   },
   {
     "code": "neworleans_la_us",
@@ -202,7 +225,8 @@
     "code": "pittsburgh_pa_us",
     "name": "Pittsburgh",
     "state": "PA",
-    "country": "US"
+    "country": "US",
+    "license": "http://www.opendefinition.org/licenses/cc-by"
   },
   {
     "code": "paloalto_ca_us",
@@ -322,7 +346,9 @@
     "code": "anaheim_ca_us",
     "name": "Anaheim",
     "state": "CA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=1e0018ebc2e64b918cb32de1bc7cbefe",
+    "license_comment": "Stated use is municipal inventory QA/QC, analysis and operations; public app redistribution is not clearly permitted."
   },
   {
     "code": "fullerton_ca_us",
@@ -418,13 +444,16 @@
     "code": "oakpark_il_us",
     "name": "Oak Park",
     "state": "IL",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=402e05e1ced64931b8908178c095bd0f",
+    "license_comment": "Item description specifies viewing only in myGIS; permission for app redistribution needs clarification."
   },
   {
     "code": "berwyn_il_us",
     "name": "Berwyn",
     "state": "IL",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=95d7aacaead94d2487313d3801ac5b97"
   },
   {
     "code": "wilmette_il_us",
@@ -436,7 +465,8 @@
     "code": "naperville_il_us",
     "name": "Naperville",
     "state": "IL",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=9ee23fb99f1d4391824b66fddc2f10f1"
   },
   {
     "code": "bend_or_us",
@@ -484,31 +514,36 @@
     "code": "mesa_az_us",
     "name": "Mesa",
     "state": "AZ",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=1ffffa1b76ee46a7bc8dbce482f6d0a9"
   },
   {
     "code": "tempe_az_us",
     "name": "Tempe",
     "state": "AZ",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=95880f468ef142928d2e362f987ec350"
   },
   {
     "code": "spokane_wa_us",
     "name": "Spokane",
     "state": "WA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=d84eda620819425185d114a06a94d047"
   },
   {
     "code": "bellevue_wa_us",
     "name": "Bellevue",
     "state": "WA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=0e5097923b1b448ab9a1217038db4f41"
   },
   {
     "code": "doral_fl_us",
     "name": "Doral",
     "state": "FL",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=d356e28579fa4af9a93f63973595d9df"
   },
   {
     "code": "plano_tx_us",
@@ -556,13 +591,15 @@
     "code": "ithaca_ny_us",
     "name": "Ithaca",
     "state": "NY",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=881adbbd08bb408cbd33c1567886edae"
   },
   {
     "code": "providence_ri_us",
     "name": "Providence",
     "state": "RI",
-    "country": "US"
+    "country": "US",
+    "license": "http://opendatacommons.org/licenses/by/1.0/"
   },
   {
     "code": "arlington_ma_us",
@@ -580,7 +617,8 @@
     "code": "montgomerycounty_md_us",
     "name": "Montgomery County",
     "state": "MD",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=bdce7d06c4904ecfaf14a1873f71e232"
   },
   {
     "code": "norfolk_va_us",
@@ -622,7 +660,9 @@
     "code": "allen_tx_us",
     "name": "Allen",
     "state": "TX",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=60f6c569c0b6410e92664caf1c06ec2d",
+    "license_comment": "Personal use is permitted, but public redistribution is not clearly covered, even for a non-commercial app."
   },
   {
     "code": "durham_nc_us",
@@ -646,49 +686,57 @@
     "code": "melbourne_vic_au",
     "name": "Melbourne",
     "state": "VIC",
-    "country": "AU"
+    "country": "AU",
+    "license": "https://creativecommons.org/licenses/by/4.0/legalcode"
   },
   {
     "code": "sydney_nsw_au",
     "name": "Sydney",
     "state": "NSW",
-    "country": "AU"
+    "country": "AU",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
   },
   {
     "code": "adelaide_sa_au",
     "name": "Adelaide",
     "state": "SA",
-    "country": "AU"
+    "country": "AU",
+    "license": "http://creativecommons.org/licenses/by/4.0"
   },
   {
     "code": "perth_wa_au",
     "name": "Perth",
     "state": "WA",
-    "country": "AU"
+    "country": "AU",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
   },
   {
     "code": "ballarat_vic_au",
     "name": "Ballarat",
     "state": "VIC",
-    "country": "AU"
+    "country": "AU",
+    "license": "https://creativecommons.org/licenses/by/3.0/au/"
   },
   {
     "code": "portphillip_vic_au",
     "name": "Port Phillip",
     "state": "VIC",
-    "country": "AU"
+    "country": "AU",
+    "license": "http://creativecommons.org/licenses/by/2.5/au/"
   },
   {
     "code": "yarra_vic_au",
     "name": "Yarra",
     "state": "VIC",
-    "country": "AU"
+    "country": "AU",
+    "license": "http://creativecommons.org/licenses/by/4.0"
   },
   {
     "code": "wodonga_vic_au",
     "name": "Wodonga",
     "state": "VIC",
-    "country": "AU"
+    "country": "AU",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
   },
   {
     "code": "cockburn_wa_au",
@@ -700,31 +748,36 @@
     "code": "gleneira_vic_au",
     "name": "Glen Eira",
     "state": "VIC",
-    "country": "AU"
+    "country": "AU",
+    "license": "http://creativecommons.org/licenses/by/2.5/au/"
   },
   {
     "code": "hobsonsbay_vic_au",
     "name": "Hobsons Bay",
     "state": "VIC",
-    "country": "AU"
+    "country": "AU",
+    "license": "http://creativecommons.org/licenses/by/2.5/au/"
   },
   {
     "code": "shepparton_vic_au",
     "name": "Greater Shepparton",
     "state": "VIC",
-    "country": "AU"
+    "country": "AU",
+    "license": "http://creativecommons.org/licenses/by/4.0"
   },
   {
     "code": "macedonranges_vic_au",
     "name": "Macedon Ranges",
     "state": "VIC",
-    "country": "AU"
+    "country": "AU",
+    "license": "http://creativecommons.org/licenses/by/2.5/au/"
   },
   {
     "code": "burnside_sa_au",
     "name": "Burnside",
     "state": "SA",
-    "country": "AU"
+    "country": "AU",
+    "license": "http://creativecommons.org/licenses/by/4.0"
   },
   {
     "code": "launceston_tas_au",
@@ -766,7 +819,8 @@
     "code": "milwaukeecounty_wi_us",
     "name": "Milwaukee County Parks",
     "state": "WI",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=bf919332567d44b2b1bc531858aa2bc9"
   },
   {
     "code": "siouxfalls_sd_us",
@@ -814,121 +868,143 @@
     "code": "canberra_act_au",
     "name": "Canberra",
     "state": "ACT",
-    "country": "AU"
+    "country": "AU",
+    "license": "https://www.arcgis.com/home/item.html?id=d401a7266ba74dc18c1902ae6e71fe90"
   },
   {
     "code": "calgary_ab_ca",
     "name": "Calgary",
     "state": "AB",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://data.calgary.ca/d/Open-Data-Terms/u45n-7awa"
   },
   {
     "code": "edmonton_ab_ca",
     "name": "Edmonton",
     "state": "AB",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://data.edmonton.ca/stories/s/Open-Government-Licence-Edmonton/msh8-if28/"
   },
   {
     "code": "winnipeg_mb_ca",
     "name": "Winnipeg",
     "state": "MB",
-    "country": "CA"
+    "country": "CA",
+    "license": "http://open.canada.ca/en/open-government-licence-canada"
   },
   {
     "code": "barrie_on_ca",
     "name": "Barrie",
     "state": "ON",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://www.arcgis.com/home/item.html?id=d053284adf6341d7939486d13bfd6911"
   },
   {
     "code": "halifax_ns_ca",
     "name": "Halifax",
     "state": "NS",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://data-hrm.hub.arcgis.com/pages/open-data-licence"
   },
   {
     "code": "hamilton_on_ca",
     "name": "Hamilton",
     "state": "ON",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://www.hamilton.ca/city-council/data-maps/open-data/open-data-licence-terms-and-conditions",
+    "license_comment": "Reuse is permitted with attribution, but the city reserves discretionary termination of the user's authorization."
   },
   {
     "code": "kelowna_bc_ca",
     "name": "Kelowna",
     "state": "BC",
-    "country": "CA"
+    "country": "CA",
+    "license": "http://apps.kelowna.ca/images/opendata/opengovernmentlicence.pdf"
   },
   {
     "code": "kitchener_on_ca",
     "name": "Kitchener",
     "state": "ON",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://www.arcgis.com/home/item.html?id=e42a9601b87a4417b3d3d15a0f596f64"
   },
   {
     "code": "langley_bc_ca",
     "name": "Langley",
     "state": "BC",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://www.tol.ca/en/connect/open-data-licence.aspx"
   },
   {
     "code": "mapleridge_bc_ca",
     "name": "Maple Ridge",
     "state": "BC",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://opengov.mapleridge.ca/pages/open-government-licence"
   },
   {
     "code": "medicinehat_ab_ca",
     "name": "Medicine Hat",
     "state": "AB",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://www.medicinehat.ca/media/icmn0zwt/cmh_open-data-license.pdf"
   },
   {
     "code": "oakville_on_ca",
     "name": "Oakville",
     "state": "ON",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://www.oakville.ca/town-hall/town-studies-plans-projects/town-initiatives/open-data/open-data-licence/"
   },
   {
     "code": "peterborough_on_ca",
     "name": "Peterborough",
     "state": "ON",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://data-ptbo.opendata.arcgis.com/pages/terms-of-use"
   },
   {
     "code": "princegeorge_bc_ca",
     "name": "Prince George",
     "state": "BC",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://pgmapinfo.princegeorge.ca/opendata/CityofPrinceGeorge_Open_Government_License_Open_Data.pdf"
   },
   {
     "code": "whitby_on_ca",
     "name": "Whitby",
     "state": "ON",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://www.arcgis.com/home/item.html?id=223810efc31c40b3aff99dd74f809a97",
+    "license_comment": "Open Government License conflicts with personal/non-commercial wording in item metadata; clarify public redistribution rights."
   },
   {
     "code": "fredericton_nb_ca",
     "name": "Fredericton",
     "state": "NB",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://data-fredericton.opendata.arcgis.com/pages/open-data-license"
   },
   {
     "code": "stalbert_ab_ca",
     "name": "St. Albert",
     "state": "AB",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://data.stalbert.ca/pages/licence"
   },
   {
     "code": "quebeccity_qc_ca",
     "name": "Quebec City",
     "state": "QC",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://www.donneesquebec.ca/licence/#cc-by"
   },
   {
     "code": "ottawa_on_ca",
     "name": "Ottawa",
     "state": "ON",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://www.arcgis.com/home/item.html?id=13092822f69143b695bdb916357d421b"
   },
   {
     "code": "highlandpark_nj_us",
@@ -952,7 +1028,8 @@
     "code": "galesburg_il_us",
     "name": "Galesburg",
     "state": "IL",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=3ad9653151514792b76cc2c59a646c6a"
   },
   {
     "code": "hoboken_nj_us",
@@ -970,27 +1047,32 @@
     "code": "palmsprings_ca_us",
     "name": "Palm Springs",
     "state": "CA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=d74aca29ba054b0e92492c5aaa78125b",
+    "license_comment": "Explicitly prohibits alteration or redistribution; permission is needed for processed app data."
   },
   {
     "code": "wisconsin_wi_us",
     "name": "Wisconsin (DNR communities)",
     "maxRadiusDegrees": 10,
     "state": "WI",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=5c6daadb975246a7936863151ad0f4a1"
   },
   {
     "code": "indiana_in_us",
     "name": "Indiana (ERI communities)",
     "maxRadiusDegrees": 5,
     "state": "IN",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=6aa1bfc6716f42d0b80ffdeab06e5bbf"
   },
   {
     "code": "surrey_bc_ca",
     "name": "Surrey",
     "state": "BC",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://opendata-surrey.hub.arcgis.com/pages/55089a19491a4fe59a41e059fd8af708"
   },
   {
     "code": "zagreb_hr",
@@ -1000,17 +1082,21 @@
   {
     "code": "wellington_nz",
     "name": "Wellington",
-    "country": "NZ"
+    "country": "NZ",
+    "license": "https://data-wcc.opendata.arcgis.com/datasets/93ca9097fd4b487e9fcf55ad75941136_53/about",
+    "license_comment": "GIS policy states CC BY 4.0, but portal metadata says CC BY-SA; clarify applicable share-alike obligations."
   },
   {
     "code": "fingalcounty_ie",
     "name": "Fingal County",
-    "country": "IE"
+    "country": "IE",
+    "license": "https://www.arcgis.com/home/item.html?id=1e5f9db62e53443d946c15a1a06fd98b"
   },
   {
     "code": "fareham_gb",
     "name": "Fareham",
-    "country": "GB"
+    "country": "GB",
+    "license": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
   },
   {
     "code": "stgeorge_ut_us",
@@ -1028,7 +1114,8 @@
     "code": "albury_nsw_au",
     "name": "Albury",
     "state": "NSW",
-    "country": "AU"
+    "country": "AU",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
   },
   {
     "code": "unley_sa_au",
@@ -1082,24 +1169,30 @@
     "code": "kingston_on_ca",
     "name": "Kingston",
     "state": "ON",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://www.arcgis.com/home/item.html?id=511fd5299053486daf48c6466332320c"
   },
   {
     "code": "southdublin_ie",
     "name": "South Dublin County",
-    "country": "IE"
+    "country": "IE",
+    "license": "https://www.arcgis.com/home/item.html?id=af5db0cb62984fe8afea30e8b2389904"
   },
   {
     "code": "salem_or_us",
     "name": "Salem",
     "state": "OR",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=e5397978d59f46ec96f72a1dfc660919",
+    "license_comment": "Redistribution is subject to unspecified licensing restrictions; contact the city before distributing app data."
   },
   {
     "code": "tracy_ca_us",
     "name": "Tracy",
     "state": "CA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=2dcd6a370a024bf791a68c47cecc5ee6",
+    "license_comment": "Terms explicitly require City of Tracy permission."
   },
   {
     "code": "davenport_ia_us",
@@ -1165,7 +1258,8 @@
     "code": "abbotsford_bc_ca",
     "name": "Abbotsford",
     "state": "BC",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://opendata-abbotsford.hub.arcgis.com/pages/city-of-abbotsford-open-data-licence"
   },
   {
     "code": "oxford_ms_us",
@@ -1218,7 +1312,8 @@
   {
     "code": "christchurch_nz",
     "name": "Christchurch",
-    "country": "NZ"
+    "country": "NZ",
+    "license": "https://www.arcgis.com/home/item.html?id=0c557c04453e435ba1e50389db0ede90"
   },
   {
     "code": "minneapolis_mn_us",
@@ -1236,13 +1331,15 @@
     "code": "kirkland_wa_us",
     "name": "Kirkland",
     "state": "WA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=0a2d654ef527442d985d6f959c1085d5"
   },
   {
     "code": "lethbridge_ab_ca",
     "name": "Lethbridge",
     "state": "AB",
-    "country": "CA"
+    "country": "CA",
+    "license": "http://www.lethbridge.ca/Pages/OpenDataLicense.aspx"
   },
   {
     "code": "orlandpark_il_us",
@@ -1278,7 +1375,8 @@
     "code": "latrobe_vic_au",
     "name": "Latrobe City",
     "state": "VIC",
-    "country": "AU"
+    "country": "AU",
+    "license": "https://www.arcgis.com/home/item.html?id=f41d6a33a5a545e9b84aca02d8448377"
   },
   {
     "code": "basingstoke_gb",
@@ -1313,24 +1411,30 @@
     "code": "lamesa_ca_us",
     "name": "La Mesa",
     "state": "CA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=e6e55741988f432b9b9ae7406a389c68"
   },
   {
     "code": "kenmore_wa_us",
     "name": "Kenmore",
     "state": "WA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=703fed215aaf46b6922f784281281cec"
   },
   {
     "code": "hutt_nz",
     "name": "Lower Hutt",
-    "country": "NZ"
+    "country": "NZ",
+    "license": "https://open-data-huttcity.hub.arcgis.com/",
+    "license_comment": "Substantial copying or republication requires prior written council consent, including non-commercial redistribution."
   },
   {
     "code": "northfield_mn_us",
     "name": "Northfield",
     "state": "MN",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=85d44b9f2c6a46e6b396aba59c224b8d",
+    "license_comment": "Teaching/research use is stated; other uses require inquiry to the city."
   },
   {
     "code": "sanjuancap_ca_us",
@@ -1348,7 +1452,8 @@
     "code": "tumwater_wa_us",
     "name": "Tumwater",
     "state": "WA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=80d58060ac11443689bb1e15cb52ffc1"
   },
   {
     "code": "westchester_il_us",
@@ -1366,7 +1471,8 @@
     "code": "shorewood_wi_us",
     "name": "Shorewood",
     "state": "WI",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=e29362f8e39f4e3bb04c90cb7a578aef"
   },
   {
     "code": "salem_ma_us",
@@ -1407,7 +1513,8 @@
     "code": "threeriverspark_mn_us",
     "name": "Three Rivers Park District",
     "state": "MN",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=aaf1bbc1f49a4a408e18aa1168ca16de"
   },
   {
     "code": "willamalane_or_us",
@@ -1443,18 +1550,21 @@
     "code": "yorkregion_on_ca",
     "name": "York Region",
     "state": "ON",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://www.arcgis.com/home/item.html?id=293d80c24bf54a4f8ab66bddaeaab184"
   },
   {
     "code": "bristol_gb",
     "name": "Bristol",
-    "country": "GB"
+    "country": "GB",
+    "license": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
   },
   {
     "code": "redlands_ca_us",
     "name": "Redlands",
     "state": "CA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=9f9d4ad74a0d44fba8bf27c829e810f2"
   },
   {
     "code": "stockton_ca_us",
@@ -1466,7 +1576,8 @@
     "code": "mountainview_ca_us",
     "name": "Mountain View",
     "state": "CA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=72667718eb9b427d95b6eb55e25c36a7"
   },
   {
     "code": "bozeman_mt_us",
@@ -1514,7 +1625,8 @@
     "code": "sunprairie_wi_us",
     "name": "Sun Prairie",
     "state": "WI",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=a03fc5c8e183429691b920a4e9000600"
   },
   {
     "code": "hillsboroughcounty_fl_us",
@@ -1538,19 +1650,22 @@
     "code": "penticton_bc_ca",
     "name": "Penticton",
     "state": "BC",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://www.penticton.ca/sites/default/files/docs/our-community/maps-gis/2020-07-02-PDF-Open%20Data%20Government%20Licence.pdf"
   },
   {
     "code": "fortstjohn_bc_ca",
     "name": "Fort St. John",
     "state": "BC",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://fortstjohn.hub.arcgis.com/pages/e2c52d6f236d44959d04abd955d5cf72?preview=true"
   },
   {
     "code": "snohomish_wa_us",
     "name": "Snohomish",
     "state": "WA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=91a923839ab7428f97a0813f3e46fda4"
   },
   {
     "code": "watertown_wi_us",
@@ -1562,19 +1677,22 @@
     "code": "charlottesville_va_us",
     "name": "Charlottesville",
     "state": "VA",
-    "country": "US"
+    "country": "US",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
   },
   {
     "code": "wellesley_ma_us",
     "name": "Wellesley",
     "state": "MA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=e6f9e57f61c04a7c9c9f2847897e77a9"
   },
   {
     "code": "onalaska_wi_us",
     "name": "Onalaska",
     "state": "WI",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=9f92644efbd549058768eb5aa0d28ddb"
   },
   {
     "code": "stoughton_wi_us",
@@ -1598,7 +1716,8 @@
     "code": "auburn_me_us",
     "name": "Auburn",
     "state": "ME",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=91bffc476216422481b511a48796a327"
   },
   {
     "code": "bellevue_wi_us",
@@ -1616,7 +1735,8 @@
     "code": "amherst_ma_us",
     "name": "Amherst",
     "state": "MA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=0d4e7c7e12ce42b5908570604ab8020d"
   },
   {
     "code": "warrenville_il_us",
@@ -1646,7 +1766,8 @@
     "code": "honolulu_hi_us",
     "name": "Honolulu",
     "state": "HI",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=2c573c2913434b6db62c75ceac32794b"
   },
   {
     "code": "gigharbor_wa_us",
@@ -1678,7 +1799,8 @@
     "code": "moorhead_mn_us",
     "name": "Moorhead",
     "state": "MN",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=efd9f39819d54020b610ef0f5f0c0c04"
   },
   {
     "code": "porthueneme_ca_us",
@@ -1690,7 +1812,8 @@
     "code": "seatac_wa_us",
     "name": "SeaTac",
     "state": "WA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=0fde99c1b49f4248a8f60caf3e117ea3"
   },
   {
     "code": "weaverville_nc_us",
@@ -1702,7 +1825,8 @@
     "code": "eugene_or_us",
     "name": "Eugene",
     "state": "OR",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=defd8da338a443818b6a6f8b65b8076b"
   },
   {
     "code": "loveland_co_us",
@@ -1768,7 +1892,8 @@
     "code": "newportnews_va_us",
     "name": "Newport News",
     "state": "VA",
-    "country": "US"
+    "country": "US",
+    "license": "https://www.arcgis.com/home/item.html?id=9d10ce6b9f0e4d29ac48285037193138"
   },
   {
     "code": "bell_ca_us",
@@ -1803,61 +1928,73 @@
   {
     "code": "berlin_de",
     "name": "Berlin",
-    "country": "DE"
+    "country": "DE",
+    "license": "https://www.govdata.de/dl-de/zero-2-0"
   },
   {
     "code": "madrid_es",
     "name": "Madrid",
-    "country": "ES"
+    "country": "ES",
+    "license": "https://creativecommons.org/licenses/by/4.0/legalcode.es"
   },
   {
     "code": "brisbane_qld_au",
     "name": "Brisbane (Sherwood Arboretum)",
     "state": "QLD",
-    "country": "AU"
+    "country": "AU",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
   },
   {
     "code": "colacotway_vic_au",
     "name": "Colac Otway",
     "state": "VIC",
-    "country": "AU"
+    "country": "AU",
+    "license": "http://creativecommons.org/licenses/by/3.0/au/"
   },
   {
     "code": "manningham_vic_au",
     "name": "Manningham",
     "state": "VIC",
-    "country": "AU"
+    "country": "AU",
+    "license": "http://creativecommons.org/licenses/by/3.0/au/"
   },
   {
     "code": "nottingham_gb",
     "name": "Nottingham",
-    "country": "GB"
+    "country": "GB",
+    "license": "https://www.nationalarchives.gov.uk:443/doc/open-government-licence/version/3/"
   },
   {
     "code": "welland_on_ca",
     "name": "Welland",
     "state": "ON",
-    "country": "CA"
+    "country": "CA",
+    "license": "https://open-welland.hub.arcgis.com/pages/terms-of-use"
   },
   {
     "code": "vienna_at",
     "name": "Vienna",
-    "country": "AT"
+    "country": "AT",
+    "license": "https://data.wien.gv.at/nutzungsbedingungen",
+    "license_comment": "Service specifies CC BY 3.0 AT while current policy says CC BY 4.0; confirm the applicable version."
   },
   {
     "code": "hamburg_de",
     "name": "Hamburg",
-    "country": "DE"
+    "country": "DE",
+    "license": "https://www.govdata.de/dl-de/by-2-0"
   },
   {
     "code": "milan_it",
     "name": "Milan",
-    "country": "IT"
+    "country": "IT",
+    "license": "http://www.opendefinition.org/licenses/cc-by"
   },
   {
     "code": "amsterdam_nl",
     "name": "Amsterdam",
-    "country": "NL"
+    "country": "NL",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/deed.nl"
   },
   {
     "code": "helsinki_fi",
@@ -1867,31 +2004,38 @@
   {
     "code": "paris_fr",
     "name": "Paris",
-    "country": "FR"
+    "country": "FR",
+    "license": "http://opendatacommons.org/licenses/odbl/",
+    "license_comment": "ODbL attribution, database share-alike and access obligations may apply to combined/processed data; open-source app code alone is insufficient."
   },
   {
     "code": "leipzig_de",
     "name": "Leipzig",
-    "country": "DE"
+    "country": "DE",
+    "license": "https://www.govdata.de/dl-de/by-2-0"
   },
   {
     "code": "frankfurt_de",
     "name": "Frankfurt am Main",
-    "country": "DE"
+    "country": "DE",
+    "license": "https://www.govdata.de/dl-de/by-2-0"
   },
   {
     "code": "utrecht_nl",
     "name": "Utrecht",
-    "country": "NL"
+    "country": "NL",
+    "license": "http://creativecommons.org/licenses/by/4.0/deed.nl"
   },
   {
     "code": "toulouse_fr",
     "name": "Toulouse Metropole",
-    "country": "FR"
+    "country": "FR",
+    "license": "https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"
   },
   {
     "code": "bordeaux_fr",
     "name": "Bordeaux Metropole",
-    "country": "FR"
+    "country": "FR",
+    "license": "https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Licence_Ouverte.pdf"
   }
 ]
