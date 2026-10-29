@@ -33,19 +33,6 @@ struct MapView: UIViewRepresentable {
             tileLayer?.clearTileCache()
         }
 
-        /*
-        for tree in Site.all.prefix(100) {
-            let marker = GMSMarker(
-                position: CLLocationCoordinate2D(
-                    latitude: tree.latitude,
-                    longitude: tree.longitude
-                )
-            )
-            marker.title = tree.type.canonicalName
-            marker.map = mapView
-        }
-        */
-
         context.coordinator.configureLocation(for: mapView)
 
         // custom map style
@@ -77,8 +64,7 @@ struct MapView: UIViewRepresentable {
     class Coordinator: NSObject, GMSMapViewDelegate, CLLocationManagerDelegate {
         var parent: MapView
         let tileLayer = MapTileLayer()
-        private let locationManager = CLLocationManager()
-        private weak var mapView: GMSMapView?
+        var hasCenteredOnLocation = false
 
         init(_ parent: MapView) {
             self.parent = parent
@@ -138,7 +124,8 @@ struct MapView: UIViewRepresentable {
 
         ////////////////////////////////////////
 
-        var hasCenteredOnLocation = false
+        private let locationManager = CLLocationManager()
+        private weak var mapView: GMSMapView?
 
         // A modal overlay (it blocks touches) shown while the initial location is pending.
         private let SPINNER_TIMEOUT_SECONDS = 10.0
@@ -227,18 +214,19 @@ struct MapView: UIViewRepresentable {
 }
 
 enum SavedCamera {
-    private static let key = "savedCamera"
-
     static func save(_ position: GMSCameraPosition) {
-        UserDefaults.standard.set([position.target.latitude, position.target.longitude,
-                                   Double(position.zoom), position.bearing, position.viewingAngle],
-                                  forKey: key)
+        let data = [position.target.latitude, position.target.longitude, Double(position.zoom), position.bearing, position.viewingAngle]
+        UserDefaults.standard.set(data, forKey: key)
     }
 
     static func load() -> GMSCameraPosition? {
-        guard let v = UserDefaults.standard.array(forKey: key) as? [Double], v.count == 5,
-              abs(v[0]) <= 90, abs(v[1]) <= 180 else { return nil }
-        return GMSCameraPosition(latitude: v[0], longitude: v[1], zoom: Float(v[2]),
-                                 bearing: v[3], viewingAngle: v[4])
+        if let data = UserDefaults.standard.array(forKey: key) as? [Double] {
+            return GMSCameraPosition(latitude: data[0], longitude: data[1], zoom: Float(data[2]), bearing: data[3], viewingAngle: data[4])
+        }
+        else {
+            return nil
+        }
     }
+
+    private static let key = "savedCamera"
 }

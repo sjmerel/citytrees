@@ -42,13 +42,13 @@ final class MapDb {
                 }
             }
         }
-        return keys.sorted().map { ($0, tile($0)) }
+        return keys.sorted().map { ($0, getTile($0)) }
     }
 
     func findNearest(location: MapLocation, maxDistance: Double, zoom: Int) -> Site? {
-        let center = WorldCoord.project(location)
-        let radius = maxDistance / WorldCoord.metersPerUnit(atLatitude: location.lat)
-        let scale = WorldCoord.scale
+        let center = Mercator.projectQuantized(location)
+        let radius = maxDistance / Mercator.metersPerUnit(atLatitude: location.lat)
+        let scale = Mercator.scale
         let rect = WorldRect(minX: (Double(center.x) - radius) / scale,
                              minY: (Double(center.y) - radius) / scale,
                              maxX: (Double(center.x) + radius) / scale,
@@ -73,7 +73,8 @@ final class MapDb {
     // Bounds of the included data, from the root tile (a sample of all the sites).
     var dataBounds: GMSCoordinateBounds {
         var bounds = GMSCoordinateBounds()
-        for site in tile(TileKey(z: 0, x: 0, y: 0)).sites {
+        let rootTile = getTile(TileKey.root)
+        for site in rootTile.sites {
             let location = site.location
             bounds = bounds.includingCoordinate(
                 CLLocationCoordinate2D(latitude: location.lat, longitude: location.lon))
@@ -120,7 +121,7 @@ final class MapDb {
         maxZoom = entries.map { $0.key.z }.max() ?? 0
     }
 
-    private func tile(_ key: TileKey) -> MapTile {
+    private func getTile(_ key: TileKey) -> MapTile {
         lock.lock()
         defer { lock.unlock() }
 

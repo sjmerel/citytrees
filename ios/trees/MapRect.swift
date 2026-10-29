@@ -1,3 +1,4 @@
+/*
 struct MapRect: CustomStringConvertible {
 
     init(northWest: MapLocation, southEast: MapLocation) {
@@ -53,3 +54,4 @@ struct MapRect: CustomStringConvertible {
                  self.minLon >= rect.maxLon)
     }
 }
+    */

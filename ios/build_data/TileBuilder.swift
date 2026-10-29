@@ -22,7 +22,7 @@ class TileBuilder {
 
     // Sites must be in priority order; the array is emptied to release memory as it goes.
     func writeTiles(sites: inout [Site]) throws {
-        try build(key: TileKey(z: 0, x: 0, y: 0), sites: &sites)
+        try writeTiles(key: TileKey.root, sites: &sites)
     }
 
     func writeManifest() throws {

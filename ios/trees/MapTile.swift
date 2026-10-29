@@ -20,12 +20,15 @@ struct TileKey: Hashable, Comparable, CustomStringConvertible {
 
     var parent: TileKey { TileKey(z: z - 1, x: x >> 1, y: y >> 1) }
 
+    /*
     var rect: MapRect {
         let count = Double(1 << z)
         let northWest = Mercator.unproject(x: Double(x) / count, y: Double(y) / count)
         let southEast = Mercator.unproject(x: Double(x + 1) / count, y: Double(y + 1) / count)
         return MapRect(northWest: northWest, southEast: southEast)
-    }
+    }*/
+
+    static let root = TileKey(z: 0, x: 0, y: 0)
 }
 
 

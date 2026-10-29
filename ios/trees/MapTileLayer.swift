@@ -17,12 +17,12 @@ class MapTileLayer: GMSSyncTileLayer {
 
     override func tileFor(x: UInt, y: UInt, zoom: UInt) -> UIImage? {
         let tileCount = pow(2.0, Double(zoom))
-        let tileCenter = WorldCoord.location(
+        let tileCenter = Mercator.unproject(
             x: (Double(x) + 0.5) / tileCount,
             y: (Double(y) + 0.5) / tileCount
         )
-        let metersPerPixel = WorldCoord.metersPerUnit(atLatitude: tileCenter.lat) *
-            WorldCoord.scale / (tileCount * Double(TILE_SIZE))
+        let metersPerPixel = Mercator.metersPerUnit(atLatitude: tileCenter.lat) *
+            Mercator.scale / (tileCount * Double(TILE_SIZE))
         let minimumDiameterPixels =
             MIN_DIAMETER_POINTS * Double(TILE_SIZE) / MAP_TILE_SIZE_POINTS
         let diameter = max(minimumDiameterPixels, SITES_DIAMETER_METERS / metersPerPixel)
@@ -56,7 +56,7 @@ class MapTileLayer: GMSSyncTileLayer {
         context.scaleBy(x: 1, y: -1)
 
         // tile pixel position of a world coordinate
-        let pixelsPerUnit = tileCount * Double(TILE_SIZE) / WorldCoord.scale
+        let pixelsPerUnit = tileCount * Double(TILE_SIZE) / Mercator.scale
         let originX = Double(x) * Double(TILE_SIZE)
         let originY = Double(y) * Double(TILE_SIZE)
         let lowest = -outerRadius
