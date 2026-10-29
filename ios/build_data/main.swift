@@ -2,54 +2,72 @@ import Foundation
 
 let p = Profiler(name: "main")
 
-// First argument is the data directory (set in the Xcode scheme); defaults to the current directory.
-let dataDir = URL(fileURLWithPath: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : ".", isDirectory: true)
 
-// Second argument is the output directory for tiles bundled with the app, and types.bin; defaults to the data directory.
-let outDir = CommandLine.arguments.count > 2 ? URL(fileURLWithPath: CommandLine.arguments[2], isDirectory: true) : dataDir
+////////////////////////////////////////
+// set directories
 
-// Optional third argument is the output directory for tiles that are downloaded instead of bundled.
+// inDir contains json files; binary files are written to outDir (and optionally downloadDir)
+let inDir = URL(fileURLWithPath: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : ".", isDirectory: true)
+let outDir = CommandLine.arguments.count > 2 ? URL(fileURLWithPath: CommandLine.arguments[2], isDirectory: true) : inDir
 let downloadDir = CommandLine.arguments.count > 3 ? URL(fileURLWithPath: CommandLine.arguments[3], isDirectory: true) : nil
 
-try FileManager.default.createDirectory(at: outDir, withIntermediateDirectories: true)
+let fileManager = FileManager.default
+try fileManager.createDirectory(at: outDir, withIntermediateDirectories: true)
+if let downloadDir {
+    try! fileManager.createDirectory(at: downloadDir, withIntermediateDirectories: true)
+}
+
+
+////////////////////////////////////////
+// read files
 
 print("reading types.json")
-let typesUrl = dataDir.appendingPathComponent("types.json")
+let typesUrl = inDir.appendingPathComponent("types.json")
 var types = try JSONDecoder().decode([TreeType].self, from: Data(contentsOf: typesUrl))
 print("read \(types.count) types")
 
 print("reading sites.json")
-let sitesUrl = dataDir.appendingPathComponent("sites.json")
+let sitesUrl = inDir.appendingPathComponent("sites.json")
 var sites = try JSONDecoder().decode([Site].self, from: Data(contentsOf: sitesUrl))
 let siteCount = sites.count
 print("read \(siteCount) sites")
 
-// Deterministic shuffle: a site's position is its priority, so each tile's sample of its
-// area is stable and nested in the samples of the tiles below it.
 
+////////////////////////////////////////
+// assign colors
 // The most common genera each get a color; all other genera share color 0.
-var genusCounts: [String: Int] = [:]
+
+// count instances of each tree type
 var typeCounts = [Int](repeating: 0, count: types.count)
 for site in sites { typeCounts[site.typeIndex] += 1 }
-func genus(_ type: TreeType) -> String {
+
+// count instances of each genus
+var genusCounts: [String: Int] = [:]
+func getGenus(_ type: TreeType) -> String {
     String(type.canonicalName.split(separator: " ").first ?? "")
 }
 for (index, type) in types.enumerated() {
-    genusCounts[genus(type), default: 0] += typeCounts[index]
+    genusCounts[getGenus(type), default: 0] += typeCounts[index]
 }
-let topGenera = genusCounts.sorted { ($0.value, $1.key) > ($1.value, $0.key) }
-    .prefix(TreeType.colorCount - 1)
+print( genusCounts.sorted { ($0.value, $1.key) > ($1.value, $0.key) })
+let topGenera = genusCounts.sorted { ($0.value, $1.key) > ($1.value, $0.key) }.prefix(TreeType.colorCount - 1)
+
+// assign colors
 var genusColors: [String: Int] = [:]
 for (rank, entry) in topGenera.enumerated() {
     genusColors[entry.key] = rank + 1
     print(String(format: "color %2d: %@ (%d)", rank + 1, entry.key, entry.value))
 }
 for index in types.indices {
-    types[index].colorIndex = genusColors[genus(types[index])] ?? 0
+    types[index].colorIndex = genusColors[getGenus(types[index])] ?? 0
 }
 
 print("writing types.bin")
 try TreeType.writeBinary(types: types, url: outDir.appendingPathComponent("types.bin"))
+
+// Deterministic shuffle: a site's position is its priority, so each tile's sample of its
+// area is stable and nested in the samples of the tiles below it.
+
 
 print("quantizing")
 var quantized = sites.map { QuantizedSite($0) }
@@ -62,7 +80,6 @@ let maxZoom = 16
 let bundleMaxZoom = 6
 
 // remove tiles from previous runs
-let fileManager = FileManager.default
 for dir in [outDir, downloadDir].compactMap({ $0 }) {
     for url in (try? fileManager.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil)) ?? [] {
         let name = url.lastPathComponent
@@ -71,9 +88,6 @@ for dir in [outDir, downloadDir].compactMap({ $0 }) {
             try fileManager.removeItem(at: url)
         }
     }
-}
-if let downloadDir {
-    try fileManager.createDirectory(at: downloadDir, withIntermediateDirectories: true)
 }
 
 print("writing tiles")
