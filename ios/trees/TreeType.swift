@@ -11,7 +11,7 @@ struct TreeType {
     var colorIndex: Int = 0
 
     // Number of colors in the app's palette (see TreeType+Color.swift), including color 0.
-    static let colorCount = 25
+    static let colorCount = 37
 
     // Color index of every type, by type index.
     static private(set) var colorIndices: [UInt8] = []

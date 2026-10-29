@@ -188,7 +188,7 @@ struct MapView: UIViewRepresentable {
             selectionMarker = nil
         }
 
-        private func select(site: QuantizedSite?) {
+        private func select(site: Site?) {
             clearSelectionMarker()
             if let site, let mapView {
                 let location = site.location
@@ -201,7 +201,7 @@ struct MapView: UIViewRepresentable {
         }
 
         // Nearest site to the tap, if within SELECTION_RADIUS_POINTS on screen.
-        private func nearestSite(to coordinate: CLLocationCoordinate2D, in mapView: GMSMapView) -> QuantizedSite? {
+        private func nearestSite(to coordinate: CLLocationCoordinate2D, in mapView: GMSMapView) -> Site? {
             let projection = mapView.projection
             let tap = projection.point(for: coordinate)
 

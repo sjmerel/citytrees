@@ -26,7 +26,7 @@ data class TreeType(
     }
 
     companion object {
-        const val colorCount = 25
+        const val colorCount = 37
 
         fun readBinary(data: ByteArray): List<TreeType> {
             val reader = BinaryReader(data)

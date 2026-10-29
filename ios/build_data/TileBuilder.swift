@@ -4,7 +4,8 @@ import Foundation
 // there are more sites than that in a tile's area, the tile holds the highest priority ones
 // and the area is split into four child tiles (the next zoom level), which repeat those
 // sites and add the rest. A tile holding every site in its area is a leaf.
-final class TileBuilder {
+
+class TileBuilder {
 
     // Both directories use z/x/y.bin. Tiles up to bundleMaxZoom go to bundleDir;
     // deeper tiles go to downloadDir. Without a downloadDir everything goes to bundleDir.
@@ -20,7 +21,7 @@ final class TileBuilder {
     private(set) var urls: [TileKey: URL] = [:]
 
     // Sites must be in priority order; the array is emptied to release memory as it goes.
-    func build(sites: inout [QuantizedSite]) throws {
+    func writeTiles(sites: inout [Site]) throws {
         try build(key: TileKey(z: 0, x: 0, y: 0), sites: &sites)
     }
 
@@ -40,30 +41,32 @@ final class TileBuilder {
     private let bundleDir: URL
     private let downloadDir: URL?
 
-    private func build(key: TileKey, sites: inout [QuantizedSite]) throws {
+    private func writeTiles(key: TileKey, sites: inout [Site]) throws {
         if sites.isEmpty { return }
 
+        // write sites in this tile itself
         let isLeaf = sites.count <= maxSites || key.z == maxZoom
         try write(key: key, sites: sites.prefix(isLeaf ? sites.count : maxSites), isLeaf: isLeaf)
         if isLeaf { return }
 
-        var children = [[QuantizedSite]](repeating: [], count: 4)
+        // build child tiles
+        var children = [[Site]](repeating: [], count: 4)
         let bit = UInt32(31 - key.z)
         for site in sites {
             let cx = Int((site.x >> bit) & 1)
             let cy = Int((site.y >> bit) & 1)
             children[cy * 2 + cx].append(site)
         }
-        sites = []
+        sites = [] // release memory
 
         for index in 0..<4 {
             let child = TileKey(z: key.z + 1, x: key.x * 2 + index % 2, y: key.y * 2 + index / 2)
-            try build(key: child, sites: &children[index])
+            try writeTiles(key: child, sites: &children[index])
             children[index] = []
         }
     }
 
-    private func write(key: TileKey, sites: ArraySlice<QuantizedSite>, isLeaf: Bool) throws {
+    private func write(key: TileKey, sites: ArraySlice<Site>, isLeaf: Bool) throws {
         let writer = BinaryWriter()
         MapTile.write(sites: sites, isLeaf: isLeaf, writer: writer)
 

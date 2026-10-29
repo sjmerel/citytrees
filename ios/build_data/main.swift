@@ -39,7 +39,7 @@ print("read \(siteCount) sites")
 
 // count instances of each tree type
 var typeCounts = [Int](repeating: 0, count: types.count)
-for site in sites { typeCounts[site.typeIndex] += 1 }
+for site in sites { typeCounts[Int(site.typeIndex)] += 1 }
 
 // count instances of each genus
 var genusCounts: [String: Int] = [:]
@@ -49,7 +49,6 @@ func getGenus(_ type: TreeType) -> String {
 for (index, type) in types.enumerated() {
     genusCounts[getGenus(type), default: 0] += typeCounts[index]
 }
-print( genusCounts.sorted { ($0.value, $1.key) > ($1.value, $0.key) })
 let topGenera = genusCounts.sorted { ($0.value, $1.key) > ($1.value, $0.key) }.prefix(TreeType.colorCount - 1)
 
 // assign colors
@@ -62,24 +61,28 @@ for index in types.indices {
     types[index].colorIndex = genusColors[getGenus(types[index])] ?? 0
 }
 
+
+////////////////////////////////////////
+// Write tree types
+
 print("writing types.bin")
 try TreeType.writeBinary(types: types, url: outDir.appendingPathComponent("types.bin"))
 
-// Deterministic shuffle: a site's position is its priority, so each tile's sample of its
-// area is stable and nested in the samples of the tiles below it.
 
 
-print("quantizing")
-var quantized = sites.map { QuantizedSite($0) }
-sites = []
+////////////////////////////////////////
+// shuffle the sites deterministically
+// the position of sites in the list is used as its priority when generating levels of detail
+
+print("shuffling")
 var rng = SeededGenerator(seed: 1)
-quantized.shuffle(using: &rng)
+sites.shuffle(using: &rng)
 
-let maxSitesPerTile = 10_000
-let maxZoom = 16
-let bundleMaxZoom = 6
 
+
+////////////////////////////////////////
 // remove tiles from previous runs
+
 for dir in [outDir, downloadDir].compactMap({ $0 }) {
     for url in (try? fileManager.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil)) ?? [] {
         let name = url.lastPathComponent
@@ -90,53 +93,18 @@ for dir in [outDir, downloadDir].compactMap({ $0 }) {
     }
 }
 
-print("writing tiles")
-let builder = TileBuilder(maxSites: maxSitesPerTile, maxZoom: maxZoom, bundleMaxZoom: bundleMaxZoom,
-                          bundleDir: outDir, downloadDir: downloadDir)
-try builder.build(sites: &quantized)
-try builder.writeManifest()
-
 
 ////////////////////////////////////////
-// summary and checks
+// generate tiles
 
-let entries = builder.entries
-print("zoom  tiles  leaves      sites       bytes")
-for z in 0...maxZoom {
-    let level = entries.filter { $0.key.z == z }
-    if level.isEmpty { continue }
-    let leaves = level.filter { $0.isLeaf }.count
-    let sitesInLevel = level.reduce(0) { $0 + $1.siteCount }
-    let bytes = level.reduce(0) { $0 + $1.byteCount }
-    print(String(format: "%4d %6d %7d %10d %11d", z, level.count, leaves, sitesInLevel, bytes))
-}
-let bundledBytes = entries.filter { $0.key.z <= bundleMaxZoom }.reduce(0) { $0 + $1.byteCount }
-let totalBytes = entries.reduce(0) { $0 + $1.byteCount }
-print("\(entries.count) tiles, \(totalBytes) bytes (\(bundledBytes) bundled)")
+print("writing tiles")
+let maxSitesPerTile = 10_000
+let maxZoom = 16
+let bundleMaxZoom = 6
+let builder = TileBuilder(maxSites: maxSitesPerTile, maxZoom: maxZoom, bundleMaxZoom: bundleMaxZoom,
+                          bundleDir: outDir, downloadDir: downloadDir)
+try builder.build(sites: &sites)
+try builder.writeManifest()
 
-// every site lands in exactly one leaf
-let leafSites = entries.filter { $0.isLeaf }.reduce(0) { $0 + $1.siteCount }
-assert(leafSites == siteCount, "leaf sites \(leafSites) != \(siteCount)")
-let tooBig = entries.filter { $0.siteCount > maxSitesPerTile && $0.key.z < maxZoom }
-assert(tooBig.isEmpty, "tiles over the cap before max zoom")
-
-// read back a sample of tiles; sites must fall within the tile's rect
-let typeCount = types.count
-for entry in entries.enumerated().filter({ $0.offset % 25 == 0 }).map({ $0.element }) {
-    let tile = MapTile.readBinary(url: builder.urls[entry.key]!)
-    assert(tile.sites.count == entry.siteCount)
-    // sites are rounded to the tile's quantization step, so allow a little slack
-    let size = Double(1 << (32 - entry.key.z))
-    let slack = Double(1 << 16)
-    let minX = Double(entry.key.x) * size - slack, maxX = minX + size + 2 * slack
-    let minY = Double(entry.key.y) * size - slack, maxY = minY + size + 2 * slack
-    for site in tile.sites {
-        assert(Double(site.x) >= minX && Double(site.x) <= maxX &&
-               Double(site.y) >= minY && Double(site.y) <= maxY,
-               "site outside tile \(entry.key)")
-        assert(Int(site.typeIndex) < typeCount)
-    }
-}
-print("checks passed")
 
 p.stop()

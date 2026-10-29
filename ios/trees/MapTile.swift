@@ -22,69 +22,12 @@ struct TileKey: Hashable, Comparable, CustomStringConvertible {
 
     var rect: MapRect {
         let count = Double(1 << z)
-        let northWest = WorldCoord.location(x: Double(x) / count, y: Double(y) / count)
-        let southEast = WorldCoord.location(x: Double(x + 1) / count, y: Double(y + 1) / count)
+        let northWest = Mercator.unproject(x: Double(x) / count, y: Double(y) / count)
+        let southEast = Mercator.unproject(x: Double(x + 1) / count, y: Double(y + 1) / count)
         return MapRect(northWest: northWest, southEast: southEast)
     }
 }
 
-
-// Web Mercator world coordinates, scaled to 0..<2^32 so that tile and quadrant membership
-// are exact bit operations (one unit is about 9 mm at the equator).
-enum WorldCoord {
-
-    static let scale = 4294967296.0
-
-    static func project(_ location: MapLocation) -> (x: UInt32, y: UInt32) {
-        // Truncating to 0.9999 effectively limits latitude to 89.189.
-        let s = min(max(sin(location.lat * .pi / 180), -0.9999), 0.9999)
-        let x = 0.5 + location.lon / 360
-        let y = 0.5 - log((1 + s) / (1 - s)) / (4 * .pi)
-        return (quantize(x), quantize(y))
-    }
-
-    // x and y are fractions of the world square, 0...1.
-    static func location(x: Double, y: Double) -> MapLocation {
-        let lon = (x - 0.5) * 360
-        let lat = atan(sinh(.pi * (1 - 2 * y))) * 180 / .pi
-        return MapLocation(lat: lat, lon: lon)
-    }
-
-    static func metersPerUnit(atLatitude lat: Double) -> Double {
-        // Web Mercator uses the WGS 84 equatorial radius as its spherical Earth radius.
-        cos(lat * .pi / 180) * 2 * .pi * 6_378_137 / scale
-    }
-
-    private static func quantize(_ fraction: Double) -> UInt32 {
-        UInt32(min(max(fraction * scale, 0), scale - 1))
-    }
-}
-
-
-struct QuantizedSite {
-    var x: UInt32
-    var y: UInt32
-    var typeIndex: UInt16
-
-    init(x: UInt32, y: UInt32, typeIndex: UInt16) {
-        self.x = x
-        self.y = y
-        self.typeIndex = typeIndex
-    }
-
-    init(_ site: Site) {
-        let (x, y) = WorldCoord.project(site.location)
-        self.init(x: x, y: y, typeIndex: UInt16(site.typeIndex))
-    }
-
-    var location: MapLocation {
-        WorldCoord.location(x: Double(x) / WorldCoord.scale, y: Double(y) / WorldCoord.scale)
-    }
-
-    var type: TreeType {
-        TreeType.all[Int(typeIndex)]
-    }
-}
 
 
 // A tile file is a header followed by sites in priority order, so any prefix of the sites
@@ -104,9 +47,9 @@ struct MapTile {
     static let leafFlag: UInt8 = 1
 
     let isLeaf: Bool
-    let sites: [QuantizedSite]
+    let sites: [Site]
 
-    static func write(sites: ArraySlice<QuantizedSite>, isLeaf: Bool, writer: BinaryWriter) {
+    static func write(sites: ArraySlice<Site>, isLeaf: Bool, writer: BinaryWriter) {
         var minX = UInt32.max, minY = UInt32.max
         var maxX = UInt32.min, maxY = UInt32.min
         for site in sites {
@@ -146,12 +89,12 @@ struct MapTile {
         let minX = UInt64(reader.readUInt32())
         let minY = UInt64(reader.readUInt32())
 
-        var sites: [QuantizedSite] = []
+        var sites: [Site] = []
         sites.reserveCapacity(count)
         for _ in 0..<count {
             let x = UInt32(min(minX + (UInt64(reader.readUInt16()) << shift), UInt64(UInt32.max)))
             let y = UInt32(min(minY + (UInt64(reader.readUInt16()) << shift), UInt64(UInt32.max)))
-            sites.append(QuantizedSite(x: x, y: y, typeIndex: reader.readUInt16()))
+            sites.append(Site(x: x, y: y, typeIndex: reader.readUInt16()))
         }
         assert(reader.isAtEnd)
         return MapTile(isLeaf: flags & leafFlag != 0, sites: sites)

@@ -1,7 +1,8 @@
 // Deterministic random number generator (SplitMix64).
 struct SeededGenerator: RandomNumberGenerator {
-    private var state: UInt64
+
     init(seed: UInt64) { state = seed }
+
     mutating func next() -> UInt64 {
         state &+= 0x9E3779B97F4A7C15
         var z = state
@@ -9,4 +10,6 @@ struct SeededGenerator: RandomNumberGenerator {
         z = (z ^ (z >> 27)) &* 0x94D049BB133111EB
         return z ^ (z >> 31)
     }
+
+    private var state: UInt64
 }

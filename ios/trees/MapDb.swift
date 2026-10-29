@@ -45,7 +45,7 @@ final class MapDb {
         return keys.sorted().map { ($0, tile($0)) }
     }
 
-    func findNearest(location: MapLocation, maxDistance: Double, zoom: Int) -> QuantizedSite? {
+    func findNearest(location: MapLocation, maxDistance: Double, zoom: Int) -> Site? {
         let center = WorldCoord.project(location)
         let radius = maxDistance / WorldCoord.metersPerUnit(atLatitude: location.lat)
         let scale = WorldCoord.scale
@@ -54,7 +54,7 @@ final class MapDb {
                              maxX: (Double(center.x) + radius) / scale,
                              maxY: (Double(center.y) + radius) / scale)
 
-        var best: QuantizedSite?
+        var best: Site?
         var bestDistance = radius * radius
         for (_, tile) in tiles(covering: rect, zoom: zoom) {
             for site in tile.sites {
