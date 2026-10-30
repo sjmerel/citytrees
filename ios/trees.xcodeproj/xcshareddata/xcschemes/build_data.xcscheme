@@ -56,10 +56,6 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&quot;$(SRCROOT)/trees/tiles&quot;"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "&quot;$(SRCROOT)/../data/tiles&quot;"
             isEnabled = "YES">
          </CommandLineArgument>

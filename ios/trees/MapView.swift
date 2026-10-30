@@ -22,7 +22,10 @@ struct MapView: UIViewRepresentable {
             context.coordinator.hasCenteredOnLocation = true
         }
         else {
-            mapView.moveCamera(GMSCameraUpdate.fit(MapDb.instance.dataBounds, withPadding: 20))
+            let southWest = CLLocationCoordinate2D(latitude: -85.0, longitude: -180.0)
+            let northEast = CLLocationCoordinate2D(latitude: 85.0, longitude: 180.0)
+            let bounds = GMSCoordinateBounds(coordinate: southWest, coordinate: northEast)
+            mapView.moveCamera(GMSCameraUpdate.fit(bounds, withPadding: 0))
         }
         mapView.delegate = context.coordinator
 
@@ -178,9 +181,9 @@ struct MapView: UIViewRepresentable {
         private func select(site: Site?) {
             clearSelectionMarker()
             if let site, let mapView {
-                let location = site.location
                 let marker = makeSelectionMarker()
-                marker.position = CLLocationCoordinate2D(latitude: location.lat, longitude: location.lon)
+                let mapLocation = Mercator.unprojectQuantized(site.location)
+                marker.position = CLLocationCoordinate2D(latitude: mapLocation.lat, longitude: mapLocation.lon)
                 marker.map = mapView
                 selectionMarker = marker
             }

@@ -56,10 +56,10 @@ struct MapTile {
         var minX = UInt32.max, minY = UInt32.max
         var maxX = UInt32.min, maxY = UInt32.min
         for site in sites {
-            minX = min(minX, site.x)
-            maxX = max(maxX, site.x)
-            minY = min(minY, site.y)
-            maxY = max(maxY, site.y)
+            minX = min(minX, site.location.x)
+            maxX = max(maxX, site.location.x)
+            minY = min(minY, site.location.y)
+            maxY = max(maxY, site.location.y)
         }
         if sites.isEmpty { minX = 0; minY = 0 }
 
@@ -78,8 +78,8 @@ struct MapTile {
         writer.writeUInt32(minX)
         writer.writeUInt32(minY)
         for site in sites {
-            writer.writeUInt16(offset(site.x, from: minX))
-            writer.writeUInt16(offset(site.y, from: minY))
+            writer.writeUInt16(offset(site.location.x, from: minX))
+            writer.writeUInt16(offset(site.location.y, from: minY))
             writer.writeUInt16(site.typeIndex)
         }
     }
@@ -97,7 +97,8 @@ struct MapTile {
         for _ in 0..<count {
             let x = UInt32(min(minX + (UInt64(reader.readUInt16()) << shift), UInt64(UInt32.max)))
             let y = UInt32(min(minY + (UInt64(reader.readUInt16()) << shift), UInt64(UInt32.max)))
-            sites.append(Site(x: x, y: y, typeIndex: reader.readUInt16()))
+            let location = QuantizedWorldLocation(x: x, y: y)
+            sites.append(Site(location: location, typeIndex: reader.readUInt16()))
         }
         assert(reader.isAtEnd)
         return MapTile(isLeaf: flags & leafFlag != 0, sites: sites)

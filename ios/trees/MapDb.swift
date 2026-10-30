@@ -9,10 +9,6 @@ final class MapDb {
     // Leaf tiles partition the full dataset; other levels contain overlapping samples.
     let siteCount: Int
 
-    // A region of the world square, as fractions 0...1 of its width and height.
-    struct WorldRect {
-        var minX: Double, minY: Double, maxX: Double, maxY: Double
-    }
 
     // The tiles needed to show a region at a zoom level. Zoom levels deeper than the data
     // use the deepest tiles.
@@ -46,6 +42,7 @@ final class MapDb {
     }
 
     func findNearest(location: MapLocation, maxDistance: Double, zoom: Int) -> Site? {
+        /*
         let center = Mercator.projectQuantized(location)
         let radius = maxDistance / Mercator.metersPerUnit(atLatitude: location.lat)
         let scale = Mercator.scale
@@ -68,8 +65,11 @@ final class MapDb {
             }
         }
         return best
+        */
+        return nil
     }
 
+    /*
     // Bounds of the included data, from the root tile (a sample of all the sites).
     var dataBounds: GMSCoordinateBounds {
         var bounds = GMSCoordinateBounds()
@@ -81,6 +81,7 @@ final class MapDb {
         }
         return bounds
     }
+    */
 
     // Called on the main thread when more tiles became available, so the map can redraw.
     var onTilesDownloaded: (() -> Void)? {
@@ -112,7 +113,7 @@ final class MapDb {
     private let CACHE_CAPACITY = 64
 
     private init() {
-        let url = Bundle.main.url(forResource: "tiles_manifest", withExtension: "bin", subdirectory: "tiles")!
+        let url = Bundle.main.url(forResource: "tiles_manifest", withExtension: "bin")!
         let entries = TileManifest.readBinary(url: url)
         siteCount = entries.lazy.filter { $0.isLeaf }.reduce(0) { $0 + $1.siteCount }
         store = TileStore(entries: Dictionary(uniqueKeysWithValues: entries.map { ($0.key, $0) }))

@@ -11,36 +11,36 @@ class MapTileLayer: GMSSyncTileLayer {
 
     override init() {
         super.init()
-        self.tileSize = TILE_SIZE
+        self.tileSize = TILE_SIZE_PIXELS
         self.fadeIn = false
     }
 
     override func tileFor(x: UInt, y: UInt, zoom: UInt) -> UIImage? {
         let tileCount = pow(2.0, Double(zoom))
-        let tileCenter = Mercator.unproject(
-            x: (Double(x) + 0.5) / tileCount,
-            y: (Double(y) + 0.5) / tileCount
-        )
-        let metersPerPixel = Mercator.metersPerUnit(atLatitude: tileCenter.lat) *
-            Mercator.scale / (tileCount * Double(TILE_SIZE))
-        let minimumDiameterPixels =
-            MIN_DIAMETER_POINTS * Double(TILE_SIZE) / MAP_TILE_SIZE_POINTS
-        let diameter = max(minimumDiameterPixels, SITES_DIAMETER_METERS / metersPerPixel)
-        let radius = diameter / 2
-        let outlined = self.outlined
-        let outerRadius = outlined ? radius + BORDER_PIXELS : radius
-        let padding = outerRadius / Double(TILE_SIZE)
+        let tileSizePixels = Double(TILE_SIZE_PIXELS)
 
-        let region = MapDb.WorldRect(minX: (Double(x) - padding) / tileCount,
-                                     minY: (Double(y) - padding) / tileCount,
-                                     maxX: (Double(x) + 1 + padding) / tileCount,
-                                     maxY: (Double(y) + 1 + padding) / tileCount)
+        // calculate site radius in pixels
+        let worldCenter = WorldLocation(x: (Double(x) + 0.5) / tileCount, y: (Double(y) + 0.5) / tileCount)
+        let mapCenter = Mercator.unproject(worldCenter)
+        let metersPerPixel = Mercator.metersPerUnit(atLatitude: mapCenter.lat) / (tileCount * tileSizePixels)
+        let diameter = max(SITE_MIN_DIAMETER_PIXELS, SITE_DIAMETER_METERS / metersPerPixel)
+        let radius = diameter / 2
+        
+        // pad the region to include sites just outside the edges of the tile, so sites whose circles
+        // cross tile borders aren't cut off
+        let outerRadius = self.outlined ? radius + SITE_BORDER_PIXELS : radius
+        let padding = outerRadius / tileSizePixels
+
+        let region = WorldRect(minX: (Double(x) - padding) / tileCount,
+                               minY: (Double(y) - padding) / tileCount,
+                               maxX: (Double(x) + 1 + padding) / tileCount,
+                               maxY: (Double(y) + 1 + padding) / tileCount)
         let tiles = MapDb.instance.tiles(covering: region, zoom: Int(zoom))
 
         if tiles.isEmpty { return kGMSTileLayerNoTile }
 
         // note: we get an assertion if we use UIGraphicsImageRenderer
-        let pixelSize = Int(TILE_SIZE)
+        let pixelSize = Int(TILE_SIZE_PIXELS)
         let bytesPerRow = pixelSize * 4
         let context = CGContext(
             data: nil,
@@ -56,19 +56,19 @@ class MapTileLayer: GMSSyncTileLayer {
         context.scaleBy(x: 1, y: -1)
 
         // tile pixel position of a world coordinate
-        let pixelsPerUnit = tileCount * Double(TILE_SIZE) / Mercator.scale
-        let originX = Double(x) * Double(TILE_SIZE)
-        let originY = Double(y) * Double(TILE_SIZE)
+        let pixelsPerUnit = tileCount * tileSizePixels / QuantizedWorldLocation.scale
+        let originX = Double(x) * tileSizePixels
+        let originY = Double(y) * tileSizePixels
         let lowest = -outerRadius
-        let highest = Double(TILE_SIZE) + outerRadius
+        let highest = tileSizePixels + outerRadius
 
         // borders first, so a neighbor's border never covers a site
-        if outlined {
+        if self.outlined {
             context.setFillColor(UIColor.white.cgColor)
             for (_, tile) in tiles {
                 for site in tile.sites {
-                    let tileX = Double(site.x) * pixelsPerUnit - originX
-                    let tileY = Double(site.y) * pixelsPerUnit - originY
+                    let tileX = Double(site.location.x) * pixelsPerUnit - originX
+                    let tileY = Double(site.location.y) * pixelsPerUnit - originY
                     if tileX < lowest || tileX > highest || tileY < lowest || tileY > highest { continue }
                     context.fillEllipse(in: CGRect(x: tileX - outerRadius, y: tileY - outerRadius,
                                                    width: outerRadius * 2, height: outerRadius * 2))
@@ -82,8 +82,8 @@ class MapTileLayer: GMSSyncTileLayer {
             context.setFillColor(color.cgColor)
             for (_, tile) in tiles {
                 for site in tile.sites where Int(colorIndices[Int(site.typeIndex)]) == colorIndex {
-                    let tileX = Double(site.x) * pixelsPerUnit - originX
-                    let tileY = Double(site.y) * pixelsPerUnit - originY
+                    let tileX = Double(site.location.x) * pixelsPerUnit - originX
+                    let tileY = Double(site.location.y) * pixelsPerUnit - originY
                     if tileX < lowest || tileX > highest || tileY < lowest || tileY > highest { continue }
                     context.fillEllipse(in: CGRect(x: tileX - radius, y: tileY - radius,
                                                    width: diameter, height: diameter))
@@ -119,9 +119,8 @@ class MapTileLayer: GMSSyncTileLayer {
 
     ////////////////////////////////////////
 
-    private let TILE_SIZE = 512
-    private let SITES_DIAMETER_METERS = 4.0
-    private let BORDER_PIXELS = 2.0
-    private let MIN_DIAMETER_POINTS = 6.0
-    private let MAP_TILE_SIZE_POINTS = 256.0
+    private let TILE_SIZE_PIXELS = 512
+    private let SITE_DIAMETER_METERS = 4.0
+    private let SITE_BORDER_PIXELS = 2.0
+    private let SITE_MIN_DIAMETER_PIXELS = 12.0
 }

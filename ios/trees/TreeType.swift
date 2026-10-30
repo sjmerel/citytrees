@@ -19,7 +19,7 @@ struct TreeType {
     static private(set) var all: [TreeType]!
 
     static func load() {
-        let url = Bundle.main.url(forResource: "types", withExtension: "bin", subdirectory: "tiles")!
+        let url = Bundle.main.url(forResource: "types", withExtension: "bin")!
         Self.all = readBinary(url: url)
         Self.colorIndices = Self.all.map { UInt8($0.colorIndex) }
     }
@@ -58,7 +58,7 @@ struct TreeType {
     }
 
     static func writeBinary(types: [TreeType], url: URL) throws {
-        let profiler = Profiler(name: "write \(url)")
+        //let profiler = Profiler(name: "write \(url)")
         let writer = BinaryWriter()
 
         writer.writeUInt32(UInt32(types.count))
@@ -67,7 +67,7 @@ struct TreeType {
         }
         try writer.write(to: url)
 
-        profiler.stop()
+        //profiler.stop()
     }
 
 

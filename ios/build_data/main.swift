@@ -6,16 +6,12 @@ let p = Profiler(name: "main")
 ////////////////////////////////////////
 // set directories
 
-// inDir contains json files; binary files are written to outDir (and optionally downloadDir)
+// inDir contains json files; binary files are written to outDir 
 let inDir = URL(fileURLWithPath: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : ".", isDirectory: true)
 let outDir = CommandLine.arguments.count > 2 ? URL(fileURLWithPath: CommandLine.arguments[2], isDirectory: true) : inDir
-let downloadDir = CommandLine.arguments.count > 3 ? URL(fileURLWithPath: CommandLine.arguments[3], isDirectory: true) : nil
 
 let fileManager = FileManager.default
 try fileManager.createDirectory(at: outDir, withIntermediateDirectories: true)
-if let downloadDir {
-    try! fileManager.createDirectory(at: downloadDir, withIntermediateDirectories: true)
-}
 
 
 ////////////////////////////////////////
@@ -55,7 +51,7 @@ let topGenera = genusCounts.sorted { ($0.value, $1.key) > ($1.value, $0.key) }.p
 var genusColors: [String: Int] = [:]
 for (rank, entry) in topGenera.enumerated() {
     genusColors[entry.key] = rank + 1
-    print(String(format: "color %2d: %@ (%d)", rank + 1, entry.key, entry.value))
+    //print(String(format: "color %2d: %@ (%d)", rank + 1, entry.key, entry.value))
 }
 for index in types.indices {
     types[index].colorIndex = genusColors[getGenus(types[index])] ?? 0
@@ -83,13 +79,11 @@ sites.shuffle(using: &rng)
 ////////////////////////////////////////
 // remove tiles from previous runs
 
-for dir in [outDir, downloadDir].compactMap({ $0 }) {
-    for url in (try? fileManager.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil)) ?? [] {
-        let name = url.lastPathComponent
-        let isTile = name.hasPrefix("tile_") && name.hasSuffix(".bin")
-        if isTile || name == "tiles_manifest.bin" || Int(name) != nil {
-            try fileManager.removeItem(at: url)
-        }
+for url in (try? fileManager.contentsOfDirectory(at: outDir, includingPropertiesForKeys: nil)) ?? [] {
+    let name = url.lastPathComponent
+    let isTile = name.hasPrefix("tile_") && name.hasSuffix(".bin")
+    if isTile || name == "tiles_manifest.bin" || Int(name) != nil {
+        try fileManager.removeItem(at: url)
     }
 }
 
@@ -98,13 +92,8 @@ for dir in [outDir, downloadDir].compactMap({ $0 }) {
 // generate tiles
 
 print("writing tiles")
-let maxSitesPerTile = 10_000
-let maxZoom = 16
-let bundleMaxZoom = 6
-let builder = TileBuilder(maxSites: maxSitesPerTile, maxZoom: maxZoom, bundleMaxZoom: bundleMaxZoom,
-                          bundleDir: outDir, downloadDir: downloadDir)
+let builder = TileBuilder(maxSitesPerTile: 10_000, maxZoom: 16, outDir: outDir)
 try builder.build(sites: &sites)
-try builder.writeManifest()
 
 
 p.stop()
