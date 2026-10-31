@@ -29,8 +29,6 @@ struct ContentView: View {
             }
             .overlay {
                 if isBusy {
-                    Color.black.opacity(0.3)
-                        .ignoresSafeArea()
                     BusyView(text: "Finding your location")
                 }
             }
