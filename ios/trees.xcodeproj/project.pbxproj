@@ -40,6 +40,8 @@
 				QuantizedWorldLocation.swift,
 				Site.swift,
 				Stopwatch.swift,
+				TileKey.swift,
+				TileManifest.swift,
 				TreeType.swift,
 				WorldLocation.swift,
 				WorldRect.swift,

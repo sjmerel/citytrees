@@ -10,11 +10,11 @@ const BUCKET = 'gs://trees-tiles';
 const PROJECT = 'trees-1543002995860';
 
 function main() {
-  let args = process.argv.slice(2);
-  let version = 'v1';
   let dir = path.resolve('./tiles');
 
-  execSync(`gcloud storage rsync ${dir} ${BUCKET}/${version} --recursive --checksums-only --delete-unmatched-destination-objects --cache-control "public, max-age=86400" --project ${PROJECT}`, { stdio: 'inherit' });
+  let timestamp = fs.readFileSync(`${dir}/latest.txt`, 'utf8').trim();
+  execSync(`gcloud storage cp -r ${dir}/${timestamp} ${BUCKET}/v1/${timestamp}  --project ${PROJECT}`, { stdio: 'inherit' });
+  execSync(`gcloud storage cp    ${dir}/latest.txt   ${BUCKET}/v1/              --project ${PROJECT}`, { stdio: 'inherit' });
 }
 
 main();
