@@ -8,7 +8,8 @@ import Foundation
 final class TileStore {
 
     // Hosted tiles; the version prefix changes only when the binary format does.
-    static let baseURL = URL(string: "https://storage.googleapis.com/trees-tiles/v1/")!
+    //static let baseURL = URL(string: "https://storage.googleapis.com/trees-tiles/v1/")!
+    static let baseURL = URL(string: Config.instance.serverUrl)!
 
     // Called on the main thread, shortly after tiles were downloaded.
     var onTilesDownloaded: (() -> Void)?

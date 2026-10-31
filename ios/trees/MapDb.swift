@@ -6,13 +6,11 @@ final class MapDb {
 
     static let instance = MapDb()
 
-    // Leaf tiles partition the full dataset; other levels contain overlapping samples.
     let siteCount: Int
 
 
-    // The tiles needed to show a region at a zoom level. Zoom levels deeper than the data
-    // use the deepest tiles.
-    func tiles(covering rect: WorldRect, zoom: Int) -> [(key: TileKey, tile: MapTile)] {
+    // Get the tiles needed to show a region at a zoom level
+    func tiles(covering rect: WorldRect, zoom: Int) -> [MapTile] {
         let z = min(zoom, maxZoom)
         let count = 1 << z
         func index(_ fraction: Double) -> Int {
@@ -38,25 +36,24 @@ final class MapDb {
                 }
             }
         }
-        return keys.sorted().map { ($0, getTile($0)) }
+        return keys.sorted().map { getTile($0) }
     }
 
     func findNearest(location: MapLocation, maxDistance: Double, zoom: Int) -> Site? {
-        /*
-        let center = Mercator.projectQuantized(location)
+        let center = Mercator.project(location)
         let radius = maxDistance / Mercator.metersPerUnit(atLatitude: location.lat)
-        let scale = Mercator.scale
-        let rect = WorldRect(minX: (Double(center.x) - radius) / scale,
-                             minY: (Double(center.y) - radius) / scale,
-                             maxX: (Double(center.x) + radius) / scale,
-                             maxY: (Double(center.y) + radius) / scale)
+        let rect = WorldRect(minX: (center.x - radius),
+                             minY: (center.y - radius),
+                             maxX: (center.x + radius),
+                             maxY: (center.y + radius))
 
         var best: Site?
         var bestDistance = radius * radius
-        for (_, tile) in tiles(covering: rect, zoom: zoom) {
+        for tile in tiles(covering: rect, zoom: zoom) {
             for site in tile.sites {
-                let dx = Double(site.x) - Double(center.x)
-                let dy = Double(site.y) - Double(center.y)
+                let location = QuantizedWorldLocation.unquantize(site.location)
+                let dx = Double(location.x) - Double(center.x)
+                let dy = Double(location.y) - Double(center.y)
                 let distance = dx * dx + dy * dy
                 if distance <= bestDistance {
                     best = site
@@ -65,8 +62,6 @@ final class MapDb {
             }
         }
         return best
-        */
-        return nil
     }
 
     /*

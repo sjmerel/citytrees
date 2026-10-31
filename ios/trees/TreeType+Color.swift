@@ -2,6 +2,10 @@ import UIKit
 
 extension TreeType {
 
+    var color: UIColor {
+        return Self.palette[colorIndex % Self.palette.count]
+    }
+
     // colors for various genera
     static let palette: [UIColor] = {
         // 12 hues, plus darkened and lightened versions, are used for the most common genera
@@ -48,11 +52,7 @@ extension TreeType {
             UIColor(red: 247.0 / 255, green: 227.0 / 255, blue: 166.0 / 255, alpha: 1), // gold
         ]
 
-        // gray for all other genera
-        let other = UIColor(red: 0.35, green: 0.35, blue: 0.40, alpha: 1)
-
-        let palette = [other] + colors + darker + lighter
-        assert(palette.count == colorCount)
+        let palette = colors + darker + lighter
         return palette
     }()
 }

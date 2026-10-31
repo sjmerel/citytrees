@@ -6,22 +6,15 @@ struct TreeType {
     var commonNames: [String] = []
     var wikipediaUrl: String?
 
-    // Index into `palette`. The most common genera each get their own color (assigned by
-    // build_data); index 0 is shared by everything else.
+    // colors are defined in TreeType+Colors extension (so this type can be used in build_data)
     var colorIndex: Int = 0
-
-    // Number of colors in the app's palette (see TreeType+Color.swift), including color 0.
-    static let colorCount = 37
-
-    // Color index of every type, by type index.
-    static private(set) var colorIndices: [UInt8] = []
 
     static private(set) var all: [TreeType]!
 
     static func load() {
         let url = Bundle.main.url(forResource: "types", withExtension: "bin")!
         Self.all = readBinary(url: url)
-        Self.colorIndices = Self.all.map { UInt8($0.colorIndex) }
+        assignColors()
     }
 
 
@@ -35,11 +28,11 @@ struct TreeType {
         var types: [TreeType] = []
         types.reserveCapacity(Int(count))
 
+        let wikipediaBase = "https://en.wikipedia.org/wiki/"
+
         for _ in 0..<count {
             let nameLength = Int(reader.readUInt16())
             let name = reader.readString(count: nameLength)
-            let colorIndex = Int(reader.readUInt8())
-            assert(colorIndex < colorCount)
             let commonCount = Int(reader.readUInt8())
             var commonNames: [String] = []
             for _ in 0..<commonCount {
@@ -47,8 +40,8 @@ struct TreeType {
                 commonNames.append(reader.readString(count: length))
             }
             let urlLength = Int(reader.readUInt16())
-            let wikipediaUrl = urlLength > 0 ? reader.readString(count: urlLength) : nil
-            types.append(TreeType(canonicalName: name, commonNames: commonNames, wikipediaUrl: wikipediaUrl, colorIndex: colorIndex))
+            let wikipediaUrl = urlLength > 0 ? wikipediaBase + reader.readString(count: urlLength) : nil
+            types.append(TreeType(canonicalName: name, commonNames: commonNames, wikipediaUrl: wikipediaUrl))
         }
 
         assert(reader.isAtEnd)
@@ -78,7 +71,6 @@ struct TreeType {
         assert(bytes.count <= Int(UInt16.max))
         writer.writeUInt16(UInt16(bytes.count))
         writer.writeString(canonicalName)
-        writer.writeUInt8(UInt8(colorIndex))
 
         let names = commonNames.prefix(Int(UInt8.max))
         writer.writeUInt8(UInt8(names.count))
@@ -94,4 +86,19 @@ struct TreeType {
         writer.writeUInt16(UInt16(urlBytes.count))
         if !urlBytes.isEmpty { writer.writeString(wikipediaUrl!) }
     }
+
+    private static func assignColors() {
+        // assign colors based on genus
+        var genusMap = [String : Int]()
+        for i in all.indices {
+            let genus = String(all[i].canonicalName.split(separator: " ").first ?? "")
+            var colorIndex = genusMap[genus] 
+            if colorIndex == nil {
+                colorIndex = genusMap.count
+                genusMap[genus] = colorIndex
+            }
+            all[i].colorIndex = colorIndex!
+        }
+    }
+
 }

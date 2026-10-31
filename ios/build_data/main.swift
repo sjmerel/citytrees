@@ -30,35 +30,6 @@ print("read \(siteCount) sites")
 
 
 ////////////////////////////////////////
-// assign colors
-// The most common genera each get a color; all other genera share color 0.
-
-// count instances of each tree type
-var typeCounts = [Int](repeating: 0, count: types.count)
-for site in sites { typeCounts[Int(site.typeIndex)] += 1 }
-
-// count instances of each genus
-var genusCounts: [String: Int] = [:]
-func getGenus(_ type: TreeType) -> String {
-    String(type.canonicalName.split(separator: " ").first ?? "")
-}
-for (index, type) in types.enumerated() {
-    genusCounts[getGenus(type), default: 0] += typeCounts[index]
-}
-let topGenera = genusCounts.sorted { ($0.value, $1.key) > ($1.value, $0.key) }.prefix(TreeType.colorCount - 1)
-
-// assign colors
-var genusColors: [String: Int] = [:]
-for (rank, entry) in topGenera.enumerated() {
-    genusColors[entry.key] = rank + 1
-    //print(String(format: "color %2d: %@ (%d)", rank + 1, entry.key, entry.value))
-}
-for index in types.indices {
-    types[index].colorIndex = genusColors[getGenus(types[index])] ?? 0
-}
-
-
-////////////////////////////////////////
 // Write tree types
 
 print("writing types.bin")

@@ -192,6 +192,8 @@ struct MapView: UIViewRepresentable {
 
         // Nearest site to the tap, if within SELECTION_RADIUS_POINTS on screen.
         private func nearestSite(to coordinate: CLLocationCoordinate2D, in mapView: GMSMapView) -> Site? {
+            let location = MapLocation(lat: coordinate.latitude, lon: coordinate.longitude)
+
             let projection = mapView.projection
             let tap = projection.point(for: coordinate)
 
@@ -200,10 +202,7 @@ struct MapView: UIViewRepresentable {
             let radius = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
                 .distance(from: CLLocation(latitude: edge.latitude, longitude: edge.longitude))
 
-            return MapDb.instance.findNearest(
-                location: MapLocation(lat: coordinate.latitude, lon: coordinate.longitude),
-                maxDistance: radius,
-                zoom: Int(mapView.camera.zoom.rounded()))
+            return MapDb.instance.findNearest(location: location, maxDistance: radius, zoom: Int(mapView.camera.zoom.rounded()))
         }
 
         private func updateLocationControls() {

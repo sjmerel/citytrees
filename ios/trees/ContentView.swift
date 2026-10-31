@@ -36,7 +36,8 @@ struct ContentView: View {
             }
             .overlay(alignment: .top) {
                 if let selectedTypeIndex {
-                    SelectionCard(type: TreeType.all[selectedTypeIndex], colorIndex: Int(TreeType.colorIndices[selectedTypeIndex])) {
+                    let type = TreeType.all[selectedTypeIndex]
+                    SelectionCard(type: type) {
                         self.selectedTypeIndex = nil
                     }
                         .padding(12)

@@ -3,7 +3,6 @@ import SwiftUI
 struct SelectionCard: View {
 
     let type: TreeType
-    let colorIndex: Int
     let onClose: () -> Void
 
     @Environment(\.openURL) private var openURL
@@ -14,7 +13,7 @@ struct SelectionCard: View {
                 //.padding(.top, 4)
             HStack(spacing: 6) {
                 Circle()
-                    .fill(Color(TreeType.palette[colorIndex]))
+                    .fill(Color(type.color))
                     .overlay(Circle().stroke(Color.black.opacity(0.4), lineWidth: 1))
                     .frame(width: 18, height: 18)
                 Text(type.canonicalName)
@@ -74,7 +73,6 @@ struct SelectionCard: View {
                        commonNames: ["London plane", "Hybrid plane", "blah blah", "boo boo"],
                        wikipediaUrl: "https://en.wikipedia.org/wiki/London_plane",
                        colorIndex: 3),
-        colorIndex: 3,
         onClose: {})
         .padding()
 }

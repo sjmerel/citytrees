@@ -40,19 +40,19 @@ class MapTileLayer: GMSSyncTileLayer {
         if tiles.isEmpty { return kGMSTileLayerNoTile }
 
         // note: we get an assertion if we use UIGraphicsImageRenderer
-        let pixelSize = Int(TILE_SIZE_PIXELS)
-        let bytesPerRow = pixelSize * 4
+        let bytesPerRow = TILE_SIZE_PIXELS * 4
         let context = CGContext(
             data: nil,
-            width: pixelSize,
-            height: pixelSize,
+            width: TILE_SIZE_PIXELS,
+            height: TILE_SIZE_PIXELS,
             bitsPerComponent: 8,
             bytesPerRow: bytesPerRow,
             space: CGColorSpaceCreateDeviceRGB(),
             bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
         )!
 
-        context.translateBy(x: 0, y: CGFloat(pixelSize))
+        // match coordinate systems
+        context.translateBy(x: 0, y: CGFloat(TILE_SIZE_PIXELS))
         context.scaleBy(x: 1, y: -1)
 
         // tile pixel position of a world coordinate
@@ -65,52 +65,34 @@ class MapTileLayer: GMSSyncTileLayer {
         // borders first, so a neighbor's border never covers a site
         if self.outlined {
             context.setFillColor(UIColor.white.cgColor)
-            for (_, tile) in tiles {
+            for tile in tiles {
                 for site in tile.sites {
+                    // pixel coords of site:
                     let tileX = Double(site.location.x) * pixelsPerUnit - originX
                     let tileY = Double(site.location.y) * pixelsPerUnit - originY
+
+                    // don't draw sites outside of view
                     if tileX < lowest || tileX > highest || tileY < lowest || tileY > highest { continue }
-                    context.fillEllipse(in: CGRect(x: tileX - outerRadius, y: tileY - outerRadius,
-                                                   width: outerRadius * 2, height: outerRadius * 2))
+
+                    context.fillEllipse(in: CGRect(x: tileX - outerRadius, y: tileY - outerRadius, width: outerRadius * 2, height: outerRadius * 2))
                 }
             }
         }
 
-        // one pass per color, so the fill color is set only once per color
-        let colorIndices = TreeType.colorIndices
-        for (colorIndex, color) in TreeType.palette.enumerated() {
-            context.setFillColor(color.cgColor)
-            for (_, tile) in tiles {
-                for site in tile.sites where Int(colorIndices[Int(site.typeIndex)]) == colorIndex {
-                    let tileX = Double(site.location.x) * pixelsPerUnit - originX
-                    let tileY = Double(site.location.y) * pixelsPerUnit - originY
-                    if tileX < lowest || tileX > highest || tileY < lowest || tileY > highest { continue }
-                    context.fillEllipse(in: CGRect(x: tileX - radius, y: tileY - radius,
-                                                   width: diameter, height: diameter))
-                }
+        // draw site colors
+        for tile in tiles {
+            for site in tile.sites {
+                // pixel coords of site:
+                let tileX = Double(site.location.x) * pixelsPerUnit - originX
+                let tileY = Double(site.location.y) * pixelsPerUnit - originY
+
+                // don't draw sites outside of view
+                if tileX < lowest || tileX > highest || tileY < lowest || tileY > highest { continue }
+
+                context.setFillColor(site.type.color.cgColor)
+                context.fillEllipse(in: CGRect(x: tileX - radius, y: tileY - radius, width: diameter, height: diameter))
             }
         }
-
-        /*
-        // debug: outline the data tiles used
-        context.setStrokeColor(UIColor.systemPink.cgColor)
-        context.setLineWidth(2)
-        for (key, _) in tiles {
-            let scale = tileCount * Double(TILE_SIZE) / Double(1 << key.z)
-            let left = Double(key.x) * scale - originX
-            let top = Double(key.y) * scale - originY
-            context.stroke(CGRect(x: left, y: top, width: scale, height: scale))
-        }
-        */
-
-        /*
-        // draw tile borders
-        context.setStrokeColor(UIColor.cyan.cgColor)
-        context.setLineWidth(1)
-        context.stroke(CGRect(x: 0.5, y: 0.5,
-                              width: CGFloat(pixelSize - 1),
-                              height: CGFloat(pixelSize - 1)))
-        */
 
         let image = context.makeImage()!
         return UIImage(cgImage: image, scale: 1, orientation: .up)
@@ -122,5 +104,5 @@ class MapTileLayer: GMSSyncTileLayer {
     private let TILE_SIZE_PIXELS = 512
     private let SITE_DIAMETER_METERS = 4.0
     private let SITE_BORDER_PIXELS = 2.0
-    private let SITE_MIN_DIAMETER_PIXELS = 12.0
+    private let SITE_MIN_DIAMETER_PIXELS = 8.0
 }
