@@ -386,6 +386,7 @@ async function getCommonNames(types: any[]): Promise<any[]> {
 ////////////////////////////////////////
 
 async function getWikipediaUrls(types: any[]): Promise<any[]> {
+  let baseUrl = 'https://en.wikipedia.org/wiki/';
   let wikipediaCache = loadCache('wikipedia_cache.json');
   let succeededMap = {};
   let failedMap = {};
@@ -393,7 +394,7 @@ async function getWikipediaUrls(types: any[]): Promise<any[]> {
   for (let [index, type] of types.entries()) {
     let name = type.canonical_name;
     let result = wikipediaCache[name];
-    if (!result) {
+    if (result === undefined) {
       console.log(`  look up wikipedia urls: ${name} (${index+1}/${types.length})`);
 
       result = await Wikipedia.lookupUrl(name);
@@ -404,6 +405,11 @@ async function getWikipediaUrls(types: any[]): Promise<any[]> {
       wikipediaCache[name] = result;
       ++n;
       if (n % 100 == 0) { saveObject('wikipedia_cache.json', wikipediaCache); }
+    }
+
+    if (result) {
+      assert(result.startsWith(baseUrl));
+      result = result.slice(baseUrl.length);
     }
 
     type.wikipedia_url = result;
