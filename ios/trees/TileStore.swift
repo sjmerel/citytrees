@@ -7,15 +7,12 @@ import Foundation
 // in a newer data version is a different file; files that no longer match are deleted.
 final class TileStore {
 
-    // Hosted tiles; the version prefix changes only when the binary format does.
-    //static let baseURL = URL(string: "https://storage.googleapis.com/trees-tiles/v1/")!
-    static let baseURL = URL(string: Config.instance.serverUrl)!
-
     // Called on the main thread, shortly after tiles were downloaded.
     var onTilesDownloaded: (() -> Void)?
 
-    init(entries: [TileKey: TileManifestEntry]) {
-        self.entries = entries
+    init(entries: [TileManifestEntry]) {
+        self.entryMap = Dictionary(uniqueKeysWithValues: entries.map { ($0.key, $0) })
+
         let caches = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
         cacheDir = caches.appendingPathComponent("tiles", isDirectory: true)
         try? FileManager.default.createDirectory(at: cacheDir, withIntermediateDirectories: true)
@@ -28,11 +25,8 @@ final class TileStore {
     // The file holding the tile, if it is available now. Otherwise starts a download (if the
     // tile exists) and returns nil.
     func url(for key: TileKey) -> URL? {
-        let bundled = Bundle.main.resourceURL!.appendingPathComponent("tiles").appendingPathComponent(key.path)
-        if FileManager.default.fileExists(atPath: bundled.path) { return bundled }
-
-        guard let entry = entries[key] else { return nil }
-        let cached = cacheURL(for: entry)
+        guard let entry = entryMap[key] else { return nil }
+        let cached = getCacheUrl(for: entry)
         if FileManager.default.fileExists(atPath: cached.path) { return cached }
 
         request(entry)
@@ -42,12 +36,14 @@ final class TileStore {
 
     ////////////////////////////////////////
 
+    private static let baseURL = URL(string: Config.instance.serverUrl)!
+
     private let MAX_CONCURRENT = 4
     private let MAX_PENDING = 64
     private let RETRY_DELAY_SECONDS = 30.0
     private let NOTIFY_DELAY_SECONDS = 1.0
 
-    private let entries: [TileKey: TileManifestEntry]
+    private let entryMap: [TileKey: TileManifestEntry]
     private let cacheDir: URL
     private let session = URLSession(configuration: .ephemeral)
 
@@ -57,7 +53,7 @@ final class TileStore {
     private var retryAfter: [TileKey: Date] = [:]
     private var notifyScheduled = false
 
-    private func cacheURL(for entry: TileManifestEntry) -> URL {
+    private func getCacheUrl(for entry: TileManifestEntry) -> URL {
         let key = entry.key
         return cacheDir.appendingPathComponent("\(key.z)_\(key.x)_\(key.y)_\(String(entry.hash, radix: 16)).bin")
     }
@@ -82,7 +78,7 @@ final class TileStore {
     // Lock must be held.
     private func startDownloads() {
         while inFlight.count < MAX_CONCURRENT, let key = pending.popLast() {
-            guard let entry = entries[key] else { continue }
+            guard let entry = entryMap[key] else { continue }
             inFlight.insert(key)
             print("tile \(key): download started (\(entry.byteCount) bytes)")
             // the hash in the query makes the URL unique per version, so stale CDN copies are never served
@@ -100,7 +96,7 @@ final class TileStore {
         if let data, error == nil, (response as? HTTPURLResponse)?.statusCode == 200 {
             if data.count == entry.byteCount && TileManifest.hash(of: data) == entry.hash {
                 do {
-                    try data.write(to: cacheURL(for: entry), options: .atomic)
+                    try data.write(to: getCacheUrl(for: entry), options: .atomic)
                     succeeded = true
                     print("tile \(entry.key): download finished")
                 }
@@ -141,7 +137,7 @@ final class TileStore {
     }
 
     private func removeStaleFiles() {
-        let current = Set(entries.values.map { cacheURL(for: $0).lastPathComponent })
+        let current = Set(entryMap.values.map { getCacheUrl(for: $0).lastPathComponent })
         let files = (try? FileManager.default.contentsOfDirectory(at: cacheDir, includingPropertiesForKeys: nil)) ?? []
         for file in files where !current.contains(file.lastPathComponent) {
             try? FileManager.default.removeItem(at: file)

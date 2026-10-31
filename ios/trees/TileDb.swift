@@ -2,12 +2,11 @@ import Foundation
 import GoogleMaps
 
 // Provides the sites in the tile pyramid (see MapTile.swift). Safe to use from any thread.
-final class MapDb {
+final class TileDb {
 
-    static let instance = MapDb()
+    static let instance = TileDb()
 
     let siteCount: Int
-
 
     // Get the tiles needed to show a region at a zoom level
     func tiles(covering rect: WorldRect, zoom: Int) -> [MapTile] {
@@ -17,25 +16,29 @@ final class MapDb {
             min(max(Int((fraction * Double(count)).rounded(.down)), 0), count - 1)
         }
 
+        // for each tile in the rect at the current zoom, get the key for the tile actually in the manifest.
         var keys = Set<TileKey>()
         for y in index(rect.minY)...index(rect.maxY) {
             for x in index(rect.minX)...index(rect.maxX) {
                 var key = TileKey(z: z, x: x, y: y)
-                if tileExists.contains(key) {
-                    keys.insert(availableTile(for: key))
-                    continue
+                if tileKeySet.contains(key) {
+                    keys.insert(getAvailableTileKey(for: key))
                 }
-                // A missing tile is either empty, or inside an ancestor that is a leaf
-                // (which holds every site in its area).
-                while key.z > 0 {
-                    key = key.parent
-                    if leaves.contains(key) {
-                        keys.insert(availableTile(for: key))
-                        break
+                else {
+                    // A missing tile is either empty, or inside an ancestor that is a leaf
+                    // (which holds every site in its area).
+                    while key.z > 0 {
+                        key = key.parent
+                        if leafKeySet.contains(key) {
+                            keys.insert(getAvailableTileKey(for: key))
+                            break
+                        }
                     }
                 }
             }
         }
+
+        // sort so drawing order is deterministic
         return keys.sorted().map { getTile($0) }
     }
 
@@ -61,22 +64,9 @@ final class MapDb {
                 }
             }
         }
+
         return best
     }
-
-    /*
-    // Bounds of the included data, from the root tile (a sample of all the sites).
-    var dataBounds: GMSCoordinateBounds {
-        var bounds = GMSCoordinateBounds()
-        let rootTile = getTile(TileKey.root)
-        for site in rootTile.sites {
-            let location = site.location
-            bounds = bounds.includingCoordinate(
-                CLLocationCoordinate2D(latitude: location.lat, longitude: location.lon))
-        }
-        return bounds
-    }
-    */
 
     // Called on the main thread when more tiles became available, so the map can redraw.
     var onTilesDownloaded: (() -> Void)? {
@@ -89,7 +79,7 @@ final class MapDb {
     // The tile itself if it is on the device; otherwise starts downloading it, and uses its
     // closest ancestor that is available (a coarser sample of the same area) in the meantime.
     // Tiles up to the bundled zoom level are always available.
-    private func availableTile(for key: TileKey) -> TileKey {
+    private func getAvailableTileKey(for key: TileKey) -> TileKey {
         var key = key
         while key.z > 0 && store.url(for: key) == nil {
             key = key.parent
@@ -98,8 +88,8 @@ final class MapDb {
     }
 
     private let store: TileStore
-    private let tileExists: Set<TileKey>
-    private let leaves: Set<TileKey>
+    private let tileKeySet: Set<TileKey>
+    private let leafKeySet: Set<TileKey>
     private let maxZoom: Int
 
     private let lock = NSLock()
@@ -111,9 +101,10 @@ final class MapDb {
         let url = Bundle.main.url(forResource: "tiles_manifest", withExtension: "bin")!
         let entries = TileManifest.readBinary(url: url)
         siteCount = entries.lazy.filter { $0.isLeaf }.reduce(0) { $0 + $1.siteCount }
-        store = TileStore(entries: Dictionary(uniqueKeysWithValues: entries.map { ($0.key, $0) }))
-        tileExists = Set(entries.map { $0.key })
-        leaves = Set(entries.filter { $0.isLeaf }.map { $0.key })
+        store = TileStore(entries: entries)
+
+        tileKeySet = Set(entries.map { $0.key })
+        leafKeySet = Set(entries.filter { $0.isLeaf }.map { $0.key })
         maxZoom = entries.map { $0.key.z }.max() ?? 0
     }
 

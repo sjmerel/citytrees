@@ -19,7 +19,7 @@ struct MapView: UIViewRepresentable {
         let mapView = GMSMapView()
         if let saved = SavedCamera.load() {
             mapView.camera = saved
-            context.coordinator.hasCenteredOnLocation = true
+            context.coordinator.hasInitialCamera = true
         }
         else {
             let southWest = CLLocationCoordinate2D(latitude: -85.0, longitude: -180.0)
@@ -32,7 +32,9 @@ struct MapView: UIViewRepresentable {
         // the layer is kept by the coordinator, since this struct is recreated on every SwiftUI update
         let tileLayer = context.coordinator.tileLayer
         tileLayer.map = mapView
-        MapDb.instance.onTilesDownloaded = { [weak tileLayer] in
+
+        // when a tile downloads, clear cache to show it
+        TileDb.instance.onTilesDownloaded = { [weak tileLayer] in
             tileLayer?.clearTileCache()
         }
 
@@ -67,7 +69,7 @@ struct MapView: UIViewRepresentable {
     class Coordinator: NSObject, GMSMapViewDelegate, CLLocationManagerDelegate {
         var parent: MapView
         let tileLayer = MapTileLayer()
-        var hasCenteredOnLocation = false
+        var hasInitialCamera = false
 
         init(_ parent: MapView) {
             self.parent = parent
@@ -80,11 +82,11 @@ struct MapView: UIViewRepresentable {
             updateLocationControls()
 
             if locationManager.authorizationStatus == .notDetermined {
-                if !hasCenteredOnLocation { showSpinner(in: mapView) }
+                if !hasInitialCamera { setBusy(true) }
                 locationManager.requestWhenInUseAuthorization()
             }
-            else if !hasCenteredOnLocation && isAuthorized {
-                showSpinner(in: mapView)
+            else if !hasInitialCamera && isAuthorized {
+                setBusy(true)
                 locationManager.requestLocation()
             }
         }
@@ -102,26 +104,26 @@ struct MapView: UIViewRepresentable {
 
         func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
             updateLocationControls()
-            if hasCenteredOnLocation { return }
+            if hasInitialCamera { return }
             if isAuthorized {
                 manager.requestLocation()
             }
             else if manager.authorizationStatus != .notDetermined {
-                hideSpinner()
+                setBusy(false)
             }
         }
 
         // The first fix centers the map; if there is none, the map keeps showing all the data.
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            guard !hasCenteredOnLocation, let location = locations.last else { return }
-            hasCenteredOnLocation = true
-            hideSpinner()
+            guard !hasInitialCamera, let location = locations.last else { return }
+            hasInitialCamera = true
+            setBusy(false)
             mapView?.moveCamera(GMSCameraUpdate.setTarget(location.coordinate, zoom: 16))
         }
 
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
             print("location unavailable: \(error)")
-            hideSpinner()
+            setBusy(false)
         }
 
 
@@ -129,20 +131,6 @@ struct MapView: UIViewRepresentable {
 
         private let locationManager = CLLocationManager()
         private weak var mapView: GMSMapView?
-
-        // A modal overlay (it blocks touches) shown while the initial location is pending.
-        private let SPINNER_TIMEOUT_SECONDS = 10.0
-
-        private func showSpinner(in mapView: GMSMapView) {
-            setBusy(true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + SPINNER_TIMEOUT_SECONDS) { [weak self] in
-                self?.hideSpinner()
-            }
-        }
-
-        private func hideSpinner() {
-            setBusy(false)
-        }
 
         // Deferred, since this can be called while SwiftUI is updating the view.
         private func setBusy(_ busy: Bool) {
@@ -158,12 +146,12 @@ struct MapView: UIViewRepresentable {
         // A new marker is created for each selection, because moving an existing one
         // doesn't reliably update its position.
         private func makeSelectionMarker() -> GMSMarker {
-            // vector asset, so it can be edited in Assets.xcassets
             let icon = UIImage(named: "selection_ring")
             let marker = GMSMarker()
             marker.icon = icon
             marker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
             marker.zIndex = 1
+            marker.isTappable = false
             return marker
         }
         private var isAuthorized: Bool {
@@ -202,7 +190,7 @@ struct MapView: UIViewRepresentable {
             let radius = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
                 .distance(from: CLLocation(latitude: edge.latitude, longitude: edge.longitude))
 
-            return MapDb.instance.findNearest(location: location, maxDistance: radius, zoom: Int(mapView.camera.zoom.rounded()))
+            return TileDb.instance.findNearest(location: location, maxDistance: radius, zoom: Int(mapView.camera.zoom.rounded()))
         }
 
         private func updateLocationControls() {

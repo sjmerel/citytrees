@@ -35,7 +35,7 @@ class MapTileLayer: GMSSyncTileLayer {
                                minY: (Double(y) - padding) / tileCount,
                                maxX: (Double(x) + 1 + padding) / tileCount,
                                maxY: (Double(y) + 1 + padding) / tileCount)
-        let tiles = MapDb.instance.tiles(covering: region, zoom: Int(zoom))
+        let tiles = TileDb.instance.tiles(covering: region, zoom: Int(zoom))
 
         if tiles.isEmpty { return kGMSTileLayerNoTile }
 
@@ -104,5 +104,5 @@ class MapTileLayer: GMSSyncTileLayer {
     private let TILE_SIZE_PIXELS = 512
     private let SITE_DIAMETER_METERS = 4.0
     private let SITE_BORDER_PIXELS = 2.0
-    private let SITE_MIN_DIAMETER_PIXELS = 8.0
+    private let SITE_MIN_DIAMETER_PIXELS = 9.0
 }
