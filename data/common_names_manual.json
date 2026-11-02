@@ -259,5 +259,72 @@
   "Cedrus libani": {
     "matchedName": "Cedrus libani",
     "commonNames": ["Cedar of Lebanon"]
+  },
+  "Vachellia caven": {
+    "matchedName": "Vachellia caven",
+    "commonNames": [
+      "Roman-cassie"
+    ]
+  },
+  "Prosopis nigra": {
+    "matchedName": "Prosopis nigra",
+    "commonNames": []
+  },
+  "Senna pendula": {
+    "matchedName": "Senna pendula",
+    "commonNames": [
+      "Easter cassia"
+    ]
+  },
+  "Tamarix canariensis": {
+    "matchedName": "Tamarix canariensis",
+    "commonNames": [
+      "Tamarisk",
+      "Saltcedar",
+      "Canary Island tamarisk"
+    ]
+  },
+  "Brugmansia arborea": {
+    "matchedName": "Brugmansia arborea",
+    "commonNames": [
+      "Angelstrumpet",
+      "Angel's-trumpet"
+    ]
+  },
+  "Copernicia alba": {
+    "matchedName": "Copernicia alba",
+    "commonNames": [
+      "Caranday palm"
+    ]
+  },
+  "Correa": {
+    "matchedName": "Correa",
+    "commonNames": [
+      "Australian fuchsia"
+    ]
+  },
+  "Gnetum gnemon": {
+    "matchedName": "Gnetum gnemon",
+    "commonNames": [
+      "Melinjo"
+    ]
+  },
+  "Opuntia": {
+    "matchedName": "Opuntia",
+    "commonNames": [
+      "Pricklypear"
+    ]
+  },
+  "Artocarpus elasticus": {
+    "matchedName": "Artocarpus",
+    "commonNames": []
+  },
+  "Erythroxylum cuneatum": {
+    "matchedName": "Erythroxylum",
+    "commonNames": []
+  },
+  "Terminalia subspathulata": {
+    "matchedName": "Terminalia",
+    "commonNames": []
   }
 }

@@ -29,6 +29,8 @@ function scientificName(genus: string, species: string): string {
   if (!genus || /^(?:not specified|unknown|unidentified|palm)$/i.test(genus)) return '';
   species = species.trim().replace(/\s+/g, ' ');
   if (!species || /^(?:not specified|unknown|unidentified|sp\.?|spp\.?)$/i.test(species)) return genus;
+  // "sargentii" appears as a placeholder species across many genera (Corymbia, Eucalyptus, Acer, ...); keep genus only.
+  if (/^sargentii$/i.test(species)) return genus;
 
   let taxon = species;
   if (new RegExp(`^${genus}\\s+`, 'i').test(species)) {
