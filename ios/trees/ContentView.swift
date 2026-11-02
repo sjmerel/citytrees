@@ -34,9 +34,13 @@ struct ContentView: View {
                 AboutView()
             }
             .overlay {
-                if isBusy {
-                    BusyView(text: "Finding your location")
+                ZStack {
+                    if isBusy {
+                        BusyView(text: "Finding your location")
+                            .transition(.opacity)
+                    }
                 }
+                .animation(.easeInOut(duration: 0.3), value: isBusy)
             }
             .overlay(alignment: .top) {
                 if let selectedTypeIndex {
@@ -50,16 +54,22 @@ struct ContentView: View {
             }
             .animation(.easeInOut(duration: 0.3), value: selectedTypeIndex != nil)
             .overlay {
-                if isCheckingForNewData {
-                    BusyView(text: "Checking for new data")
+                ZStack {
+                    if isCheckingForNewData {
+                        BusyView(text: "Checking for new data")
+                            .transition(.opacity)
+                    }
+                    else if let dataCheckError {
+                        BusyView(text: dataCheckError, retry: {
+                            self.dataCheckError = nil
+                            self.isCheckingForNewData = true
+                            self.dataCheckAttempt += 1
+                        })
+                            .transition(.opacity)
+                    }
                 }
-                else if let dataCheckError {
-                    BusyView(text: dataCheckError, retry: {
-                        self.dataCheckError = nil
-                        self.isCheckingForNewData = true
-                        self.dataCheckAttempt += 1
-                    })
-                }
+                .animation(.easeInOut(duration: 0.3), value: isCheckingForNewData)
+                .animation(.easeInOut(duration: 0.3), value: dataCheckError != nil)
             }
             .task(id: dataCheckAttempt) {
                 await checkForNewData()
