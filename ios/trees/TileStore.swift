@@ -13,7 +13,7 @@ final class TileStore {
     init(entries: [TileManifestEntry]) {
         self.entryMap = Dictionary(uniqueKeysWithValues: entries.map { ($0.key, $0) })
 
-        cacheDir = TreeData.tileCacheDir
+        cacheDir = Dataset.instance.tileCacheDir
         try? FileManager.default.createDirectory(at: cacheDir, withIntermediateDirectories: true)
     }
 
@@ -21,7 +21,7 @@ final class TileStore {
     // tile exists) and returns nil.
     func getUrl(for key: TileKey) -> URL? {
         if key == TileKey.root {
-            return TreeData.localDir.appendingPathComponent(key.path)
+            return Dataset.instance.localDir.appendingPathComponent(key.path)
         }
         if let entry = entryMap[key] {
             let cached = getCacheUrl(for: entry)
@@ -84,7 +84,7 @@ final class TileStore {
             if let entry = entryMap[key] {
                 inFlight.insert(key)
                 print("tile \(key): download started (\(entry.byteCount) bytes)")
-                let task = session.dataTask(with: TreeData.serverDir.appendingPathComponent(key.path)) { [self] data, response, error in
+                let task = session.dataTask(with: Dataset.instance.serverDir.appendingPathComponent(key.path)) { [self] data, response, error in
                     finish(entry: entry, data: data, response: response, error: error)
                 }
                 task.resume()

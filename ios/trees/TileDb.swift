@@ -98,7 +98,7 @@ final class TileDb {
     private let CACHE_CAPACITY = 64
 
     private init() {
-        let url = TreeData.localDir.appendingPathComponent("tiles_manifest.bin")
+        let url = Dataset.instance.localDir.appendingPathComponent("tiles_manifest.bin")
         let entries = TileManifest.readBinary(url: url)
         siteCount = entries.lazy.filter { $0.isLeaf }.reduce(0) { $0 + $1.siteCount }
         store = TileStore(entries: entries)

@@ -19,7 +19,6 @@ struct MapView: UIViewRepresentable {
         let mapView = GMSMapView()
         if let saved = SavedCamera.load() {
             mapView.camera = saved
-            context.coordinator.hasInitialCamera = true
         }
         else {
             let southWest = CLLocationCoordinate2D(latitude: -85.0, longitude: -180.0)
@@ -69,7 +68,6 @@ struct MapView: UIViewRepresentable {
     class Coordinator: NSObject, GMSMapViewDelegate, CLLocationManagerDelegate {
         var parent: MapView
         let tileLayer = MapTileLayer()
-        var hasInitialCamera = false
 
         init(_ parent: MapView) {
             self.parent = parent
@@ -82,10 +80,10 @@ struct MapView: UIViewRepresentable {
             updateLocationControls()
 
             if locationManager.authorizationStatus == .notDetermined {
-                if !hasInitialCamera { setBusy(true) }
+                setBusy(true)
                 locationManager.requestWhenInUseAuthorization()
             }
-            else if !hasInitialCamera && isAuthorized {
+            else if isAuthorized {
                 setBusy(true)
                 locationManager.requestLocation()
             }
@@ -104,7 +102,7 @@ struct MapView: UIViewRepresentable {
 
         func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
             updateLocationControls()
-            if hasInitialCamera { return }
+            if hasLocated { return }
             if isAuthorized {
                 manager.requestLocation()
             }
@@ -113,10 +111,10 @@ struct MapView: UIViewRepresentable {
             }
         }
 
-        // The first fix centers the map; if there is none, the map keeps showing all the data.
+        // The first fix centers the map; if there is none, the map keeps the saved camera or the whole world.
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            guard !hasInitialCamera, let location = locations.last else { return }
-            hasInitialCamera = true
+            guard !hasLocated, let location = locations.last else { return }
+            hasLocated = true
             setBusy(false)
             mapView?.moveCamera(GMSCameraUpdate.setTarget(location.coordinate, zoom: 16))
         }
@@ -130,6 +128,7 @@ struct MapView: UIViewRepresentable {
         ////////////////////////////////////////
 
         private let locationManager = CLLocationManager()
+        private var hasLocated = false
         private weak var mapView: GMSMapView?
 
         // Deferred, since this can be called while SwiftUI is updating the view.

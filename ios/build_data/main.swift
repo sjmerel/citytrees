@@ -56,8 +56,15 @@ let builder = TileBuilder(maxSitesPerTile: 10_000, maxZoom: 16, outDir: tileDir)
 try builder.build(sites: &sites)
 
 
-// write latest.txt
+// copy cities.json
+print("copying cities.json")
+let citiesUrl = tileDir.appendingPathComponent("cities.json")
+if (fileManager.fileExists(atPath: citiesUrl.path)) { try fileManager.removeItem(at: citiesUrl) }
+try fileManager.copyItem(at: inDir.appendingPathComponent("cities.json"), to: citiesUrl)
 
+
+// write latest.txt
+print("writing latest.txt")
 let latestUrl = outDir.appendingPathComponent("latest.txt")
 try timestamp.write(to: latestUrl, atomically: true, encoding: .utf8)
 

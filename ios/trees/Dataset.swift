@@ -1,27 +1,23 @@
 import Foundation
 
-enum TreeData {
+class Dataset {
 
-    static var localDir: URL {
+    static let instance = Dataset()
+
+    var localDir: URL {
         getLocalDir(for: timestamp!)
     }
 
-    static var serverDir: URL {
+    var serverDir: URL {
         getServerDir(for: timestamp!)
     }
 
-    // Downloaded tiles for the current data version; cleared when a new version is found.
-    static var tileCacheDir: URL {
+    var tileCacheDir: URL {
         FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("tiles", isDirectory: true)
     }
 
-    static private(set) var timestamp: String? {
-        get { return UserDefaults.standard.string(forKey: "timestamp") }
-        set { UserDefaults.standard.set(newValue, forKey: "timestamp") }
-    }
 
-
-    static func checkForNewData() async throws -> Bool {
+    func checkForNewData() async throws -> Void {
         let timestampUrl = Config.instance.serverUrl.appendingPathComponent("latest.txt")
         let timestampData = try await download(url: timestampUrl)
 
@@ -42,6 +38,7 @@ enum TreeData {
             // TODO parallel
             try await download(fromDir: serverDir, toDir: newLocalDir, path: "types.bin")
             try await download(fromDir: serverDir, toDir: newLocalDir, path: "tiles_manifest.bin")
+            try await download(fromDir: serverDir, toDir: newLocalDir, path: "cities.json")
             try await download(fromDir: serverDir, toDir: newLocalDir, path: "0/0/0.bin")
 
             // must happen before the new timestamp is saved, so old tiles are never used with new data
@@ -55,28 +52,30 @@ enum TreeData {
                 let oldLocalDir = getLocalDir(for: oldTimestamp)
                 try fileManager.removeItem(at: oldLocalDir)
             }
-
-            return true
-        }
-        else {
-            return false
         }
     }
 
     ////////////////////////////////////////
 
-    private static func getLocalDir(for timestamp: String) -> URL {
+    private init() {}
+
+    private var timestamp: String? {
+        get { return UserDefaults.standard.string(forKey: "timestamp") }
+        set { UserDefaults.standard.set(newValue, forKey: "timestamp") }
+    }
+
+    private func getLocalDir(for timestamp: String) -> URL {
         let bundleId = Bundle.main.bundleIdentifier!
         let localDataUrl = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent(bundleId, isDirectory: true)
         return localDataUrl.appendingPathComponent(timestamp, isDirectory: true)
     }
 
-    private static func getServerDir(for timestamp: String) -> URL {
+    private func getServerDir(for timestamp: String) -> URL {
         return Config.instance.serverUrl.appendingPathComponent(timestamp)
     }
 
 
-    private static func download(url: URL) async throws -> Data {
+    private func download(url: URL) async throws -> Data {
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
         let (data, response) = try await URLSession.shared.data(for: request)
         let httpResponse = response as! HTTPURLResponse
@@ -86,7 +85,7 @@ enum TreeData {
         return data
     }
 
-    private static func download(fromDir: URL, toDir: URL, path: String) async throws -> Void {
+    private func download(fromDir: URL, toDir: URL, path: String) async throws -> Void {
         let fromUrl = fromDir.appendingPathComponent(path)
         let toUrl = toDir.appendingPathComponent(path)
         try FileManager.default.createDirectory(at: toUrl.deletingLastPathComponent(), withIntermediateDirectories: true)
