@@ -26,7 +26,9 @@ os=$2
 
 case $deployment in
     local)
-        localhost=`scutil --get LocalHostName`.local
+        # see https://stackoverflow.com/questions/13322485/how-to-get-the-primary-ip-address-of-the-local-machine-on-linux-and-os-x
+        # filter out 127.0.0.1 (localhost) and 169.254.* (automatic private addresses)
+        localhost=`ifconfig | grep -Eo 'inet \d*\.\d*\.\d*\.\d*' | grep -Eo '\d*\.\d*\.\d*\.\d*' | grep -Ev '^(127.0.0.1|169.254|10.255)' | head -1`
         serverUrlBase=http://$localhost:8000 
         ;;
 

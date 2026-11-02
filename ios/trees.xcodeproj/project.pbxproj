@@ -12,6 +12,9 @@
 		AA1BE9C4307DA73A00B8B8B2 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = AA1BE9C3307DA73A00B8B8B2 /* GoogleMaps */; };
 		FE0000000000000000000001 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = FE0000000000000000000002 /* FirebaseCore */; };
 		FE0000000000000000000005 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE0000000000000000000004 /* GoogleService-Info.plist */; };
+		FE0000000000000000000008 /* map_style.json in Resources */ = {isa = PBXBuildFile; fileRef = FE0000000000000000000006 /* map_style.json */; };
+		FE0000000000000000000009 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = FE0000000000000000000007 /* about.html */; };
+		FE0000000000000000000011 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = FE0000000000000000000010 /* styles.css */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		AA77FDAE308430F200DF9258 /* build_data */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = build_data; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE0000000000000000000003 /* ../secrets/ios-secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "../secrets/ios-secrets.xcconfig"; sourceTree = SOURCE_ROOT; };
 		FE0000000000000000000004 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../secrets/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		FE0000000000000000000006 /* map_style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = map_style.json; path = ../assets/map_style.json; sourceTree = SOURCE_ROOT; };
+		FE0000000000000000000007 /* about.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = about.html; path = ../assets/about.html; sourceTree = SOURCE_ROOT; };
+		FE0000000000000000000010 /* styles.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = styles.css; path = ../assets/styles.css; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -92,6 +98,9 @@
 			children = (
 				FE0000000000000000000003 /* ../secrets/ios-secrets.xcconfig */,
 				FE0000000000000000000004 /* GoogleService-Info.plist */,
+				FE0000000000000000000006 /* map_style.json */,
+				FE0000000000000000000007 /* about.html */,
+				FE0000000000000000000010 /* styles.css */,
 				000000000000000000000010 /* trees */,
 				AA77FDAF308430F200DF9258 /* build_data */,
 				AA1BE9BC307DA10A00B8B8B2 /* Frameworks */,
@@ -207,6 +216,9 @@
 			isa = PBXResourcesBuildPhase;
 			files = (
 				FE0000000000000000000005 /* GoogleService-Info.plist in Resources */,
+				FE0000000000000000000008 /* map_style.json in Resources */,
+				FE0000000000000000000009 /* about.html in Resources */,
+				FE0000000000000000000011 /* styles.css in Resources */,
 			);
 		};
 /* End PBXResourcesBuildPhase section */

@@ -48,7 +48,7 @@ struct SelectionCard: View {
         .padding(.vertical, 15)
         .overlay(alignment: .topTrailing) {
             Button(action: onClose) {
-                Image(systemName: "xmark")
+                Image("x")
                     .font(.system(size: 12, weight: .semibold))
                     .foregroundColor(.gray)
                     .padding(8)

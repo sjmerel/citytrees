@@ -7,7 +7,7 @@ struct InfoButton: View {
 
     var body: some View {
         Button(action: action) {
-            Image(systemName: "info")
+            Image("info")
                 .font(.system(size: 18, weight: .semibold))
                 .foregroundColor(Color(white: 0.35))
                 .frame(width: 40, height: 40)

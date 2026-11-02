@@ -25,7 +25,7 @@ struct ContentView: View {
             }
             .overlay(alignment: .bottomTrailing) {
                 VStack(spacing: 12) {
-                    LayersButton(satellite: satellite) { satellite.toggle() }
+                    LayersButton() { satellite.toggle() }
                     InfoButton { showingAbout = true }
                 }
                     .padding(.trailing, 16)
@@ -63,7 +63,7 @@ struct ContentView: View {
                             .fixedSize(horizontal: false, vertical: true)
                         Spacer(minLength: 8)
                         Button { tileDownloadFailed = false } label: {
-                            Image(systemName: "xmark")
+                            Image("x")
                                 .font(.system(size: 12, weight: .semibold))
                                 .foregroundColor(.gray)
                                 .padding(12)

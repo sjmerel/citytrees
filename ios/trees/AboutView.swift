@@ -10,7 +10,7 @@ struct AboutView: View {
         HTMLView(resource: "about")
             .overlay(alignment: .topTrailing) {
                 Button(action: { dismiss() }) {
-                    Image(systemName: "xmark")
+                    Image("x")
                         .font(.system(size: 12, weight: .semibold))
                         .foregroundColor(.gray)
                         .padding(8)

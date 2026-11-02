@@ -75,7 +75,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.play.services.maps)
-    implementation(libs.maps.compose)
+    implementation(libs.play.services.location)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.okhttp)
     implementation(libs.kotlinx.coroutines.android)
@@ -97,5 +97,35 @@ androidComponents {
         afterEvaluate {
             tasks.named("pre${name}Build") { dependsOn(task) }
         }
+    }
+}
+
+
+// Copies files shared with iOS (in the repository's assets directory) into the app's assets.
+abstract class CopySharedAssetsTask : DefaultTask() {
+    @get:InputFiles
+    abstract val sources: ConfigurableFileCollection
+
+    @get:OutputDirectory
+    abstract val outputDir: DirectoryProperty
+
+    @TaskAction
+    fun copy() {
+        val dir = outputDir.get().asFile
+        dir.deleteRecursively()
+        dir.mkdirs()
+        for (file in sources) {
+            file.copyTo(File(dir, file.name))
+        }
+    }
+}
+
+val copySharedAssets = tasks.register<CopySharedAssetsTask>("copySharedAssets") {
+    sources.from(rootProject.file("../assets/map_style.json"), rootProject.file("../assets/about.html"), rootProject.file("../assets/styles.css"))
+}
+
+androidComponents {
+    onVariants { variant ->
+        variant.sources.assets!!.addGeneratedSourceDirectory(copySharedAssets, CopySharedAssetsTask::outputDir)
     }
 }
