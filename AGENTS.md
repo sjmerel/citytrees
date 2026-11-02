@@ -30,8 +30,8 @@ When adding a city, include a URL to the license of the data in cities.json if a
 ## App
 
 Tree data is drawn on a Google Map.
-Primary development is done on iOS; changes are then ported to Android.
-When porting, keep in mind that keeping the Kotlin code roughly analogous to the Swift code makes maintenance easier.  When the code is equivalent, keep spacing and comments the same if possible.
+
+App development is done on iOS first and then ported to Android (apart from Android- or iOS-specific features).  When porting, we try to keep the Kotlin source with the same structure, order, comments and whitespacing as the Swift source, apart from language- or OS-specific requirements; this makes later maintenance easier.
 
 Throw or print errors only for situations that arise due to situations beyond our control (such as network errors, running out of storage space, etc).  If, for example, some binary data is not in the expected format, this is a situation that indicates an error on our part, so the code should assert, or just crash.  So, prefer non-nil asserts ("!" in Swift) to guard statements when a value really should be non-nil, as an example.
 
@@ -41,9 +41,62 @@ Throw or print errors only for situations that arise due to situations beyond ou
 Do not modify data/README.txt or any other documentation files.  If they need updating, notify me and I will do it.
 
 
-## Code conventions
+## Swift code conventions
 
-Swift:
-  prefer explicit if statements to guard statements.
-  prefer assert() to precondition().
+Prefer explicit if statements to guard statements.
+Prefer assert() to precondition().
+
+## Porting to Android
+
+Kotlin has some syntactic constructs that are conventional in Kotlin but have no Swift equivalents.  Typically we avoid using these in favor of keeping the code similar.  For example, in Swift:
+
+```
+if let x = getValue() {
+  // do something
+}
+```
+
+when porting to Kotlin, we keep it similar:
+
+```
+val x = getValue()
+if (x != null) {
+  // do something
+}
+```
+
+similarly, don't use:
+```
+  val get() = <expr>
+```
+
+but instead use this, which is closer to Swift:
+```
+  val get() { return <expr> }
+```
+
+Use this construction:
+```
+   val activity = this
+   someFunction() { activity.doSomething() }
+```
+
+rather than
+```
+   someFunction() { this@MyActivity.doSomething() }
+```
+
+But don't forgo a Kotlin construction in Android-specific code, or if the alternative would be much more verbose than Swift. 
+
+Prefer constructors to init blocks if practical, to keep the code similar to Swift.
+
+When porting a component, if it relies on other classes that have not yet been ported, comment that clearly and implement stubs.
+
+Use the same fonts, font sizes, font styles, and colors on corresponding components in the iOS and Android versions. Make paddings, margins, spacings, sizes, etc the same. If an item is aligned vertically relative to the top-level view, use a Guideline to make similar positioning.
+
+If the iOS version references an image asset or icon that isn't there on Android, don't generate one; just alert the user, who will import it.
+
+Remove unused imports. Avoid wildcard imports.
+
+When checking a version at runtime, use the SDK number instead of the name (e.g. 34 instead of Build.VERSION_CODES.UPSIDE_DOWN_CAKE).
 

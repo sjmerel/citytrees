@@ -32,8 +32,20 @@ android {
             "Set MAPS_API_KEY in secrets/android-secrets.properties at the repository root."
         }
         manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
+    }
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    // deployment.json, read by Config, is generated for each flavor (see set*Deployment below)
+    flavorDimensions += "deployment"
+    productFlavors {
+        create("local") {
+            dimension = "deployment"
+            // the local server is plain http
+            manifestPlaceholders["usesCleartextTraffic"] = true
+        }
+        create("prod") {
+            dimension = "deployment"
+            manifestPlaceholders["usesCleartextTraffic"] = false
+        }
     }
 
     buildTypes {
@@ -65,11 +77,23 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.maps.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(libs.androidx.junit)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
+}
+
+
+
+// Runs set_deployment.sh to generate the Android deployment.json for the variant's deployment flavor.
+androidComponents {
+    onVariants { variant ->
+        val deployment = variant.productFlavors.first { it.first == "deployment" }.second
+        val name = variant.name.replaceFirstChar { it.uppercase() }
+        val task = tasks.register<Exec>("set${name}Deployment") {
+            commandLine(rootProject.file("../set_deployment.sh").path, deployment, "android")
+            // always run, since another variant may have overwritten the file
+            outputs.upToDateWhen { false }
+        }
+        afterEvaluate {
+            tasks.named("pre${name}Build") { dependsOn(task) }
+        }
+    }
 }

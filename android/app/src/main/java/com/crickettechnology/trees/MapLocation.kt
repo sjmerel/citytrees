@@ -1,3 +1,8 @@
 package com.crickettechnology.trees
 
-data class MapLocation(var lat: Double, var lon: Double)
+// geographic coordinates
+
+data class MapLocation(
+    var lat: Double, // latitude
+    var lon: Double  // longitude
+)

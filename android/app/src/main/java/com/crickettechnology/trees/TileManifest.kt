@@ -29,14 +29,15 @@ object TileManifest {
     fun readBinary(file: File): List<TileManifestEntry> {
         val reader = BinaryReader(file)
         val count = reader.readUInt32().toInt()
-        val entries = List(count) {
+        val entries = ArrayList<TileManifestEntry>(count)
+        for (i in 0 until count) {
             val z = reader.readUInt8()
             val x = reader.readUInt32().toInt()
             val y = reader.readUInt32().toInt()
             val isLeaf = reader.readUInt8() != 0
             val siteCount = reader.readUInt32().toInt()
             val byteCount = reader.readUInt32().toInt()
-            TileManifestEntry(TileKey(z, x, y), isLeaf, siteCount, byteCount)
+            entries.add(TileManifestEntry(TileKey(z, x, y), isLeaf, siteCount, byteCount))
         }
         check(reader.isAtEnd)
         return entries

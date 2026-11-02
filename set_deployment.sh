@@ -7,12 +7,13 @@ function usage()
     echo "generates config file for deployment type"
     echo ""
     echo "usage:"
-    echo "  $0 <config>"
+    echo "  $0 <config> <os>"
     echo ""
     echo "config is {local, prod}"
+    echo "os is {ios, android}"
 }
 
-if [ $# -ne 1 ]
+if [ $# -ne 2 ]
 then
     usage
     exit 1
@@ -21,6 +22,7 @@ fi
 cd `dirname $0`
 
 deployment=$1
+os=$2
 
 case $deployment in
     local)
@@ -37,14 +39,29 @@ case $deployment in
         exit 1
         ;;
 esac
-echo $localhost
 
 
-cat << EOF > ./ios/trees/deployment.json
+json=$(cat << EOF
 {
    "serverUrlBase": "$serverUrlBase",
-   "deployment": "$deployment",
+   "deployment": "$deployment"
 }
 EOF
+)
 
+
+
+case $os in
+    ios)
+        echo "$json" > ./ios/trees/deployment.json
+        ;;
+    android)
+        mkdir -p ./android/app/src/main/resources
+        echo "$json" > ./android/app/src/main/resources/deployment.json
+        ;;
+    *)
+        usage
+        exit 1
+        ;;
+esac
 

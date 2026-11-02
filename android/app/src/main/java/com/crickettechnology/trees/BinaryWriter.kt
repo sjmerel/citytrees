@@ -9,7 +9,8 @@ class BinaryWriter {
     private val output = ByteArrayOutputStream()
     private val buffer = ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN)
 
-    val data: ByteArray get() = output.toByteArray()
+    val data: ByteArray
+        get() { return output.toByteArray() }
 
     fun writeUInt8(value: Int) {
         check(value in 0..0xff)

@@ -30,18 +30,16 @@ data class MapTile(val isLeaf: Boolean, val sites: List<Site>) {
                 minY = minOf(minY, site.location.y)
                 maxY = maxOf(maxY, site.location.y)
             }
-            if (sites.isEmpty()) {
-                minX = 0u
-                minY = 0u
-            }
+            if (sites.isEmpty()) { minX = 0u; minY = 0u }
 
             val span = maxOf(maxX - minX, maxY - minY).toLong()
             var shift = 0
             while ((span shr shift) > 0xffff) shift++
             val half = if (shift > 0) 1L shl (shift - 1) else 0L
 
-            fun offset(value: UInt, origin: UInt): Int =
-                minOf(((value - origin).toLong() + half) shr shift, 0xffffL).toInt()
+            fun offset(value: UInt, origin: UInt): Int {
+                return minOf(((value - origin).toLong() + half) shr shift, 0xffffL).toInt()
+            }
 
             writer.writeUInt8(if (isLeaf) leafFlag else 0)
             writer.writeUInt8(shift)
@@ -63,10 +61,12 @@ data class MapTile(val isLeaf: Boolean, val sites: List<Site>) {
             val minX = reader.readUInt32().toLong()
             val minY = reader.readUInt32().toLong()
 
-            val sites = List(count) {
+            val sites = ArrayList<Site>(count)
+            for (i in 0 until count) {
                 val x = minOf(minX + (reader.readUInt16().toLong() shl shift), 0xffffffffL).toUInt()
                 val y = minOf(minY + (reader.readUInt16().toLong() shl shift), 0xffffffffL).toUInt()
-                Site(QuantizedWorldLocation(x, y), reader.readUInt16())
+                val location = QuantizedWorldLocation(x, y)
+                sites.add(Site(location, reader.readUInt16()))
             }
             check(reader.isAtEnd)
             return MapTile(flags and leafFlag != 0, sites)

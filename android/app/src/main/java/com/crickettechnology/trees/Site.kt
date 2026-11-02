@@ -5,8 +5,11 @@ data class Site(
     // at zoom z, the top z bits indicate the tile index
     var location: QuantizedWorldLocation,
 
+
     // index into TreeType array (UInt16)
     var typeIndex: Int
 ) {
-    val type: TreeType get() = TreeType.all[typeIndex]
+
+    val type: TreeType
+        get() { return TreeType.all[typeIndex] }
 }

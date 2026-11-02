@@ -9,13 +9,14 @@ import java.nio.charset.CodingErrorAction
 class BinaryReader(file: File) {
     private val buffer = ByteBuffer.wrap(file.readBytes()).order(ByteOrder.LITTLE_ENDIAN)
 
-    val isAtEnd: Boolean get() = !buffer.hasRemaining()
+    val isAtEnd: Boolean
+        get() { return !buffer.hasRemaining() }
 
-    fun readUInt8(): Int = buffer.get().toInt() and 0xff
-    fun readUInt16(): Int = buffer.short.toInt() and 0xffff
-    fun readUInt32(): UInt = buffer.int.toUInt()
-    fun readUInt64(): ULong = buffer.long.toULong()
-    fun readDouble(): Double = buffer.double
+    fun readUInt8(): Int { return buffer.get().toInt() and 0xff }
+    fun readUInt16(): Int { return buffer.short.toInt() and 0xffff }
+    fun readUInt32(): UInt { return buffer.int.toUInt() }
+    fun readUInt64(): ULong { return buffer.long.toULong() }
+    fun readDouble(): Double { return buffer.double }
 
     fun readString(count: Int): String {
         check(count >= 0 && count <= buffer.remaining())

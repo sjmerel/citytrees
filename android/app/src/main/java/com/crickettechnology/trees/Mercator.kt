@@ -20,8 +20,10 @@ object Mercator {
         return WorldLocation(x, y)
     }
 
-    fun projectQuantized(location: MapLocation): QuantizedWorldLocation =
-        QuantizedWorldLocation.quantize(project(location))
+    fun projectQuantized(location: MapLocation): QuantizedWorldLocation {
+        val loc = project(location)
+        return QuantizedWorldLocation.quantize(loc)
+    }
 
     fun unproject(location: WorldLocation): MapLocation {
         val lon = (location.x - 0.5) * 360
@@ -29,11 +31,16 @@ object Mercator {
         return MapLocation(lat, lon)
     }
 
-    fun unprojectQuantized(location: QuantizedWorldLocation): MapLocation =
-        unproject(QuantizedWorldLocation.unquantize(location))
+    fun unprojectQuantized(location: QuantizedWorldLocation): MapLocation {
+        val loc = QuantizedWorldLocation.unquantize(location)
+        return unproject(loc)
+    }
 
-    fun metersPerUnit(atLatitude: Double): Double =
-        cos(atLatitude * PI / 180) * (2.0 * PI * radius)
+
+    fun metersPerUnit(atLatitude: Double): Double {
+        return cos(atLatitude * PI / 180) * (2.0 * PI * radius)
+    }
 
     const val radius = 6378137.0  // WGS 84 equatorial radius in meters
+
 }
