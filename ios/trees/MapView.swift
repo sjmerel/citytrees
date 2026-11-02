@@ -16,6 +16,10 @@ struct MapView: UIViewRepresentable {
     // Satellite imagery instead of the normal map.
     var satellite: Bool
 
+    // Whether the custom location button is available, and requests to recenter the map.
+    @Binding var isLocationAuthorized: Bool
+    var locationRequest: Int
+
     ////////////////////////////////////////
 
     func makeUIView(context: Context) -> GMSMapView {
@@ -63,6 +67,10 @@ struct MapView: UIViewRepresentable {
         if selectedTypeIndex == nil {
             context.coordinator.clearSelectionMarker()
         }
+        if context.coordinator.lastLocationRequest != locationRequest {
+            context.coordinator.lastLocationRequest = locationRequest
+            context.coordinator.showMyLocation()
+        }
     }
 
     ////////////////////////////////////////
@@ -74,6 +82,7 @@ struct MapView: UIViewRepresentable {
     class Coordinator: NSObject, GMSMapViewDelegate, CLLocationManagerDelegate {
         var parent: MapView
         let tileLayer = MapTileLayer()
+        var lastLocationRequest = 0
 
         init(_ parent: MapView) {
             self.parent = parent
@@ -103,6 +112,14 @@ struct MapView: UIViewRepresentable {
             select(site: nearestSite(to: coordinate, in: mapView))
         }
 
+        func showMyLocation() {
+            if isAuthorized {
+                isRecentering = true
+                setBusy(true)
+                locationManager.requestLocation()
+            }
+        }
+
         ////////////////////////////////////////
         // CLLocationManagerDelegate
 
@@ -119,14 +136,22 @@ struct MapView: UIViewRepresentable {
 
         // The first fix centers the map; if there is none, the map keeps the saved camera or the whole world.
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            guard !hasLocated, let location = locations.last else { return }
-            hasLocated = true
-            setBusy(false)
-            mapView?.moveCamera(GMSCameraUpdate.setTarget(location.coordinate, zoom: 16))
+            if (!hasLocated || isRecentering), let location = locations.last {
+                hasLocated = true
+                setBusy(false)
+                if isRecentering {
+                    mapView?.animate(with: GMSCameraUpdate.setTarget(location.coordinate))
+                }
+                else {
+                    mapView?.moveCamera(GMSCameraUpdate.setTarget(location.coordinate, zoom: 16))
+                }
+                isRecentering = false
+            }
         }
 
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
             print("location unavailable: \(error)")
+            isRecentering = false
             setBusy(false)
         }
 
@@ -135,6 +160,7 @@ struct MapView: UIViewRepresentable {
 
         private let locationManager = CLLocationManager()
         private var hasLocated = false
+        private var isRecentering = false
         private weak var mapView: GMSMapView?
 
         // Deferred, since this can be called while SwiftUI is updating the view.
@@ -201,7 +227,12 @@ struct MapView: UIViewRepresentable {
         private func updateLocationControls() {
             mapView?.isMyLocationEnabled = isAuthorized
             mapView?.settings.compassButton = isAuthorized
-            mapView?.settings.myLocationButton = isAuthorized
+            mapView?.settings.myLocationButton = false
+            DispatchQueue.main.async { [weak self] in
+                if let self {
+                    self.parent.isLocationAuthorized = self.isAuthorized
+                }
+            }
         }
 
     }

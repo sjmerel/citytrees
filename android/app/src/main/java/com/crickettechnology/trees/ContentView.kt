@@ -5,12 +5,9 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,11 +15,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -39,9 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.CancellationException
@@ -58,6 +51,8 @@ fun ContentView() {
     val isBusy = remember { mutableStateOf(false) }
     var showingAbout by remember { mutableStateOf(false) }
     var satellite by remember { mutableStateOf(false) }
+    val isLocationAuthorized = remember { mutableStateOf(false) }
+    var locationRequest by remember { mutableIntStateOf(0) }
     val tileDownloadFailed = remember { mutableStateOf(false) }
     var checkForNewDataCompleted by remember { mutableStateOf(false) }
     var isCheckingForNewData by remember { mutableStateOf(true) }
@@ -74,7 +69,7 @@ fun ContentView() {
     // the map extends under the system bars too; the overlays stay below the top one
     Box(Modifier.fillMaxSize()) {
         if (checkForNewDataCompleted) {
-            MapView(selectedTypeIndex, isBusy, tileDownloadFailed, satellite).Content()
+            MapView(selectedTypeIndex, isBusy, tileDownloadFailed, satellite, isLocationAuthorized, locationRequest).Content()
         }
         Box(Modifier
             .fillMaxSize()
@@ -86,6 +81,9 @@ fun ContentView() {
                     .padding(end = 16.dp, bottom = 80.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
+                if (isLocationAuthorized.value) {
+                    LocationButton { locationRequest += 1 }
+                }
                 LayersButton(satellite) { satellite = !satellite }
                 InfoButton { showingAbout = true }
             }
@@ -127,29 +125,15 @@ fun ContentView() {
                 enter = fadeIn(tween(300)), exit = fadeOut(tween(300))
             ) {
                 Box(Modifier.padding(12.dp)) {
-                    Row(
+                    Text("Data download failed; some trees may be missing.",
+                        fontSize = 13.sp,
+                        color = Color.White,
+                        textAlign = TextAlign.Center,
                         modifier = Modifier
                             .fillMaxWidth()
                             .shadow(5.dp, RoundedCornerShape(14.dp))
-                            .background(Color.Black, RoundedCornerShape(14.dp))
-                            .padding(start = 16.dp, top = 8.dp, bottom = 8.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text("Data download failed; some trees may be missing.",
-                            fontSize = 13.sp,
-                            color = Color.White,
-                            modifier = Modifier.weight(1f))
-                        Spacer(Modifier.width(8.dp))
-                        Icon(
-                            painter = painterResource(R.drawable.x),
-                            contentDescription = null,
-                            tint = SwiftUIColor.gray,
-                            modifier = Modifier
-                                .semantics { contentDescription = "Close" }
-                                .clickable { tileDownloadFailed.value = false }
-                                .padding(12.dp)
-                        )
-                    }
+                            .background(Color.Black.copy(alpha = 0.7f), RoundedCornerShape(14.dp))
+                            .padding(horizontal = 16.dp, vertical = 8.dp))
                 }
             }
         }

@@ -54,7 +54,11 @@ class MapView(
     val tileDownloadFailed: MutableState<Boolean>,
 
     // Satellite imagery instead of the normal map.
-    val satellite: Boolean
+    val satellite: Boolean,
+
+    // Whether the custom location button is available, and requests to recenter the map.
+    val isLocationAuthorized: MutableState<Boolean>,
+    val locationRequest: Int
 ) {
 
     // Android-specific: hosts the map in Compose, as UIViewRepresentable does in SwiftUI.
@@ -168,6 +172,10 @@ class MapView(
         if (selectedTypeIndex.value == null) {
             coordinator.clearSelectionMarker()
         }
+        if (map != null && coordinator.lastLocationRequest != locationRequest) {
+            coordinator.lastLocationRequest = locationRequest
+            coordinator.showMyLocation()
+        }
     }
 
     ////////////////////////////////////////
@@ -178,6 +186,7 @@ class MapView(
 
     class Coordinator(var parent: MapView) : GoogleMap.OnCameraIdleListener, GoogleMap.OnMapClickListener {
         val tileLayer = MapTileLayer()
+        var lastLocationRequest = 0
 
         // Android-specific: shows the system's location permission request; set by MapView.
         var requestLocationPermission: (() -> Unit)? = null
@@ -212,6 +221,14 @@ class MapView(
             select(nearestSite(latLng, map!!))
         }
 
+        fun showMyLocation() {
+            if (isAuthorized) {
+                isRecentering = true
+                setBusy(true)
+                requestLocation()
+            }
+        }
+
         ////////////////////////////////////////
         // location (CLLocationManagerDelegate on iOS)
 
@@ -228,14 +245,21 @@ class MapView(
 
         // The first fix centers the map; if there is none, the map keeps the saved camera or the whole world.
         fun locationUpdated(location: Location) {
-            if (hasLocated) { return }
+            if (hasLocated && !isRecentering) { return }
             hasLocated = true
             setBusy(false)
-            map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 16f))
+            if (isRecentering) {
+                map?.animateCamera(CameraUpdateFactory.newLatLng(LatLng(location.latitude, location.longitude)))
+            }
+            else {
+                map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 16f))
+            }
+            isRecentering = false
         }
 
         fun locationFailed(error: Exception?) {
             println("location unavailable: $error")
+            isRecentering = false
             setBusy(false)
         }
 
@@ -244,6 +268,7 @@ class MapView(
 
         private val locationClient = LocationServices.getFusedLocationProviderClient(TreesApplication.context)
         private var hasLocated = false
+        private var isRecentering = false
 
         private fun setBusy(busy: Boolean) {
             parent.isBusy.value = busy
@@ -332,8 +357,9 @@ class MapView(
             if (map != null) {
                 map.isMyLocationEnabled = isAuthorized
                 map.uiSettings.isCompassEnabled = isAuthorized
-                map.uiSettings.isMyLocationButtonEnabled = isAuthorized
+                map.uiSettings.isMyLocationButtonEnabled = false
             }
+            parent.isLocationAuthorized.value = isAuthorized
         }
 
     }

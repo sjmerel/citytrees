@@ -7,6 +7,8 @@ struct ContentView: View {
     @State private var isBusy = false
     @State private var showingAbout = false
     @State private var satellite = false
+    @State private var isLocationAuthorized = false
+    @State private var locationRequest = 0
     @State private var tileDownloadFailed = false
     @State private var checkForNewDataCompleted = false
     @State private var isCheckingForNewData = true
@@ -19,12 +21,15 @@ struct ContentView: View {
             .ignoresSafeArea(edges: .bottom)
             .background {
                 if checkForNewDataCompleted {
-                    MapView(selectedTypeIndex: $selectedTypeIndex, isBusy: $isBusy, tileDownloadFailed: $tileDownloadFailed, satellite: satellite)
+                    MapView(selectedTypeIndex: $selectedTypeIndex, isBusy: $isBusy, tileDownloadFailed: $tileDownloadFailed, satellite: satellite, isLocationAuthorized: $isLocationAuthorized, locationRequest: locationRequest)
                         .ignoresSafeArea()
                 }
             }
             .overlay(alignment: .bottomTrailing) {
                 VStack(spacing: 12) {
+                    if isLocationAuthorized {
+                        LocationButton { locationRequest += 1 }
+                    }
                     LayersButton() { satellite.toggle() }
                     InfoButton { showingAbout = true }
                 }
@@ -56,23 +61,15 @@ struct ContentView: View {
             .animation(.easeInOut(duration: 0.3), value: selectedTypeIndex != nil)
             .overlay(alignment: .bottom) {
                 if tileDownloadFailed {
-                    HStack {
-                        Text("Data download failed; some trees may be missing.")
-                            .font(.system(size: 13))
-                            .foregroundColor(.white)
-                            .fixedSize(horizontal: false, vertical: true)
-                        Spacer(minLength: 8)
-                        Button { tileDownloadFailed = false } label: {
-                            Image("x")
-                                .font(.system(size: 12, weight: .semibold))
-                                .foregroundColor(.gray)
-                                .padding(12)
-                        }
-                        .accessibilityLabel("Close")
-                    }
-                        .padding(.leading, 16)
+                    Text("Data download failed; some trees may be missing.")
+                        .font(.system(size: 13))
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                        .background(Color.black)
+                        .background(Color.black.opacity(0.7))
                         .clipShape(RoundedRectangle(cornerRadius: 14))
                         .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
                         .padding(12)
