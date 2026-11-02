@@ -2037,5 +2037,79 @@
     "name": "Bordeaux Metropole",
     "country": "FR",
     "license": "https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Licence_Ouverte.pdf"
+  },
+  {
+    "code": "somerville_ma_us",
+    "name": "Somerville",
+    "state": "MA",
+    "country": "US",
+    "license_comment": "Public copy of the city's tree inventory hosted by a Harvard CGA account; no license found and city provenance is unconfirmed, so redistribution rights are unknown."
+  },
+  {
+    "code": "manhattanbeach_ca_us",
+    "name": "Manhattan Beach",
+    "state": "CA",
+    "country": "US",
+    "license_comment": "Public copy of the city's street tree inventory hosted by a Cal Poly account; no license found and city provenance is unconfirmed, so redistribution rights are unknown."
+  },
+  {
+    "code": "maywood_ca_us",
+    "name": "Maywood",
+    "state": "CA",
+    "country": "US",
+    "license_comment": "Public copy of the city's i-Tree inventory hosted by a personal account; no license found and city provenance is unconfirmed, so redistribution rights are unknown."
+  },
+  {
+    "code": "marinadelrey_ca_us",
+    "name": "Marina del Rey",
+    "state": "CA",
+    "country": "US",
+    "license": "https://egis-lacounty.hub.arcgis.com/pages/terms-of-use"
+  },
+  {
+    "code": "aurora_il_us",
+    "name": "Aurora",
+    "state": "IL",
+    "country": "US",
+    "license_comment": "Phillips Park trees only, published by a tree-care consultant (grafgis); no license found and city provenance is unconfirmed, so redistribution rights are unknown."
+  },
+  {
+    "code": "greaterbendigo_vic_au",
+    "name": "Greater Bendigo",
+    "state": "VIC",
+    "country": "AU",
+    "license": "https://creativecommons.org/licenses/by/2.5/au/"
+  },
+  {
+    "code": "brimbank_vic_au",
+    "name": "Brimbank",
+    "state": "VIC",
+    "country": "AU",
+    "license": "https://creativecommons.org/licenses/by/2.5/au/"
+  },
+  {
+    "code": "singapore_sg",
+    "name": "Singapore",
+    "country": "SG",
+    "license": "https://data.gov.sg/open-data-licence",
+    "license_comment": "Heritage Trees only (255 trees). The Singapore Open Data Licence requires a notice crediting the dataset, data.gov.sg, and the access date. The full TreesSG inventory is not openly licensed."
+  },
+  {
+    "code": "barcelona_es",
+    "name": "Barcelona",
+    "country": "ES",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+    "code": "buenosaires_ar",
+    "name": "Buenos Aires",
+    "country": "AR",
+    "license": "https://creativecommons.org/licenses/by/2.5/ar/"
+  },
+  {
+    "code": "lyon_fr",
+    "name": "Lyon Metropole",
+    "country": "FR",
+    "license_comment": "No dataset-specific license found: WFS capabilities have no license field and the linked GeoNetwork metadata (c1b069ca-181d-4265-9838-8d182f207bd3) returns 404. Data Grand Lyon generally uses Licence Ouverte or ODbL; confirm with Data Grand Lyon support."
   }
 ]

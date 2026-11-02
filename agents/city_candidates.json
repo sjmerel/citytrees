@@ -526,27 +526,17 @@
       "checked_on": "2026-10-26"
     },
     {
-      "place": "Aurora, IL, US",
-      "next_step": "GrafGIS publishes 1,009 parks-tree points with LATIN botanical names and Aurora, Illinois coordinates in a 2019-named export. The city parks/tree pages did not establish municipal endorsement or survey dates. Confirm city/park-district provenance and reuse terms, or obtain a larger official inventory; do not confuse Aurora, Colorado's maps with Illinois.",
-      "urls": [
-        "https://services1.arcgis.com/WK6JRyyNiFsxCE3s/arcgis/rest/services/Aurora_Trees_7_7_19_PUBLIC/FeatureServer/0",
-        "https://www.aurora.il.us/Recreation-and-Amenities/Parks",
-        "https://www.aurora.il.us/City-Services/Environment-and-Sustainability/Trees"
-      ],
-      "checked_on": "2026-10-26"
-    },
-    {
       "place": "Bakersfield, CA, US",
       "next_step": "Earlier ArcGIS search found no usable municipal botanical inventory; check official sources and alternative download formats."
     },
     {
       "place": "Barcelona, ES",
-      "next_step": "Official Open Data BCN lists separate street-tree (arbrat-viari) and zone-tree (arbrat-zona) CSV inventories. Catalog/resource requests returned HTTP 403 or timed out, so current botanical values, usable counts, dates and reuse terms are not verified. Obtain an accessible official export and check overlap between the two inventories; do not infer counts from search summaries.",
+      "next_step": "Park trees (arbrat-parcs, CC BY 4.0) are imported as barcelona_es. Street (arbrat-viari) and zone (arbrat-zona) bulk downloads returned 403 and aren't in the CKAN datastore; retry official bulk access and check overlap with parks before adding.",
       "urls": [
         "https://opendata-ajuntament.barcelona.cat/data/en/dataset/arbrat-viari",
         "https://opendata-ajuntament.barcelona.cat/data/en/dataset/arbrat-zona"
       ],
-      "checked_on": "2026-10-26"
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Bath, UK",
@@ -558,11 +548,11 @@
     },
     {
       "place": "Beaverton, OR, US",
-      "next_step": "Street of Trees has 139 botanical-name points, sampled in Beaverton, but is a small curated collection rather than broad coverage. Assess Existing-status records if small collections are wanted; still seek a larger municipal inventory.",
+      "next_step": "Verified: 139 points, officially city-hosted (owner mjohns@beavertonoregon.gov), BOTNAME field has genuine binomials incl. cultivars (e.g. Acer rubrum 'Bowhall'), TREESTATUS='Existing' filterable, recently edited (Nov 2026). Small curated tree-tour collection, not a full street inventory; import as a narrow city-official dataset if small collections are wanted, or keep seeking a larger municipal inventory.",
       "urls": [
         "https://services.arcgis.com/mpOrhWpH9jj0z4rU/arcgis/rest/services/Street_of_Trees/FeatureServer/0"
       ],
-      "checked_on": "2026-10-26"
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Bellingham, WA, US",
@@ -570,12 +560,13 @@
     },
     {
       "place": "Belo Horizonte, MG, BR",
-      "next_step": "Official page describes a street-tree census surveyed in 2012-2016 and migrated to SisCTM in 2020, with later maintenance. Its more-than-500,000 figure is intended coverage, not a verified download count. Page links a Power BI dashboard, but catalog search found removal permits rather than the census. Seek an official SisCTM/BHGEO export; verify botanical values, actual count, geometry, current status and reuse terms.",
+      "next_step": "No export, sample records or reuse terms verified; CKAN and BHMap WFS requests were access-blocked. Obtain a working official SisCTM export/service and license, then verify names, count, geometry and status.",
       "urls": [
         "https://prefeitura.pbh.gov.br/meio-ambiente/inventario-das-arvores",
-        "https://dados.pbh.gov.br/api/3/action/package_search?q=arvore"
+        "https://dados.pbh.gov.br/api/3/action/package_search?q=arvore",
+        "https://bhmap.pbh.gov.br/v2/api/idebhgeo/wfs"
       ],
-      "checked_on": "2026-10-27"
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Birmingham, AL, US",
@@ -596,13 +587,13 @@
     },
     {
       "place": "Bogota, DC, CO",
-      "next_step": "Official Jardin Botanico ArcGIS item identifies the CensoArbol public census service under CC BY 4.0, covering trees, shrubs, palms and tree ferns. Live service/catalog connections failed, so botanical schema, actual records, survey dates and counts remain unverified. Locate a working official census download or restored service, then filter biotypes and removed/dead sites; do not substitute aggregate density or tree-hazard layers.",
+      "next_step": "Official CC BY 4.0 CensoArbol service works (1,472,431 points) but exposes common names only, with no biotype/removal fields; the official common-name catalog leaves many labels unmatched or ambiguous. Obtain an unambiguous species/biotype crosswalk and active-status data.",
       "urls": [
         "https://datosabiertos.bogota.gov.co/dataset/censo-arbolado-urbano",
-        "https://www.arcgis.com/home/item.html?id=20689b32ac6f4082a82e8eb0b3f657da",
-        "https://geoportal.jbb.gov.co/agc/rest/services/IDECA/CensoArbol/FeatureServer/0"
+        "https://geoportal.jbb.gov.co/agc/rest/services/IDECA/CensoArbol/FeatureServer/0",
+        "https://datosabiertos.bogota.gov.co/dataset/nombres-comunes-plantas-bogota"
       ],
-      "checked_on": "2026-10-26"
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Boroondara, VIC, AU",
@@ -625,30 +616,10 @@
       "next_step": "Limited ArcGIS/data.gov.uk search found no official botanical inventory; check council GIS and CSV/GeoJSON/WFS downloads."
     },
     {
-      "place": "Brimbank, VIC, AU",
-      "next_step": "Use original council shapefile ZIP downloads instead of broken national WFS feature types. Street-tree archive is accessible (8.34 MB); separate open-space archive is also cataloged. Both CC BY 2.5 Australia, resource dates March 2019; recent catalog edits are not surveys. Parse shapefiles, verify botanical values/CRS/status/counts and resolve cross-layer overlap before importing; actual records not yet reviewed.",
-      "urls": [
-        "https://data.gov.au/data/dataset/brimbank-street-trees",
-        "https://data.gov.au/data/dataset/f918f178-90f5-4c9d-b15a-9447301a381e/resource/0072de55-3e43-4d0e-9a5e-7a9449b828fc/download/brimbank-street-trees.zip",
-        "https://data.gov.au/data/dataset/brimbank-open-space-trees",
-        "https://data.gov.au/data/dataset/7a57b5a1-2ca3-4171-be91-0d371cefd250/resource/0df2776c-4432-4dcc-9cfd-1ea3efad2cfc/download/brimbank-open-space-trees.zip"
-      ],
-      "checked_on": "2026-10-27"
-    },
-    {
       "place": "Brownsville, TX, US",
       "next_step": "Initial catalog search found no verified botanical inventory; Brownsville Tree Guard Bench is an unrelated survey, not a local tree inventory. Seek an official Parks/Urban Forestry export through city GIS.",
       "urls": [
         "https://www.brownsvilletx.gov/653/Geographic-Information-System-GIS-Maps"
-      ],
-      "checked_on": "2026-10-26"
-    },
-    {
-      "place": "Buenos Aires, AR",
-      "next_step": "Official Arbolado publico lineal catalog describes georeferenced individual street trees with species and dimensions. The catalog page loads, but its API rejected requests and an official 2017-2018 CDN export timed out; actual botanical fields/counts, current resources and license are not yet verified. Recover the catalog's exact downloads, compare newer inventories with the historical census, and assess separate park coverage without double counting. Annual planting totals are not inventory counts.",
-      "urls": [
-        "https://data.buenosaires.gob.ar/dataset/arbolado-publico-lineal",
-        "https://cdn.buenosaires.gob.ar/datosabiertos/datasets/arbolado-publico-lineal/arbolado-publico-lineal-2017-2018.geojson"
       ],
       "checked_on": "2026-10-26"
     },
@@ -722,10 +693,12 @@
     },
     {
       "place": "Columbus, OH, US",
-      "next_step": "Investigate SP_CODE domains or official botanical crosswalks for Current_Columbus_City_Owned_Trees (about 146,000 records); another server returned 403.",
+      "next_step": "Found a second, larger official layer: maps2.columbus.gov Public Owned Trees (SP_CODE domain, 306 USDA-style codes e.g. FRAM=Fraxinus americana, 316,600 records), distinct from the ~146,000-record Current_Columbus_City_Owned_Trees. Both need an authoritative code crosswalk (domain only exposes common-name labels); investigate before importing either.",
       "urls": [
-        "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Current_Columbus_City_Owned_Trees/FeatureServer/0"
-      ]
+        "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Current_Columbus_City_Owned_Trees/FeatureServer/0",
+        "https://maps2.columbus.gov/arcgis/rest/services/Schemas/RecreationParks/MapServer/1"
+      ],
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Coquitlam, BC, CA",
@@ -745,12 +718,12 @@
     },
     {
       "place": "Dallas, TX, US (additional coverage)",
-      "next_step": "The largest public Trees2024 layer is imported. Assess the 10,310-site TreeSites and 46,480-site SmartTreeInventory layers for additional surveyed coverage and resolve spatial overlap before combining. SmartTreeInventory uses guest Species field SITE_ATTR3, not SITE_ATTR1; distinguish field inventory from modeled detections. Ash/EAB layers are alternate views, not additional trees.",
+      "next_step": "TreeKeeper map reports 10,310 TreeSites and 46,480 SmartTreeInventory points, but the guest grid returned zero rows for both, so names, surveyed-vs-modeled status and overlap with the imported Trees2024 layer (156,418 sites) can't be verified; no reuse license found. Obtain a licensed export.",
       "urls": [
         "https://dallascityhall.com/projects/forestry/Pages/Inventory.aspx",
         "https://dallastx.treekeepersoftware.com/index.cfm?deviceWidth=1920"
       ],
-      "checked_on": "2026-10-26"
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Darwin, NT, AU",
@@ -880,28 +853,21 @@
       "next_step": "Find an official botanical crosswalk for BOTANICAL_NAME codes such as SPRUBL in the roughly 24,924-record park inventory."
     },
     {
-      "place": "Greater Bendigo, VIC, AU",
-      "next_step": "Official council street/park tree inventory has an accessible 4.71 MB original shapefile archive (.shz, November 2024), CC BY 2.5 Australia. Use that instead of the national WFS's unknown feature type. Inspect source records, botanical/status fields and CRS before importing. Separate annual Tree Planting datasets may overlap or represent plans; do not add them blindly.",
-      "urls": [
-        "https://data.gov.au/data/dataset/city-of-greater-bendigo-environment-trees",
-        "https://data.gov.au/data/dataset/d17c9e50-fab1-40e6-b91d-6e665faf2656/resource/b3f01081-924c-41b7-989a-cf521ca136ea/download/cogb-environment-trees.shz"
-      ],
-      "checked_on": "2026-10-27"
-    },
-    {
       "place": "Greensboro, NC, US",
       "next_step": "Earlier catalog search found no usable municipal botanical inventory; search official municipal sources beyond ArcGIS."
     },
     {
       "place": "Greenwich, CT, US",
-      "next_step": "Assess the roughly 839 genus-populated park records; the old 2,000-tree cutoff is not binding. Check for broader street-tree coverage."
+      "next_step": "Confirmed via groupByFieldsForStatistics: Parks_Trees_Merge2 has only 839 of 41,272 records with non-blank Genus (rest are a single-space placeholder, not true NULL); TreeWorks_Trees_2010 (10,153 records) has abbreviated common names only (e.g. 'mapl,sugar'), no botanical value. Neither is promotable as-is; seek broader street-tree coverage with a real botanical field.",
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Harrisonburg, VA, US",
-      "next_step": "Assess about 108 genus-populated records (63 with both genus and species), survey freshness, and newer coverage; do not rely on the old size cutoff alone.",
+      "next_step": "Confirmed: City_Trees has 2,788 total points but only 108 GENUS-populated (71 with SPECIES); too sparse to import as-is. Monitor for a more complete future survey.",
       "urls": [
         "https://services5.arcgis.com/RnpJxEjCkCrMvNB1/arcgis/rest/services/City_Trees/FeatureServer/0"
-      ]
+      ],
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Hawthorne, CA, US",
@@ -926,7 +892,8 @@
     },
     {
       "place": "Houston, TX, US",
-      "next_step": "215k-tree layer exists, but common names only. Dataset: (full URL not recorded) Retry public access or locate an official public export."
+      "next_step": "Checked official COH_UrbanForestry_Base_VIEW_ONLY/PlantingSpaces FeatureServers and the ForUsTree_WFL1 (Harris County Precinct 2) service: no individual per-tree point layer exists publicly, only management-zone/aggregate polygons and planting-site/amenity points. No usable per-tree botanical inventory located this round; retry public access or locate an official public export.",
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Huntington Beach, CA, US",
@@ -954,10 +921,11 @@
     },
     {
       "place": "Iowa DNR Urban Tree Inventory, IA, US",
-      "next_step": "About 343,000 records use SPCODE symbols such as CEOC; find an official botanical crosswalk and check overlap with existing Iowa coverage.",
+      "next_step": "About 343,000 records use SPCODE symbols (e.g. TIAM, ULAM, ILOP) resembling USDA PLANTS symbols, but the domain only exposes common-name labels (no literal binomial field). Find/validate an authoritative USDA PLANTS symbol crosswalk before importing, and check overlap with existing Iowa coverage.",
       "urls": [
         "https://services2.arcgis.com/r6iFVcMJeA4kB4GC/arcgis/rest/services/Iowa_DNR_Urban_Tree_Inventory_Public/FeatureServer/0"
-      ]
+      ],
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Irving, TX, US",
@@ -977,7 +945,8 @@
     },
     {
       "place": "Lakeland, FL, US",
-      "next_step": "Retry Lakeland10_UrbanForest or find a replacement public export; BOTANICAL/GENUS fields were present but queries timed out."
+      "next_step": "Lakeland10_UrbanForest is no longer public on ArcGIS Online. City-owned alternatives are small garden collections (76 Morton Arboretum points; 96 Hollis Garden points without botanical names) with blank licenses. Ask City GIS/Parks for a citywide export and reuse terms. No Polk County coverage exists yet.",
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Laredo, TX, US",
@@ -999,11 +968,11 @@
     },
     {
       "place": "Lawrence, KS, US",
-      "next_step": "Municipal Tree_Viewer has 17,236 points but uses speciesid codes such as SPP-44 with common-name domains. Locate an official botanical species table before importing; sampled points had null speciesid.",
+      "next_step": "Confirmed: Tree_Viewer's speciesid domain (e.g. SPP-44) maps only to common names (e.g. 'American Hornbeam'), no botanical crosswalk available. Locate an official botanical species table before importing.",
       "urls": [
         "https://services.arcgis.com/8O9UlSTnqjKptoda/arcgis/rest/services/Tree_Viewer/FeatureServer/0"
       ],
-      "checked_on": "2026-10-26"
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Leeds, GB",
@@ -1045,14 +1014,14 @@
     },
     {
       "place": "Lyon Metropole, FR",
-      "next_step": "Import blocked by unverified dataset-specific reuse terms. Official WFS metropole-de-lyon:abr_arbres_alignement.abrarbre has 112,425 individual botanical points; actual samples verified. Alignment trees, not complete park/private coverage; datereleve is a survey field (sample years 2016, 2022, 2025). Old GeoNetwork metadata routes return 404; exact slug/UUID absent from current portal metadata index, CSV catalog and national dataset search. General portal policy/third-party mirrors do not establish this inventory's license. Ask Data Grand Lyon support for the authoritative license or a replacement catalog record before importing; then review full names/status, geometry and IDs. Do not retry these dead metadata routes without a new lead.",
+      "next_step": "WFS works (112,439 records, ~106,000 usable after filtering vacancies/stumps), but no dataset-specific license found: GetCapabilities has no license field and its linked GeoNetwork metadata (c1b069ca-181d-4265-9838-8d182f207bd3) returns 404. General portal policy is not sufficient. Ask Data Grand Lyon support for the authoritative license.",
       "urls": [
         "https://data.grandlyon.com/portail/fr/jeux-de-donnees/arbres-alignement-metropole-lyon/info",
         "https://data.grandlyon.com/geoserver/ows",
         "https://data.grandlyon.com/api/csv",
         "https://support.grandlyon.com/data-grand-lyon/"
       ],
-      "checked_on": "2026-10-27"
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Manchester, England, GB",
@@ -1063,42 +1032,15 @@
     },
     {
       "place": "Manchester, NH, US",
-      "next_step": "Find a public municipal export or view of the 2022 inventory; the recorded contractor endpoint required a token.",
+      "next_step": "Contractor endpoint is now fully inaccessible (FeatureServer root returns empty layers list; layer/0 404s), a regression from the prior token-gated state. Find a public municipal export or new public view of the 2022 inventory.",
       "urls": [
         "https://maps.kimley-horn.com/server/rest/services/Hosted/Manchester_Trees_2022/FeatureServer"
-      ]
-    },
-    {
-      "place": "Manhattan Beach, CA, US",
-      "next_step": "Verify city attribution and licensing of the Cal Poly-hosted 7,900-tree botanical inventory, or locate the municipal original.",
-      "urls": [
-        "https://services1.arcgis.com/0j6vZbECadDEXdAS/arcgis/rest/services/Manhattan_Beach_Trimmed/FeatureServer/1"
-      ]
-    },
-    {
-      "place": "Marina del Rey, CA, US",
-      "next_step": "Official LA County Beaches and Harbors service has 1,727 individual points with botanical SPP and ACTIVE Yes/No fields. Compare the county's latest-pruning and MDR_Trees_Feature_Layer_2 exports with the older roughly 2,275-record inventory, then verify survey dates, status filters and usable counts. This is partial county-managed coverage in an unincorporated area, not a citywide inventory.",
-      "urls": [
-        "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Marina_del_Rey_Trees_Managed_by_LA_County_Beaches_and_Harbors_/FeatureServer/0",
-        "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/MDR_Tree_Inventory_Latest_Pruning_(Public_Dash)/FeatureServer/0",
-        "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/MDR_Trees_Feature_Layer_2/FeatureServer/0"
       ],
-      "checked_on": "2026-10-26"
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Markham, ON, CA",
       "next_step": "Earlier catalog searches found no usable municipal botanical inventory; revisit official sources and check current regional coverage."
-    },
-    {
-      "place": "Maywood, CA, US",
-      "next_step": "The city's 2026 UFMP page links CEM/TreePlotter; its current public tree-map config reports 2,308 sites and serves point vector tiles with common-name codes. Obtain its authoritative botanical crosswalk/export before importing. The older WCA export has 2,228 points (2,226 botanical, valid, non-dead); compare newer coverage and establish WCA provenance rather than choosing the smaller source automatically. February 2025 service editing is not a survey date.",
-      "urls": [
-        "https://www.cityofmaywood.com/400/Urban-Forest-Management-and-Tree-Plantin",
-        "https://cem.pg-cloud.com/MaywoodCA",
-        "https://cem.pg-cloud.com/customers/MaywoodCA/tree_map_config.json",
-        "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Maywood_iTree_Inventory_WFL1/FeatureServer/0"
-      ],
-      "checked_on": "2026-10-26"
     },
     {
       "place": "McKinney, TX, US",
@@ -1153,7 +1095,8 @@
     },
     {
       "place": "Montclair, NJ, US",
-      "next_step": "Verify municipal provenance and licensing of the university-hosted 2,553-point botanical inventory, or locate the city's original source."
+      "next_step": "The university-hosted item re-checked this round (Montclair_Tree_Inventory_3D_2_WSL1, owner msu_arcgis_admin2, extent confirms Montclair NJ not MI) is an untextured 3D SceneServer/scene-layer with zero attribute fields -- a campus 3D mesh, not a tree species inventory; no associated FeatureServer found. Still need to locate the actual 2,553-point botanical inventory or the city's original source.",
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Montgomery, AL, US",
@@ -1179,10 +1122,11 @@
     },
     {
       "place": "New Rochelle, NY, US",
-      "next_step": "Check whether the city's 2024 inventory (about 15,590 trees) now has a public bulk export; it was described as under review.",
+      "next_step": "City page confirms ArborPro completed a 15,590-tree inventory (street trees + most parks) in December 2024, but as of this check the data is still under consultant/staff review for a forthcoming Community Forest Management Plan, with no public bulk export or REST service yet. Re-check after the management plan (expected Spring 2025) is published for a public data release.",
       "urls": [
         "https://www.newrochelleny.gov/treeinventory"
-      ]
+      ],
+      "checked_on": "2026-11-01"
     },
     {
       "place": "New Westminster, BC, CA",
@@ -1239,7 +1183,12 @@
     },
     {
       "place": "Overland Park, KS, US",
-      "next_step": "Main inventory had about 37,000 common-name-only records; a separate park inventory had about 3,400 records and was excluded for size."
+      "next_step": "Confirmed main 'Trees' layer (chris.sims.op) has 37,635 CommonName/coded-only records, no Latin field. Found and verified a separate, smaller 'Overland Park' layer (KFS_GIS_Admin) with a genuine LatinName field: 225 records (not ~3,400 as previously noted), 223/225 populated with real binomials (e.g. Carpinus caroliniana, Gymnocladus dioicus), DatePlanted 2021-2022. Small/narrow but botanically valid; consider importing this smaller layer with a caveat on scope, while continuing to seek a larger botanical source.",
+      "urls": [
+        "https://services1.arcgis.com/YQsWDBr0DjMtoTQo/arcgis/rest/services/Trees/FeatureServer/0",
+        "https://services.arcgis.com/djZgF6YJCuO8rbmH/arcgis/rest/services/Overland_Park/FeatureServer/0"
+      ],
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Oxford, UK",
@@ -1348,7 +1297,8 @@
     },
     {
       "place": "San Luis Obispo, CA, US",
-      "next_step": "Verify municipal provenance of the Cal Poly-hosted san_luis_obispo_trees copy or locate the official original."
+      "next_step": "A 'Trees' FeatureServer found this round (services9.arcgis.com/UNu7xS3OK9zDvzWh) is a different, unrelated 60-record dataset with only a 'Size' field and no species data -- not the Cal Poly aggregate previously referenced. Still need to verify municipal provenance of the actual Cal Poly-hosted san_luis_obispo_trees copy or locate the official original.",
+      "checked_on": "2026-11-01"
     },
     {
       "place": "San Marino, CA, US",
@@ -1380,12 +1330,12 @@
     },
     {
       "place": "Scottsdale, AZ, US",
-      "next_step": "Official Citizen Tree Inventory has 246 actual points and a botanical coded-value domain, but contributor validation and inspection dates remain unclear (planted dates include 2017). Verify its review process and usable records, or locate a larger official inventory; do not reject solely for size.",
+      "next_step": "Confirmed: only 246 points; Tree_Name holds cryptic uncoded abbreviations (e.g. CHLI, BAPU, PRJU3) with no domain/crosswalk, and many records are private residential yards from a crowdsourced Survey123 effort, not public municipal trees. Not usable as-is; locate a larger official inventory.",
       "urls": [
         "https://services6.arcgis.com/hvDuIN6e7bxkHpdO/arcgis/rest/services/TreeInventory_PublicViewer/FeatureServer/0",
         "https://www.arcgis.com/home/item.html?id=dfa252a5994f4b4c9eb11d42f5b8b326"
       ],
-      "checked_on": "2026-10-26"
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Sherbrooke, QC, CA",
@@ -1399,18 +1349,14 @@
     },
     {
       "place": "Singapore, SG",
-      "next_step": "Official NParks TreesSG hub exposes a public tree-only ArcGIS point view with species-related fields SPCS_CD and SPSC_NM, separate from UserTrees and heritage/combined views. Reuse permission is the blocker: ArcGIS item license is empty and NParks terms prohibit copying/redistribution and automated collection without consent. Do not bulk import or assume the Singapore Open Data Licence applies to TreesSG. Obtain an explicit open-data license or written permission first, then verify actual botanical labels, counts, dates, status filters and cross-layer overlap.",
+      "next_step": "Heritage Trees (data.gov.sg, Singapore Open Data Licence) are imported as singapore_sg. The full TreesSG inventory remains blocked: its ArcGIS item has no license and NParks terms prohibit copying/automated collection without consent. Obtain an explicit open license or written permission.",
       "urls": [
         "https://treessg.nparks.gov.sg/",
         "https://www.arcgis.com/home/item.html?id=99c6dc8d43634507ab4599e4de416b3e",
         "https://services6.arcgis.com/s5gdswleLl0QthYa/arcgis/rest/services/TreesSG_TreeInformation_Trees/FeatureServer/0",
         "https://www.nparks.gov.sg/terms-of-use"
       ],
-      "checked_on": "2026-10-26"
-    },
-    {
-      "place": "Somerville, MA, US",
-      "next_step": "Find a municipal source or establish provenance and license for the Harvard-hosted March 2023 snapshot."
+      "checked_on": "2026-11-01"
     },
     {
       "place": "South Pasadena, CA, US",
@@ -1465,13 +1411,13 @@
     },
     {
       "place": "Turin, IT",
-      "next_step": "National government catalog lists Comune di Torino's Alberate under CC BY 4.0 with official CSV/GeoJSON ZIPs. Dataset modification is March 31, 2019; recent 2026 harvesting edits are not surveys. HTTPS CSV archive connection timed out after 90 seconds, so botanical values, individual-tree count/coverage and actual records remain unverified. Seek an accessible current municipal export rather than repeatedly retrying this archive without a new lead.",
+      "next_step": "HTTP/HTTPS geoportale archives, AperTO and the Piemonte catalog all timed out again; no records verified. Find an accessible official export (or retry from a different network) before importing.",
       "urls": [
         "https://www.dati.gov.it/opendata/api/3/action/package_search?q=alberate%20Torino",
         "http://geoportale.comune.torino.it/geodati/zip/alberate_csv.zip",
         "http://geoportale.comune.torino.it/geodati/zip/alberate_geo.zip"
       ],
-      "checked_on": "2026-10-27"
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Vallejo, CA, US",
@@ -1479,13 +1425,13 @@
     },
     {
       "place": "Vancouver, WA, US",
-      "next_step": "Public TreePlotter CEM reports 88,208 sites but exposes common-name species codes, including proposed planting sites; verify a public botanical crosswalk/export from the primary viewer. WSU's official Vancouver campus view separately has 2,916 local points with genus/species and removed flags (sample surveys 2018), a possible partial-campus source if validated. Most Vancouver ArcGIS hits are British Columbia, not Washington.",
+      "next_step": "Public TreePlotter CEM reports 88,208 sites but exposes common-name species codes, including proposed planting sites; verify a public botanical crosswalk/export from the primary viewer. Re-checked the WSU campus layer: 2,916 points, only 2,360 genus-populated, with data-quality problems (e.g. genus value 'Diciduous' is not a real genus, trailing-space genera like 'Physocarpus '); it covers only the small WSU Vancouver campus, not the city, and surveys date to 2018. Not a substitute for a citywide inventory; most other Vancouver ArcGIS hits remain British Columbia, not Washington.",
       "urls": [
         "https://cem.pg-cloud.com/VancouverWA/",
         "https://pg-cloud.com/VancouverWA/",
         "https://services6.arcgis.com/AK42VSd2ESNY4Vkp/arcgis/rest/services/WSU_Vancouver_Tree_Inventory_(ViewLayer)/FeatureServer/0"
       ],
-      "checked_on": "2026-10-26"
+      "checked_on": "2026-11-01"
     },
     {
       "place": "Vaughan, ON, CA",

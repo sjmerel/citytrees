@@ -1,10 +1,10 @@
 ---
-applyTo: "data/**,.github/city_candidates.json"
+applyTo: "data/**,agents/city_candidates.json"
 ---
 
 # City research and imports
 
-Before researching cities, read `.github/city_candidates.json` and check `data/cities.json` and existing importers to avoid duplicating coverage.
+Before researching cities, read `agents/city_candidates.json` and check `data/cities.json` and existing importers to avoid duplicating coverage.
 
 * Prefer official municipal inventories with public bulk access. Verify actual geography, botanical-name values, survey dates, and usable tree counts, not just field names or service titles. Species codes need a reliable botanical crosswalk; valid genus-only names are acceptable.
 * Prefer larger, current datasets, but do not reject useful coverage solely for an old size cutoff. Exclude vacant sites, stumps, modeled canopy points, and non-inventory data. Document partial coverage and overlap.
