@@ -24,19 +24,27 @@ final class TileStore {
 
     // The file holding the tile, if it is available now. Otherwise starts a download (if the
     // tile exists) and returns nil.
-    func url(for key: TileKey) -> URL? {
-        guard let entry = entryMap[key] else { return nil }
-        let cached = getCacheUrl(for: entry)
-        if FileManager.default.fileExists(atPath: cached.path) { return cached }
-
-        request(entry)
-        return nil
+    func getUrl(for key: TileKey) -> URL? {
+        if key == TileKey.root {
+            return TreeData.localDir.appendingPathComponent(key.path)
+        }
+        if let entry = entryMap[key] {
+            let cached = getCacheUrl(for: entry)
+            if FileManager.default.fileExists(atPath: cached.path) { 
+                return cached 
+            }
+            else {
+                request(entry)
+                return nil
+            }
+        }
+        else {
+            return nil
+        }
     }
 
 
     ////////////////////////////////////////
-
-    private static let baseURL = URL(string: Config.instance.serverUrl)!
 
     private let MAX_CONCURRENT = 4
     private let MAX_PENDING = 64
@@ -78,16 +86,17 @@ final class TileStore {
     // Lock must be held.
     private func startDownloads() {
         while inFlight.count < MAX_CONCURRENT, let key = pending.popLast() {
-            guard let entry = entryMap[key] else { continue }
-            inFlight.insert(key)
-            print("tile \(key): download started (\(entry.byteCount) bytes)")
-            // the hash in the query makes the URL unique per version, so stale CDN copies are never served
-            var components = URLComponents(url: Self.baseURL.appendingPathComponent(key.path), resolvingAgainstBaseURL: false)!
-            components.queryItems = [URLQueryItem(name: "h", value: String(entry.hash, radix: 16))]
-            let task = session.dataTask(with: components.url!) { [self] data, response, error in
-                finish(entry: entry, data: data, response: response, error: error)
+            if let entry = entryMap[key] {
+                inFlight.insert(key)
+                print("tile \(key): download started (\(entry.byteCount) bytes)")
+                // the hash in the query makes the URL unique per version, so stale CDN copies are never served
+                var components = URLComponents(url: TreeData.serverDir.appendingPathComponent(key.path), resolvingAgainstBaseURL: false)!
+                components.queryItems = [URLQueryItem(name: "h", value: String(entry.hash, radix: 16))]
+                let task = session.dataTask(with: components.url!) { [self] data, response, error in
+                    finish(entry: entry, data: data, response: response, error: error)
+                }
+                task.resume()
             }
-            task.resume()
         }
     }
 

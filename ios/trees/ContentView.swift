@@ -7,14 +7,20 @@ struct ContentView: View {
     @State private var isBusy = false
     @State private var showingAbout = false
     @State private var satellite = false
+    @State private var checkForNewDataCompleted = false
+    @State private var isCheckingForNewData = true
+    @State private var dataCheckError: String?
+    @State private var dataCheckAttempt = 0
 
     var body: some View {
         // the map extends under the top safe area too; the overlays stay below it
         Color.clear
             .ignoresSafeArea(edges: .bottom)
             .background {
-                MapView(selectedTypeIndex: $selectedTypeIndex, isBusy: $isBusy, satellite: satellite)
-                    .ignoresSafeArea()
+                if checkForNewDataCompleted {
+                    MapView(selectedTypeIndex: $selectedTypeIndex, isBusy: $isBusy, satellite: satellite)
+                        .ignoresSafeArea()
+                }
             }
             .overlay(alignment: .bottomTrailing) {
                 VStack(spacing: 12) {
@@ -43,5 +49,39 @@ struct ContentView: View {
                 }
             }
             .animation(.easeInOut(duration: 0.3), value: selectedTypeIndex != nil)
+            .overlay {
+                if isCheckingForNewData {
+                    BusyView(text: "Checking for new data")
+                }
+                else if let dataCheckError {
+                    BusyView(text: dataCheckError, retry: {
+                        self.dataCheckError = nil
+                        self.isCheckingForNewData = true
+                        self.dataCheckAttempt += 1
+                    })
+                }
+            }
+            .task(id: dataCheckAttempt) {
+                await checkForNewData()
+            }
+    }
+
+    @MainActor
+    private func checkForNewData() async {
+        if !checkForNewDataCompleted {
+            do {
+                let hasNewData = try await TreeData.checkForNewData()
+                try Task.checkCancellation()
+                TreeType.load(url: TreeData.localDir.appendingPathComponent("types.bin"))
+                checkForNewDataCompleted = true
+                isCheckingForNewData = false
+            }
+            catch {
+                if Task.isCancelled { return }
+                print("checking for new data failed: \(error)")
+                dataCheckError = error.localizedDescription
+                isCheckingForNewData = false
+            }
+        }
     }
 }

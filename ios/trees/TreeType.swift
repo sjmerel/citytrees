@@ -11,8 +11,7 @@ struct TreeType {
 
     static private(set) var all: [TreeType]!
 
-    static func load() {
-        let url = Bundle.main.url(forResource: "types", withExtension: "bin")!
+    static func load(url: URL) {
         Self.all = readBinary(url: url)
         assignColors()
     }

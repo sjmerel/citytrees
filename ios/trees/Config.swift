@@ -6,7 +6,7 @@ class Config {
     static let instance: Config = Config()
 
     let deployment: String
-    let serverUrl: String
+    let serverUrl: URL
 
 
     ////////////////////////////////////////
@@ -16,7 +16,7 @@ class Config {
         let url = Bundle.main.url(forResource: "deployment", withExtension: "json")!
         let data = try! Data(contentsOf: url)
         let deploymentConfig = try! JSONSerialization.jsonObject(with: data) as! [String: Any]
-        self.serverUrl = deploymentConfig["serverUrlBase"] as! String
+        self.serverUrl = URL(string: deploymentConfig["serverUrlBase"] as! String)!
         self.deployment = deploymentConfig["deployment"] as! String
     }
 

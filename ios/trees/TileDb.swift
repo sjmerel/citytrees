@@ -81,7 +81,7 @@ final class TileDb {
     // Tiles up to the bundled zoom level are always available.
     private func getAvailableTileKey(for key: TileKey) -> TileKey {
         var key = key
-        while key.z > 0 && store.url(for: key) == nil {
+        while key.z > 0 && store.getUrl(for: key) == nil {
             key = key.parent
         }
         return key
@@ -98,7 +98,7 @@ final class TileDb {
     private let CACHE_CAPACITY = 64
 
     private init() {
-        let url = Bundle.main.url(forResource: "tiles_manifest", withExtension: "bin")!
+        let url = TreeData.localDir.appendingPathComponent("tiles_manifest.bin")
         let entries = TileManifest.readBinary(url: url)
         siteCount = entries.lazy.filter { $0.isLeaf }.reduce(0) { $0 + $1.siteCount }
         store = TileStore(entries: entries)
@@ -119,7 +119,7 @@ final class TileDb {
         }
 
         // the file can be missing if the system cleared the caches directory
-        guard let url = store.url(for: key) else { return MapTile(isLeaf: false, sites: []) }
+        guard let url = store.getUrl(for: key) else { return MapTile(isLeaf: false, sites: []) }
         let profiler = Profiler(name: "load tile \(key)")
         let tile = MapTile.readBinary(url: url)
         profiler.stop()

@@ -11,8 +11,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
         GMSServices.provideAPIKey(mapsApiKey)
 
-        TreeType.load()
-
         return true
     }
 }
