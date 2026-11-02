@@ -1,12 +1,13 @@
 package com.crickettechnology.trees
 
+import java.io.File
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.charset.CodingErrorAction
 
 // UInt8/UInt16 use nonnegative Ints for indexing; UInt32/UInt64 retain their full unsigned range.
-class BinaryReader(data: ByteArray) {
-    private val buffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN)
+class BinaryReader(file: File) {
+    private val buffer = ByteBuffer.wrap(file.readBytes()).order(ByteOrder.LITTLE_ENDIAN)
 
     val isAtEnd: Boolean get() = !buffer.hasRemaining()
 
