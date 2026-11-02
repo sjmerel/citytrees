@@ -25,7 +25,7 @@ deployment=$1
 case $deployment in
     local)
         localhost=`scutil --get LocalHostName`.local
-        serverUrlBase=http://$localhost:8080 
+        serverUrlBase=http://$localhost:8000 
         ;;
 
     prod)
