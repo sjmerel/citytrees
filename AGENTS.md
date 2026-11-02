@@ -20,10 +20,11 @@ Each city database contains thousands of entries in various formats. The data pi
 There is more detailed information on how data is added and processed in the data [README](/data/README.txt).
 
 Before researching or adding cities, Agents should read and follow [city instructions](/agents/city-data.instructions.md). 
-Cities that have been considered previously should be stored in the [candidate list](/agents/city-candidates.json).
+Cities that have been considered previously should be stored in the [candidate list](/agents/city_candidates.json).
 When looking for data for a city, prefer government "open data" sites to community projects. Many cities have multiple databases available; if so, try to use the largest and most up-to-date one.
-When asked to find additional cities, in the absence of other specific criteria specified, consider candidates in the candidate list first. 
+When asked to find additional cities, in the absence of other specific criteria specified, consider candidates in the candidate list first. If there are no good candidates there, look for cities with large populations.
 Agents may update the city instructions file as the city research workflow evolves, and otherwise add or edit files in the /agents directory, but must not modify AGENTS.md unless the user explicitly requests it. The goal of the city data instructions is to help Agents add more databases efficiently.
+When adding a city, include a URL to the license of the data in cities.json if available, in the "license" field.  If the license may be prohibitive for our use, include a comment in "license_comment".
 
 
 ## App
@@ -38,3 +39,9 @@ Throw or print errors only for situations that arise due to situations beyond ou
 ## Documentation
 
 Do not modify data/README.txt or any other documentation files.  If they need updating, notify me and I will do it.
+
+
+## Code conventions
+
+Swift:
+  prefer explicit if statements to guard statements.

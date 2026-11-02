@@ -1013,17 +1013,6 @@
       "checked_on": "2026-10-26"
     },
     {
-      "place": "Lyon Metropole, FR",
-      "next_step": "WFS works (112,439 records, ~106,000 usable after filtering vacancies/stumps), but no dataset-specific license found: GetCapabilities has no license field and its linked GeoNetwork metadata (c1b069ca-181d-4265-9838-8d182f207bd3) returns 404. General portal policy is not sufficient. Ask Data Grand Lyon support for the authoritative license.",
-      "urls": [
-        "https://data.grandlyon.com/portail/fr/jeux-de-donnees/arbres-alignement-metropole-lyon/info",
-        "https://data.grandlyon.com/geoserver/ows",
-        "https://data.grandlyon.com/api/csv",
-        "https://support.grandlyon.com/data-grand-lyon/"
-      ],
-      "checked_on": "2026-11-01"
-    },
-    {
       "place": "Manchester, England, GB",
       "next_step": "Official OpenDataMcr TPO service has 2,951 protected-tree points plus a polygon layer, not a general municipal inventory. Actual TREETYPE values mix common names and ambiguous codes (ASH, BEECH, ALDER, AILTHS, BCEDAR); no separate scientific-name field. Do not guess species from these labels or turn protected groups into individual trees. Council Tree Studies page contains reports, not a verified bulk botanical inventory. Seek a separate arboricultural inspection export; Manchester NH TreeKeeper belongs to a different city.",
       "url": "https://www.manchester.gov.uk/the-council-and-democracy/council-policies-and-strategies/tree-action-plan/tree-studies",
