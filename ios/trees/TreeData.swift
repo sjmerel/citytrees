@@ -10,6 +10,11 @@ enum TreeData {
         getServerDir(for: timestamp!)
     }
 
+    // Downloaded tiles for the current data version; cleared when a new version is found.
+    static var tileCacheDir: URL {
+        FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("tiles", isDirectory: true)
+    }
+
     static private(set) var timestamp: String? {
         get { return UserDefaults.standard.string(forKey: "timestamp") }
         set { UserDefaults.standard.set(newValue, forKey: "timestamp") }
@@ -38,6 +43,11 @@ enum TreeData {
             try await download(fromDir: serverDir, toDir: newLocalDir, path: "types.bin")
             try await download(fromDir: serverDir, toDir: newLocalDir, path: "tiles_manifest.bin")
             try await download(fromDir: serverDir, toDir: newLocalDir, path: "0/0/0.bin")
+
+            // must happen before the new timestamp is saved, so old tiles are never used with new data
+            if fileManager.fileExists(atPath: tileCacheDir.path) {
+                try fileManager.removeItem(at: tileCacheDir)
+            }
 
             self.timestamp = newTimestamp
 

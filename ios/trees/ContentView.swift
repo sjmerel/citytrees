@@ -80,7 +80,7 @@ struct ContentView: View {
     private func checkForNewData() async {
         if !checkForNewDataCompleted {
             do {
-                let hasNewData = try await TreeData.checkForNewData()
+                let _ = try await TreeData.checkForNewData()
                 try Task.checkCancellation()
                 TreeType.load(url: TreeData.localDir.appendingPathComponent("types.bin"))
                 checkForNewDataCompleted = true

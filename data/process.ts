@@ -404,7 +404,7 @@ async function getWikipediaUrls(types: any[]): Promise<any[]> {
 
       wikipediaCache[name] = result;
       ++n;
-      if (n % 100 == 0) { saveObject('wikipedia_cache.json', wikipediaCache); }
+      if (n % 10 == 0) { saveObject('wikipedia_cache.json', wikipediaCache); }
     }
 
     if (result) {

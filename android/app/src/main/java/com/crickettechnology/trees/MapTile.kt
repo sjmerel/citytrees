@@ -131,8 +131,7 @@ data class TileManifestEntry(
     val key: TileKey,
     val isLeaf: Boolean,
     val siteCount: Int,
-    val byteCount: Int,
-    val hash: ULong
+    val byteCount: Int
 )
 
 object TileManifest {
@@ -146,7 +145,6 @@ object TileManifest {
             writer.writeUInt8(if (entry.isLeaf) 1 else 0)
             writer.writeUInt32(entry.siteCount.toUInt())
             writer.writeUInt32(entry.byteCount.toUInt())
-            writer.writeUInt64(entry.hash)
         }
         writer.write(file)
     }
@@ -154,7 +152,7 @@ object TileManifest {
     fun readBinary(data: ByteArray): List<TileManifestEntry> {
         val reader = BinaryReader(data)
         val count = reader.readUInt32().toLong()
-        check(count in 1..1_000_000 && data.size.toLong() == 4 + count * 26)
+        check(count in 1..1_000_000 && data.size.toLong() == 4 + count * 18)
         val entries = List(count.toInt()) {
             val z = reader.readUInt8()
             val x = reader.readUInt32().toLong()
@@ -162,13 +160,12 @@ object TileManifest {
             val flags = reader.readUInt8()
             val siteCount = reader.readUInt32().toLong()
             val byteCount = reader.readUInt32().toLong()
-            val hash = reader.readUInt64()
             check(z in 0..16 && x < (1L shl z) && y < (1L shl z))
             check(flags <= 1 && siteCount > 0 && byteCount == 14 + siteCount * 6)
             check(siteCount <= Int.MAX_VALUE && byteCount <= Int.MAX_VALUE)
             TileManifestEntry(
                 TileKey(z, x.toInt(), y.toInt()), flags == 1,
-                siteCount.toInt(), byteCount.toInt(), hash
+                siteCount.toInt(), byteCount.toInt()
             )
         }
         check(reader.isAtEnd)
@@ -192,14 +189,5 @@ object TileManifest {
             }
         }
         return entries
-    }
-
-    // 64-bit FNV-1a; unsigned arithmetic deliberately wraps.
-    fun hash(data: ByteArray): ULong {
-        var hash = 0xcbf29ce484222325uL
-        for (byte in data) {
-            hash = (hash xor (byte.toInt() and 0xff).toULong()) * 0x100000001b3uL
-        }
-        return hash
     }
 }

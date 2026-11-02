@@ -67,6 +67,6 @@ class TileBuilder {
         try writer.write(to: url)
 
         entries.append(TileManifestEntry(key: key, isLeaf: isLeaf, siteCount: sites.count,
-                                         byteCount: writer.data.count, hash: TileManifest.hash(of: writer.data)))
+                                         byteCount: writer.data.count))
     }
 }

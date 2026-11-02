@@ -3,8 +3,8 @@ import Foundation
 // Finds tile files for MapDb: bundled tiles first, then tiles downloaded earlier into the
 // caches directory, and downloads missing ones in the background. Safe to use from any thread.
 //
-// Downloaded files are named with the content hash from the manifest, so a tile that changed
-// in a newer data version is a different file; files that no longer match are deleted.
+// TreeData clears the cache directory when a new data version is found, so cached tiles always
+// belong to the current version.
 final class TileStore {
 
     // Called on the main thread, shortly after tiles were downloaded.
@@ -13,13 +13,8 @@ final class TileStore {
     init(entries: [TileManifestEntry]) {
         self.entryMap = Dictionary(uniqueKeysWithValues: entries.map { ($0.key, $0) })
 
-        let caches = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        cacheDir = caches.appendingPathComponent("tiles", isDirectory: true)
+        cacheDir = TreeData.tileCacheDir
         try? FileManager.default.createDirectory(at: cacheDir, withIntermediateDirectories: true)
-
-        DispatchQueue.global(qos: .utility).async { [self] in
-            removeStaleFiles()
-        }
     }
 
     // The file holding the tile, if it is available now. Otherwise starts a download (if the
@@ -63,7 +58,7 @@ final class TileStore {
 
     private func getCacheUrl(for entry: TileManifestEntry) -> URL {
         let key = entry.key
-        return cacheDir.appendingPathComponent("\(key.z)_\(key.x)_\(key.y)_\(String(entry.hash, radix: 16)).bin")
+        return cacheDir.appendingPathComponent("\(key.z)_\(key.x)_\(key.y).bin")
     }
 
     private func request(_ entry: TileManifestEntry) {
@@ -89,10 +84,7 @@ final class TileStore {
             if let entry = entryMap[key] {
                 inFlight.insert(key)
                 print("tile \(key): download started (\(entry.byteCount) bytes)")
-                // the hash in the query makes the URL unique per version, so stale CDN copies are never served
-                var components = URLComponents(url: TreeData.serverDir.appendingPathComponent(key.path), resolvingAgainstBaseURL: false)!
-                components.queryItems = [URLQueryItem(name: "h", value: String(entry.hash, radix: 16))]
-                let task = session.dataTask(with: components.url!) { [self] data, response, error in
+                let task = session.dataTask(with: TreeData.serverDir.appendingPathComponent(key.path)) { [self] data, response, error in
                     finish(entry: entry, data: data, response: response, error: error)
                 }
                 task.resume()
@@ -103,7 +95,7 @@ final class TileStore {
     private func finish(entry: TileManifestEntry, data: Data?, response: URLResponse?, error: Error?) {
         var succeeded = false
         if let data, error == nil, (response as? HTTPURLResponse)?.statusCode == 200 {
-            if data.count == entry.byteCount && TileManifest.hash(of: data) == entry.hash {
+            if data.count == entry.byteCount {
                 do {
                     try data.write(to: getCacheUrl(for: entry), options: .atomic)
                     succeeded = true
@@ -142,14 +134,6 @@ final class TileStore {
                 lock.unlock()
                 onTilesDownloaded?()
             }
-        }
-    }
-
-    private func removeStaleFiles() {
-        let current = Set(entryMap.values.map { getCacheUrl(for: $0).lastPathComponent })
-        let files = (try? FileManager.default.contentsOfDirectory(at: cacheDir, includingPropertiesForKeys: nil)) ?? []
-        for file in files where !current.contains(file.lastPathComponent) {
-            try? FileManager.default.removeItem(at: file)
         }
     }
 }
