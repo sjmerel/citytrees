@@ -10,6 +10,9 @@ struct MapView: UIViewRepresentable {
     // True while waiting for the device location; shown by BusyView in ContentView.
     @Binding var isBusy: Bool
 
+    // True after a tile download failed, until one succeeds; shown as a banner in ContentView.
+    @Binding var tileDownloadFailed: Bool
+
     // Satellite imagery instead of the normal map.
     var satellite: Bool
 
@@ -35,6 +38,9 @@ struct MapView: UIViewRepresentable {
         // when a tile downloads, clear cache to show it
         TileDb.instance.onTilesDownloaded = { [weak tileLayer] in
             tileLayer?.clearTileCache()
+        }
+        TileDb.instance.onDownloadFailedChanged = { [weak coordinator = context.coordinator] failed in
+            coordinator?.parent.tileDownloadFailed = failed
         }
 
         context.coordinator.configureLocation(for: mapView)

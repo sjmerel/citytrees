@@ -74,6 +74,12 @@ final class TileDb {
         set { store.onTilesDownloaded = newValue }
     }
 
+    // Called on the main thread with true when a tile download fails, and false when one next succeeds.
+    var onDownloadFailedChanged: ((Bool) -> Void)? {
+        get { store.onDownloadFailedChanged }
+        set { store.onDownloadFailedChanged = newValue }
+    }
+
     ////////////////////////////////////////
 
     // The tile itself if it is on the device; otherwise starts downloading it, and uses its

@@ -10,6 +10,9 @@ final class TileStore {
     // Called on the main thread, shortly after tiles were downloaded.
     var onTilesDownloaded: (() -> Void)?
 
+    // Called on the main thread with true when a download fails, and false when one next succeeds.
+    var onDownloadFailedChanged: ((Bool) -> Void)?
+
     init(entries: [TileManifestEntry]) {
         self.entryMap = Dictionary(uniqueKeysWithValues: entries.map { ($0.key, $0) })
 
@@ -55,6 +58,7 @@ final class TileStore {
     private var inFlight = Set<TileKey>()
     private var retryAfter: [TileKey: Date] = [:]
     private var notifyScheduled = false
+    private var downloadFailed = false
 
     private func getCacheUrl(for entry: TileManifestEntry) -> URL {
         let key = entry.key
@@ -124,7 +128,15 @@ final class TileStore {
         startDownloads()
         let notify = succeeded && !notifyScheduled
         if notify { notifyScheduled = true }
+        let failedChanged = downloadFailed == succeeded
+        downloadFailed = !succeeded
         lock.unlock()
+
+        if failedChanged {
+            DispatchQueue.main.async { [self] in
+                onDownloadFailedChanged?(!succeeded)
+            }
+        }
 
         if notify {
             // batches the tiles that finish close together into a single redraw
