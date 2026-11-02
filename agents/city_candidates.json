@@ -1052,6 +1052,16 @@
       "checked_on": "2026-10-27"
     },
     {
+      "place": "Mexico City, CDMX, MX",
+      "next_step": "No public tree-level inventory with species found. datos.cdmx.gob.mx has only green-area polygons (Inventario de Áreas Verdes). ArcGIS layers by owner luis.miguel (UNAM CIGA/Terralógica preliminary survey, InvenTree CDMX) are ~6,000 Street View-detected points and 17,823 points with no species. SEDEMA heritage-tree register is only ~40 trees. A citywide public-tree inventory appears to be in preparation; recheck datos.cdmx.gob.mx and SEDEMA for its release. Alcaldía-level censuses not found.",
+      "urls": [
+        "https://datos.cdmx.gob.mx/dataset/inventario-de-areas-verdes-en-la-ciudad-de-mexico",
+        "https://www.arcgis.com/home/item.html?id=f6a9392ea8db4b1bb3fe5d65e2e7b0c4",
+        "https://sedema.sia.cdmx.gob.mx/arboles-patrimoniales/recursos.html"
+      ],
+      "checked_on": "2026-11-02"
+    },
+    {
       "place": "Mississauga, ON, CA",
       "next_step": "Find an official botanical crosswalk for BOTNAME codes such as MASIOO in the roughly 499,000-record inventory.",
       "urls": [

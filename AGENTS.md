@@ -31,7 +31,7 @@ When adding a city, include a URL to the license of the data in cities.json if a
 
 Tree data is drawn on a Google Map.
 Primary development is done on iOS; changes are then ported to Android.
-When porting, keep in mind that keeping the Kotlin code roughly analogous to the Swift code makes maintenance easier.
+When porting, keep in mind that keeping the Kotlin code roughly analogous to the Swift code makes maintenance easier.  When the code is equivalent, keep spacing and comments the same if possible.
 
 Throw or print errors only for situations that arise due to situations beyond our control (such as network errors, running out of storage space, etc).  If, for example, some binary data is not in the expected format, this is a situation that indicates an error on our part, so the code should assert, or just crash.  So, prefer non-nil asserts ("!" in Swift) to guard statements when a value really should be non-nil, as an example.
 
@@ -45,3 +45,5 @@ Do not modify data/README.txt or any other documentation files.  If they need up
 
 Swift:
   prefer explicit if statements to guard statements.
+  prefer assert() to precondition().
+
