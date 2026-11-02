@@ -77,6 +77,8 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.maps.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.okhttp)
+    implementation(libs.kotlinx.coroutines.android)
     debugImplementation(libs.androidx.compose.ui.tooling)
 }
 

@@ -1,9 +1,9 @@
 import Foundation
 
-// Finds tile files for MapDb: bundled tiles first, then tiles downloaded earlier into the
+// Finds tile files for TileDb: bundled tiles first, then tiles downloaded earlier into the
 // caches directory, and downloads missing ones in the background. Safe to use from any thread.
 //
-// TreeData clears the cache directory when a new data version is found, so cached tiles always
+// Dataset clears the cache directory when a new data version is found, so cached tiles always
 // belong to the current version.
 final class TileStore {
 
