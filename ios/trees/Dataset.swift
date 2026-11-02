@@ -35,19 +35,25 @@ class Dataset {
 
             let serverDir = getServerDir(for: newTimestamp)
 
-            // TODO parallel
-            try await download(fromDir: serverDir, toDir: newLocalDir, path: "types.bin")
-            try await download(fromDir: serverDir, toDir: newLocalDir, path: "tiles_manifest.bin")
-            try await download(fromDir: serverDir, toDir: newLocalDir, path: "cities.json")
-            try await download(fromDir: serverDir, toDir: newLocalDir, path: "0/0/0.bin")
+            // download required files
+            let paths = ["types.bin", "tiles_manifest.bin", "cities.json", "0/0/0.bin"]
+            try await withThrowingTaskGroup(of: Void.self) { group in
+                for path in paths {
+                    group.addTask {
+                        try await self.download(fromDir: serverDir, toDir: newLocalDir, path: path)
+                    }
+                }
+                try await group.waitForAll()
+            }
 
-            // must happen before the new timestamp is saved, so old tiles are never used with new data
+            // clear old cached tiles
             if fileManager.fileExists(atPath: tileCacheDir.path) {
                 try fileManager.removeItem(at: tileCacheDir)
             }
 
             self.timestamp = newTimestamp
 
+            // remove old downloaded files
             if let oldTimestamp {
                 let oldLocalDir = getLocalDir(for: oldTimestamp)
                 try fileManager.removeItem(at: oldLocalDir)

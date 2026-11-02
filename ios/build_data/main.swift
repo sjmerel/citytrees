@@ -39,28 +39,26 @@ try fileManager.createDirectory(at: tileDir, withIntermediateDirectories: true)
 
 
 // write tree types
-
 print("writing types.bin")
 try TreeType.writeBinary(types: types, url: tileDir.appendingPathComponent("types.bin"))
 
 
 // generate tiles
 
-// shuffle the sites deterministically
-// the position of sites in the list is used as its priority when generating levels of detail
+// shuffle the sites deterministically (so they will be distributed correctly for generating LOD tiles)
 var rng = SeededGenerator(seed: 1)
 sites.shuffle(using: &rng)
 
-print("writing tiles")
+print("writing tiles and tiles_manifest.bin")
 let builder = TileBuilder(maxSitesPerTile: 10_000, maxZoom: 16, outDir: tileDir)
 try builder.build(sites: &sites)
 
 
-// copy cities.json
-print("copying cities.json")
-let citiesUrl = tileDir.appendingPathComponent("cities.json")
-if (fileManager.fileExists(atPath: citiesUrl.path)) { try fileManager.removeItem(at: citiesUrl) }
-try fileManager.copyItem(at: inDir.appendingPathComponent("cities.json"), to: citiesUrl)
+// write cities.json without whitespace
+print("writing cities.json")
+let citiesJson = try JSONSerialization.jsonObject(with: Data(contentsOf: inDir.appendingPathComponent("cities.json")))
+let citiesData = try JSONSerialization.data(withJSONObject: citiesJson, options: [.withoutEscapingSlashes])
+try citiesData.write(to: tileDir.appendingPathComponent("cities.json"), options: .atomic)
 
 
 // write latest.txt
