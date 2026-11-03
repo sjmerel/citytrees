@@ -1,5 +1,7 @@
 import { importLibrary, setOptions } from '@googlemaps/js-api-loader';
 import mapStyle from '../../assets/map_style.json';
+import { Dataset } from './Dataset';
+import { TileDb } from './TileDb';
 import './styles.css';
 
 const mapElement = document.querySelector<HTMLElement>('#map')!;
@@ -33,6 +35,13 @@ async function main() {
         gestureHandling: 'greedy',
         keyboardShortcuts: true,
     });
+    // Data rendering is added in the next phase; load the same dataset used by the native apps.
+    if (statusElement.getAttribute('role') !== 'alert') {
+        statusElement.textContent = 'Loading tree data...';
+    }
+    const dataset = await Dataset.load(config.serverUrl);
+    const tileDb = new TileDb(dataset);
+    console.info(`Loaded dataset ${dataset.timestamp}: ${tileDb.siteCount.toLocaleString()} trees, ${dataset.types.length} types, ${dataset.cities.length} cities.`);
     // Do not hide an authorization error if Google reported it during initialization.
     if (statusElement.getAttribute('role') !== 'alert') {
         statusElement.hidden = true;
