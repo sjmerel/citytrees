@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "767071083281",
+    "firebase_url": "https://trees-1543002995860.firebaseio.com",
+    "project_id": "trees-1543002995860",
+    "storage_bucket": "trees-1543002995860.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767071083281:android:4408aa146b4c8e89238ab0",
+        "android_client_info": {
+          "package_name": "com.crickettechnology.trees"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5Q9-yFQw4uiufZ0qGYAzSZ_nBFWOM5EY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
