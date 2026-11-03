@@ -17,8 +17,8 @@ android {
         applicationId = "com.crickettechnology.trees"
         minSdk = 31
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = rootProject.file("versionCode.txt").readText().trim().toInt()
+        versionName = "2.0"
 
         // Add MAPS_API_KEY=... to secrets/android-secrets.properties at the repository root (gitignored).
         val mapsPropertiesFile = rootProject.file("../secrets/android-secrets.properties")

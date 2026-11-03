@@ -86,7 +86,7 @@ class Dataset {
         let (data, response) = try await URLSession.shared.data(for: request)
         let httpResponse = response as! HTTPURLResponse
         if httpResponse.statusCode != 200 {
-            throw TreesError(errorDescription: "Couldn't download file")
+            throw TreesError(errorDescription: "Couldn’t download data.")
         }
         return data
     }

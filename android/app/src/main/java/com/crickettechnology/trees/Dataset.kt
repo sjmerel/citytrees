@@ -92,7 +92,7 @@ class Dataset private constructor() {
         val request = Request.Builder().url(url).cacheControl(CacheControl.FORCE_NETWORK).build()
         client.newCall(request).execute().use { response ->
             if (response.code != 200) {
-                throw TreesError("Couldn't download file")
+                throw TreesError("Couldn’t download data.")
             }
             return response.body.bytes()
         }
