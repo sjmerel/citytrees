@@ -12,8 +12,11 @@ struct InfoButton: View {
                 .font(.system(size: 18, weight: .semibold))
                 .foregroundColor(Color(white: 0.35))
                 .frame(width: 40, height: 40)
-                .background(Color.white, in: Circle())
-                .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 1)
+                .background {
+                    Circle()
+                        .fill(Color.white)
+                        .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 1)
+                }
         }
         .accessibilityLabel("About")
     }

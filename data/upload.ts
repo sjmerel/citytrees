@@ -14,7 +14,7 @@ function main() {
 
   let timestamp = fs.readFileSync(`${dir}/latest.txt`, 'utf8').trim();
   execSync(`gcloud storage cp -r ${dir}/${timestamp} ${BUCKET}/v1/${timestamp}  --project ${PROJECT}`, { stdio: 'inherit' });
-  execSync(`gcloud storage cp    ${dir}/latest.txt   ${BUCKET}/v1/              --project ${PROJECT}`, { stdio: 'inherit' });
+  execSync(`gcloud storage cp    ${dir}/latest.txt   ${BUCKET}/v1/              --cache-control=no-store --project ${PROJECT}`, { stdio: 'inherit' });
 }
 
 main();

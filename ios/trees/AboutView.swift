@@ -8,6 +8,7 @@ struct AboutView: View {
 
     var body: some View {
         HTMLView(resource: "about")
+            .ignoresSafeArea(.container, edges: .bottom)
             .overlay(alignment: .topTrailing) {
                 Button(action: { dismiss() }) {
                     Image("x")

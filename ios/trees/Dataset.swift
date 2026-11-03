@@ -19,6 +19,7 @@ class Dataset {
 
     func checkForNewData() async throws -> Void {
         let timestampUrl = Config.instance.serverUrl.appendingPathComponent("latest.txt")
+            .appending(queryItems: [URLQueryItem(name: "request", value: UUID().uuidString)])
         let timestampData = try await download(url: timestampUrl)
 
         let newTimestamp = String(data: timestampData, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)

@@ -3,6 +3,7 @@ package com.crickettechnology.trees
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.view.MotionEvent
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -14,6 +15,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -32,7 +34,7 @@ fun AboutView(dismiss: () -> Unit) {
         Icon(
             painter = painterResource(R.drawable.x),
             contentDescription = null,
-            tint = SwiftUIColor.gray,
+            tint = Color.Black,
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(8.dp)
@@ -54,7 +56,15 @@ fun HTMLView(resource: String) {
 object HTMLView {
 
     fun makeUIView(context: Context, resource: String): WebView {
-        val webView = WebView(context)
+        val webView = object : WebView(context) {
+            override fun onTouchEvent(event: MotionEvent): Boolean {
+                if (event.actionMasked == MotionEvent.ACTION_DOWN) {
+                    // Keep the bottom sheet from intercepting page scroll gestures.
+                    parent.requestDisallowInterceptTouchEvent(true)
+                }
+                return super.onTouchEvent(event)
+            }
+        }
         webView.webViewClient = Coordinator()
         var html = context.assets.open("$resource.html").use { String(it.readBytes()) }
         html = html.replace("[CITIES]", citiesHTML())

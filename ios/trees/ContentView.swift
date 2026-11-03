@@ -34,7 +34,7 @@ struct ContentView: View {
                     InfoButton { showingAbout = true }
                 }
                     .padding(.trailing, 16)
-                    .padding(.bottom, 80)
+                    .padding(.bottom, 50)
             }
             .sheet(isPresented: $showingAbout) {
                 AboutView()

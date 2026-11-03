@@ -10,7 +10,7 @@ struct SelectionCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             caption("Botanical name")
-                //.padding(.top, 4)
+                .padding(.top, 4)
             HStack(spacing: 6) {
                 Circle()
                     .fill(Color(type.color))
@@ -49,6 +49,7 @@ struct SelectionCard: View {
         .overlay(alignment: .topTrailing) {
             Button(action: onClose) {
                 Image("x")
+                    .renderingMode(.template)
                     .font(.system(size: 12, weight: .semibold))
                     .foregroundColor(.gray)
                     .padding(8)

@@ -5,11 +5,13 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
 import okhttp3.CacheControl
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.File
 import java.net.URL
 import java.nio.file.Files
+import java.util.UUID
 
 class Dataset private constructor() {
 
@@ -31,6 +33,9 @@ class Dataset private constructor() {
         val dataset = this
         withContext(Dispatchers.IO) {
             val timestampUrl = Config.instance.serverUrl.appendingPathComponent("latest.txt")
+                .toString().toHttpUrl().newBuilder()
+                .addQueryParameter("request", UUID.randomUUID().toString())
+                .build().toUrl()
             val timestampData = download(timestampUrl)
 
             val newTimestamp = String(timestampData, Charsets.UTF_8).trim()

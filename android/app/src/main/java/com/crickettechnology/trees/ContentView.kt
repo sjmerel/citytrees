@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.only
@@ -94,11 +95,13 @@ fun ContentView() {
             ModalBottomSheet(
                 onDismissRequest = { showingAbout = false },
                 sheetState = sheetState,
-                containerColor = Color.White,
+                containerColor = Color(0xFFF1F8F7),
                 dragHandle = null
             ) {
-                AboutView {
-                    scope.launch { sheetState.hide() }.invokeOnCompletion { showingAbout = false }
+                Box(Modifier.fillMaxHeight(0.9f)) {
+                    AboutView {
+                        scope.launch { sheetState.hide() }.invokeOnCompletion { showingAbout = false }
+                    }
                 }
             }
         }

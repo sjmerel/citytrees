@@ -1,29 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="./styles.css">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>about</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About City Trees</title>
   </head>
-  <body><br>
-    <h1>City Trees</h1>
-    <h2>by Steve Merel</h2>
-    <br>
-    Tap a tree on the map to identify it.<br>
-    <br>
-    Tree data comes from databases made publicly available by each city, and typically 
-    contains trees on city land, such as parks, sidewalks, and median strips.<br>
-    <br>
-    Current cities:
-    [CITIES]
-    <br>
-    Don’t see data for your city?  <a href="mailto:citytrees@fastmail.com?subject=City%20Trees%20app">Email me</a> and I might be able to add it. 
-    <br>
-    <br>
-    Source code:<br>
-    &nbsp;&nbsp;&nbsp; <a href="https://github.com/sjmerel/trees">https://github.com/sjmerel/trees</a><br>
-    <br>
-    Feedback:<br>
-    &nbsp;&nbsp;&nbsp; <a href="mailto:citytrees@fastmail.com?subject=City%20Trees%20app">citytrees@fastmail.com</a><br>
+  <body>
+    <main>
+      <header>
+        <h1>City Trees</h1>
+        <p class="byline">by Steve Merel</p>
+        <p class="intro">Tap a tree on the map to identify it.</p>
+      </header>
+      <section>
+        <h2>About the data</h2>
+        <p>Tree data comes from databases made publicly available by each city, and typically
+          contains trees on city land, such as parks, sidewalks, and median strips.</p>
+      </section>
+      <section class="cities">
+        <details>
+          <summary>Current cities</summary>
+          [CITIES]
+        </details>
+        <p class="city-request">Don’t see data for your city? <a href="mailto:citytrees@fastmail.com?subject=City%20Trees%20app">Email me</a> and I might be able to add it.</p>
+      </section>
+      <footer>
+        <p><a href="https://github.com/sjmerel/trees">Source code on GitHub</a></p>
+        <p>Feedback: <a href="mailto:citytrees@fastmail.com?subject=City%20Trees%20app">citytrees@fastmail.com</a></p>
+      </footer>
+    </main>
   </body>
 </html>
