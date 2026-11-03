@@ -67,6 +67,7 @@ export class MapView {
         map.addListener('maptypeid_changed', () => this.updateMapType());
         this.updateMapType();
         document.querySelector<HTMLElement>('#controls')!.hidden = false;
+        this.showMyLocation(true);
     }
 
     private setupButton(id: string, icon: string, action?: () => void) {
@@ -114,7 +115,7 @@ export class MapView {
         }
     }
 
-    private showMyLocation() {
+    private showMyLocation(isStartup = false) {
         if (this.locating) { return; }
         if (!navigator.geolocation) {
             this.showStatus('Location is unavailable in this browser. Use HTTPS or localhost.');
@@ -135,8 +136,12 @@ export class MapView {
         }, error => {
             this.locating = false;
             button.disabled = false;
+            if (isStartup && error.code === 1) {
+                this.clearStatus();
+                return;
+            }
             const message = error.code === 1
-                ? 'Location access was denied. Allow location access in your browser settings to use this button.'
+                ? 'Location access was denied.\nAllow location access in your browser settings to use this button.'
                 : error.code === 3 ? 'Finding your location timed out.' : 'Your location is currently unavailable.';
             this.showStatus(message, () => this.showMyLocation());
         }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 30000 });

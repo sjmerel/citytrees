@@ -1,5 +1,6 @@
 import { importLibrary, setOptions } from '@googlemaps/js-api-loader';
 import mapStyle from '../../assets/map_style.json';
+import closeIcon from '../../assets/x.svg';
 import { Dataset } from './Dataset';
 import { TileDb } from './TileDb';
 import { MapTileLayer } from './MapTileLayer';
@@ -11,6 +12,9 @@ const mapElement = document.querySelector<HTMLElement>('#map')!;
 const statusElement = document.querySelector<HTMLElement>('#status')!;
 const statusMessage = document.querySelector<HTMLElement>('#status-message')!;
 const retryButton = document.querySelector<HTMLButtonElement>('#retry')!;
+const closeStatusButton = document.querySelector<HTMLButtonElement>('#close-status')!;
+closeStatusButton.querySelector('img')!.src = closeIcon;
+closeStatusButton.onclick = () => { statusElement.hidden = true; };
 
 function showStatus(message: string, retry?: () => void) {
     if (statusElement.getAttribute('role') === 'alert') { return; }
@@ -55,6 +59,8 @@ async function main() {
         disableDefaultUI: true,
         clickableIcons: false,
         gestureHandling: 'greedy',
+        draggableCursor: 'crosshair',
+        draggingCursor: 'grabbing',
         keyboardShortcuts: true,
     });
     showStatus('Loading tree data...');
@@ -72,10 +78,10 @@ async function main() {
         }
         else { clearStatus(); }
     };
+    clearStatus();
     new MapView(map, dataset, tileDb, tileLayer, showStatus, clearStatus);
     window.addEventListener('resize', () => tileLayer.clearTileCache());
     console.info(`Loaded dataset ${dataset.timestamp}: ${tileDb.siteCount.toLocaleString()} trees, ${dataset.types.length} types, ${dataset.cities.length} cities.`);
-    clearStatus();
 }
 
 main().catch((error: unknown) => {
