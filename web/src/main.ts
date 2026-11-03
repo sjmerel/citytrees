@@ -2,6 +2,7 @@ import { importLibrary, setOptions } from '@googlemaps/js-api-loader';
 import mapStyle from '../../assets/map_style.json';
 import { Dataset } from './Dataset';
 import { TileDb } from './TileDb';
+import { MapTileLayer } from './MapTileLayer';
 import './styles.css';
 
 const mapElement = document.querySelector<HTMLElement>('#map')!;
@@ -26,7 +27,7 @@ async function main() {
     });
     setOptions({ key: config.googleMapsApiKey, v: 'quarterly' });
     const { Map } = await importLibrary('maps');
-    new Map(mapElement, {
+    const map = new Map(mapElement, {
         center: { lat: 0, lng: 0 },
         zoom: 2,
         styles: mapStyle,
@@ -35,12 +36,26 @@ async function main() {
         gestureHandling: 'greedy',
         keyboardShortcuts: true,
     });
-    // Data rendering is added in the next phase; load the same dataset used by the native apps.
     if (statusElement.getAttribute('role') !== 'alert') {
         statusElement.textContent = 'Loading tree data...';
     }
     const dataset = await Dataset.load(config.serverUrl);
     const tileDb = new TileDb(dataset);
+    const tileLayer = new MapTileLayer(tileDb, dataset.types);
+    map.overlayMapTypes.push(tileLayer);
+    tileDb.store.onTilesDownloaded = () => tileLayer.clearTileCache();
+    tileDb.store.onDownloadFailedChanged = failed => {
+        if (statusElement.getAttribute('role') === 'alert') { return; }
+        statusElement.textContent = 'Some tree data could not be downloaded. Move the map to retry.';
+        statusElement.hidden = !failed;
+    };
+    const updateOutlines = () => {
+        const type = map.getMapTypeId();
+        tileLayer.outlined = type === 'satellite' || type === 'hybrid';
+    };
+    map.addListener('maptypeid_changed', updateOutlines);
+    window.addEventListener('resize', () => tileLayer.clearTileCache());
+    updateOutlines();
     console.info(`Loaded dataset ${dataset.timestamp}: ${tileDb.siteCount.toLocaleString()} trees, ${dataset.types.length} types, ${dataset.cities.length} cities.`);
     // Do not hide an authorization error if Google reported it during initialization.
     if (statusElement.getAttribute('role') !== 'alert') {
