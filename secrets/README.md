@@ -9,7 +9,7 @@ MAPS_API_KEY = <redacted>
 android-secrets.properties:
 MAPS_API_KEY=<redacted>
 
-GoogleService-Info.plist: download from Firebase console
+GoogleService-Info.plist: download from Firebase console.
 
 
 
