@@ -40,15 +40,6 @@ struct ContentView: View {
             .sheet(isPresented: $showingAbout) {
                 AboutView()
             }
-            .overlay {
-                ZStack {
-                    if isBusy {
-                        BusyView(text: "Finding your location")
-                            .transition(.opacity)
-                    }
-                }
-                .animation(.easeInOut(duration: 0.3), value: isBusy)
-            }
             .overlay(alignment: .top) {
                 if let selectedTypeIndex {
                     let type = TreeType.all[selectedTypeIndex]
@@ -60,6 +51,15 @@ struct ContentView: View {
                 }
             }
             .animation(.easeInOut(duration: 0.3), value: selectedTypeIndex != nil)
+            .overlay {
+                ZStack {
+                    if isBusy {
+                        BusyView(text: "Finding your location")
+                            .transition(.opacity)
+                    }
+                }
+                .animation(.easeInOut(duration: 0.3), value: isBusy)
+            }
             .overlay(alignment: .bottom) {
                 if tileDownloadFailed {
                     Text("Data download failed; some trees may be missing.")

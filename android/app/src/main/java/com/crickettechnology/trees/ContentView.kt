@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -59,6 +60,7 @@ fun ContentView() {
     var isCheckingForNewData by remember { mutableStateOf(true) }
     var dataCheckError by remember { mutableStateOf<String?>(null) }
     var dataCheckAttempt by remember { mutableIntStateOf(0) }
+    var showingStartup by remember { mutableStateOf(true) }
 
     // Android-specific: the last selection, shown while the selection card fades out
     var lastSelectedTypeIndex by remember { mutableStateOf<Int?>(null) }
@@ -105,9 +107,6 @@ fun ContentView() {
                 }
             }
         }
-        AnimatedVisibility(isBusy.value, enter = fadeIn(tween(300)), exit = fadeOut(tween(300))) {
-            BusyView(text = "Finding your location")
-        }
         Box(Modifier
             .fillMaxSize()
             .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal))
@@ -140,6 +139,9 @@ fun ContentView() {
                 }
             }
         }
+        AnimatedVisibility(isBusy.value, enter = fadeIn(tween(300)), exit = fadeOut(tween(300))) {
+            BusyView(text = "Finding your location")
+        }
         AnimatedVisibility(isCheckingForNewData, enter = fadeIn(tween(300)), exit = fadeOut(tween(300))) {
             BusyView(text = "Checking for new data")
         }
@@ -150,6 +152,9 @@ fun ContentView() {
                 isCheckingForNewData = true
                 dataCheckAttempt += 1
             })
+        }
+        AnimatedVisibility(showingStartup, enter = fadeIn(tween(300)), exit = fadeOut(tween(300))) {
+            StartupView { showingStartup = false }
         }
     }
 
@@ -173,5 +178,10 @@ fun ContentView() {
                 isCheckingForNewData = false
             }
         }
+    }
+
+    LaunchedEffect(Unit) {
+        delay(5000)
+        showingStartup = false
     }
 }
