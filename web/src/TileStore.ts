@@ -55,7 +55,7 @@ export class TileStore {
         try {
             const tile = await this.dataset.loadTile(entry);
             this.tiles.set(entry.key.id, tile);
-            if (this.tiles.size > 64) { this.tiles.delete(this.tiles.keys().next().value!); }
+            if (this.tiles.size > 128) { this.tiles.delete(this.tiles.keys().next().value!); }
             this.retryAfter.delete(entry.key.id);
             if (this.notifyTimer === undefined) {
                 this.notifyTimer = setTimeout(() => {
