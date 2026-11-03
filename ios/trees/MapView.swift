@@ -4,6 +4,8 @@ import CoreLocation
 
 struct MapView: UIViewRepresentable {
 
+    @Environment(\.displayScale) private var displayScale
+
     // Type index of the selected site, shown by the selection card in ContentView.
     @Binding var selectedTypeIndex: Int?
 
@@ -81,11 +83,12 @@ struct MapView: UIViewRepresentable {
 
     class Coordinator: NSObject, GMSMapViewDelegate, CLLocationManagerDelegate {
         var parent: MapView
-        let tileLayer = MapTileLayer()
+        let tileLayer: MapTileLayer
         var lastLocationRequest = 0
 
         init(_ parent: MapView) {
             self.parent = parent
+            self.tileLayer = MapTileLayer(displayScale: parent.displayScale)
             super.init()
             locationManager.delegate = self
         }

@@ -52,13 +52,13 @@ class MapTileLayer : TileProvider {
         val worldCenter = WorldLocation((x + 0.5) / tileCount, (y + 0.5) / tileCount)
         val mapCenter = Mercator.unproject(worldCenter)
         val metersPerPixel = Mercator.metersPerUnit(mapCenter.lat) / (tileCount * tileSizePixels)
-        val diameter = max(SITE_MIN_DIAMETER_PIXELS, SITE_DIAMETER_METERS / metersPerPixel)
+        val diameter = max(SITE_MIN_DIAMETER_POINTS * tilePixelsPerPoint, SITE_DIAMETER_METERS / metersPerPixel)
         val radius = diameter / 2
 
         // pad the region to include sites just outside the edges of the tile, so sites whose circles
         // cross tile borders aren't cut off
         val outlined = this.outlined
-        val outerRadius = if (outlined) radius + SITE_BORDER_PIXELS else radius
+        val outerRadius = if (outlined) radius + SITE_BORDER_POINTS * tilePixelsPerPoint else radius
         val padding = outerRadius / tileSizePixels
 
         val region = WorldRect((x - padding) / tileCount,
@@ -123,8 +123,11 @@ class MapTileLayer : TileProvider {
 
     private val TILE_SIZE_PIXELS = 512
     private val SITE_DIAMETER_METERS = 4.0
-    private val SITE_BORDER_PIXELS = 2.0
-    private val SITE_MIN_DIAMETER_PIXELS = 9.0
+    private val SITE_BORDER_POINTS = 2.0 / 3.0
+    private val SITE_MIN_DIAMETER_POINTS = 3.0
+
+    // Android-specific: Google Maps displays each tile at 256 dp, regardless of bitmap size.
+    private val tilePixelsPerPoint = TILE_SIZE_PIXELS / 256.0
 
     private var overlay: TileOverlay? = null
 }

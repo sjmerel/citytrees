@@ -9,7 +9,8 @@ class MapTileLayer: GMSSyncTileLayer {
         }
     }
 
-    override init() {
+    init(displayScale: CGFloat) {
+        self.tilePixelsPerPoint = Double(displayScale)
         super.init()
         self.tileSize = TILE_SIZE_PIXELS
         self.fadeIn = false
@@ -23,12 +24,12 @@ class MapTileLayer: GMSSyncTileLayer {
         let worldCenter = WorldLocation(x: (Double(x) + 0.5) / tileCount, y: (Double(y) + 0.5) / tileCount)
         let mapCenter = Mercator.unproject(worldCenter)
         let metersPerPixel = Mercator.metersPerUnit(atLatitude: mapCenter.lat) / (tileCount * tileSizePixels)
-        let diameter = max(SITE_MIN_DIAMETER_PIXELS, SITE_DIAMETER_METERS / metersPerPixel)
+        let diameter = max(SITE_MIN_DIAMETER_POINTS * tilePixelsPerPoint, SITE_DIAMETER_METERS / metersPerPixel)
         let radius = diameter / 2
         
         // pad the region to include sites just outside the edges of the tile, so sites whose circles
         // cross tile borders aren't cut off
-        let outerRadius = self.outlined ? radius + SITE_BORDER_PIXELS : radius
+        let outerRadius = self.outlined ? radius + SITE_BORDER_POINTS * tilePixelsPerPoint : radius
         let padding = outerRadius / tileSizePixels
 
         let region = WorldRect(minX: (Double(x) - padding) / tileCount,
@@ -103,6 +104,9 @@ class MapTileLayer: GMSSyncTileLayer {
 
     private let TILE_SIZE_PIXELS = 512
     private let SITE_DIAMETER_METERS = 4.0
-    private let SITE_BORDER_PIXELS = 2.0
-    private let SITE_MIN_DIAMETER_PIXELS = 9.0
+    private let SITE_BORDER_POINTS = 2.0 / 3.0
+    private let SITE_MIN_DIAMETER_POINTS = 3.0
+
+    // GMSTileLayer.tileSize is in screen pixels, not points.
+    private let tilePixelsPerPoint: Double
 }
