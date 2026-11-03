@@ -207,4 +207,10 @@ test('download failures are reported and backed off without losing the root fall
     const count = server.requests.length;
     assert.equal(db.tiles(rect, 1).length, 1);
     assert.equal(server.requests.length, count);
+    server.files.set(`/v1/${server.timestamp}/${key.path}`, tileData(true));
+    db.store.retryDownloads();
+    const recovered = new Promise<boolean>(resolve => { db.store.onDownloadFailedChanged = resolve; });
+    db.tiles(rect, 1);
+    assert.equal(await recovered, false);
+    assert.equal(server.requests.length, count + 1);
 });

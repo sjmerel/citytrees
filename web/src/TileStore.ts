@@ -19,6 +19,10 @@ export class TileStore {
         this.entries = new Map(dataset.entries.map(entry => [entry.key.id, entry]));
     }
 
+    retryDownloads() {
+        this.retryAfter.clear();
+    }
+
     getTile(key: TileKey): MapTile | undefined {
         if (key.id === TileKey.root.id) { return this.dataset.rootTile; }
         const tile = this.tiles.get(key.id);
