@@ -110,6 +110,24 @@ button:disabled {
     overflow-wrap: anywhere;
     max-height: 45dvh;
     overflow-y: auto;
+    opacity: 1;
+    transition: opacity 300ms ease-in-out, display 300ms allow-discrete;
+}
+
+#selection[hidden] {
+    opacity: 0;
+}
+
+@starting-style {
+    #selection {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #selection {
+        transition: none;
+    }
 }
 
 .caption {
@@ -168,14 +186,14 @@ button:disabled {
     place-items: center;
     width: 40px;
     height: 40px;
-    padding: 8px;
+    padding: 2px;
     border: 0;
     background: transparent;
 }
 
 .close-button img {
-    width: 12px;
-    height: 12px;
+    width: 36px;
+    height: 36px;
 }
 
 #clear-selection img {
@@ -204,21 +222,45 @@ button:disabled {
 
 #about {
     position: fixed;
-    inset: auto 0 0;
-    width: 100%;
+    inset: calc(env(safe-area-inset-top, 0px) + 24px) calc(env(safe-area-inset-right, 0px) + 12px) calc(env(safe-area-inset-bottom, 0px) + 24px) calc(env(safe-area-inset-left, 0px) + 12px);
+    width: auto;
     max-width: 640px;
-    height: 95dvh;
-    max-height: calc(100dvh - env(safe-area-inset-top, 0px) - 12px);
-    margin: auto auto 0;
+    height: auto;
+    max-height: none;
+    margin: 0 auto;
     padding: 0;
     border: 0;
-    border-radius: 16px 16px 0 0;
+    border-radius: 16px;
     background: #f1f8f7;
     overflow: hidden;
+    opacity: 0;
+    transition: opacity 300ms ease-in-out, display 300ms allow-discrete, overlay 300ms allow-discrete;
+}
+
+#about[open] {
+    opacity: 1;
 }
 
 #about::backdrop {
     background: #00000055;
+    opacity: 0;
+    transition: opacity 300ms ease-in-out, display 300ms allow-discrete, overlay 300ms allow-discrete;
+}
+
+#about[open]::backdrop {
+    opacity: 1;
+}
+
+@starting-style {
+    #about[open], #about[open]::backdrop {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #about, #about::backdrop {
+        transition: none;
+    }
 }
 
 #about-page {

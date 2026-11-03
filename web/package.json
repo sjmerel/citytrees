@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "test": "node --import tsx --test tests/*.test.ts",
-    "dev": "vite",
+    "local": "vite",
+    "prod": "vite --mode production",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview"
   },
