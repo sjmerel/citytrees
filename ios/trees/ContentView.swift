@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var isCheckingForNewData = true
     @State private var dataCheckError: String?
     @State private var dataCheckAttempt = 0
+    @State private var showingStartup = true
 
     var body: some View {
         // the map extends under the top safe area too; the overlays stay below it
@@ -97,6 +98,27 @@ struct ContentView: View {
             }
             .task(id: dataCheckAttempt) {
                 await checkForNewData()
+            }
+            .overlay {
+                if showingStartup {
+                    ZStack {
+                        Color.clear
+                            .contentShape(Rectangle())
+                            .ignoresSafeArea()
+                            .onTapGesture { showingStartup = false }
+                        StartupView { showingStartup = false }
+                            .padding(.horizontal, 30)
+                    }
+                    .transition(.opacity)
+                }
+            }
+            .animation(.easeInOut(duration: 0.3), value: showingStartup)
+            .task {
+                do {
+                    try await Task.sleep(for: .seconds(5))
+                    showingStartup = false
+                }
+                catch {}
             }
     }
 
