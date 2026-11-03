@@ -37,7 +37,7 @@ async function main() {
     const { Config } = await import('./Config');
     const config = Config.instance;
     if (!config.googleMapsApiKey) {
-        throw new Error('Set VITE_GOOGLE_MAPS_API_KEY in secrets/web.env.local, then restart the dev server or rebuild.');
+        throw new Error('Set MAPS_API_KEY in secrets/web.env.local, then restart the dev server or rebuild.');
     }
 
     Object.assign(window, {

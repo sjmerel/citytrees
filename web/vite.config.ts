@@ -9,6 +9,9 @@ if (existsSync(secretsFile)) {
 }
 
 export default defineConfig({
+    define: {
+        'import.meta.env.MAPS_API_KEY': JSON.stringify(process.env.MAPS_API_KEY ?? ''),
+    },
     server: {
         proxy: {
             '/data/': {
