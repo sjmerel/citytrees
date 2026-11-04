@@ -110,7 +110,7 @@ async function main() {
 ////////////////////////////////////////
 
 function loadCityData(): any[] {
-  let cities = loadObject('cities_included.json');
+  let cities = loadObject('cities.json');
   let data = [];
   for (let cityObj of cities) {
     let cityData = loadObject(`cities/${cityObj.code}.json`);
@@ -142,6 +142,7 @@ function loadCityData(): any[] {
     // add to full array, normalizing text
     for (let d of cityData) {
       d.name = Normalize.normalizeText(d.name);
+      d.city = cityObj.code;
       data.push(d);
     }
   }
@@ -280,14 +281,6 @@ async function canonicalizeNames(data: any[]): Promise<any[]> {
     d.name = name ? Canonicalize.canonicalizeCase(name) : undefined;
   }
   data = data.filter(o => o.name);
-
-  // remove unused names from cache to prevent bloat
-  let usedNames = new Set(names);
-  for (let name of Object.keys(canonicalizeCache)) {
-    if (!usedNames.has(name)) {
-      delete canonicalizeCache[name];
-    }
-  }
 
   saveObject('canonicalize_cache.json', canonicalizeCache);
   saveObject('canonicalize_debug_failed.json', failedMap);
