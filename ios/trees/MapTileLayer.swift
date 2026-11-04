@@ -105,7 +105,7 @@ class MapTileLayer: GMSSyncTileLayer {
     private let TILE_SIZE_PIXELS = 512
     private let SITE_DIAMETER_METERS = 4.0
     private let SITE_BORDER_POINTS = 2.0 / 3.0
-    private let SITE_MIN_DIAMETER_POINTS = 3.0
+    private let SITE_MIN_DIAMETER_POINTS = 4.0
 
     // GMSTileLayer.tileSize is in screen pixels, not points.
     private let tilePixelsPerPoint: Double
