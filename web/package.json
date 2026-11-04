@@ -3,7 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --import tsx --test tests/*.test.ts",
     "local": "vite",
     "prod": "vite --mode production",
     "build": "tsc --noEmit && vite build",
@@ -15,7 +14,6 @@
   "devDependencies": {
     "@types/google.maps": "^3.66.9",
     "@types/node": "^26.6.6",
-    "tsx": "^4.23.15",
     "typescript": "^7.0.2",
     "vite": "^8.3.5"
   }

@@ -61,6 +61,9 @@ export class Dataset {
         const types = TreeType.readBinary(typeData);
         const entries = TileManifest.readBinary(manifestData);
         const cities: unknown = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(cityData));
+        if (!Array.isArray(cities) || !cities.every(this.validCity)) {
+            throw new Error('Invalid city data.');
+        }
         const rootTile = MapTile.readBinary(rootData, types.length);
         this.validateTile(rootTile, rootData, entries.find(entry => entry.key.id === TileKey.root.id)!);
         if (cache) {
@@ -81,6 +84,27 @@ export class Dataset {
         const tile = MapTile.readBinary(data, this.types.length);
         Dataset.validateTile(tile, data, entry);
         return tile;
+    }
+
+    private static validCity(value: unknown): value is City {
+        return typeof value === 'object' && value !== null &&
+            'name' in value && typeof value.name === 'string' &&
+            'country' in value && typeof value.country === 'string' &&
+            (!('state' in value) || value.state == null || typeof value.state === 'string') &&
+            (!('license' in value) || value.license == null ||
+                typeof value.license === 'string' || Dataset.validLicense(value.license));
+    }
+
+    private static validLicense(value: unknown): value is License {
+        if (typeof value !== 'object' || value === null || Array.isArray(value) ||
+            !('url' in value) || typeof value.url !== 'string') {
+            return false;
+        }
+        const fields = ['dataset_name', 'attribution_name', 'license', 'license_name', 'terms_url',
+            'attribution_statement', 'attribution_url', 'copyright_notice', 'disclaimer_notice',
+            'previous_modifications'];
+        return Object.entries(value).every(([key, field]) =>
+            !fields.includes(key) || field == null || typeof field === 'string');
     }
 
     private static validateTile(tile: MapTile, data: ArrayBuffer, entry: TileManifestEntry) {
