@@ -26,6 +26,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 import java.text.Collator
+import java.text.NumberFormat
 import java.util.Locale
 
 // The about page, shown modally. Content is read from about.html in the app's assets.
@@ -69,7 +70,16 @@ object HTMLView {
         }
         webView.webViewClient = Coordinator()
         var html = context.assets.open("$resource.html").use { String(it.readBytes()) }
-        html = html.replace("[CITIES]", citiesHTML())
+        val file = File(Dataset.instance.localDir, "cities.json")
+        val json = JSONArray(file.readText())
+        val cities = ArrayList<City>()
+        for (i in 0 until json.length()) {
+            cities.add(City(json.getJSONObject(i)))
+        }
+        val numberFormat = NumberFormat.getIntegerInstance()
+        html = html.replace("[TREE_COUNT]", numberFormat.format(TileDb.instance.siteCount))
+            .replace("[CITY_COUNT]", numberFormat.format(cities.size))
+            .replace("[CITIES]", citiesHTML(cities))
         // the asset base URL lets the page load its stylesheet
         webView.loadDataWithBaseURL("file:///android_asset/", html, "text/html", "utf-8", null)
         return webView
@@ -92,7 +102,9 @@ object HTMLView {
     }
 
     private class License(values: JSONObject) {
-        val url = values.requiredString("url")
+        val url = values.optionalString("url")
+        val api_url = values.optionalString("api_url")
+        val portal_url = values.optionalString("portal_url")
         val dataset_name = values.optionalString("dataset_name")
         val attribution_name = values.optionalString("attribution_name")
         val license = values.optionalString("license")
@@ -106,13 +118,7 @@ object HTMLView {
     }
 
     // The cities in cities.json (downloaded with the data set), as an HTML list per country.
-    private fun citiesHTML(): String {
-        val file = File(Dataset.instance.localDir, "cities.json")
-        val json = JSONArray(file.readText())
-        val cities = ArrayList<City>()
-        for (i in 0 until json.length()) {
-            cities.add(City(json.getJSONObject(i)))
-        }
+    private fun citiesHTML(cities: List<City>): String {
         val collator = Collator.getInstance()
         val sections = cities.groupBy { it.country }
             .map { (code, cities) -> Pair(Locale("", code).displayCountry, cities) }
@@ -131,13 +137,14 @@ object HTMLView {
     private fun licenseHTML(license: License?): String {
         if (license != null) {
             val paragraphs = ArrayList<String>()
+            val source = license.portal_url ?: license.api_url ?: license.url
             val title = license.dataset_name
             val provider = license.attribution_name
             if (title != null && provider != null) {
-                paragraphs.add("Data: ${linkHTML(title, license.url)}, by ${provider.htmlEscaped}.")
+                paragraphs.add("Data: ${linkHTML(title, source)}, by ${provider.htmlEscaped}.")
             }
             else {
-                paragraphs.add(linkHTML("Dataset source", license.url))
+                paragraphs.add(linkHTML("Dataset source", source))
             }
             val name = license.license_name
             val licenseUrl = license.license
@@ -156,7 +163,7 @@ object HTMLView {
                 paragraphs.add(linkHTML("Attribution source", attributionUrl))
             }
             val termsUrl = license.terms_url
-            if (termsUrl != null && termsUrl != license.url && termsUrl != license.license) {
+            if (termsUrl != null && termsUrl != source && termsUrl != license.license) {
                 paragraphs.add(linkHTML("Source terms and notices", termsUrl))
             }
             return paragraphs.joinToString("") { "<p class=\"license-statement\">$it</p>" }
@@ -164,10 +171,12 @@ object HTMLView {
         return "<p class=\"license-statement\">License information is not available in this downloaded dataset.</p>"
     }
 
-    private fun linkHTML(title: String, url: String): String {
-        val scheme = Uri.parse(url).scheme?.lowercase()
-        if (scheme == "https" || scheme == "http") {
-            return "<a href=\"${url.htmlEscaped}\">${title.htmlEscaped}</a>"
+    private fun linkHTML(title: String, url: String?): String {
+        if (url != null) {
+            val scheme = Uri.parse(url).scheme?.lowercase()
+            if (scheme == "https" || scheme == "http") {
+                return "<a href=\"${url.htmlEscaped}\">${title.htmlEscaped}</a>"
+            }
         }
         return title.htmlEscaped
     }

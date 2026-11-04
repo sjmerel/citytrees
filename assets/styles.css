@@ -48,6 +48,7 @@ p {
 
 .cities summary {
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
     font-size: 21px;
     font-weight: bold;
     line-height: 1.3;

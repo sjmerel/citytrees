@@ -27,13 +27,14 @@ export function citiesHTML(cities: City[]): string {
 function licenseHTML(license: License | null | undefined): string {
     if (license != null) {
         const paragraphs: string[] = [];
+        const source = license.portal_url ?? license.api_url ?? license.url;
         const title = license.dataset_name;
         const provider = license.attribution_name;
         if (title != null && provider != null) {
-            paragraphs.push(`Data: ${linkHTML(title, license.url)}, by ${htmlEscaped(provider)}.`);
+            paragraphs.push(`Data: ${linkHTML(title, source)}, by ${htmlEscaped(provider)}.`);
         }
         else {
-            paragraphs.push(linkHTML('Dataset source', license.url));
+            paragraphs.push(linkHTML('Dataset source', source));
         }
         const name = license.license_name;
         const url = license.license;
@@ -50,7 +51,7 @@ function licenseHTML(license: License | null | undefined): string {
         if (license.attribution_url != null) {
             paragraphs.push(linkHTML('Attribution source', license.attribution_url));
         }
-        if (license.terms_url != null && license.terms_url !== license.url && license.terms_url !== license.license) {
+        if (license.terms_url != null && license.terms_url !== source && license.terms_url !== license.license) {
             paragraphs.push(linkHTML('Source terms and notices', license.terms_url));
         }
         return paragraphs.map(paragraph => `<p class="license-statement">${paragraph}</p>`).join('');
@@ -58,8 +59,8 @@ function licenseHTML(license: License | null | undefined): string {
     return '<p class="license-statement">License information is not available in this downloaded dataset.</p>';
 }
 
-function linkHTML(title: string, url: string): string {
-    if (/^https?:/i.test(url)) {
+function linkHTML(title: string, url: string | null | undefined): string {
+    if (url != null && /^https?:/i.test(url)) {
         return `<a href="${htmlEscaped(url)}">${htmlEscaped(title)}</a>`;
     }
     return htmlEscaped(title);

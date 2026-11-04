@@ -11,7 +11,9 @@ export interface City {
 }
 
 export interface License {
-    url: string;
+    url?: string | null;
+    api_url?: string | null;
+    portal_url?: string | null;
     dataset_name?: string | null;
     attribution_name?: string | null;
     license?: string | null;
@@ -96,11 +98,14 @@ export class Dataset {
     }
 
     private static validLicense(value: unknown): value is License {
-        if (typeof value !== 'object' || value === null || Array.isArray(value) ||
-            !('url' in value) || typeof value.url !== 'string') {
+        if (typeof value !== 'object' || value === null || Array.isArray(value)) {
             return false;
         }
-        const fields = ['dataset_name', 'attribution_name', 'license', 'license_name', 'terms_url',
+        if (!('api_url' in value && typeof value.api_url === 'string') &&
+            !('url' in value && typeof value.url === 'string')) {
+            return false;
+        }
+        const fields = ['url', 'api_url', 'portal_url', 'dataset_name', 'attribution_name', 'license', 'license_name', 'terms_url',
             'attribution_statement', 'attribution_url', 'copyright_notice', 'disclaimer_notice',
             'previous_modifications'];
         return Object.entries(value).every(([key, field]) =>

@@ -7,11 +7,15 @@ export class AboutView {
     private readonly dialog = document.querySelector<HTMLDialogElement>('#about')!;
     private readonly frame = document.querySelector<HTMLIFrameElement>('#about-page')!;
 
-    constructor(cities: City[]) {
-        const page = new DOMParser().parseFromString(aboutHTML.replace('[CITIES]', () => citiesHTML(cities)), 'text/html');
+    constructor(cities: City[], treeCount: number) {
+        const html = aboutHTML
+            .replaceAll('[TREE_COUNT]', treeCount.toLocaleString())
+            .replaceAll('[CITY_COUNT]', cities.length.toLocaleString())
+            .replace('[CITIES]', () => citiesHTML(cities));
+        const page = new DOMParser().parseFromString(html, 'text/html');
         page.querySelector('link[rel="stylesheet"]')!.remove();
         const style = page.createElement('style');
-        style.textContent = aboutStyles;
+        style.textContent = `${aboutStyles}\nhtml { scrollbar-gutter: stable; }`;
         page.head.append(style);
 
         for (const link of page.querySelectorAll('a')) {

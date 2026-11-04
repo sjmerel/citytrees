@@ -31,7 +31,11 @@ struct HTMLView: UIViewRepresentable {
         webView.navigationDelegate = context.coordinator
         if let url = Bundle.main.url(forResource: resource, withExtension: "html"),
            var html = try? String(contentsOf: url, encoding: .utf8) {
-            html = html.replacingOccurrences(of: "[CITIES]", with: Self.citiesHTML())
+            let data = try! Data(contentsOf: Dataset.instance.localDir.appendingPathComponent("cities.json"))
+            let cities = try! JSONDecoder().decode([City].self, from: data)
+            html = html.replacingOccurrences(of: "[TREE_COUNT]", with: TileDb.instance.siteCount.formatted())
+                .replacingOccurrences(of: "[CITY_COUNT]", with: cities.count.formatted())
+                .replacingOccurrences(of: "[CITIES]", with: Self.citiesHTML(cities))
             // read access to the bundle lets the page load its stylesheet
             webView.loadHTMLString(html, baseURL: url.deletingLastPathComponent())
         }
@@ -66,7 +70,9 @@ struct HTMLView: UIViewRepresentable {
     }
 
     private struct License: Decodable {
-        let url: String
+        let url: String?
+        let api_url: String?
+        let portal_url: String?
         let dataset_name: String?
         let attribution_name: String?
         let license: String?
@@ -81,10 +87,7 @@ struct HTMLView: UIViewRepresentable {
 
     // The cities in cities.json (downloaded with the data set), as an HTML list per country.
     // Empty until the first data set has been downloaded.
-    private static func citiesHTML() -> String {
-        let url = Dataset.instance.localDir.appendingPathComponent("cities.json")
-        let data = try! Data(contentsOf: url)
-        let cities = try! JSONDecoder().decode([City].self, from: data)
+    private static func citiesHTML(_ cities: [City]) -> String {
         let sections = Dictionary(grouping: cities, by: { $0.country })
             .map { code, cities in (title: Locale.current.localizedString(forRegionCode: code)!, cities: cities) }
             .sorted { $0.title.localizedStandardCompare($1.title) == .orderedAscending }
@@ -102,11 +105,12 @@ struct HTMLView: UIViewRepresentable {
     private static func licenseHTML(_ license: License?) -> String {
         if let license {
             var paragraphs = [String]()
+            let source = license.portal_url ?? license.api_url ?? license.url
             if let title = license.dataset_name, let provider = license.attribution_name {
-                paragraphs.append("Data: \(linkHTML(title, url: license.url)), by \(provider.htmlEscaped).")
+                paragraphs.append("Data: \(linkHTML(title, url: source)), by \(provider.htmlEscaped).")
             }
             else {
-                paragraphs.append(linkHTML("Dataset source", url: license.url))
+                paragraphs.append(linkHTML("Dataset source", url: source))
             }
             if let name = license.license_name, let url = license.license {
                 let label = name.hasPrefix("CC0 ") ? "Public-domain dedication" : "Licensed under"
@@ -121,7 +125,7 @@ struct HTMLView: UIViewRepresentable {
             if let url = license.attribution_url {
                 paragraphs.append(linkHTML("Attribution source", url: url))
             }
-            if let url = license.terms_url, url != license.url, url != license.license {
+            if let url = license.terms_url, url != source, url != license.license {
                 paragraphs.append(linkHTML("Source terms and notices", url: url))
             }
             return paragraphs.map { "<p class=\"license-statement\">\($0)</p>" }.joined()
@@ -129,10 +133,12 @@ struct HTMLView: UIViewRepresentable {
         return "<p class=\"license-statement\">License information is not available in this downloaded dataset.</p>"
     }
 
-    private static func linkHTML(_ title: String, url: String) -> String {
-        let scheme = URL(string: url)?.scheme?.lowercased()
-        if scheme == "https" || scheme == "http" {
-            return "<a href=\"\(url.htmlEscaped)\">\(title.htmlEscaped)</a>"
+    private static func linkHTML(_ title: String, url: String?) -> String {
+        if let url {
+            let scheme = URL(string: url)?.scheme?.lowercased()
+            if scheme == "https" || scheme == "http" {
+                return "<a href=\"\(url.htmlEscaped)\">\(title.htmlEscaped)</a>"
+            }
         }
         return title.htmlEscaped
     }

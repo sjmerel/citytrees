@@ -29,7 +29,7 @@ export class MapView {
         private readonly showStatus: (message: string, retry?: () => void) => void,
         private readonly clearStatus: () => void,
     ) {
-        const about = new AboutView(dataset.cities);
+        const about = new AboutView(dataset.cities, tileDb.siteCount);
         this.setupButton('locate', crosshairIcon, () => this.showMyLocation());
         this.setupButton('layers', layersIcon, () => {
             const satellite = map.getMapTypeId() !== 'roadmap';
