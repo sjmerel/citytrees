@@ -44,6 +44,39 @@ struct HTMLView: UIViewRepresentable {
         let name: String
         let state: String?
         let country: String
+        let license: License?
+
+        private enum CodingKeys: String, CodingKey {
+            case name, state, country, license
+        }
+
+        init(from decoder: Decoder) throws {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            name = try values.decode(String.self, forKey: .name)
+            state = try values.decodeIfPresent(String.self, forKey: .state)
+            country = try values.decode(String.self, forKey: .country)
+            // Older downloaded datasets store only a license URL, not attribution metadata.
+            if (try? values.decode(String.self, forKey: .license)) != nil {
+                license = nil
+            }
+            else {
+                license = try values.decodeIfPresent(License.self, forKey: .license)
+            }
+        }
+    }
+
+    private struct License: Decodable {
+        let url: String
+        let dataset_name: String?
+        let attribution_name: String?
+        let license: String?
+        let license_name: String?
+        let terms_url: String?
+        let attribution_statement: String?
+        let attribution_url: String?
+        let copyright_notice: String?
+        let disclaimer_notice: String?
+        let previous_modifications: String?
     }
 
     // The cities in cities.json (downloaded with the data set), as an HTML list per country.
@@ -57,11 +90,54 @@ struct HTMLView: UIViewRepresentable {
             .sorted { $0.title.localizedStandardCompare($1.title) == .orderedAscending }
         return sections.map { title, cities in
             let items = cities
-                .map { city in city.state.map { "\(city.name), \($0)" } ?? city.name }
-                .sorted { $0.localizedStandardCompare($1) == .orderedAscending }
-                .map { "<li>\($0.htmlEscaped)</li>" }
+                .map { city in (name: city.state.map { "\(city.name), \($0)" } ?? city.name, license: city.license) }
+                .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
+                .map { name, license in
+                    "<li style=\"list-style: none\"><details><summary style=\"font-size: inherit; font-weight: normal\">\(name.htmlEscaped)</summary>\(licenseHTML(license))</details></li>"
+                }
             return "<h3>\(title.htmlEscaped)</h3><ul>\(items.joined())</ul>"
-        }.joined()
+        }.joined() + "<p class=\"license-statement\">All datasets listed above are modified by City Trees: records filtered, botanical names standardized, and data converted to map tiles.</p>"
+    }
+
+    private static func licenseHTML(_ license: License?) -> String {
+        if let license {
+            var paragraphs = [String]()
+            if let title = license.dataset_name, let provider = license.attribution_name {
+                paragraphs.append("Data: \(linkHTML(title, url: license.url)), by \(provider.htmlEscaped).")
+            }
+            else {
+                paragraphs.append(linkHTML("Dataset source", url: license.url))
+            }
+            if let name = license.license_name, let url = license.license {
+                let label = name.hasPrefix("CC0 ") ? "Public-domain dedication" : "Licensed under"
+                paragraphs.append("\(label) \(linkHTML(name, url: url)).")
+            }
+            else {
+                paragraphs.append("License information is not available in this downloaded dataset.")
+            }
+            for notice in [license.attribution_statement, license.copyright_notice,
+                           license.disclaimer_notice, license.previous_modifications] {
+                if let notice {
+                    paragraphs.append(notice.htmlEscaped)
+                }
+            }
+            if let url = license.attribution_url {
+                paragraphs.append(linkHTML("Attribution source", url: url))
+            }
+            if let url = license.terms_url, url != license.url, url != license.license {
+                paragraphs.append(linkHTML("Source terms and notices", url: url))
+            }
+            return paragraphs.map { "<p class=\"license-statement\">\($0)</p>" }.joined()
+        }
+        return "<p class=\"license-statement\">License information is not available in this downloaded dataset.</p>"
+    }
+
+    private static func linkHTML(_ title: String, url: String) -> String {
+        let scheme = URL(string: url)?.scheme?.lowercased()
+        if scheme == "https" || scheme == "http" {
+            return "<a href=\"\(url.htmlEscaped)\">\(title.htmlEscaped)</a>"
+        }
+        return title.htmlEscaped
     }
 
     func makeCoordinator() -> Coordinator {
@@ -86,6 +162,7 @@ struct HTMLView: UIViewRepresentable {
 private extension String {
     var htmlEscaped: String {
         replacingOccurrences(of: "&", with: "&amp;").replacingOccurrences(of: "<", with: "&lt;")
+            .replacingOccurrences(of: "\"", with: "&quot;")
     }
 }
 

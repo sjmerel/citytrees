@@ -27,13 +27,9 @@ h1 {
 }
 
 .byline {
-    margin: 8px 0 20px;
+    margin: 4px 0 20px;
     color: #3a7066;
     font-size: 15px;
-}
-
-.intro {
-    margin: 0;
 }
 
 h2 {
@@ -71,6 +67,12 @@ p {
 
 .cities li {
     margin-bottom: 3px;
+}
+
+.license-statement {
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 6px;
 }
 
 .city-request {

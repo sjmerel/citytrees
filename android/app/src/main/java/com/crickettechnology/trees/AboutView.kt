@@ -3,6 +3,7 @@ package com.crickettechnology.trees
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.view.MotionEvent
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -22,6 +23,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import org.json.JSONArray
+import org.json.JSONObject
 import java.io.File
 import java.text.Collator
 import java.util.Locale
@@ -34,7 +36,7 @@ fun AboutView(dismiss: () -> Unit) {
         Icon(
             painter = painterResource(R.drawable.x),
             contentDescription = null,
-            tint = Color.Black,
+            tint = Color.Gray,
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(8.dp)
@@ -76,8 +78,32 @@ object HTMLView {
     private class City(
         val name: String,
         val state: String?,
-        val country: String
-    )
+        val country: String,
+        val license: License?
+    ) {
+        constructor(values: JSONObject) : this(
+            values.requiredString("name"),
+            values.optionalString("state"),
+            values.requiredString("country"),
+            // Older downloaded datasets store only a license URL, not attribution metadata.
+            if (values.opt("license") is String || values.isNull("license")) null
+            else License(values.getJSONObject("license"))
+        )
+    }
+
+    private class License(values: JSONObject) {
+        val url = values.requiredString("url")
+        val dataset_name = values.optionalString("dataset_name")
+        val attribution_name = values.optionalString("attribution_name")
+        val license = values.optionalString("license")
+        val license_name = values.optionalString("license_name")
+        val terms_url = values.optionalString("terms_url")
+        val attribution_statement = values.optionalString("attribution_statement")
+        val attribution_url = values.optionalString("attribution_url")
+        val copyright_notice = values.optionalString("copyright_notice")
+        val disclaimer_notice = values.optionalString("disclaimer_notice")
+        val previous_modifications = values.optionalString("previous_modifications")
+    }
 
     // The cities in cities.json (downloaded with the data set), as an HTML list per country.
     private fun citiesHTML(): String {
@@ -85,9 +111,7 @@ object HTMLView {
         val json = JSONArray(file.readText())
         val cities = ArrayList<City>()
         for (i in 0 until json.length()) {
-            val city = json.getJSONObject(i)
-            val state = if (city.isNull("state")) null else city.getString("state")
-            cities.add(City(city.getString("name"), state, city.getString("country")))
+            cities.add(City(json.getJSONObject(i)))
         }
         val collator = Collator.getInstance()
         val sections = cities.groupBy { it.country }
@@ -95,11 +119,60 @@ object HTMLView {
             .sortedWith { a, b -> collator.compare(a.first, b.first) }
         return sections.joinToString("") { (title, cities) ->
             val items = cities
-                .map { city -> if (city.state != null) "${city.name}, ${city.state}" else city.name }
-                .sortedWith(collator)
-                .map { "<li>${it.htmlEscaped}</li>" }
+                .map { city -> Pair(if (city.state != null) "${city.name}, ${city.state}" else city.name, city.license) }
+                .sortedWith { a, b -> collator.compare(a.first, b.first) }
+                .map { (name, license) ->
+                    "<li style=\"list-style: none\"><details><summary style=\"font-size: inherit; font-weight: normal\">${name.htmlEscaped}</summary>${licenseHTML(license)}</details></li>"
+                }
             "<h3>${title.htmlEscaped}</h3><ul>${items.joinToString("")}</ul>"
+        } + "<p class=\"license-statement\">All datasets listed above are modified by City Trees: records filtered, botanical names standardized, and data converted to map tiles.</p>"
+    }
+
+    private fun licenseHTML(license: License?): String {
+        if (license != null) {
+            val paragraphs = ArrayList<String>()
+            val title = license.dataset_name
+            val provider = license.attribution_name
+            if (title != null && provider != null) {
+                paragraphs.add("Data: ${linkHTML(title, license.url)}, by ${provider.htmlEscaped}.")
+            }
+            else {
+                paragraphs.add(linkHTML("Dataset source", license.url))
+            }
+            val name = license.license_name
+            val licenseUrl = license.license
+            if (name != null && licenseUrl != null) {
+                val label = if (name.startsWith("CC0 ")) "Public-domain dedication" else "Licensed under"
+                paragraphs.add("$label ${linkHTML(name, licenseUrl)}.")
+            }
+            else {
+                paragraphs.add("License information is not available in this downloaded dataset.")
+            }
+            for (notice in listOf(license.attribution_statement, license.copyright_notice,
+                                  license.disclaimer_notice, license.previous_modifications)) {
+                if (notice != null) {
+                    paragraphs.add(notice.htmlEscaped)
+                }
+            }
+            val attributionUrl = license.attribution_url
+            if (attributionUrl != null) {
+                paragraphs.add(linkHTML("Attribution source", attributionUrl))
+            }
+            val termsUrl = license.terms_url
+            if (termsUrl != null && termsUrl != license.url && termsUrl != license.license) {
+                paragraphs.add(linkHTML("Source terms and notices", termsUrl))
+            }
+            return paragraphs.joinToString("") { "<p class=\"license-statement\">$it</p>" }
         }
+        return "<p class=\"license-statement\">License information is not available in this downloaded dataset.</p>"
+    }
+
+    private fun linkHTML(title: String, url: String): String {
+        val scheme = Uri.parse(url).scheme?.lowercase()
+        if (scheme == "https" || scheme == "http") {
+            return "<a href=\"${url.htmlEscaped}\">${title.htmlEscaped}</a>"
+        }
+        return title.htmlEscaped
     }
 
     private class Coordinator : WebViewClient() {
@@ -121,5 +194,13 @@ object HTMLView {
     }
 
     private val String.htmlEscaped: String
-        get() { return replace("&", "&amp;").replace("<", "&lt;") }
+        get() { return replace("&", "&amp;").replace("<", "&lt;").replace("\"", "&quot;") }
+
+    private fun JSONObject.requiredString(key: String): String {
+        return get(key) as String
+    }
+
+    private fun JSONObject.optionalString(key: String): String? {
+        return if (isNull(key)) null else requiredString(key)
+    }
 }

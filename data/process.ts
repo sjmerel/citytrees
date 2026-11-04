@@ -110,7 +110,7 @@ async function main() {
 ////////////////////////////////////////
 
 function loadCityData(): any[] {
-  let cities = loadObject('cities.json');
+  let cities = loadObject('cities_included.json');
   let data = [];
   for (let cityObj of cities) {
     let cityData = loadObject(`cities/${cityObj.code}.json`);

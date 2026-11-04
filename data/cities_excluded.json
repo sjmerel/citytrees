@@ -1,0 +1,2371 @@
+[
+  {
+    "code": "beverlyhills_ca_us",
+    "name": "Beverly Hills",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://mgis.beverlyhills.org/arcgis/rest/services/Hansen/CBH_IPS_GIS_UrbanForest_Feature/MapServer/0"
+    }
+  },
+  {
+    "code": "losangeles_ca_us",
+    "name": "Los Angeles",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=266c6255b1fc4ae8b8f100d8696e1fa4&sublayer=0"
+    }
+  },
+  {
+    "code": "newyorkcity_ny_us",
+    "name": "New York City",
+    "state": "NY",
+    "country": "US",
+    "license": {
+      "url": "https://data.cityofnewyork.us/d/hn5i-inap",
+      "license": "https://data.cityofnewyork.us/stories/s/Terms-of-Use/k9k7-3cje"
+    }
+  },
+  {
+    "code": "jerseycity_nj_us",
+    "name": "Jersey City",
+    "state": "NJ",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=d041720e43c840cab457001fbc45a58b&sublayer=0"
+    }
+  },
+  {
+    "code": "pasadena_ca_us",
+    "name": "Pasadena",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=593b88391b614123890f54a1db8fbf55&sublayer=0"
+    }
+  },
+  {
+    "code": "seattle_wa_us",
+    "name": "Seattle",
+    "state": "WA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=15ca3b333b984fef8fda342ab0bba4d0&sublayer=0",
+      "license": "https://data.seattle.gov/stories/s/Terms-of-Use/6ukr-wvup/"
+    }
+  },
+  {
+    "code": "berkeley_ca_us",
+    "name": "Berkeley",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=5982db9c6ba84d60835e3f6a188cca9c&sublayer=0"
+    }
+  },
+  {
+    "code": "denver_co_us",
+    "name": "Denver",
+    "state": "CO",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=f90e355dd3874744a25c30fd2ddfd45b&sublayer=241",
+      "license": "https://www.arcgis.com/home/item.html?id=f90e355dd3874744a25c30fd2ddfd45b"
+    }
+  },
+  {
+    "code": "edinburgh_gb",
+    "name": "Edinburgh",
+    "country": "GB",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=8207ea795bbb45c8a97c0c01c5a9e828&sublayer=0"
+    }
+  },
+  {
+    "code": "sheffield_gb",
+    "name": "Sheffield",
+    "country": "GB",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=7b2df397e9994ca5984bad0b679ce6d9",
+      "license": "https://www.arcgis.com/home/item.html?id=7b2df397e9994ca5984bad0b679ce6d9",
+      "license_comment": "INSPIRE end-user terms require review before distributing processed data."
+    }
+  },
+  {
+    "code": "oakland_ca_us",
+    "name": "Oakland",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=1aeca241016e483cbfac4f2d1974692e&sublayer=0"
+    }
+  },
+  {
+    "code": "philadelphia_pa_us",
+    "name": "Philadelphia",
+    "state": "PA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=dc6826e1319c4b35a7b662bc6be68104&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=dc6826e1319c4b35a7b662bc6be68104"
+    }
+  },
+  {
+    "code": "sacramento_ca_us",
+    "name": "Sacramento",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=b9b716e09b5048179ab648bb4518452b&sublayer=0"
+    }
+  },
+  {
+    "code": "sanjose_ca_us",
+    "name": "San Jose",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=7db16e012fe8402db45074cd260c8f4e"
+    }
+  },
+  {
+    "code": "vancouver_bc_ca",
+    "name": "Vancouver",
+    "state": "BC",
+    "country": "CA",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=cad8fb2193bb46448d8372a861cbc944&sublayer=0",
+      "license": "https://vancouver.ca/your-government/terms-of-use.aspx",
+      "license_comment": "Applicable terms could not be inspected (HTTP 403); redistribution permission remains unverified."
+    }
+  },
+  {
+    "code": "atlanta_ga_us",
+    "name": "Atlanta",
+    "state": "GA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=9a8404b7b48d499ab76b36c237434542&sublayer=0"
+    }
+  },
+  {
+    "code": "baltimore_md_us",
+    "name": "Baltimore",
+    "state": "MD",
+    "country": "US",
+    "license": {
+      "url": "https://gis.baltimorecity.gov/egis/rest/services/Foresty/TreeInventory_Public/MapServer/0",
+      "license": "https://creativecommons.org/licenses/by/3.0/",
+      "attribution_name": "Mayor and City Council of Baltimore",
+      "terms_url": "https://www.baltimorecity.gov/publicworks/terms-of-use-and-disclaimer-policy",
+      "license_name": "CC BY 3.0 Unported",
+      "disclaimer_notice": "The City makes no claims as to the quality, completeness, accuracy, timeliness, or content of any data contained on this site. All such items and materials are provided on an \"as is\" basis, and you are fully and solely responsible for your use of them and for any results or consequences of your use. They have been compiled from a variety of sources, including sources beyond the control of the City, and are subject to change without notice from the City. The data is subject to change as modifications and updates are complete. It is understood that the information contained in the site is being used at one's own risk. In no event shall the City or its elected/appointed officials, municipal agencies and departments, employees, agents, or volunteers be liable for any direct, indirect, special, punitive, incidental, exemplary or consequential damages arising your accessing or using the site, or otherwise arising from this site or from anything contained in or displayed on this site. Nothing contained in or displayed on this site constitutes or is intended to constitute legal advice by the City or any of its elected/appointed officials, municipal agencies and departments, employees, agents, and volunteers.",
+      "license_comment": "The portal specifies CC BY 3.0 Unported, but the inventory service is unavailable; confirm its dataset title, license assignment, and dataset-specific notices before generating attribution."
+    }
+  },
+  {
+    "code": "neworleans_la_us",
+    "name": "New Orleans",
+    "state": "LA",
+    "country": "US",
+    "license": {
+      "url": "https://data.nola.gov/d/3tyj-9x33"
+    }
+  },
+  {
+    "code": "sandiego_ca_us",
+    "name": "San Diego",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20"
+    }
+  },
+  {
+    "code": "pittsburgh_pa_us",
+    "name": "Pittsburgh",
+    "state": "PA",
+    "country": "US",
+    "license": {
+      "url": "https://data.wprdc.org/dataset/city-trees",
+      "license": "http://www.opendefinition.org/licenses/cc-by",
+      "dataset_name": "City of Pittsburgh Trees",
+      "attribution_name": "City of Pittsburgh",
+      "license_comment": "The catalog specifies Creative Commons Attribution but links to a version-neutral overview; confirm the applicable version before generating a license attribution."
+    }
+  },
+  {
+    "code": "paloalto_ca_us",
+    "name": "Palo Alto",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f&sublayer=2"
+    }
+  },
+  {
+    "code": "fremont_ca_us",
+    "name": "Fremont",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://egis.fremont.gov/accela/rest/services/CRM/TreeInventory/MapServer/1"
+    }
+  },
+  {
+    "code": "brookline_ma_us",
+    "name": "Brookline",
+    "state": "MA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=22b8ffbb792c41d28b0c2b0c4f15122e&sublayer=0"
+    }
+  },
+  {
+    "code": "louisville_ky_us",
+    "name": "Louisville",
+    "state": "KY",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=a04b388a30d84f8baeba9c9fa67b639e&sublayer=0"
+    }
+  },
+  {
+    "code": "lasvegas_nv_us",
+    "name": "Las Vegas",
+    "state": "NV",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=c4d5a7b766264b03940c6004ea2b6211&sublayer=0"
+    }
+  },
+  {
+    "code": "richmond_va_us",
+    "name": "Richmond",
+    "state": "VA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=902a0284181e4500aa220a6037d06d3d&sublayer=0"
+    }
+  },
+  {
+    "code": "madison_wi_us",
+    "name": "Madison",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=b700541a20e446839b18d62426c266a3"
+    }
+  },
+  {
+    "code": "aurora_co_us",
+    "name": "Aurora",
+    "state": "CO",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=4c6d1d6a861c4f859259d05c3acde20d&sublayer=0"
+    }
+  },
+  {
+    "code": "portland_me_us",
+    "name": "Portland",
+    "state": "ME",
+    "country": "US",
+    "license": {
+      "url": "https://gis.portlandmaine.gov/maps/rest/services/ParksRec/Trees/MapServer/1"
+    }
+  },
+  {
+    "code": "hermosabeach_ca_us",
+    "name": "Hermosa Beach",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=8bb7098c603944cda91752cccfa5d331&sublayer=0"
+    }
+  },
+  {
+    "code": "elsegundo_ca_us",
+    "name": "El Segundo",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=a38e09794cf248eaa08319a07a5b28bd&sublayer=0"
+    }
+  },
+  {
+    "code": "claremont_ca_us",
+    "name": "Claremont",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=c1af430886de4d70ab1caf46bd0e1ec1&sublayer=0"
+    }
+  },
+  {
+    "code": "signalhill_ca_us",
+    "name": "Signal Hill",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=598f29532e9c4d2098e547f549ec5fdd&sublayer=0"
+    }
+  },
+  {
+    "code": "montereypark_ca_us",
+    "name": "Monterey Park",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=7b68fe381280475cab4676e1100f7ced&sublayer=0"
+    }
+  },
+  {
+    "code": "camarillo_ca_us",
+    "name": "Camarillo",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=788757ea49dc48b4bbde3f55d968c908&sublayer=0"
+    }
+  },
+  {
+    "code": "riverside_ca_us",
+    "name": "Riverside",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=18ac0db05b7340d1b463d953fdc672fc&sublayer=0"
+    }
+  },
+  {
+    "code": "lakewood_ca_us",
+    "name": "Lakewood",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=eacbc9e33bad48bf9297700c2f0fcc56&sublayer=38"
+    }
+  },
+  {
+    "code": "glendora_ca_us",
+    "name": "Glendora",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=a39929d453ac44bbb99e828aafa8dd20&sublayer=5"
+    }
+  },
+  {
+    "code": "anaheim_ca_us",
+    "name": "Anaheim",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=1e0018ebc2e64b918cb32de1bc7cbefe&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=1e0018ebc2e64b918cb32de1bc7cbefe",
+      "license_comment": "Stated use is municipal inventory QA/QC, analysis and operations; public app redistribution is not clearly permitted."
+    }
+  },
+  {
+    "code": "fullerton_ca_us",
+    "name": "Fullerton",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=15faff5f4aba4ad2831a487be4ff8cce&sublayer=0"
+    }
+  },
+  {
+    "code": "azusa_ca_us",
+    "name": "Azusa",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=a3edd2b411f3433991e149edbf57c47a&sublayer=0"
+    }
+  },
+  {
+    "code": "buenapark_ca_us",
+    "name": "Buena Park",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=e6b4e51092ea4a5e84121102d7ebaca3&sublayer=1"
+    }
+  },
+  {
+    "code": "santaclarita_ca_us",
+    "name": "Santa Clarita",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=eae310cd0b0d49fcb49be4e8f8d9286c&sublayer=0"
+    }
+  },
+  {
+    "code": "carson_ca_us",
+    "name": "Carson",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=45263689223340dd9370b96b842e3fec&sublayer=2"
+    }
+  },
+  {
+    "code": "laverne_ca_us",
+    "name": "La Verne",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=ddaead3196fb4543bc36a5df2ab3dad2&sublayer=1"
+    }
+  },
+  {
+    "code": "brea_ca_us",
+    "name": "Brea",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=7a01c4af61ef477b89f9cd45aacd77fb&sublayer=0"
+    }
+  },
+  {
+    "code": "templecity_ca_us",
+    "name": "Temple City",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=5250b90cd3f94ed591f1603c339bc176&sublayer=0"
+    }
+  },
+  {
+    "code": "agourahills_ca_us",
+    "name": "Agoura Hills",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=bdcce0631483401cb4074c267b11e12d&sublayer=0"
+    }
+  },
+  {
+    "code": "costamesa_ca_us",
+    "name": "Costa Mesa",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=e3dc010814a24bb396e53c341941ab9e&sublayer=0"
+    }
+  },
+  {
+    "code": "montebello_ca_us",
+    "name": "Montebello",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=5984b62a3e9b48e39ca2cf9a2748637a&sublayer=0"
+    }
+  },
+  {
+    "code": "ventura_ca_us",
+    "name": "Ventura",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=ca347cdaaf64404188cfd88a3b053f61&sublayer=0"
+    }
+  },
+  {
+    "code": "rosemead_ca_us",
+    "name": "Rosemead",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=045eb20a2d9f41c9819af3c2f97b6d00&sublayer=3"
+    }
+  },
+  {
+    "code": "yorbalinda_ca_us",
+    "name": "Yorba Linda",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=e94d7e56dd09416b99e4ffec5aa40a5b&sublayer=0"
+    }
+  },
+  {
+    "code": "evanston_il_us",
+    "name": "Evanston",
+    "state": "IL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=845a3acb3dc0442a80b219691889f992",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "terms_url": "https://data.cityofevanston.org/pages/terms",
+      "dataset_name": "Trees",
+      "attribution_name": "City of Evanston IL",
+      "license_name": "CC BY 4.0 International",
+      "disclaimer_notice": "The Geospatial data, and the information therein, (collectively the \"Data\") is provided by the City of Evanston in an \"as is\" condition without warranty of any kind, either expressed, implied, or statutory. The user assumes the entire risk as to quality and performance of the Data. No guarantee of accuracy is granted by the City of Evanston. In no event shall the City of Evanston be liable for direct, incidental, consequential or special damages of any kind. The City of Evanston does not accept liability for any damages or misrepresentation caused by inaccuracies in the Data or as a result to changes to the Data, nor is responsibility assumed to maintain the Data in any manner or format.",
+      "license_comment": "Portal terms also require retaining original metadata and crediting the City in derived metadata, and require written authorization for automated extraction; resolve these conditions separately from CC BY attribution."
+    }
+  },
+  {
+    "code": "oakpark_il_us",
+    "name": "Oak Park",
+    "state": "IL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=402e05e1ced64931b8908178c095bd0f&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=402e05e1ced64931b8908178c095bd0f",
+      "license_comment": "Item description specifies viewing only in myGIS; permission for app redistribution needs clarification."
+    }
+  },
+  {
+    "code": "berwyn_il_us",
+    "name": "Berwyn",
+    "state": "IL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=95d7aacaead94d2487313d3801ac5b97&sublayer=1",
+      "license": "https://www.arcgis.com/home/item.html?id=95d7aacaead94d2487313d3801ac5b97"
+    }
+  },
+  {
+    "code": "wilmette_il_us",
+    "name": "Wilmette",
+    "state": "IL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=7738092e8b4546539ccd62bae5f4e35b&sublayer=0"
+    }
+  },
+  {
+    "code": "bend_or_us",
+    "name": "Bend",
+    "state": "OR",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=3a518917e1fc407cbc5d72ab4260101b&sublayer=0"
+    }
+  },
+  {
+    "code": "escondido_ca_us",
+    "name": "Escondido",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=ac9caf3c7a9847b78100cc8860ddf51a&sublayer=0"
+    }
+  },
+  {
+    "code": "pleasanton_ca_us",
+    "name": "Pleasanton",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=71339b38bd7b4ae8bc778da5909f89f4&sublayer=0"
+    }
+  },
+  {
+    "code": "cupertino_ca_us",
+    "name": "Cupertino",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=86097d4061894324a7ab0524c917e046&sublayer=0"
+    }
+  },
+  {
+    "code": "losgatos_ca_us",
+    "name": "Los Gatos",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=1140869b0a1e4e6e939e67b05b035ad2&sublayer=0"
+    }
+  },
+  {
+    "code": "milpitas_ca_us",
+    "name": "Milpitas",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=3312a51661fe4bb5a5b79145f7147bc6&sublayer=0"
+    }
+  },
+  {
+    "code": "encinitas_ca_us",
+    "name": "Encinitas",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://coemapservices.encinitasca.gov/hypegis/rest/services/PublicServices/Trees_PWSM/MapServer/0"
+    }
+  },
+  {
+    "code": "spokane_wa_us",
+    "name": "Spokane",
+    "state": "WA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=d84eda620819425185d114a06a94d047&sublayer=8",
+      "license": "https://www.arcgis.com/home/item.html?id=d84eda620819425185d114a06a94d047"
+    }
+  },
+  {
+    "code": "bellevue_wa_us",
+    "name": "Bellevue",
+    "state": "WA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=0e5097923b1b448ab9a1217038db4f41&sublayer=29",
+      "license": "https://www.arcgis.com/home/item.html?id=0e5097923b1b448ab9a1217038db4f41"
+    }
+  },
+  {
+    "code": "doral_fl_us",
+    "name": "Doral",
+    "state": "FL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=d356e28579fa4af9a93f63973595d9df&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=d356e28579fa4af9a93f63973595d9df"
+    }
+  },
+  {
+    "code": "plano_tx_us",
+    "name": "Plano",
+    "state": "TX",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=a7e06ad57e2747738fb2b2117e23d68e&sublayer=0"
+    }
+  },
+  {
+    "code": "bexley_oh_us",
+    "name": "Bexley",
+    "state": "OH",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=af4ac47e416c4b7da4bef96bb024b134&sublayer=0"
+    }
+  },
+  {
+    "code": "marysville_oh_us",
+    "name": "Marysville",
+    "state": "OH",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=064a909d01044913982be789fabe2cb5&sublayer=0"
+    }
+  },
+  {
+    "code": "upperarlington_oh_us",
+    "name": "Upper Arlington",
+    "state": "OH",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=df906c3349344416b47e278760f95c3f&sublayer=0"
+    }
+  },
+  {
+    "code": "dublin_oh_us",
+    "name": "Dublin",
+    "state": "OH",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=44c58ae4367a4f0f83c3a476b1c58ba3&sublayer=0"
+    }
+  },
+  {
+    "code": "rochester_ny_us",
+    "name": "Rochester",
+    "state": "NY",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=4c209944e2984b4a908a14b0cbe48075&sublayer=0"
+    }
+  },
+  {
+    "code": "syracuse_ny_us",
+    "name": "Syracuse",
+    "state": "NY",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=7982e38ea4b545289736a1f42e413632&sublayer=0",
+      "license": "https://data.syr.gov/pages/termsofuse",
+      "license_comment": "Terms prohibit modification and require attribution and a disclaimer; obtain permission covering the app's processed-data redistribution."
+    }
+  },
+  {
+    "code": "arlington_ma_us",
+    "name": "Arlington",
+    "state": "MA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=dc385c1084d1432ebc792ffcb20bcfa4&sublayer=0"
+    }
+  },
+  {
+    "code": "allentown_pa_us",
+    "name": "Allentown",
+    "state": "PA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=de22eaf59f914495a5a8df6cd46682d1&sublayer=0"
+    }
+  },
+  {
+    "code": "montgomerycounty_md_us",
+    "name": "Montgomery County",
+    "state": "MD",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=bdce7d06c4904ecfaf14a1873f71e232&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=bdce7d06c4904ecfaf14a1873f71e232"
+    }
+  },
+  {
+    "code": "norfolk_va_us",
+    "name": "Norfolk",
+    "state": "VA",
+    "country": "US",
+    "license": {
+      "url": "https://data.norfolk.gov/d/cmvv-agyb"
+    }
+  },
+  {
+    "code": "tallahassee_fl_us",
+    "name": "Tallahassee",
+    "state": "FL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=dc523d85fe134750ba95e05168d2d117&sublayer=1"
+    }
+  },
+  {
+    "code": "sarasotacounty_fl_us",
+    "name": "Sarasota County",
+    "state": "FL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=d83796771ba64ea88f958c058ddcfa79&sublayer=0"
+    }
+  },
+  {
+    "code": "batonrouge_la_us",
+    "name": "Baton Rouge",
+    "state": "LA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=51b996ab35bc44bfb8d9e8d032b458c7&sublayer=7"
+    }
+  },
+  {
+    "code": "annarbor_mi_us",
+    "name": "Ann Arbor",
+    "state": "MI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=bc3fdd9aa2764d58b3e8edeeaf3307ba&sublayer=0"
+    }
+  },
+  {
+    "code": "michigancity_in_us",
+    "name": "Michigan City",
+    "state": "IN",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=85b7a9bdcb904f77b6815680b7c166de&sublayer=0"
+    }
+  },
+  {
+    "code": "allen_tx_us",
+    "name": "Allen",
+    "state": "TX",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=60f6c569c0b6410e92664caf1c06ec2d&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=60f6c569c0b6410e92664caf1c06ec2d",
+      "license_comment": "Personal use is permitted, but public redistribution is not clearly covered, even for a non-commercial app."
+    }
+  },
+  {
+    "code": "durham_nc_us",
+    "name": "Durham",
+    "state": "NC",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=0bee86c6e625453e9875101b3d3a2ff1&sublayer=0"
+    }
+  },
+  {
+    "code": "highland_in_us",
+    "name": "Highland",
+    "state": "IN",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=9b3c5688ecaa4f788d9f2cfdc0c7475a&sublayer=0"
+    }
+  },
+  {
+    "code": "southelgin_il_us",
+    "name": "South Elgin",
+    "state": "IL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=feb6dc96df554ae1ba4da5d3cb65f8d0&sublayer=0"
+    }
+  },
+  {
+    "code": "cockburn_wa_au",
+    "name": "Cockburn",
+    "state": "WA",
+    "country": "AU",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=4e25763b23fe47c1bb928920152789a9&sublayer=0"
+    }
+  },
+  {
+    "code": "launceston_tas_au",
+    "name": "Launceston",
+    "state": "TAS",
+    "country": "AU",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=f62d2c83dd94443ab77e933e78de4b4f&sublayer=1"
+    }
+  },
+  {
+    "code": "lincoln_ne_us",
+    "name": "Lincoln",
+    "state": "NE",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=d5bafbad81e44cf1ad3bb7e25767d496&sublayer=0"
+    }
+  },
+  {
+    "code": "lansing_mi_us",
+    "name": "Lansing",
+    "state": "MI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=156f8898d26a471dae7c858e46851b29&sublayer=1"
+    }
+  },
+  {
+    "code": "grandrapids_mi_us",
+    "name": "Grand Rapids",
+    "state": "MI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=8dd6632e710243d4b3620f2304e8e409&sublayer=0"
+    }
+  },
+  {
+    "code": "urbana_il_us",
+    "name": "Urbana",
+    "state": "IL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=79d75ee733094491b7f3a2a2515542f3&sublayer=0"
+    }
+  },
+  {
+    "code": "normal_il_us",
+    "name": "Normal",
+    "state": "IL",
+    "country": "US",
+    "license": {
+      "url": "https://gispub.normal.org/tongis/rest/services/Hosted/Town_of_Normal_Tree_Inventory_Public/FeatureServer/0"
+    }
+  },
+  {
+    "code": "milwaukeecounty_wi_us",
+    "name": "Milwaukee County Parks",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=bf919332567d44b2b1bc531858aa2bc9&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=bf919332567d44b2b1bc531858aa2bc9"
+    }
+  },
+  {
+    "code": "tulsa_ok_us",
+    "name": "Tulsa",
+    "state": "OK",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=7ef20f8a5add4adcb61b95fdf630984d&sublayer=0"
+    }
+  },
+  {
+    "code": "richardson_tx_us",
+    "name": "Richardson",
+    "state": "TX",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=0089a7d9862749db95b1e606fcd600a0&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=0089a7d9862749db95b1e606fcd600a0",
+      "license_comment": "Terms allow personal use and adaptation; public redistribution is not expressly authorized. Seek written permission."
+    }
+  },
+  {
+    "code": "boise_id_us",
+    "name": "Boise",
+    "state": "ID",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=61e4dc96bc0745ecb42c3f3892728bd6&sublayer=1"
+    }
+  },
+  {
+    "code": "missoula_mt_us",
+    "name": "Missoula",
+    "state": "MT",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=478d76729bfc4236ae12bafb644fb635&sublayer=0"
+    }
+  },
+  {
+    "code": "santafe_nm_us",
+    "name": "Santa Fe",
+    "state": "NM",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=619426fd3b61487dbd6e19eba7fdfcf1&sublayer=0"
+    }
+  },
+  {
+    "code": "coralsprings_fl_us",
+    "name": "Coral Springs",
+    "state": "FL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=5a5fd0d701e04a75ba945bf94e71db9f&sublayer=0"
+    }
+  },
+  {
+    "code": "canberra_act_au",
+    "name": "Canberra",
+    "state": "ACT",
+    "country": "AU",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=d401a7266ba74dc18c1902ae6e71fe90&sublayer=0",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=d401a7266ba74dc18c1902ae6e71fe90",
+      "dataset_name": "ACTGOV Tree Assets",
+      "attribution_name": "Australian Capital Territory",
+      "license_name": "CC BY 4.0 International",
+      "copyright_notice": "© Australian Capital Territory",
+      "license_comment": "CC BY 4.0 assignment is verified, but incorporated ACTmapi terms remain unverified: https://www.actmapi.act.gov.au/terms-and-conditions"
+    }
+  },
+  {
+    "code": "barrie_on_ca",
+    "name": "Barrie",
+    "state": "ON",
+    "country": "CA",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=d053284adf6341d7939486d13bfd6911",
+      "license": "https://www.arcgis.com/home/item.html?id=d053284adf6341d7939486d13bfd6911"
+    }
+  },
+  {
+    "code": "hamilton_on_ca",
+    "name": "Hamilton",
+    "state": "ON",
+    "country": "CA",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=08e50c6cbb2545b4897d613a817fa4d4&sublayer=0",
+      "license": "https://www.hamilton.ca/city-council/data-maps/open-data/open-data-licence-terms-and-conditions",
+      "license_comment": "The Open Data Licence permits modification and redistribution with the prescribed attribution, but allows cancellation or suspension without notice, after which use is unauthorized. Its incorporated Acceptable Use Agreement returned HTTP 403 during review. Retained outside the release set until that agreement can be verified and the additional obligations accepted.",
+      "dataset_name": "Public Tree Inventory",
+      "attribution_name": "City of Hamilton",
+      "license_name": "City of Hamilton Open Data Licence 1.1",
+      "attribution_statement": "Contains public sector Data made available under the City of Hamilton’s Open Data Licence",
+      "terms_url": "https://www.hamilton.ca/acceptable-use-agreement"
+    }
+  },
+  {
+    "code": "kelowna_bc_ca",
+    "name": "Kelowna",
+    "state": "BC",
+    "country": "CA",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=39d13a47b8f94cce82a9b4c86efc8ee7",
+      "license": "http://apps.kelowna.ca/images/opendata/opengovernmentlicence.pdf"
+    }
+  },
+  {
+    "code": "mapleridge_bc_ca",
+    "name": "Maple Ridge",
+    "state": "BC",
+    "country": "CA",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=290505c676d64cf09989eca1320aedd3",
+      "license": "https://opengov.mapleridge.ca/pages/open-government-licence",
+      "dataset_name": "Street Tree",
+      "attribution_name": "City of Maple Ridge - Parks Recreation & Culture",
+      "license_name": "Open Government Licence - Maple Ridge 2.0",
+      "attribution_statement": "Contains information licensed under the Open Government Licence – Maple Ridge.",
+      "terms_url": "https://www.mapleridge.ca/terms-use",
+      "license_comment": "The Open Government Licence permits modification and redistribution but incorporates website terms that prohibit modifying website content and restrict permitted uses. Retained outside the release set pending clarification of the conflicting terms."
+    }
+  },
+  {
+    "code": "peterborough_on_ca",
+    "name": "Peterborough",
+    "state": "ON",
+    "country": "CA",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=b5c84f53b4414d539bca94ba3383292c&sublayer=0",
+      "license": "https://data-ptbo.opendata.arcgis.com/pages/terms-of-use"
+    }
+  },
+  {
+    "code": "whitby_on_ca",
+    "name": "Whitby",
+    "state": "ON",
+    "country": "CA",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=5be6efcf4f264639874bf07009f155d2&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=223810efc31c40b3aff99dd74f809a97",
+      "license_comment": "Open Government License conflicts with personal/non-commercial wording in item metadata; clarify public redistribution rights."
+    }
+  },
+  {
+    "code": "ottawa_on_ca",
+    "name": "Ottawa",
+    "state": "ON",
+    "country": "CA",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=13092822f69143b695bdb916357d421b",
+      "license": "https://www.arcgis.com/home/item.html?id=13092822f69143b695bdb916357d421b"
+    }
+  },
+  {
+    "code": "highlandpark_nj_us",
+    "name": "Highland Park",
+    "state": "NJ",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=11144d39301e4e189c394cd878245066&sublayer=0"
+    }
+  },
+  {
+    "code": "dedham_ma_us",
+    "name": "Dedham",
+    "state": "MA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=9d23e28c88984fa0903da95792883d4a&sublayer=0"
+    }
+  },
+  {
+    "code": "springfield_mo_us",
+    "name": "Springfield",
+    "state": "MO",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=705ae4c71b014910a0617ba5c7b25b98&sublayer=34"
+    }
+  },
+  {
+    "code": "hoboken_nj_us",
+    "name": "Hoboken",
+    "state": "NJ",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=79b9318238a949949c463f9c2e589113&sublayer=0"
+    }
+  },
+  {
+    "code": "pinellascounty_fl_us",
+    "name": "Pinellas County",
+    "state": "FL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=4d5bed2b3a3c4985aa4ffb2c7670fd8b&sublayer=23"
+    }
+  },
+  {
+    "code": "palmsprings_ca_us",
+    "name": "Palm Springs",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=d74aca29ba054b0e92492c5aaa78125b&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=d74aca29ba054b0e92492c5aaa78125b",
+      "license_comment": "Explicitly prohibits alteration or redistribution; permission is needed for processed app data."
+    }
+  },
+  {
+    "code": "wisconsin_wi_us",
+    "name": "Wisconsin (DNR communities)",
+    "maxRadiusDegrees": 10,
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=5c6daadb975246a7936863151ad0f4a1&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=5c6daadb975246a7936863151ad0f4a1"
+    }
+  },
+  {
+    "code": "indiana_in_us",
+    "name": "Indiana (ERI communities)",
+    "maxRadiusDegrees": 5,
+    "state": "IN",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=6aa1bfc6716f42d0b80ffdeab06e5bbf&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=6aa1bfc6716f42d0b80ffdeab06e5bbf"
+    }
+  },
+  {
+    "code": "surrey_bc_ca",
+    "name": "Surrey",
+    "state": "BC",
+    "country": "CA",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=626b2212e0594eadb8a86ccf0b9640c2&sublayer=0",
+      "license": "https://opendata-surrey.hub.arcgis.com/pages/55089a19491a4fe59a41e059fd8af708"
+    }
+  },
+  {
+    "code": "zagreb_hr",
+    "name": "Zagreb",
+    "country": "HR",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=07e1bc958853430d84d1f0ba0a66fd7b&sublayer=0"
+    }
+  },
+  {
+    "code": "wellington_nz",
+    "name": "Wellington",
+    "country": "NZ",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=93ca9097fd4b487e9fcf55ad75941136",
+      "license": "https://data-wcc.opendata.arcgis.com/datasets/93ca9097fd4b487e9fcf55ad75941136_53/about",
+      "license_comment": "GIS policy states CC BY 4.0, but portal metadata says CC BY-SA; clarify applicable share-alike obligations."
+    }
+  },
+  {
+    "code": "fareham_gb",
+    "name": "Fareham",
+    "country": "GB",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=5f3ea634a36e4f3cb3c9a9e322512211&sublayer=1",
+      "license": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "dataset_name": "Trees",
+      "attribution_name": "Fareham Borough Council - FBC Trees Team",
+      "license_name": "Open Government Licence 3.0",
+      "attribution_statement": "FBC Trees Team, Contains OS data © Crown copyright and database right",
+      "copyright_notice": "© Crown copyright and database rights 2026 Ordnance Survey AC0000814042",
+      "license_comment": "The item specifies OGL and credits OS MasterMap Topography Layer data. An applicable Ordnance Survey derived-data exemption or separate redistribution grant has not been verified. Retained outside the release set pending clarification of third-party rights; current metadata supplies the 2026 OS notice."
+    }
+  },
+  {
+    "code": "stgeorge_ut_us",
+    "name": "St. George",
+    "state": "UT",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=a6a5b1e8237f466a8812424d719af26c"
+    }
+  },
+  {
+    "code": "oxnard_ca_us",
+    "name": "Oxnard",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=a5aa2d1dfd344ef79d61507d33cdbc02"
+    }
+  },
+  {
+    "code": "albury_nsw_au",
+    "name": "Albury",
+    "state": "NSW",
+    "country": "AU",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=605dc59091604f4b8aa99eaf56d71c3a&sublayer=0",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "license_comment": "The current Trees (Public) ArcGIS item and service do not specify CC BY or another reuse grant. The municipal website terms provide disclaimers, not affirmative redistribution permission. Retained outside the release set pending a dataset-specific licence or applicable portal policy."
+    }
+  },
+  {
+    "code": "unley_sa_au",
+    "name": "Unley",
+    "state": "SA",
+    "country": "AU",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=60272d3be3d34d7598a05f495fe347be&sublayer=0"
+    }
+  },
+  {
+    "code": "placentia_ca_us",
+    "name": "Placentia",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=96c75939ccb74bee91dd7c2856d5f1dc&sublayer=0"
+    }
+  },
+  {
+    "code": "shoreline_wa_us",
+    "name": "Shoreline",
+    "state": "WA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=1a7fc1efae95438e80678d5a24315aa7&sublayer=0"
+    }
+  },
+  {
+    "code": "gaithersburg_md_us",
+    "name": "Gaithersburg",
+    "state": "MD",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=8450e6c3992d4e8e9d0f3df4fd2722dd&sublayer=0"
+    }
+  },
+  {
+    "code": "brisbaneca_ca_us",
+    "name": "Brisbane",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=3fa36f43c28c46e6bb3a09a955c793b2&sublayer=0"
+    }
+  },
+  {
+    "code": "bassendean_wa_au",
+    "name": "Bassendean",
+    "state": "WA",
+    "country": "AU",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=88781e36f57b4ab88809901bdaee116b&sublayer=0"
+    }
+  },
+  {
+    "code": "miramar_fl_us",
+    "name": "Miramar",
+    "state": "FL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=d3be7cdb569a45f5ab5c49038d8db1ee&sublayer=1"
+    }
+  },
+  {
+    "code": "clarkcounty_nv_us",
+    "name": "Clark County",
+    "state": "NV",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=4c6049beeded4462902ed1c697b504a4&sublayer=0"
+    }
+  },
+  {
+    "code": "salem_or_us",
+    "name": "Salem",
+    "state": "OR",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=e5397978d59f46ec96f72a1dfc660919&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=e5397978d59f46ec96f72a1dfc660919",
+      "license_comment": "Redistribution is subject to unspecified licensing restrictions; contact the city before distributing app data."
+    }
+  },
+  {
+    "code": "tracy_ca_us",
+    "name": "Tracy",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=2dcd6a370a024bf791a68c47cecc5ee6&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=2dcd6a370a024bf791a68c47cecc5ee6",
+      "license_comment": "Terms explicitly require City of Tracy permission."
+    }
+  },
+  {
+    "code": "davenport_ia_us",
+    "name": "Davenport",
+    "state": "IA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=1e73252e386144799b39e95dbaa684ef&sublayer=0"
+    }
+  },
+  {
+    "code": "menlopark_ca_us",
+    "name": "Menlo Park",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=0f1a1746f6c14fc8a1c124df23f3e963&sublayer=33"
+    }
+  },
+  {
+    "code": "houstonparks_tx_us",
+    "name": "Houston Parks",
+    "state": "TX",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=37977dc711e547c8a5a33dd7626b339a&sublayer=0"
+    }
+  },
+  {
+    "code": "woodland_ca_us",
+    "name": "Woodland",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=d1af8daf150548aba6e25465c9788264&sublayer=0"
+    }
+  },
+  {
+    "code": "fitchburg_wi_us",
+    "name": "Fitchburg",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=ecdc9d08bbf6414ba902103c7bed4c0d&sublayer=0"
+    }
+  },
+  {
+    "code": "goldenvalley_mn_us",
+    "name": "Golden Valley",
+    "state": "MN",
+    "country": "US",
+    "license": {
+      "url": "https://gis.goldenvalleymn.gov/server/rest/services/GoldenMap/Golden_Park_Assets/FeatureServer/50"
+    }
+  },
+  {
+    "code": "durango_co_us",
+    "name": "Durango",
+    "state": "CO",
+    "country": "US",
+    "license": {
+      "url": "https://gis.durangoco.gov/map/rest/services/ParksFeatureAccess/MapServer/6"
+    }
+  },
+  {
+    "code": "panamacity_fl_us",
+    "name": "Panama City",
+    "state": "FL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=52a0f523c766460796e803a7861493bf&sublayer=0"
+    }
+  },
+  {
+    "code": "oconomowoc_wi_us",
+    "name": "Oconomowoc",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=437c193b56824e22ad6481b3dfad3dc2&sublayer=0"
+    }
+  },
+  {
+    "code": "sangabriel_ca_us",
+    "name": "San Gabriel",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=75dacdd574af45ddaf1e64e12c2dbad9&sublayer=0"
+    }
+  },
+  {
+    "code": "oxford_ms_us",
+    "name": "Oxford",
+    "state": "MS",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=44e275ba856a4818a7f5e8e618904f6d&sublayer=0"
+    }
+  },
+  {
+    "code": "decatur_ga_us",
+    "name": "Decatur",
+    "state": "GA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=5bfbd3da60684c6c8543d49a01b2920d&sublayer=0"
+    }
+  },
+  {
+    "code": "ofallon_il_us",
+    "name": "O'Fallon",
+    "state": "IL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=0d9714f08fec4eee8eb2258925986bb8&sublayer=16"
+    }
+  },
+  {
+    "code": "burien_wa_us",
+    "name": "Burien",
+    "state": "WA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=ae0b88f43763450a84be90bc3e23695f&sublayer=0"
+    }
+  },
+  {
+    "code": "kingston_ny_us",
+    "name": "Kingston",
+    "state": "NY",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=49aa4b896bbc407f9e228d8b7d0f5f9d&sublayer=0"
+    }
+  },
+  {
+    "code": "browndeer_wi_us",
+    "name": "Brown Deer",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=61bce0fd906f425f98f06e16df92fb42&sublayer=0"
+    }
+  },
+  {
+    "code": "platteville_wi_us",
+    "name": "Platteville",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=6dff95d985c64aad95a38342e0fadbf2&sublayer=0"
+    }
+  },
+  {
+    "code": "grandchute_wi_us",
+    "name": "Grand Chute",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=c842f01aad8c4797904edd775373ac50&sublayer=0"
+    }
+  },
+  {
+    "code": "minneapolis_mn_us",
+    "name": "Minneapolis",
+    "state": "MN",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=e8e27314e456446aa2de303f8071a79e&sublayer=0"
+    }
+  },
+  {
+    "code": "guelph_on_ca",
+    "name": "Guelph",
+    "state": "ON",
+    "country": "CA",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=9388866ea20349e99c97f7f103ca9cc7&sublayer=0"
+    }
+  },
+  {
+    "code": "kirkland_wa_us",
+    "name": "Kirkland",
+    "state": "WA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=0a2d654ef527442d985d6f959c1085d5&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=0a2d654ef527442d985d6f959c1085d5"
+    }
+  },
+  {
+    "code": "orlandpark_il_us",
+    "name": "Orland Park",
+    "state": "IL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=780d9c0a3883498b82e046ef231144c9&sublayer=1"
+    }
+  },
+  {
+    "code": "westerville_oh_us",
+    "name": "Westerville",
+    "state": "OH",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=63e094e5e18742d4a70f5c4bb02c246a&sublayer=1"
+    }
+  },
+  {
+    "code": "champaign_il_us",
+    "name": "Champaign",
+    "state": "IL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=d9d42ed212b34886bf383ae454b4135c&sublayer=0"
+    }
+  },
+  {
+    "code": "sanmateo_ca_us",
+    "name": "San Mateo",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=67c8b57d2d91459c9f951df9de961a06&sublayer=0"
+    }
+  },
+  {
+    "code": "reddeer_ab_ca",
+    "name": "Red Deer",
+    "state": "AB",
+    "country": "CA",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=9414f00af7594ed9aadfacb7ef841558&sublayer=0"
+    }
+  },
+  {
+    "code": "basingstoke_gb",
+    "name": "Basingstoke and Deane",
+    "country": "GB",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=ac06f92d857b4bd49e5668d0b438b037&sublayer=6"
+    }
+  },
+  {
+    "code": "grandjunction_co_us",
+    "name": "Grand Junction",
+    "state": "CO",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=cef93c83233749eb9265914aca06b35c"
+    }
+  },
+  {
+    "code": "lascruces_nm_us",
+    "name": "Las Cruces",
+    "state": "NM",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=6abaa9a7130848818816b7cde4a6b5bb&sublayer=0"
+    }
+  },
+  {
+    "code": "stlouispark_mn_us",
+    "name": "St. Louis Park",
+    "state": "MN",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=d8e68ae495d24f06a9adc233bf6e4c55"
+    }
+  },
+  {
+    "code": "gary_in_us",
+    "name": "Gary",
+    "state": "IN",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=351494f7f07d47c88f3038fb3ce18d1d&sublayer=0"
+    }
+  },
+  {
+    "code": "lamesa_ca_us",
+    "name": "La Mesa",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=e6e55741988f432b9b9ae7406a389c68&sublayer=4",
+      "license": "https://www.arcgis.com/home/item.html?id=e6e55741988f432b9b9ae7406a389c68"
+    }
+  },
+  {
+    "code": "kenmore_wa_us",
+    "name": "Kenmore",
+    "state": "WA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=703fed215aaf46b6922f784281281cec&sublayer=22",
+      "license": "https://www.arcgis.com/home/item.html?id=703fed215aaf46b6922f784281281cec"
+    }
+  },
+  {
+    "code": "hutt_nz",
+    "name": "Lower Hutt",
+    "country": "NZ",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=237eb7c547e44b4eac64a64a02474daf&sublayer=0",
+      "license": "https://open-data-huttcity.hub.arcgis.com/",
+      "license_comment": "Substantial copying or republication requires prior written council consent, including non-commercial redistribution."
+    }
+  },
+  {
+    "code": "northfield_mn_us",
+    "name": "Northfield",
+    "state": "MN",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=85d44b9f2c6a46e6b396aba59c224b8d&sublayer=1",
+      "license": "https://www.arcgis.com/home/item.html?id=85d44b9f2c6a46e6b396aba59c224b8d",
+      "license_comment": "Teaching/research use is stated; other uses require inquiry to the city."
+    }
+  },
+  {
+    "code": "sanjuancap_ca_us",
+    "name": "San Juan Capistrano",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=70129250fb304ec98f3b0e7770462664&sublayer=3"
+    }
+  },
+  {
+    "code": "fallschurch_va_us",
+    "name": "Falls Church",
+    "state": "VA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=5306a2f233874eebaed7a008b4919a85&sublayer=0"
+    }
+  },
+  {
+    "code": "tumwater_wa_us",
+    "name": "Tumwater",
+    "state": "WA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=80d58060ac11443689bb1e15cb52ffc1&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=80d58060ac11443689bb1e15cb52ffc1"
+    }
+  },
+  {
+    "code": "westchester_il_us",
+    "name": "Westchester",
+    "state": "IL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=448e13de0d63463f8df6aebfca001a41&sublayer=0"
+    }
+  },
+  {
+    "code": "beachwood_oh_us",
+    "name": "Beachwood",
+    "state": "OH",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=29e3185536fa4673948f61170f49ac08&sublayer=0"
+    }
+  },
+  {
+    "code": "shorewood_wi_us",
+    "name": "Shorewood",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=e29362f8e39f4e3bb04c90cb7a578aef&sublayer=1",
+      "license": "https://www.arcgis.com/home/item.html?id=e29362f8e39f4e3bb04c90cb7a578aef"
+    }
+  },
+  {
+    "code": "salem_ma_us",
+    "name": "Salem",
+    "state": "MA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=df1d66111f2d481db82564d5b820dee0&sublayer=0"
+    }
+  },
+  {
+    "code": "morgantown_wv_us",
+    "name": "Morgantown",
+    "state": "WV",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=914d8a665ae74a91be39c676a54fcb76&sublayer=0"
+    }
+  },
+  {
+    "code": "monroe_wi_us",
+    "name": "Monroe",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=6671312a07fd4786b0a47ce8a7d197c0&sublayer=0"
+    }
+  },
+  {
+    "code": "hollandmi_mi_us",
+    "name": "Holland",
+    "state": "MI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=722dc9f109844815b88f67f4537ad62f&sublayer=0"
+    }
+  },
+  {
+    "code": "hastingsdc_nz",
+    "name": "Hastings District",
+    "country": "NZ",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=11ae2eca83e54f6caeaa0d470b4a7ab1&sublayer=0"
+    }
+  },
+  {
+    "code": "chicagoarea_il_us",
+    "name": "Chicago Area Tree Plantings (Openlands)",
+    "state": "IL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=62bd108e4c5540c69921cffa25a27bd4&sublayer=0"
+    }
+  },
+  {
+    "code": "threeriverspark_mn_us",
+    "name": "Three Rivers Park District",
+    "state": "MN",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=aaf1bbc1f49a4a408e18aa1168ca16de&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=aaf1bbc1f49a4a408e18aa1168ca16de"
+    }
+  },
+  {
+    "code": "willamalane_or_us",
+    "name": "Willamalane Park and Recreation District (Springfield)",
+    "state": "OR",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=be06ee318cf044cba3d9786c84c90f57&sublayer=0"
+    }
+  },
+  {
+    "code": "waynecounty_in_us",
+    "name": "Wayne County",
+    "state": "IN",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=7c918046813340989aa7e986abdd5b56&sublayer=3"
+    }
+  },
+  {
+    "code": "whitebearlake_mn_us",
+    "name": "White Bear Lake",
+    "state": "MN",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=af97912e86f04c97b770e4f8d1b05a52&sublayer=0"
+    }
+  },
+  {
+    "code": "cayugaheights_ny_us",
+    "name": "Cayuga Heights",
+    "state": "NY",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=cb236338c85d4dc0b0ab02330f577a39&sublayer=0"
+    }
+  },
+  {
+    "code": "emeryville_ca_us",
+    "name": "Emeryville",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=fb7b31d61adf4d94bebe271918020aa7&sublayer=0"
+    }
+  },
+  {
+    "code": "yorkregion_on_ca",
+    "name": "York Region",
+    "state": "ON",
+    "country": "CA",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=293d80c24bf54a4f8ab66bddaeaab184",
+      "license": "https://www.arcgis.com/home/item.html?id=293d80c24bf54a4f8ab66bddaeaab184"
+    }
+  },
+  {
+    "code": "redlands_ca_us",
+    "name": "Redlands",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=9f9d4ad74a0d44fba8bf27c829e810f2&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=9f9d4ad74a0d44fba8bf27c829e810f2"
+    }
+  },
+  {
+    "code": "stockton_ca_us",
+    "name": "Stockton",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=89f134ac16384226b802972128ef5320&sublayer=0"
+    }
+  },
+  {
+    "code": "bozeman_mt_us",
+    "name": "Bozeman",
+    "state": "MT",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=ba0dea7927184014a8b84e64af5c7684&sublayer=0"
+    }
+  },
+  {
+    "code": "palmettobay_fl_us",
+    "name": "Palmetto Bay",
+    "state": "FL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=0d5c1b7c4e4e4fbca57b812a3c0184c9&sublayer=1"
+    }
+  },
+  {
+    "code": "palmdesert_ca_us",
+    "name": "Palm Desert",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=d472e915365c49258220f9b7f3019663&sublayer=6"
+    }
+  },
+  {
+    "code": "manteca_ca_us",
+    "name": "Manteca",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=208725ca9b0f4cbba338bfa6318f91a2&sublayer=0"
+    }
+  },
+  {
+    "code": "dubuque_ia_us",
+    "name": "Dubuque",
+    "state": "IA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=50fb7082181241e987796e2f90c866fc&sublayer=5"
+    }
+  },
+  {
+    "code": "sandysprings_ga_us",
+    "name": "Sandy Springs",
+    "state": "GA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=07f6f59030cc43d9b86cb7f1f4f0e163&sublayer=0"
+    }
+  },
+  {
+    "code": "oshkosh_wi_us",
+    "name": "Oshkosh",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=e543118256ba4472adaed45e8889b864&sublayer=0"
+    }
+  },
+  {
+    "code": "sunprairie_wi_us",
+    "name": "Sun Prairie",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=a03fc5c8e183429691b920a4e9000600&sublayer=1",
+      "license": "https://www.arcgis.com/home/item.html?id=a03fc5c8e183429691b920a4e9000600"
+    }
+  },
+  {
+    "code": "hillsboroughcounty_fl_us",
+    "name": "Hillsborough County",
+    "state": "FL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=3332fa56f5184334854cb4951bbfe88c&sublayer=0"
+    }
+  },
+  {
+    "code": "aspen_co_us",
+    "name": "Aspen",
+    "state": "CO",
+    "country": "US",
+    "license": {
+      "url": "https://services3.arcgis.com/5FkYBrhNzpVtlA6F/arcgis/rest/services/Parks/FeatureServer/2"
+    }
+  },
+  {
+    "code": "sandusky_oh_us",
+    "name": "Sandusky",
+    "state": "OH",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=3491d1374bd640e48410d615fd5c5c07&sublayer=0"
+    }
+  },
+  {
+    "code": "snohomish_wa_us",
+    "name": "Snohomish",
+    "state": "WA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=91a923839ab7428f97a0813f3e46fda4&sublayer=3",
+      "license": "https://www.arcgis.com/home/item.html?id=91a923839ab7428f97a0813f3e46fda4"
+    }
+  },
+  {
+    "code": "watertown_wi_us",
+    "name": "Watertown",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=dee3c9ec7a6743229efd01cc5358e731&sublayer=0"
+    }
+  },
+  {
+    "code": "wellesley_ma_us",
+    "name": "Wellesley",
+    "state": "MA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=e6f9e57f61c04a7c9c9f2847897e77a9&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=e6f9e57f61c04a7c9c9f2847897e77a9"
+    }
+  },
+  {
+    "code": "onalaska_wi_us",
+    "name": "Onalaska",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=9f92644efbd549058768eb5aa0d28ddb&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=9f92644efbd549058768eb5aa0d28ddb"
+    }
+  },
+  {
+    "code": "stoughton_wi_us",
+    "name": "Stoughton",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=f7fa8d791e8f4aefbd07c01b9d57c52b&sublayer=0"
+    }
+  },
+  {
+    "code": "mountlaketerrace_wa_us",
+    "name": "Mountlake Terrace",
+    "state": "WA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=60c2c407dcc1408bac4e9ff3da452e03&sublayer=0"
+    }
+  },
+  {
+    "code": "yankton_sd_us",
+    "name": "Yankton",
+    "state": "SD",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=b4a7490201d84bd99ee6475addb444a0&sublayer=0"
+    }
+  },
+  {
+    "code": "auburn_me_us",
+    "name": "Auburn",
+    "state": "ME",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=91bffc476216422481b511a48796a327&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=91bffc476216422481b511a48796a327"
+    }
+  },
+  {
+    "code": "bellevue_wi_us",
+    "name": "Bellevue",
+    "state": "WI",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=2c5daca3e4fa4c1487e7ffdc2384098d"
+    }
+  },
+  {
+    "code": "montpelier_vt_us",
+    "name": "Montpelier",
+    "state": "VT",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=56a6e8a5c54f419cae009c7f95f0d435&sublayer=0"
+    }
+  },
+  {
+    "code": "warrenville_il_us",
+    "name": "Warrenville",
+    "state": "IL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=255bb4a939aa471886367a2fed5f65d0&sublayer=0"
+    }
+  },
+  {
+    "code": "phoenixville_pa_us",
+    "name": "Phoenixville",
+    "state": "PA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=20213107077146fa90d16e03cf651959&sublayer=0"
+    }
+  },
+  {
+    "code": "orangecounty_ca_us",
+    "name": "Orange County",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=d2d68a325c9843f68e84805f5295b1a3&sublayer=0"
+    }
+  },
+  {
+    "code": "saltlakecounty_ut_us",
+    "name": "Salt Lake County",
+    "state": "UT",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=1c0df3775fc44c1aae03a7b977884ae6&sublayer=0"
+    }
+  },
+  {
+    "code": "gigharbor_wa_us",
+    "name": "Gig Harbor",
+    "state": "WA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=f8294d3638a24156aa1005d49883ac07&sublayer=0"
+    }
+  },
+  {
+    "code": "newmexico_nm_us",
+    "name": "New Mexico (statewide)",
+    "maxRadiusDegrees": 5,
+    "state": "NM",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=976b37c350e34bacb9b4607b2888852e&sublayer=0"
+    }
+  },
+  {
+    "code": "padcnr_pa_us",
+    "name": "Pennsylvania (DCNR TreeVitalize)",
+    "maxRadiusDegrees": 5,
+    "state": "PA",
+    "country": "US",
+    "license": {
+      "url": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/DCNR_Treevitalize/MapServer/0"
+    }
+  },
+  {
+    "code": "bismarck_nd_us",
+    "name": "Bismarck",
+    "state": "ND",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=c84565e8695d41fbbde0973470cefab6&sublayer=0"
+    }
+  },
+  {
+    "code": "moorhead_mn_us",
+    "name": "Moorhead",
+    "state": "MN",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=efd9f39819d54020b610ef0f5f0c0c04",
+      "license": "https://www.arcgis.com/home/item.html?id=efd9f39819d54020b610ef0f5f0c0c04"
+    }
+  },
+  {
+    "code": "porthueneme_ca_us",
+    "name": "Port Hueneme",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=e4cd87554f534bf28639bd35237d7fdc"
+    }
+  },
+  {
+    "code": "seatac_wa_us",
+    "name": "SeaTac",
+    "state": "WA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=0fde99c1b49f4248a8f60caf3e117ea3",
+      "license": "https://www.arcgis.com/home/item.html?id=0fde99c1b49f4248a8f60caf3e117ea3"
+    }
+  },
+  {
+    "code": "weaverville_nc_us",
+    "name": "Weaverville",
+    "state": "NC",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=c7b2caa071c04948ab4c20a00e8919f2"
+    }
+  },
+  {
+    "code": "eugene_or_us",
+    "name": "Eugene",
+    "state": "OR",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=defd8da338a443818b6a6f8b65b8076b&sublayer=0",
+      "license": "https://www.arcgis.com/home/item.html?id=defd8da338a443818b6a6f8b65b8076b"
+    }
+  },
+  {
+    "code": "loveland_co_us",
+    "name": "Loveland",
+    "state": "CO",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=0f66e47e8c7a4e60804ec871d5827ff1"
+    }
+  },
+  {
+    "code": "arlington_tx_us",
+    "name": "Arlington",
+    "state": "TX",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=eba31bcf6fb14f738ef8e2424193aac1&sublayer=1"
+    }
+  },
+  {
+    "code": "portstlucie_fl_us",
+    "name": "Port St. Lucie",
+    "state": "FL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=767ea62a6ae34d898185ec5050319c0d&sublayer=2"
+    }
+  },
+  {
+    "code": "fontana_ca_us",
+    "name": "Fontana",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://fontana-urbanforest.wca.app/"
+    }
+  },
+  {
+    "code": "desmoines_ia_us",
+    "name": "Des Moines",
+    "state": "IA",
+    "country": "US",
+    "license": {
+      "url": "https://www.dsm.city/departments/public_works/forestry/"
+    }
+  },
+  {
+    "code": "knoxville_tn_us",
+    "name": "Knoxville",
+    "state": "TN",
+    "country": "US",
+    "license": {
+      "url": "https://www.knoxvilletn.gov/944/Urban-Forestry"
+    }
+  },
+  {
+    "code": "akron_oh_us",
+    "name": "Akron",
+    "state": "OH",
+    "country": "US",
+    "license": {
+      "url": "https://akronoh.treekeepersoftware.com"
+    }
+  },
+  {
+    "code": "clarksville_tn_us",
+    "name": "Clarksville",
+    "state": "TN",
+    "country": "US",
+    "license": {
+      "url": "https://clarksvilletn.treekeepersoftware.com"
+    }
+  },
+  {
+    "code": "ontario_ca_us",
+    "name": "Ontario",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://gisportal.ontarioca.gov/server/rest/services/Public_Works_Digital_Twin_MIL1/MapServer/37"
+    }
+  },
+  {
+    "code": "cary_nc_us",
+    "name": "Cary",
+    "state": "NC",
+    "country": "US",
+    "license": {
+      "url": "https://maps-apis.carync.gov/server/rest/services/ParksRecreation/CaryTrees/FeatureServer"
+    }
+  },
+  {
+    "code": "newportnews_va_us",
+    "name": "Newport News",
+    "state": "VA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=9d10ce6b9f0e4d29ac48285037193138&sublayer=1",
+      "license": "https://www.arcgis.com/home/item.html?id=9d10ce6b9f0e4d29ac48285037193138"
+    }
+  },
+  {
+    "code": "bell_ca_us",
+    "name": "Bell",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.cityofbell.gov/City-Hall/Public-Works/Master-Plans-and-Policy-Documents/Urban-Forestry-Benefits"
+    }
+  },
+  {
+    "code": "marietta_oh_us",
+    "name": "Marietta",
+    "state": "OH",
+    "country": "US",
+    "license": {
+      "url": "https://www.mariettaoh.net/how_do_i/learn_about/maps_gis.php"
+    }
+  },
+  {
+    "code": "princeton_nj_us",
+    "name": "Princeton",
+    "state": "NJ",
+    "country": "US",
+    "license": {
+      "url": "https://www.princetonnj.gov/1402/Tree-Inventory"
+    }
+  },
+  {
+    "code": "lexington_ma_us",
+    "name": "Lexington",
+    "state": "MA",
+    "country": "US",
+    "license": {
+      "url": "https://www.lexingtonma.gov/879/Lexington-Tree-Inventory"
+    }
+  },
+  {
+    "code": "dallas_tx_us",
+    "name": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "license": {
+      "url": "https://dallascityhall.com/projects/forestry/Pages/Inventory.aspx"
+    }
+  },
+  {
+    "code": "nottingham_gb",
+    "name": "Nottingham",
+    "country": "GB",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=854f59402043403eabce650cc7ab1150",
+      "license": "https://www.nationalarchives.gov.uk:443/doc/open-government-licence/version/3/",
+      "dataset_name": "Trees (NCC Maintained)",
+      "attribution_name": "Nottingham City Council",
+      "license_name": "Open Government Licence 3.0",
+      "attribution_statement": "Nottingham City Council. Contains OS data © Crown copyright [and database right] [year].",
+      "license_comment": "The item specifies OGL 3.0 but supplies an Ordnance Survey attribution with unresolved [and database right] and [year] placeholders. Retained outside the release set pending confirmation of the correct notice and any applicable third-party rights exemption."
+    }
+  },
+  {
+    "code": "vienna_at",
+    "name": "Vienna",
+    "country": "AT",
+    "license": {
+      "url": "https://www.data.gv.at/datasets/c91a4635-8b7d-43fe-9b27-d95dec8392a7",
+      "license": "https://data.wien.gv.at/nutzungsbedingungen",
+      "license_comment": "Service specifies CC BY 3.0 AT while current policy says CC BY 4.0; confirm the applicable version. Registry notes CC BY 3.0 AT on the service while current city policy says CC BY 4.0. Both are attribution licenses; exact version/source notice should be resolved."
+    }
+  },
+  {
+    "code": "helsinki_fi",
+    "name": "Helsinki",
+    "country": "FI",
+    "license": {
+      "url": "https://hri.fi/data/en_GB/dataset/helsingin-kaupungin-puurekisteri"
+    }
+  },
+  {
+    "code": "paris_fr",
+    "name": "Paris",
+    "country": "FR",
+    "license": {
+      "url": "https://opendata.paris.fr/explore/dataset/les-arbres/",
+      "license": "http://opendatacommons.org/licenses/odbl/",
+      "license_comment": "ODbL attribution, database share-alike and access obligations may apply to combined/processed data; open-source app code alone is insufficient."
+    }
+  },
+  {
+    "code": "somerville_ma_us",
+    "name": "Somerville",
+    "state": "MA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=4e33d47547e840fa9d459b275a367366&sublayer=0",
+      "license_comment": "Public copy of the city's tree inventory hosted by a Harvard CGA account; no license found and city provenance is unconfirmed, so redistribution rights are unknown."
+    }
+  },
+  {
+    "code": "manhattanbeach_ca_us",
+    "name": "Manhattan Beach",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=b5c1a267aaaa4065bfb9607d6bd3dfaf&sublayer=1",
+      "license_comment": "Public copy of the city's street tree inventory hosted by a Cal Poly account; no license found and city provenance is unconfirmed, so redistribution rights are unknown."
+    }
+  },
+  {
+    "code": "maywood_ca_us",
+    "name": "Maywood",
+    "state": "CA",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=31e8a92e8ccb4e78b9facfc821081ef0&sublayer=0",
+      "license_comment": "Public copy of the city's i-Tree inventory hosted by a personal account; no license found and city provenance is unconfirmed, so redistribution rights are unknown."
+    }
+  },
+  {
+    "code": "aurora_il_us",
+    "name": "Aurora",
+    "state": "IL",
+    "country": "US",
+    "license": {
+      "url": "https://www.arcgis.com/home/item.html?id=8ba64cd696c6475db2a78ecfb9a39982&sublayer=0",
+      "license_comment": "Phillips Park trees only, published by a tree-care consultant (grafgis); no license found and city provenance is unconfirmed, so redistribution rights are unknown."
+    }
+  },
+  {
+    "code": "singapore_sg",
+    "name": "Singapore",
+    "country": "SG",
+    "license": {
+      "url": "https://data.gov.sg/datasets/d_644ff187b6d14d6316f47284a4a6c81f/view",
+      "license": "https://data.gov.sg/open-data-licence",
+      "license_comment": "Heritage Trees only; the separate TreesSG inventory is not openly licensed. The Singapore Open Data Licence permits application use and necessary sublicensing to app users, but imposes indemnification (including claims from third-party use), excludes downstream sublicensees, and applies newly issued licence versions to continued use. Retained outside the release set pending review of app/tile redistribution terms and acceptance of these obligations. Its example attribution includes a dataset access date; do not substitute the licence-review date for the date of the data actually used.",
+      "dataset_name": "Heritage Trees",
+      "attribution_name": "National Parks Board",
+      "license_name": "Singapore Open Data Licence 1.0"
+    }
+  },
+  {
+    "code": "lyon_fr",
+    "name": "Lyon Metropole",
+    "country": "FR",
+    "license": {
+      "url": "https://data.grandlyon.com/portail/fr/jeux-de-donnees/arbres-alignement-metropole-lyon/info",
+      "license_comment": "No dataset-specific license found: WFS capabilities have no license field and the linked GeoNetwork metadata (c1b069ca-181d-4265-9838-8d182f207bd3) returns 404. Data Grand Lyon generally uses Licence Ouverte or ODbL; confirm with Data Grand Lyon support."
+    }
+  }
+]
