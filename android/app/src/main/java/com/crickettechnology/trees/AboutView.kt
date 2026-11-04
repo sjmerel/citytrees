@@ -145,9 +145,6 @@ object HTMLView {
                 val label = if (name.startsWith("CC0 ")) "Public-domain dedication" else "Licensed under"
                 paragraphs.add("$label ${linkHTML(name, licenseUrl)}.")
             }
-            else {
-                paragraphs.add("License information is not available in this downloaded dataset.")
-            }
             for (notice in listOf(license.attribution_statement, license.copyright_notice,
                                   license.disclaimer_notice, license.previous_modifications)) {
                 if (notice != null) {

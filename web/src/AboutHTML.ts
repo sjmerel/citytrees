@@ -41,9 +41,6 @@ function licenseHTML(license: License | null | undefined): string {
             const label = name.startsWith('CC0 ') ? 'Public-domain dedication' : 'Licensed under';
             paragraphs.push(`${label} ${linkHTML(name, url)}.`);
         }
-        else {
-            paragraphs.push('License information is not available in this downloaded dataset.');
-        }
         for (const notice of [license.attribution_statement, license.copyright_notice,
             license.disclaimer_notice, license.previous_modifications]) {
             if (notice != null) {

@@ -61,13 +61,6 @@ export class Dataset {
         const types = TreeType.readBinary(typeData);
         const entries = TileManifest.readBinary(manifestData);
         const cities: unknown = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(cityData));
-        if (!Array.isArray(cities) || !cities.every((city): city is City =>
-            city !== null && typeof city === 'object' &&
-            typeof city.name === 'string' && typeof city.country === 'string' &&
-            (city.state == null || typeof city.state === 'string') &&
-            this.validLicense(city.license))) {
-            throw new Error('Invalid city data.');
-        }
         const rootTile = MapTile.readBinary(rootData, types.length);
         this.validateTile(rootTile, rootData, entries.find(entry => entry.key.id === TileKey.root.id)!);
         if (cache) {
@@ -81,18 +74,6 @@ export class Dataset {
             }
         }
         return new Dataset(timestamp, serverDir, types, entries, cities, rootTile, cache);
-    }
-
-    private static validLicense(value: unknown): boolean {
-        // Older downloaded datasets store only a license URL, not attribution metadata.
-        if (value == null || typeof value === 'string') { return true; }
-        if (typeof value !== 'object' || Array.isArray(value)) { return false; }
-        const license = value as Record<string, unknown>;
-        return typeof license.url === 'string' &&
-            ['dataset_name', 'attribution_name', 'license', 'license_name', 'terms_url',
-                'attribution_statement', 'attribution_url', 'copyright_notice',
-                'disclaimer_notice', 'previous_modifications']
-                .every(key => license[key] == null || typeof license[key] === 'string');
     }
 
     async loadTile(entry: TileManifestEntry): Promise<MapTile> {

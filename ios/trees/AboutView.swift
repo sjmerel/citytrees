@@ -112,9 +112,6 @@ struct HTMLView: UIViewRepresentable {
                 let label = name.hasPrefix("CC0 ") ? "Public-domain dedication" : "Licensed under"
                 paragraphs.append("\(label) \(linkHTML(name, url: url)).")
             }
-            else {
-                paragraphs.append("License information is not available in this downloaded dataset.")
-            }
             for notice in [license.attribution_statement, license.copyright_notice,
                            license.disclaimer_notice, license.previous_modifications] {
                 if let notice {
