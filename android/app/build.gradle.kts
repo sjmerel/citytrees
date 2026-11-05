@@ -126,7 +126,7 @@ abstract class CopySharedAssetsTask : DefaultTask() {
 }
 
 val copySharedAssets = tasks.register<CopySharedAssetsTask>("copySharedAssets") {
-    sources.from(rootProject.file("../assets/map_style.json"), rootProject.file("../assets/about.html"), rootProject.file("../assets/styles.css"))
+    sources.from(rootProject.file("../assets/map_style.json"), rootProject.file("../assets/about.html"), rootProject.file("../assets/styles.css"), rootProject.file("../assets/icon_wide.svg"))
 }
 
 androidComponents {

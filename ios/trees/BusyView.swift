@@ -11,27 +11,30 @@ struct BusyView: View {
         ZStack {
             Color.black.opacity(0.3)
                 .ignoresSafeArea()
-            VStack(spacing: 12) {
-                if retry == nil {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                        .controlSize(.large)
-                        .tint(.white)
+            GeometryReader { geometry in
+                VStack(spacing: 12) {
+                    if retry == nil {
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                            .controlSize(.large)
+                            .tint(.white)
+                    }
+                    if let text {
+                        Text(text)
+                            .font(.system(size: 14))
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                    }
+                    if let retry {
+                        Button("Retry", action: retry)
+                            .buttonStyle(.bordered)
+                            .tint(.white)
+                    }
                 }
-                if let text {
-                    Text(text)
-                        .font(.system(size: 14))
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.center)
-                }
-                if let retry {
-                    Button("Retry", action: retry)
-                        .buttonStyle(.bordered)
-                        .tint(.white)
-                }
+                .padding(24)
+                .background(Color.black, in: RoundedRectangle(cornerRadius: 14))
+                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.4)
             }
-            .padding(24)
-            .background(Color.black, in: RoundedRectangle(cornerRadius: 14))
         }
     }
 }

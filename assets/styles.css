@@ -3,7 +3,7 @@ body {
     background: #f1f8f7;
     color: #1d4940;
     font-size: 17px;
-    font-family: Helvetica,Arial,sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     line-height: 1.6;
     overflow-wrap: break-word;
 }
@@ -14,22 +14,38 @@ main {
     padding: 48px 24px 32px;
 }
 
-header {
-    text-align: center;
-    margin-bottom: 32px;
+.startup-header {
+    margin-top: 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    min-height: 200px;
+    aspect-ratio: 2 / 1;
+    padding: 24px calc(24% + 12px) 24px 42px;
+    isolation: isolate;
+}
+
+.startup-artwork {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: -1;
 }
 
 h1 {
     margin: 0;
-    font-size: 34px;
+    font-size: 36px;
     line-height: 1.2;
-    letter-spacing: -1px;
 }
 
 .byline {
-    margin: 4px 0 20px;
+    margin: 4px 0 0;
     color: #3a7066;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 h2 {

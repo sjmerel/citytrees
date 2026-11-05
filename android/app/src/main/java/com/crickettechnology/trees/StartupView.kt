@@ -1,6 +1,7 @@
 package com.crickettechnology.trees
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -28,6 +29,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,7 +37,7 @@ import androidx.compose.ui.unit.sp
 import kotlin.math.roundToInt
 
 @Composable
-fun StartupView(onClose: () -> Unit) {
+fun StartupView(secondsRemaining: Int, onClose: () -> Unit) {
     BoxWithConstraints(
         modifier = Modifier
             .fillMaxSize()
@@ -56,16 +58,17 @@ fun StartupView(onClose: () -> Unit) {
                 .fillMaxWidth()
                 .shadow(5.dp, RoundedCornerShape(16.dp))
                 .clip(RoundedCornerShape(16.dp))
+                .background(Color(0xFFF1F8F7))
         ) {
             Image(painterResource(R.drawable.icon_wide),
                 contentDescription = null,
                 modifier = Modifier.matchParentSize(),
                 alignment = Alignment.BottomCenter,
-                contentScale = ContentScale.Crop)
+                contentScale = ContentScale.Fit)
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 30.dp, end = cardWidth * 0.24f + 12.dp, top = 24.dp, bottom = 48.dp),
+                    .padding(start = 30.dp, end = cardWidth * 0.24f + 12.dp, top = 24.dp, bottom = 50.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 Text("City Trees",
@@ -77,6 +80,12 @@ fun StartupView(onClose: () -> Unit) {
                     fontSize = 16.sp,
                     color = Color(0xFF1D4940),
                     textAlign = TextAlign.Start)
+                Text("Tap to dismiss... $secondsRemaining",
+                    fontSize = 14.sp,
+                    color = Color(0xFF1D4940).copy(alpha = 0.3f),
+                    style = TextStyle(fontFeatureSettings = "tnum"),
+                    modifier = Modifier.padding(top = 12.dp),
+                    textAlign = TextAlign.Start)
             }
         }
     }
@@ -85,5 +94,5 @@ fun StartupView(onClose: () -> Unit) {
 @Preview
 @Composable
 private fun StartupViewPreview() {
-    StartupView(onClose = {})
+    StartupView(secondsRemaining = 5, onClose = {})
 }

@@ -46,6 +46,7 @@ struct SelectionCard: View {
         .foregroundColor(.black)
         .padding(.horizontal, 18)
         .padding(.vertical, 15)
+        .frame(maxWidth: 800)
         .overlay(alignment: .topTrailing) {
             Button(action: onClose) {
                 Image("x")
