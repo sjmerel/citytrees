@@ -88,6 +88,7 @@ struct HTMLView: UIViewRepresentable {
         let terms_url: String?
         let notices: [String]?
         let attribution_url: String?
+        let last_updated: String?
     }
 
     // The cities in cities.json (downloaded with the data set), as an HTML list per country.
@@ -131,6 +132,9 @@ struct HTMLView: UIViewRepresentable {
 
             for notice in license.notices ?? [] {
                 paragraphs.append(notice.htmlEscaped)
+            }
+            if let lastUpdated = license.last_updated {
+                paragraphs.append("Last updated \(lastUpdated).");
             }
 
             if let url = license.attribution_url {

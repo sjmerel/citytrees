@@ -51,6 +51,10 @@ function licenseHTML(license: License | null | undefined): string {
         for (const notice of license.notices ?? []) {
             paragraphs.push(htmlEscaped(notice));
         }
+        const lastUpdated = license.last_updated;
+        if (lastUpdated != null) {
+            paragraphs.push(`Last updated ${htmlEscaped(lastUpdated)}.`);
+        }
         if (license.attribution_url != null) {
             paragraphs.push(linkHTML('Attribution source', license.attribution_url));
         }

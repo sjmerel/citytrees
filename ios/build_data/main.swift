@@ -54,9 +54,28 @@ let builder = TileBuilder(maxSitesPerTile: 10_000, maxZoom: 16, outDir: tileDir)
 try builder.build(sites: &sites)
 
 
-// write cities.json without whitespace
+// write cities.json
+// strip license_comment field, update last_updated, and strip whitespace
 print("writing cities.json")
-let citiesJson = try JSONSerialization.jsonObject(with: Data(contentsOf: inDir.appendingPathComponent("cities.json")))
+formatter.dateFormat = "M/d/yyyy"
+var citiesJson = try JSONSerialization.jsonObject(with: Data(contentsOf: inDir.appendingPathComponent("cities.json"))) as! [[String: Any]]
+for i in citiesJson.indices {
+    var license = citiesJson[i]["license"] as! [String: Any]
+
+    // update license.last_updated if required by license
+    if license["last_updated"] != nil {
+        let code = citiesJson[i]["code"] as! String
+        let cityUrl = inDir.appendingPathComponent("cities/\(code).json")
+        let attributes = try fileManager.attributesOfItem(atPath: cityUrl.path)
+        let modificationDate = attributes[.modificationDate] as! Date
+        license["last_updated"] = formatter.string(from: modificationDate)
+    }
+
+    // remove license comment
+    license.removeValue(forKey: "license_comment")
+
+    citiesJson[i]["license"] = license
+}
 let citiesData = try JSONSerialization.data(withJSONObject: citiesJson, options: [.withoutEscapingSlashes])
 try citiesData.write(to: tileDir.appendingPathComponent("cities.json"), options: .atomic)
 

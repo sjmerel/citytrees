@@ -21,6 +21,7 @@ export interface License {
     terms_url?: string | null;
     notices?: string[] | null;
     attribution_url?: string | null;
+    last_updated?: string | null;
 }
 
 export class Dataset {
@@ -107,7 +108,7 @@ export class Dataset {
             return false;
         }
         const fields = ['url', 'api_url', 'portal_url', 'dataset_name', 'attribution_name', 'license', 'license_name', 'terms_url',
-            'attribution_url'];
+            'attribution_url', 'last_updated'];
         return Object.entries(value).every(([key, field]) =>
             !fields.includes(key) || field == null || typeof field === 'string');
     }

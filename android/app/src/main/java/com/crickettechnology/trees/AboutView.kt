@@ -115,6 +115,7 @@ object HTMLView {
         val terms_url = values.optionalString("terms_url")
         val notices = values.optionalStringArray("notices")
         val attribution_url = values.optionalString("attribution_url")
+        val last_updated = values.optionalString("last_updated")
     }
 
     // The cities in cities.json (downloaded with the data set), as an HTML list per country.
@@ -160,6 +161,10 @@ object HTMLView {
             }
             for (notice in license.notices ?: emptyList()) {
                 paragraphs.add(notice.htmlEscaped)
+            }
+            val lastUpdated = license.last_updated
+            if (lastUpdated != null) {
+                paragraphs.add("Last updated ${lastUpdated.htmlEscaped}.")
             }
             val attributionUrl = license.attribution_url
             if (attributionUrl != null) {
