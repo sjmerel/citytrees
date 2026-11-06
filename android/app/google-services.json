@@ -8,15 +8,15 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:767071083281:android:4408aa146b4c8e89238ab0",
+        "mobilesdk_app_id": "1:767071083281:android:bb5f85ae4469d1ba238ab0",
         "android_client_info": {
-          "package_name": "com.crickettechnology.trees"
+          "package_name": "com.crickettechnology.citytrees"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyB5Q9-yFQw4uiufZ0qGYAzSZ_nBFWOM5EY"
+          "current_key": "AIzaSyBlYVswx7Xd5HfE6Ixfmo2xLT8bjxLw73k"
         }
       ],
       "services": {

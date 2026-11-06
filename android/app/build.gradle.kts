@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.crickettechnology.trees"
+    namespace = "com.crickettechnology.citytrees"
     compileSdk {
         version = release(37) {
             minorApiLevel = 1
@@ -16,7 +16,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.crickettechnology.trees"
+        applicationId = "com.crickettechnology.citytrees"
         minSdk = 31
         targetSdk = 36
         versionCode = rootProject.file("versionCode.txt").readText().trim().toInt()
