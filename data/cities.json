@@ -268,8 +268,7 @@
       "attribution_name": "Fingal County Council",
       "license_name": "CC BY 4.0 International",
       "notices": [
-        "Contains Irish Public Sector Data licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) licence.",
-        "Please Note that the locations are estimates of location ‘actual location of trees’ rather than individual tree. e.g. maybe at a house and the point is pointing to the dwelling not the actual tree. The accuracy of the recorded counts can be affected by a number of factors including distance from dwelling or nearest geo point, but can vary depending on location of trees."
+        "Contains Irish Public Sector Data licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) licence."
       ]
     }
   },
@@ -316,10 +315,7 @@
       "terms_url": "https://www.arcgis.com/home/item.html?id=f41d6a33a5a545e9b84aca02d8448377",
       "dataset_name": "Tree Inventory View",
       "attribution_name": "Latrobe City Council",
-      "license_name": "CC BY 4.0 International",
-      "notices": [
-        "No warranties are given. The license may not give you all of the permissions necessary for your intended use. Other rights such as publicity, privacy, or moral rights may limit how you use the material."
-      ]
+      "license_name": "CC BY 4.0 International"
     }
   },
   {
@@ -367,10 +363,7 @@
       "terms_url": "https://www.arcgis.com/home/item.html?id=2c573c2913434b6db62c75ceac32794b",
       "dataset_name": "Tree Inventory",
       "attribution_name": "U.S. Forest Service",
-      "license_name": "CC0 1.0",
-      "notices": [
-        "The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, owners hip, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and land users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly."
-      ]
+      "license_name": "CC0 1.0"
     }
   },
   {
@@ -483,8 +476,7 @@
       "attribution_name": "Greater London Authority; data collated by Greenspace Information for Greater London (GiGL)",
       "license_name": "Open Government Licence 3.0",
       "notices": [
-        "Contains public sector information licensed under the Open Government Licence v3.0.",
-        "The source dataset was collated by GiGL from London boroughs, the City of London, Transport for London, the Royal Parks, the London Legacy Development Corporation and Quintain; botanical names were standardized using Kew's Plants of the World Online."
+        "Contains public sector information licensed under the Open Government Licence v3.0."
       ]
     }
   },
@@ -519,7 +511,8 @@
       "notices": [
         "Contains public sector information licensed under the Open Government Licence v3.0.",
         "© Crown copyright and database rights 2017 Ordnance Survey 100020818"
-      ]
+      ],
+      "terms_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
     }
   },
   {
@@ -672,8 +665,7 @@
       "attribution_name": "Township of Langley",
       "license_name": "Open Government License - Township of Langley 2",
       "notices": [
-        "Contains information licensed under the Open Government License – Township of Langley.",
-        "This dataset is provided by the Township of Langley for informational purposes only. While reasonable efforts are made to keep the data accurate and up to date, the Township does not guarantee its accuracy, completeness, or currency. Users are responsible for verifying any information before relying on it. The Township of Langley is not liable for any loss or damages resulting from the use of this dataset. The dataset may be updated, modified, or removed at any time without notice."
+        "Contains information licensed under the Open Government License – Township of Langley."
       ]
     }
   },
@@ -759,9 +751,9 @@
       "attribution_name": "The Corporation of the City of Kingston",
       "license_name": "Open Data Licence - City of Kingston 1.0",
       "notices": [
-        "Contains information licensed under the Open Data Licence – City of Kingston.",
-        "The Corporation of the City of Kingston assumes no responsibility for inaccurate or inconsistent data set out in this map product. The City does not accept any responsibility for reliance thereon. The City does not make any representations or warranty, express or implied, in relation to the website including without limitations, as to the quality, merchantability and fitness for any use. Further, the City does not accept any responsibility for the accuracy of this information, nor is it responsible for any expenses or damages incurred, directly or indirectly, resulting from the use of this information."
-      ]
+        "Contains information licensed under the Open Data Licence – City of Kingston."
+      ],
+      "terms_url": "https://www.cityofkingston.ca/documents/10180/144997/CityofKingston_OpenDataLicense.pdf"
     }
   },
   {
@@ -906,8 +898,7 @@
       "license_name": "dl-de/by-2-0 (Data licence Germany - attribution - Version 2.0)",
       "notices": [
         "Stadt Frankfurt a.M., Grünflächenamt, 2026 Daten verändert. Daten durch City Trees verändert.",
-        "© Grünflächenamt Frankfurt am Main",
-        "The source CSV was geocoded and projected in ArcGIS Pro and republished as an ArcGIS Online feature service."
+        "© Grünflächenamt Frankfurt am Main"
       ],
       "attribution_url": "https://www.frankfurt.de"
     }
@@ -922,7 +913,8 @@
       "license": "https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf",
       "dataset_name": "Arbres urbains",
       "attribution_name": "Toulouse Métropole; INSEE IGN",
-      "license_name": "Licence Ouverte 2.0 (Etalab)"
+      "license_name": "Licence Ouverte 2.0 (Etalab)",
+      "last_updated": "(updated in build_data)"
     }
   },
   {
@@ -935,7 +927,8 @@
       "license": "https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Licence_Ouverte.pdf",
       "dataset_name": "Patrimoine arboré de Bordeaux Métropole",
       "attribution_name": "Bordeaux Métropole",
-      "license_name": "Licence Ouverte 1.0 (Etalab)"
+      "license_name": "Licence Ouverte 1.0 (Etalab)",
+      "last_updated": "(updated in build_data)"
     }
   },
   {
@@ -981,8 +974,7 @@
       "license": "https://datahub.austintexas.gov/stories/s/ranj-cccq",
       "dataset_name": "Downtown Tree Inventory 2013",
       "attribution_name": "City of Austin, Texas - Austin Climate Action and Resilience, Urban Forest Program",
-      "license_name": "Public domain (City of Austin Open Data Terms of Use)",
-      "license_comment": "The dataset is marked PUBLIC_DOMAIN and the terms describe unrestricted public-domain data, but also allow the City to require termination of displays, distribution or other use for any reason. Included with the app maintainer's acceptance of this condition; stop distribution and remove the data if the City requires it. Public-domain status is not identified as CC0 or PDDL."
+      "license_name": "Public domain (City of Austin Open Data Terms of Use)"
     }
   },
   {
@@ -997,8 +989,7 @@
       "dataset_name": "San Francisco Street Tree Inventory",
       "attribution_name": "San Francisco Public Works",
       "license_name": "Open Data Commons Public Domain Dedication and License (PDDL) 1.0",
-      "terms_url": "https://data.sf.gov/terms-of-use",
-      "license_comment": "The dataset explicitly specifies PDDL, but the portal Terms of Use require indemnification and an immediate, independent duty to defend the City (section VI.B), including claims arising from derivative works. Included with the app maintainer's acceptance of these additional obligations, including defence against potentially groundless claims."
+      "terms_url": "https://data.sf.gov/terms-of-use"
     }
   },
   {
@@ -1013,8 +1004,7 @@
       "terms_url": "https://www.portlandmaps.com/bps/arpa/tos.pdf",
       "dataset_name": "Street Tree Inventory - Active Records",
       "attribution_name": "City of Portland - Bureau of Parks and Recreation",
-      "license_name": "Open Data Commons Public Domain Dedication and License (PDDL) 1.0",
-      "license_comment": "The PortlandMaps terms specify PDDL unless dataset-specific terms override, but also require indemnification, defence and hold-harmless obligations for claims arising from receipt or use of data (section V), with Oregon jurisdiction. Included with the app maintainer's acceptance of these additional obligations."
+      "license_name": "Open Data Commons Public Domain Dedication and License (PDDL) 1.0"
     }
   },
   {
@@ -1058,8 +1048,7 @@
       "license": "https://www.medicinehat.ca/media/icmn0zwt/cmh_open-data-license.pdf",
       "dataset_name": "Park Tree Inventory",
       "attribution_name": "City of Medicine Hat",
-      "license_name": "City of Medicine Hat Open Data Disclaimer and Licence",
-      "license_comment": "The licence permits reuse, modification and redistribution with source credit. It requires indemnification of the City, third-party data suppliers and their representatives, including costs, damages, fines and penalties, with Alberta jurisdiction. Included with the app maintainer's explicit acceptance of these obligations."
+      "license_name": "City of Medicine Hat Open Data Disclaimer and Licence"
     }
   },
   {
@@ -1089,8 +1078,7 @@
       "terms_url": "http://www.lethbridge.ca/Pages/OpenDataLicense.aspx",
       "dataset_name": "Trees",
       "attribution_name": "City of Lethbridge, AB Canada",
-      "license_name": "City of Lethbridge Open Data License 2.0",
-      "license_comment": "The licence permits reuse, modification and redistribution, with indemnification and hold-harmless obligations covering claims and legal costs arising from data use, and Alberta jurisdiction. Included with the app maintainer's explicit acceptance of these obligations."
+      "license_name": "City of Lethbridge Open Data License 2.0"
     }
   },
   {
@@ -1133,10 +1121,7 @@
       "dataset_name": "Bomen (Objecten Openbare Ruimte)",
       "attribution_name": "Gemeente Amsterdam - Directie Verkeer en Openbare Ruimte",
       "license_name": "CC0 1.0",
-      "attribution_url": "https://data.overheid.nl/dataset/k3ns1vfps3k0hq",
-      "notices": [
-        "Aan de kaart kunnen geen rechten worden ontleend."
-      ]
+      "attribution_url": "https://data.overheid.nl/dataset/k3ns1vfps3k0hq"
     }
   },
   {
@@ -1164,10 +1149,7 @@
       "license": "https://www.arcgis.com/home/item.html?id=1ffffa1b76ee46a7bc8dbce482f6d0a9",
       "dataset_name": "MesaAZiTreeInventory",
       "attribution_name": "City of Mesa with West Coast Arborists, Inc. 2025. Additional resources include i-Tree Eco and American Forests.",
-      "license_name": "City of Mesa custom citation terms",
-      "notices": [
-        "The data and information presented here is for general reference only. The maps and applications are based upon currently available information and industry standard techniques, and is constantly being updated."
-      ]
+      "license_name": "City of Mesa custom citation terms"
     }
   },
   {
@@ -1198,11 +1180,7 @@
       "license": "https://www.arcgis.com/home/item.html?id=3ad9653151514792b76cc2c59a646c6a",
       "dataset_name": "Galesburg Tree Inventory",
       "attribution_name": "Engineering Division, Public Works Department, City of Galesburg",
-      "license_name": "City of Galesburg custom attribution and modification terms",
-      "notices": [
-        "City Trees filters records, standardizes botanical names and converts the data to map tiles. These changes are not approved or endorsed by the City of Galesburg.",
-        "The user must bear responsibility for the appropriate use of the information with respect to possible errors, original map scale, collection methodology, currency of data and other conditions specific to certain data."
-      ]
+      "license_name": "City of Galesburg custom attribution and modification terms"
     }
   },
   {
@@ -1216,10 +1194,7 @@
       "license": "https://www.arcgis.com/home/item.html?id=72667718eb9b427d95b6eb55e25c36a7",
       "dataset_name": "Trees",
       "attribution_name": "City of Mountain View, ESRI",
-      "license_name": "City of Mountain View custom reuse terms",
-      "notices": [
-        "The data available on this portal, including Geographic Information Systems (“GIS”) data, maps, tables, numbers, graphics, and text (hereinafter collectively referred to as the “Information”), is provided AS IS and for you to view, access, copy, distribute and otherwise use the Information at your own risk. The City of Mountain View, its departments and its affiliated entities, elected and appointed officers, officials, employees and agents (hereinafter referred to as the “City”) make no representation or warranty of any kind regarding this website or Information, explicit or implied."
-      ]
+      "license_name": "City of Mountain View custom reuse terms"
     }
   },
   {
@@ -1235,10 +1210,9 @@
       "attribution_name": "City of Santa Monica - Public Landscape Division",
       "license_name": "Open Data Commons Attribution License (ODC-BY) 1.0",
       "notices": [
-        "Contains information from Trees which is made available under the ODC Attribution License.",
-        "City of Santa Monica Liability Disclaimer This map of the City of Santa Monica has been provided for illustration purposes only. Every reasonable effort has been made to ensure the accuracy of the maps provided, however, some information may not be accurate. The City of Santa Monica (\"City\") provides this map on an \"AS IS\" basis. The City assumes no liability for damages arising from errors or omissions. THE MAPS ARE PROVIDED WITHOUT WARRANTY OF ANY KIND, either expressed or implied, including but not limited to, the implied warranties of merchantability and fitness for a particular purpose. Do not make any business decisions based on this map before validating your decision with the appropriate City office."
+        "Contains information from Trees which is made available under the ODC Attribution License."
       ],
-      "license_comment": "ODC-BY 1.0 sections 4.2-4.4 require licence URIs and retained notices to accompany conveyed databases/derivative databases and relevant documentation, attribution for publicly used outputs, and no additional restrictions on licensed database rights. Preserve this source's ODC-BY terms in downloadable data and do not treat the combined database as having a single replacement licence. The licence covers database rights, not separate rights in individual contents; City Trees uses factual tree coordinates and botanical names."
+      "license_comment": "Additional obligations: verify that ODC-BY license URLs and notices accompany downloadable derived databases and documentation; do not impose additional database-right restrictions."
     }
   },
   {
@@ -1256,7 +1230,7 @@
       "notices": [
         "Contains information from Providence Tree Dataset which is made available under the ODC Attribution License."
       ],
-      "license_comment": "ODC-BY 1.0 sections 4.2-4.4 require licence URIs and retained notices to accompany conveyed databases/derivative databases and relevant documentation, attribution for publicly used outputs, and no additional restrictions on licensed database rights. Preserve this source's ODC-BY terms in downloadable data and do not treat the combined database as having a single replacement licence. The licence covers database rights, not separate rights in individual contents; City Trees uses factual tree coordinates and botanical names."
+      "license_comment": "Additional obligations: verify that ODC-BY license URLs and notices accompany downloadable derived databases and documentation; do not impose additional database-right restrictions."
     }
   },
   {
@@ -1270,12 +1244,7 @@
       "license": "https://egis-lacounty.hub.arcgis.com/pages/terms-of-use",
       "dataset_name": "Marina del Rey Trees Managed by LA County Beaches and Harbors",
       "attribution_name": "Los Angeles County Department of Beaches and Harbors, Los Angeles County Internal Services Department (eGIS)",
-      "license_name": "County of Los Angeles GIS Terms of Use",
-      "notices": [
-        "Data provided by the County of Los Angeles. No County endorsement is implied.",
-        "The data herein is for informational purposes, and may not have been prepared for or be suitable for legal, engineering, or surveying intents. The County of Los Angeles reserves the right to change, restrict or discontinue access at any time. The County provides the website and data on an \"as is\" basis without warranties of any kind, whether express or implied, including merchantability, fitness for a particular purpose, title and non-infringement."
-      ],
-      "license_comment": "The current dataset incorporates the County's GIS Terms of Use, which expressly permit copying, publication, distribution, transmission, adaptation and commercial or personal use. The citation format is recommended, not mandatory; the original download date is not asserted. The maintainer explicitly accepted the obligation to indemnify, defend and hold the County harmless at their expense, including attorney fees, for liabilities or costs arising out of or relating to a breach or violation of these terms. The licence automatically terminates without notice upon violation; County endorsement is prohibited. Coverage is limited to trees managed by LA County Beaches and Harbors in Marina del Rey."
+      "license_name": "County of Los Angeles GIS Terms of Use"
     }
   },
   {
@@ -1307,11 +1276,7 @@
       "terms_url": "https://www.arcgis.com/sharing/rest/content/items/78cc02388af248c0b7a30eda6adfade0/data",
       "dataset_name": "Street Trees",
       "attribution_name": "The Regional Municipality of York",
-      "license_name": "York Region Open Data Licence 1.0",
-      "notices": [
-        "Contains public sector information made available under The Regional Municipality of York's Open Data Licence."
-      ],
-      "license_comment": "Credit is optional under this licence. If credit is provided, York Region may require its removal at its sole discretion if it considers the credit not in the public interest. Do not suggest endorsement or official status, misrepresent the data or its source, or use it unlawfully or harmfully. Rights terminate automatically for noncompliance."
+      "license_name": "York Region Open Data Licence 1.0"
     }
   },
   {
@@ -1320,7 +1285,8 @@
     "state": "CA",
     "country": "US",
     "license": {
-      "api_url": "https://mgis.beverlyhills.org/arcgis/rest/services/Hansen/CBH_IPS_GIS_UrbanForest_Feature/MapServer/0"
+      "api_url": "https://mgis.beverlyhills.org/arcgis/rest/services/Hansen/CBH_IPS_GIS_UrbanForest_Feature/MapServer/0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. WCA contact: corporate@wcainc.com."
     }
   },
   {
@@ -1330,7 +1296,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services5.arcgis.com/7nsPwEMP38bSkCjy/arcgis/rest/services/Trees_Data_Bureau_of_Street_Services/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=266c6255b1fc4ae8b8f100d8696e1fa4&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=266c6255b1fc4ae8b8f100d8696e1fa4&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees (Bureau of Street Services)"
     }
   },
   {
@@ -1341,7 +1309,13 @@
     "license": {
       "api_url": "https://data.cityofnewyork.us/resource/hn5i-inap.json",
       "portal_url": "https://data.cityofnewyork.us/d/hn5i-inap",
-      "license": "https://data.cityofnewyork.us/stories/s/Terms-of-Use/k9k7-3cje"
+      "license_comment": "Attribution/disclaimer added. Confirm current Parks terms and whether the legacy Data Mine requirements to notify the City and display the disclaimer at download sites still apply.",
+      "dataset_name": "Forestry Tree Points",
+      "attribution_name": "Department of Parks and Recreation",
+      "terms_url": "https://data.cityofnewyork.us/stories/s/Terms-of-Use/k9k7-3cje",
+      "notices": [
+        "The City of New York can not vouch for the accuracy or completeness of data provided by this web site or application or for the usefulness or integrity of the web site or application. This site provides applications using data that has been modified for use from its original source, NYC.gov, the official web site of the City of New York."
+      ]
     }
   },
   {
@@ -1351,7 +1325,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/UXbywc7dSkfgdPp4/arcgis/rest/services/JC_TreeInventory_20210902/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=d041720e43c840cab457001fbc45a58b&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=d041720e43c840cab457001fbc45a58b&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "JC_TreeInventory_20210902"
     }
   },
   {
@@ -1361,7 +1337,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/zNjnZafDYCAJAbN0/arcgis/rest/services/Street_ROW_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=593b88391b614123890f54a1db8fbf55&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=593b88391b614123890f54a1db8fbf55&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: CityGIS@cityofpasadena.net.",
+      "dataset_name": "Street ROW Trees"
     }
   },
   {
@@ -1372,7 +1350,10 @@
     "license": {
       "api_url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Combined_Tree_Point/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=15ca3b333b984fef8fda342ab0bba4d0&sublayer=0",
-      "license": "https://data.seattle.gov/stories/s/Terms-of-Use/6ukr-wvup/"
+      "license_comment": "Portal terms do not require attribution but lack an explicit redistribution grant. Confirm that they cover this tree dataset. Contact: open.data@seattle.gov.",
+      "dataset_name": "Combined Tree Point",
+      "attribution_name": "City of Seattle, Seattle Department of Transportation",
+      "terms_url": "https://data.seattle.gov/stories/s/Terms-of-Use/6ukr-wvup/"
     }
   },
   {
@@ -1382,7 +1363,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/IYiCpZoSIq9lAxi8/arcgis/rest/services/Trees_Test/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=5982db9c6ba84d60835e3f6a188cca9c&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=5982db9c6ba84d60835e3f6a188cca9c&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees_Test",
+      "attribution_name": "Arborwell. City of Berkeley Parks, Recreations & Waterfront - Parks Division. City of Berkeley Information Technology Department."
     }
   },
   {
@@ -1393,7 +1377,10 @@
     "license": {
       "api_url": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_PARK_TREEINVENTORY_P/FeatureServer/241",
       "portal_url": "https://www.arcgis.com/home/item.html?id=f90e355dd3874744a25c30fd2ddfd45b&sublayer=241",
-      "license": "https://www.arcgis.com/home/item.html?id=f90e355dd3874744a25c30fd2ddfd45b"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Parks, Medians, and Parkway Trees",
+      "attribution_name": "The City and County of Denver",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=f90e355dd3874744a25c30fd2ddfd45b"
     }
   },
   {
@@ -1402,7 +1389,9 @@
     "country": "GB",
     "license": {
       "api_url": "https://services2.arcgis.com/1qjjJoUN1p26Md36/arcgis/rest/services/Council_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=8207ea795bbb45c8a97c0c01c5a9e828&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=8207ea795bbb45c8a97c0c01c5a9e828&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Council Trees"
     }
   },
   {
@@ -1415,7 +1404,10 @@
       "license": "https://www.arcgis.com/home/item.html?id=7b2df397e9994ca5984bad0b679ce6d9",
       "license_name": "OS INSPIRE End User Licence",
       "terms_url": "https://www.ordnancesurvey.co.uk/licensing/eu-inspire-end-user-licence",
-      "license_comment": "INSPIRE end-user terms require review before distributing processed data."
+      "license_comment": "License conflict: the official catalogue lists OGL 3.0, but dataset terms require INSPIRE. Confirm permission for modification and redistribution. Contact: corpgissupport@sheffield.gov.uk.",
+      "dataset_name": "Street Trees",
+      "attribution_name": "Highways Client Team, AMEY",
+      "attribution_url": "https://www.data.gov.uk/dataset/957a85f3-d56b-4aed-9f29-5f8fe1363e57/street-trees"
     }
   },
   {
@@ -1425,7 +1417,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/9tC74aDHuml0x5Yz/arcgis/rest/services/Oakland_Public_Tree_Inventory_/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=1aeca241016e483cbfac4f2d1974692e&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=1aeca241016e483cbfac4f2d1974692e&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Oakland Public Tree Inventory"
     }
   },
   {
@@ -1436,7 +1430,9 @@
     "license": {
       "api_url": "https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/ppr_tree_inventory_2025/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=dc6826e1319c4b35a7b662bc6be68104&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=dc6826e1319c4b35a7b662bc6be68104"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: chris.park@phila.gov, maps@phila.gov.",
+      "dataset_name": "ppr_tree_inventory_2025",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=dc6826e1319c4b35a7b662bc6be68104"
     }
   },
   {
@@ -1446,7 +1442,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/City_Maintained_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=b9b716e09b5048179ab648bb4518452b&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=b9b716e09b5048179ab648bb4518452b&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: sacgis@cityofsacramento.org.",
+      "dataset_name": "City Maintained Trees",
+      "attribution_name": "Sacramento GIS, Urban Forestry section of the Department of Public Works"
     }
   },
   {
@@ -1456,7 +1455,10 @@
     "country": "US",
     "license": {
       "api_url": "https://geo.sanjoseca.gov/server/rest/services/OPN/OPN_OpenDataService/MapServer/510",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=7db16e012fe8402db45074cd260c8f4e&sublayer=510"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=7db16e012fe8402db45074cd260c8f4e&sublayer=510",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Street Tree",
+      "attribution_name": "City of San Jose"
     }
   },
   {
@@ -1467,8 +1469,12 @@
     "license": {
       "api_url": "https://services3.arcgis.com/qrcTTRTwUoS8N47o/arcgis/rest/services/Trees/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=cad8fb2193bb46448d8372a861cbc944&sublayer=0",
-      "license": "https://vancouver.ca/your-government/terms-of-use.aspx",
-      "license_comment": "Applicable terms could not be inspected (HTTP 403); redistribution permission remains unverified."
+      "dataset_name": "Trees",
+      "attribution_name": "City of Vancouver",
+      "terms_url": "https://vancouver.ca/your-government/terms-of-use.aspx",
+      "license": "https://opendata.vancouver.ca/pages/licence/",
+      "license_name": "Open Government Licence - Vancouver",
+      "license_comment": "Source/license credit added; confirm the prescribed attribution and current license wording/version because the municipal terms page could not be retrieved."
     }
   },
   {
@@ -1478,7 +1484,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services6.arcgis.com/BZn8g8tzu5WfMokL/arcgis/rest/services/Trees_Atlanta_Plant_Inventory_Public_View/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=9a8404b7b48d499ab76b36c237434542&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=9a8404b7b48d499ab76b36c237434542&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees_Atlanta_Plant_Inventory_Public_View"
     }
   },
   {
@@ -1495,7 +1503,7 @@
       "notices": [
         "The City makes no claims as to the quality, completeness, accuracy, timeliness, or content of any data contained on this site. All such items and materials are provided on an \"as is\" basis, and you are fully and solely responsible for your use of them and for any results or consequences of your use. They have been compiled from a variety of sources, including sources beyond the control of the City, and are subject to change without notice from the City. The data is subject to change as modifications and updates are complete. It is understood that the information contained in the site is being used at one's own risk. In no event shall the City or its elected/appointed officials, municipal agencies and departments, employees, agents, or volunteers be liable for any direct, indirect, special, punitive, incidental, exemplary or consequential damages arising your accessing or using the site, or otherwise arising from this site or from anything contained in or displayed on this site. Nothing contained in or displayed on this site constitutes or is intended to constitute legal advice by the City or any of its elected/appointed officials, municipal agencies and departments, employees, agents, and volunteers."
       ],
-      "license_comment": "The portal specifies CC BY 3.0 Unported, but the inventory service is unavailable; confirm its dataset title, license assignment, and dataset-specific notices before generating attribution."
+      "license_comment": "License unverified: the portal specifies CC BY 3.0, but the inventory service is unavailable. Confirm the dataset assignment and required notices."
     }
   },
   {
@@ -1505,7 +1513,9 @@
     "country": "US",
     "license": {
       "api_url": "https://data.nola.gov/resource/3tyj-9x33.json",
-      "portal_url": "https://data.nola.gov/d/3tyj-9x33"
+      "portal_url": "https://data.nola.gov/d/3tyj-9x33",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Location"
     }
   },
   {
@@ -1514,7 +1524,8 @@
     "state": "CA",
     "country": "US",
     "license": {
-      "api_url": "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20"
+      "api_url": "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution."
     }
   },
   {
@@ -1529,7 +1540,7 @@
       "license_name": "Creative Commons Attribution (version not specified)",
       "dataset_name": "City of Pittsburgh Trees",
       "attribution_name": "City of Pittsburgh",
-      "license_comment": "The catalog specifies Creative Commons Attribution but links to a version-neutral overview; confirm the applicable version before generating a license attribution."
+      "license_comment": "License version unclear: the catalogue specifies Creative Commons Attribution but links to a version-neutral overview. Contact: rmg44@pitt.edu (WPRDC project manager)."
     }
   },
   {
@@ -1539,7 +1550,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/NkcnS0qk4w2wasOJ/arcgis/rest/services/Tree_Inventories_in_Santa_Clara_County_WFL1/FeatureServer/2",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f&sublayer=2"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f&sublayer=2",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Inventories in Santa Clara County_WFL1"
     }
   },
   {
@@ -1548,7 +1561,8 @@
     "state": "CA",
     "country": "US",
     "license": {
-      "api_url": "https://egis.fremont.gov/accela/rest/services/CRM/TreeInventory/MapServer/1"
+      "api_url": "https://egis.fremont.gov/accela/rest/services/CRM/TreeInventory/MapServer/1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution."
     }
   },
   {
@@ -1558,7 +1572,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/Oknk0tvfHOElpgGU/arcgis/rest/services/Brookline_Tree_Viewer_Web_WFL1/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=22b8ffbb792c41d28b0c2b0c4f15122e&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=22b8ffbb792c41d28b0c2b0c4f15122e&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Brookline Tree Viewer Web_WFL1"
     }
   },
   {
@@ -1568,7 +1584,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/79kfd2K6fskCAkyg/ArcGIS/rest/services/URBAN_FORESTRY_TREES_(PUBLIC_DATA_VIEW)/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=a04b388a30d84f8baeba9c9fa67b639e&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=a04b388a30d84f8baeba9c9fa67b639e&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "URBAN FORESTRY TREES (PUBLIC DATA VIEW)"
     }
   },
   {
@@ -1578,7 +1596,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/CLV_Tree_Sites/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=c4d5a7b766264b03940c6004ea2b6211&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=c4d5a7b766264b03940c6004ea2b6211&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "CLV_Trees"
     }
   },
   {
@@ -1588,7 +1608,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/k3vhq11XkBNeeOfM/arcgis/rest/services/Tree_Inventory_Public_View/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=902a0284181e4500aa220a6037d06d3d&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=902a0284181e4500aa220a6037d06d3d&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree_Inventory_Public_View"
     }
   },
   {
@@ -1600,7 +1622,9 @@
       "api_url": "https://maps.cityofmadison.com/arcgis/rest/services/Public/OPEN_DATA/MapServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=b700541a20e446839b18d62426c266a3&sublayer=0",
       "terms_url": "https://www.cityofmadison.com/policy/data",
-      "license_comment": "The linked City Data Policy expressly states that it does not grant title or rights in City intellectual property; it is not an affirmative reuse licence."
+      "license_comment": "No affirmative reuse license stated in the linked Data Policy; it reserves intellectual-property rights. Request clarification for processed-data redistribution.",
+      "dataset_name": "Urban Forestry Street Trees",
+      "attribution_name": "City of Madison Parks Department"
     }
   },
   {
@@ -1610,7 +1634,11 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/Trees_public_d2e03763c35b47d1875d2b413c76fbda/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=4c6d1d6a861c4f859259d05c3acde20d&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=4c6d1d6a861c4f859259d05c3acde20d&sublayer=0",
+      "license_comment": "License unclear: metadata contains Esri Apache software boilerplate, not a confirmed tree-data license. Request clarification.",
+      "dataset_name": "Trees_public",
+      "attribution_name": "Esri",
+      "terms_url": "https://www.apache.org/licenses/LICENSE-2.0"
     }
   },
   {
@@ -1619,7 +1647,8 @@
     "state": "ME",
     "country": "US",
     "license": {
-      "api_url": "https://gis.portlandmaine.gov/maps/rest/services/ParksRec/Trees/MapServer/1"
+      "api_url": "https://gis.portlandmaine.gov/maps/rest/services/ParksRec/Trees/MapServer/1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution."
     }
   },
   {
@@ -1629,7 +1658,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/pZpm6pZToD6HSf7k/arcgis/rest/services/Tree_Inventory_2026/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=8bb7098c603944cda91752cccfa5d331&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=8bb7098c603944cda91752cccfa5d331&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Inventory 2026"
     }
   },
   {
@@ -1639,7 +1670,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services9.arcgis.com/NtAn3q92p40X6z9O/arcgis/rest/services/COES_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=a38e09794cf248eaa08319a07a5b28bd&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=a38e09794cf248eaa08319a07a5b28bd&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "COES Trees"
     }
   },
   {
@@ -1649,7 +1682,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/hVnyNvwbpFFPDV5j/arcgis/rest/services/ClaremontCityTreeFeature/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=c1af430886de4d70ab1caf46bd0e1ec1&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=c1af430886de4d70ab1caf46bd0e1ec1&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "ClaremontCityTreeFeature"
     }
   },
   {
@@ -1659,7 +1694,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services9.arcgis.com/LUBoZWfQwvBnZCmP/arcgis/rest/services/Street_Trees_public/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=598f29532e9c4d2098e547f549ec5fdd&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=598f29532e9c4d2098e547f549ec5fdd&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Street_Trees_public"
     }
   },
   {
@@ -1669,7 +1706,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services9.arcgis.com/ivAMP6vRMPA12GAA/arcgis/rest/services/Monterey_Park_trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=7b68fe381280475cab4676e1100f7ced&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=7b68fe381280475cab4676e1100f7ced&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Monterey Park trees"
     }
   },
   {
@@ -1679,7 +1718,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/EKquOdzev2aNwKyB/arcgis/rest/services/Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=788757ea49dc48b4bbde3f55d968c908&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=788757ea49dc48b4bbde3f55d968c908&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees"
     }
   },
   {
@@ -1689,7 +1730,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/Fu2oOWg1Aw7azh41/arcgis/rest/services/Street_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=18ac0db05b7340d1b463d953fdc672fc&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=18ac0db05b7340d1b463d953fdc672fc&sublayer=0",
+      "license_comment": "No reuse license stated: metadata contains only the placeholder \"My Use Limitations\". Request clarification.",
+      "dataset_name": "Riverside Street Trees",
+      "attribution_name": "My Credits"
     }
   },
   {
@@ -1699,7 +1743,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services9.arcgis.com/l0PUGx9JqRxaCPsG/arcgis/rest/services/Lakewood_Geodatabase_Feature_Layer/FeatureServer/38",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=eacbc9e33bad48bf9297700c2f0fcc56&sublayer=38"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=eacbc9e33bad48bf9297700c2f0fcc56&sublayer=38",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Lakewood Geodatabase Feature Layer"
     }
   },
   {
@@ -1709,7 +1755,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/NQC8oBejgXkIxQpu/arcgis/rest/services/Glendora_Public_Map_WFL1/FeatureServer/5",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=a39929d453ac44bbb99e828aafa8dd20&sublayer=5"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=a39929d453ac44bbb99e828aafa8dd20&sublayer=5",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Glendora Public Map_WFL1"
     }
   },
   {
@@ -1720,8 +1768,10 @@
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Master_Anaheim_Tree_Inventory/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=1e0018ebc2e64b918cb32de1bc7cbefe&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=1e0018ebc2e64b918cb32de1bc7cbefe",
-      "license_comment": "Stated use is municipal inventory QA/QC, analysis and operations; public app redistribution is not clearly permitted."
+      "license_comment": "Reuse scope unclear: terms specify municipal inventory QA/QC and operational use, not public redistribution. Request permission or clarification. Contact: gis@anaheim.net. WCA contact: corporate@wcainc.com.",
+      "dataset_name": "Master_Anaheim_Tree_Inventory",
+      "attribution_name": "West Coast Arborists, Inc.",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=1e0018ebc2e64b918cb32de1bc7cbefe"
     }
   },
   {
@@ -1731,7 +1781,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Fullerton_Tree_Benefits_WFL1/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=15faff5f4aba4ad2831a487be4ff8cce&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=15faff5f4aba4ad2831a487be4ff8cce&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Fullerton Tree Benefits_WFL1"
     }
   },
   {
@@ -1741,7 +1793,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Azusa_Tree_Inventory_Benefits_WFL1/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=a3edd2b411f3433991e149edbf57c47a&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=a3edd2b411f3433991e149edbf57c47a&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "City of Azusa Tree Inventory Benefits_WFL1"
     }
   },
   {
@@ -1751,7 +1805,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Buena_Park_iTree_Benefits_WFL1/FeatureServer/1",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=e6b4e51092ea4a5e84121102d7ebaca3&sublayer=1"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=e6b4e51092ea4a5e84121102d7ebaca3&sublayer=1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Buena Park iTree Benefits_WFL1"
     }
   },
   {
@@ -1761,7 +1817,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityofSantaClarita_iTreeBenefits_CanopyCover_WFL1/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=eae310cd0b0d49fcb49be4e8f8d9286c&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=eae310cd0b0d49fcb49be4e8f8d9286c&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "CityofSantaClarita_iTreeBenefits_CanopyCover_WFL1"
     }
   },
   {
@@ -1771,7 +1829,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Carson_iTree_Benefits_and_Canopy_Cover_WFL1/FeatureServer/2",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=45263689223340dd9370b96b842e3fec&sublayer=2"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=45263689223340dd9370b96b842e3fec&sublayer=2",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "City of Carson iTree Benefits and Canopy Cover_WFL1"
     }
   },
   {
@@ -1781,7 +1841,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_La_Verne_Tree_Benefits_Map_WFL1/FeatureServer/1",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=ddaead3196fb4543bc36a5df2ab3dad2&sublayer=1"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=ddaead3196fb4543bc36a5df2ab3dad2&sublayer=1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "City of La Verne Tree Benefits Map_WFL1"
     }
   },
   {
@@ -1791,7 +1853,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Brea_iTree_Data/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=7a01c4af61ef477b89f9cd45aacd77fb&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=7a01c4af61ef477b89f9cd45aacd77fb&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "City of Brea iTree Data"
     }
   },
   {
@@ -1801,7 +1865,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Temple_City_iTree_Benefits_WFL1/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=5250b90cd3f94ed591f1603c339bc176&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=5250b90cd3f94ed591f1603c339bc176&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Temple City iTree Benefits_WFL1"
     }
   },
   {
@@ -1811,7 +1877,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/AgouraHills_iTree_Webmap_WFL1/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=bdcce0631483401cb4074c267b11e12d&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=bdcce0631483401cb4074c267b11e12d&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "AgouraHills_iTree_Webmap_WFL1"
     }
   },
   {
@@ -1821,7 +1889,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Costa_Mesa_Tree_benefits/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=e3dc010814a24bb396e53c341941ab9e&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=e3dc010814a24bb396e53c341941ab9e&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Costa Mesa Tree benefits"
     }
   },
   {
@@ -1831,7 +1901,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfMontebello_iTree_CanopyCover/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=5984b62a3e9b48e39ca2cf9a2748637a&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=5984b62a3e9b48e39ca2cf9a2748637a&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "CityOfMontebello_iTree_CanopyCover"
     }
   },
   {
@@ -1841,7 +1913,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/dBVj4EXO3IdRPOqb/arcgis/rest/services/OpenData_AssetsOther_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=ca347cdaaf64404188cfd88a3b053f61&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=ca347cdaaf64404188cfd88a3b053f61&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "OpenData_AssetsOther_Trees",
+      "attribution_name": "City of San Buenaventura"
     }
   },
   {
@@ -1851,7 +1926,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services5.arcgis.com/0fqb8Dy41NtYm1ZO/arcgis/rest/services/Rosemead_Master_Asset_Map_2026_WFL1/FeatureServer/3",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=045eb20a2d9f41c9819af3c2f97b6d00&sublayer=3"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=045eb20a2d9f41c9819af3c2f97b6d00&sublayer=3",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Rosemead Master Asset Map 2026_WFL1"
     }
   },
   {
@@ -1861,7 +1938,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/WebMap_YorbaLinda_AllLayers_WFL1/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=e94d7e56dd09416b99e4ffec5aa40a5b&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=e94d7e56dd09416b99e4ffec5aa40a5b&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "WebMap_YorbaLinda_AllLayers_WFL1"
     }
   },
   {
@@ -1880,7 +1959,7 @@
       "notices": [
         "The Geospatial data, and the information therein, (collectively the \"Data\") is provided by the City of Evanston in an \"as is\" condition without warranty of any kind, either expressed, implied, or statutory. The user assumes the entire risk as to quality and performance of the Data. No guarantee of accuracy is granted by the City of Evanston. In no event shall the City of Evanston be liable for direct, incidental, consequential or special damages of any kind. The City of Evanston does not accept liability for any damages or misrepresentation caused by inaccuracies in the Data or as a result to changes to the Data, nor is responsibility assumed to maintain the Data in any manner or format."
       ],
-      "license_comment": "Portal terms also require retaining original metadata and crediting the City in derived metadata, and require written authorization for automated extraction; resolve these conditions separately from CC BY attribution."
+      "license_comment": "Permission required for automated extraction under portal terms; retain original metadata and City credit in derived metadata. Contact: https://data.cityofevanston.org/pages/contact."
     }
   },
   {
@@ -1891,8 +1970,10 @@
     "license": {
       "api_url": "https://services5.arcgis.com/aymthbPDQOcCnuwg/arcgis/rest/services/VOP_Trees_6_2_21_Viewing/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=402e05e1ced64931b8908178c095bd0f&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=402e05e1ced64931b8908178c095bd0f",
-      "license_comment": "Item description specifies viewing only in myGIS; permission for app redistribution needs clarification."
+      "license_comment": "Permission required: the source restricts use to viewing in myGIS by MGP. Request modification and redistribution rights from Oak Park and Graf Tree Care. Contact: publicworks@oak-park.us.",
+      "dataset_name": "Graf Tree Data Sharing",
+      "attribution_name": "This data's schema is from Graf Tree Care. It is maintained by Oak Park Forestry Division and Graf Tree Care.",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=402e05e1ced64931b8908178c095bd0f"
     }
   },
   {
@@ -1903,7 +1984,10 @@
     "license": {
       "api_url": "https://services7.arcgis.com/DbKiZP6rBmETqLvl/arcgis/rest/services/City_of_Berwyn_Tree_Inventory/FeatureServer/1",
       "portal_url": "https://www.arcgis.com/home/item.html?id=95d7aacaead94d2487313d3801ac5b97&sublayer=1",
-      "license": "https://www.arcgis.com/home/item.html?id=95d7aacaead94d2487313d3801ac5b97"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "City of Berwyn Tree Inventory Fall 2022",
+      "attribution_name": "City of Berwyn, Great Lakes Urban Forestry Management",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=95d7aacaead94d2487313d3801ac5b97"
     }
   },
   {
@@ -1913,7 +1997,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/pDU8KsdKcu20KqRi/arcgis/rest/services/Public_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=7738092e8b4546539ccd62bae5f4e35b&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=7738092e8b4546539ccd62bae5f4e35b&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Public_Trees"
     }
   },
   {
@@ -1923,7 +2009,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services5.arcgis.com/JisFYcK2mIVg9ueP/arcgis/rest/services/service_b8c085f8c6f543658e06d452bf211869/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=3a518917e1fc407cbc5d72ab4260101b&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=3a518917e1fc407cbc5d72ab4260101b&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Volunteer Tree Inventory"
     }
   },
   {
@@ -1933,7 +2021,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/eJcVbjTyyZIzZ5Ye/arcgis/rest/services/TreeInventory/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=ac9caf3c7a9847b78100cc8860ddf51a&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=ac9caf3c7a9847b78100cc8860ddf51a&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. WCA contact: corporate@wcainc.com.",
+      "dataset_name": "Tree Inventory",
+      "attribution_name": "City of Escondido, West Coast Arborists"
     }
   },
   {
@@ -1943,7 +2034,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/TreeInvPleasanton_Public/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=71339b38bd7b4ae8bc778da5909f89f4&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=71339b38bd7b4ae8bc778da5909f89f4&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. WCA contact: corporate@wcainc.com.",
+      "dataset_name": "TreeInvPleasanton_Public"
     }
   },
   {
@@ -1953,7 +2046,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/NkcnS0qk4w2wasOJ/arcgis/rest/services/Cupertino_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=86097d4061894324a7ab0524c917e046&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=86097d4061894324a7ab0524c917e046&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Cupertino Trees"
     }
   },
   {
@@ -1963,7 +2058,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/NkcnS0qk4w2wasOJ/arcgis/rest/services/Los_Gatos_Tree_Inventory/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=1140869b0a1e4e6e939e67b05b035ad2&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=1140869b0a1e4e6e939e67b05b035ad2&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Los Gatos Tree Inventory"
     }
   },
   {
@@ -1973,7 +2070,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services8.arcgis.com/OPmRdssd8jj0bT5H/arcgis/rest/services/Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=3312a51661fe4bb5a5b79145f7147bc6&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=3312a51661fe4bb5a5b79145f7147bc6&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees"
     }
   },
   {
@@ -1982,7 +2081,8 @@
     "state": "CA",
     "country": "US",
     "license": {
-      "api_url": "https://coemapservices.encinitasca.gov/hypegis/rest/services/PublicServices/Trees_PWSM/MapServer/0"
+      "api_url": "https://coemapservices.encinitasca.gov/hypegis/rest/services/PublicServices/Trees_PWSM/MapServer/0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution."
     }
   },
   {
@@ -1993,7 +2093,10 @@
     "license": {
       "api_url": "https://services.arcgis.com/3PDwyTturHqnGCu0/arcgis/rest/services/Tree_Inventory/FeatureServer/8",
       "portal_url": "https://www.arcgis.com/home/item.html?id=d84eda620819425185d114a06a94d047&sublayer=8",
-      "license": "https://www.arcgis.com/home/item.html?id=d84eda620819425185d114a06a94d047"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Inventory",
+      "attribution_name": "City of Spokane GIS",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=d84eda620819425185d114a06a94d047"
     }
   },
   {
@@ -2004,7 +2107,10 @@
     "license": {
       "api_url": "https://services1.arcgis.com/EYzEZbDhXZjURPbP/arcgis/rest/services/City_Trees/FeatureServer/29",
       "portal_url": "https://www.arcgis.com/home/item.html?id=0e5097923b1b448ab9a1217038db4f41&sublayer=29",
-      "license": "https://www.arcgis.com/home/item.html?id=0e5097923b1b448ab9a1217038db4f41"
+      "license_comment": "Noncommercial use only without written authorization. Public redistribution rights are not explicit; request clarification. Contact: gisdba@bellevuewa.gov.",
+      "dataset_name": "City Trees",
+      "attribution_name": "City of Bellevue",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=0e5097923b1b448ab9a1217038db4f41"
     }
   },
   {
@@ -2015,7 +2121,10 @@
     "license": {
       "api_url": "https://services.arcgis.com/rMDYWPzHhH9byMxO/arcgis/rest/services/Street_Tree_Inventory_Phase_I___II_view/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=d356e28579fa4af9a93f63973595d9df&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=d356e28579fa4af9a93f63973595d9df"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Street Tree Inventory Phase I & II",
+      "attribution_name": "E-Sciences",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=d356e28579fa4af9a93f63973595d9df"
     }
   },
   {
@@ -2025,7 +2134,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/1DyhsVa6rviDKn5t/arcgis/rest/services/Shade_Map_WSL1/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=a7e06ad57e2747738fb2b2117e23d68e&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=a7e06ad57e2747738fb2b2117e23d68e&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Shade Map_Trees",
+      "attribution_name": "Inventory - PlanIT Geo, Inc. GIS Schema and QAQC - Tina Bashor"
     }
   },
   {
@@ -2035,7 +2147,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services5.arcgis.com/TBWAZXjd2RpkWRX5/arcgis/rest/services/Bexley_Tree_Inventory/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=af4ac47e416c4b7da4bef96bb024b134&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=af4ac47e416c4b7da4bef96bb024b134&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Bexley_Tree_Inventory"
     }
   },
   {
@@ -2045,7 +2159,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/ccRMrVzOSHBUG6X2/arcgis/rest/services/Tree_Sites_Public/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=064a909d01044913982be789fabe2cb5&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=064a909d01044913982be789fabe2cb5&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Forestry Tree Sites (Public)",
+      "attribution_name": "City of Marysville Parks and Recreation Department, Division of Urban Forestry"
     }
   },
   {
@@ -2055,7 +2172,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services5.arcgis.com/ImL8oyfZuCxsvjaT/arcgis/rest/services/Trees_view/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=df906c3349344416b47e278760f95c3f&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=df906c3349344416b47e278760f95c3f&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: gis@uaoh.net.",
+      "dataset_name": "Trees view"
     }
   },
   {
@@ -2065,7 +2184,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/NqY8dnPSEdMJhuRw/arcgis/rest/services/Park_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=44c58ae4367a4f0f83c3a476b1c58ba3&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=44c58ae4367a4f0f83c3a476b1c58ba3&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Park Trees",
+      "attribution_name": "City of Dublin, Ohio, USA"
     }
   },
   {
@@ -2076,8 +2198,13 @@
     "license": {
       "api_url": "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Trees_Open_Data/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=4c209944e2984b4a908a14b0cbe48075&sublayer=0",
-      "terms_url": "https://data.cityofrochester.gov/pages/terms-of-use",
-      "license_comment": "Terms require a specified disclaimer in derivative applications, reserve intellectual-property rights, require written permission before use of copyrighted material, permit the City to terminate display or distribution at any time, and impose indemnification obligations. No clear general reuse grant was found."
+      "terms_url": "https://data.cityofrochester.gov/pages/terms",
+      "license_comment": "Required disclaimer added. Terms reserve intellectual-property rights and require it where the app is accessed/downloaded; confirm redistribution rights and placement.",
+      "dataset_name": "Trees Open Data - Live",
+      "attribution_name": "Forestry Division, Department of Environmental Services",
+      "notices": [
+        "The data made available here has been modified for use from its original source, which is the official website of the City of Rochester, NY. The City of Rochester makes no claims as to the accuracy, timeliness, content, or completeness of any of the data provided in this application. The City of Rochester makes no warranty of the accuracy or fitness for any particular use; nor are any such warranties to be implied or inferred with respect to the information or data furnished herein. The data is subject to change as modifications and updates are complete."
+      ]
     }
   },
   {
@@ -2088,8 +2215,13 @@
     "license": {
       "api_url": "https://services6.arcgis.com/bdPqSfflsdgFRVVM/arcgis/rest/services/Syracuse_Tree_Data/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=7982e38ea4b545289736a1f42e413632&sublayer=0",
-      "license": "https://data.syr.gov/pages/termsofuse",
-      "license_comment": "Terms prohibit modification and require attribution and a disclaimer; obtain permission covering the app's processed-data redistribution."
+      "license_comment": "Permission required for modified redistribution: terms prohibit modification and require source, access/publication dates and the specified disclaimer. Contact: opendata@syr.gov.",
+      "dataset_name": "Syracuse Tree Inventory",
+      "attribution_name": "Department of Parks & Recreation",
+      "terms_url": "https://data.syr.gov/pages/termsofuse",
+      "notices": [
+        "The City of Syracuse makes no representation, warranty or guarantee relating to the data or analyses derived from these data."
+      ]
     }
   },
   {
@@ -2099,7 +2231,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/s1Sh73K7qtP9JdrG/arcgis/rest/services/Public_Shade_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=dc385c1084d1432ebc792ffcb20bcfa4&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=dc385c1084d1432ebc792ffcb20bcfa4&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Public Shade Trees"
     }
   },
   {
@@ -2109,7 +2243,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/WUqVDRuvIiIiH2Pl/arcgis/rest/services/City_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=de22eaf59f914495a5a8df6cd46682d1&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=de22eaf59f914495a5a8df6cd46682d1&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "City Trees"
     }
   },
   {
@@ -2120,7 +2256,10 @@
     "license": {
       "api_url": "https://montgomeryplans.org/server/rest/services/Arboriculture/TreeInventory_Pt/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=bdce7d06c4904ecfaf14a1873f71e232&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=bdce7d06c4904ecfaf14a1873f71e232"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Montgomery Parks Tree Inventory",
+      "attribution_name": "Steward: Arboriculture Section of the HFEE division. Custodian: Montgomery Parks GIS Team.",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=bdce7d06c4904ecfaf14a1873f71e232"
     }
   },
   {
@@ -2130,7 +2269,10 @@
     "country": "US",
     "license": {
       "api_url": "https://data.norfolk.gov/resource/cmvv-agyb.json",
-      "portal_url": "https://data.norfolk.gov/d/cmvv-agyb"
+      "portal_url": "https://data.norfolk.gov/d/cmvv-agyb",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "City Tree Inventory",
+      "attribution_name": "Parks & Recreation, Parks & Forestry Operations"
     }
   },
   {
@@ -2140,7 +2282,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/ptvDyBs1KkcwzQNJ/arcgis/rest/services/Tree_2023/FeatureServer/1",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=dc523d85fe134750ba95e05168d2d117&sublayer=1"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=dc523d85fe134750ba95e05168d2d117&sublayer=1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: christopher.gudeman@talgov.com.",
+      "dataset_name": "Tree 2023",
+      "attribution_name": "Chris Gudeman, GISP, GIS Analyst, Stormwater Planning, Water Resources Engineering, Underground Utilities & Public Infrastructure, City of Tallahassee. christopher.gudeman@talgov.com"
     }
   },
   {
@@ -2150,7 +2295,9 @@
     "country": "US",
     "license": {
       "api_url": "https://ags3.scgov.net/server/rest/services/Hosted/TreeInventory/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=d83796771ba64ea88f958c058ddcfa79&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=d83796771ba64ea88f958c058ddcfa79&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "TreeInventory"
     }
   },
   {
@@ -2160,7 +2307,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/KYvXadMcgf0K1EzK/arcgis/rest/services/Tree_Inventory_Map1/FeatureServer/7",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=51b996ab35bc44bfb8d9e8d032b458c7&sublayer=7"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=51b996ab35bc44bfb8d9e8d032b458c7&sublayer=7",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Inventory Map1"
     }
   },
   {
@@ -2170,7 +2319,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/4ezfu5dIwH83BUNL/arcgis/rest/services/CityOfAnnArborTrees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=bc3fdd9aa2764d58b3e8edeeaf3307ba&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=bc3fdd9aa2764d58b3e8edeeaf3307ba&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "City of Ann Arbor Trees",
+      "attribution_name": "City of Ann Arbor, MI"
     }
   },
   {
@@ -2180,7 +2332,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services8.arcgis.com/01oq2N3cUfdKDUBU/arcgis/rest/services/GLUF_Michigan_City_Trees_for_Public_View_8_19_25/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=85b7a9bdcb904f77b6815680b7c166de&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=85b7a9bdcb904f77b6815680b7c166de&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "GLUF_Michigan_City_Trees_for_Public_View_8_19_25"
     }
   },
   {
@@ -2191,8 +2345,10 @@
     "license": {
       "api_url": "https://gismaps.cityofallen.org/arcgis/rest/services/Trees/MapServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=60f6c569c0b6410e92664caf1c06ec2d&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=60f6c569c0b6410e92664caf1c06ec2d",
-      "license_comment": "Personal use is permitted, but public redistribution is not clearly covered, even for a non-commercial app."
+      "license_comment": "License scope unclear: dataset terms allow personal use, while the portal invites app development. Confirm public redistribution rights. Contact: gis@allentx.gov.",
+      "dataset_name": "Trees",
+      "attribution_name": "City of Allen, Tx",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=60f6c569c0b6410e92664caf1c06ec2d"
     }
   },
   {
@@ -2202,7 +2358,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/aT1T0pU1ZdpuDk1t/arcgis/rest/services/Durham_StreetTree_Inventory_23May2025/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=0bee86c6e625453e9875101b3d3a2ff1&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=0bee86c6e625453e9875101b3d3a2ff1&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Durham_StreetTree_Inventory_23May2025"
     }
   },
   {
@@ -2212,7 +2370,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/O84xnDYzd5SLF06r/arcgis/rest/services/Highland_Trees_Public_3_23_26/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=9b3c5688ecaa4f788d9f2cfdc0c7475a&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=9b3c5688ecaa4f788d9f2cfdc0c7475a&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Highland_Trees_Public_3_23_26"
     }
   },
   {
@@ -2222,7 +2382,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services8.arcgis.com/CkRzPR57msMC2M1b/arcgis/rest/services/Environmental_Public_View/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=feb6dc96df554ae1ba4da5d3cb65f8d0&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=feb6dc96df554ae1ba4da5d3cb65f8d0&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Environmental_Public_View"
     }
   },
   {
@@ -2232,7 +2394,9 @@
     "country": "AU",
     "license": {
       "api_url": "https://services-ap1.arcgis.com/pvAgeoXPDsVDgOQ0/arcgis/rest/services/Street_Trees_3857_1de94/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=4e25763b23fe47c1bb928920152789a9&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=4e25763b23fe47c1bb928920152789a9&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Street_Trees_3857"
     }
   },
   {
@@ -2242,7 +2406,9 @@
     "country": "AU",
     "license": {
       "api_url": "https://services.arcgis.com/yeXpdyjk3azbqItW/arcgis/rest/services/ParksAndRecreation/FeatureServer/1",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=f62d2c83dd94443ab77e933e78de4b4f&sublayer=1"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=f62d2c83dd94443ab77e933e78de4b4f&sublayer=1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "ParksAndRecreation"
     }
   },
   {
@@ -2252,7 +2418,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services8.arcgis.com/jzdN07B7ZhRTxuzU/arcgis/rest/services/Lincoln_Trees_2017/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=d5bafbad81e44cf1ad3bb7e25767d496&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=d5bafbad81e44cf1ad3bb7e25767d496&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Lincoln Trees 2017"
     }
   },
   {
@@ -2262,7 +2430,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/pNPbgWy7hpfFGWoZ/arcgis/rest/services/Trees/FeatureServer/1",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=156f8898d26a471dae7c858e46851b29&sublayer=1"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=156f8898d26a471dae7c858e46851b29&sublayer=1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees"
     }
   },
   {
@@ -2272,7 +2442,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/L81TiOwAPO1ZvU9b/arcgis/rest/services/P2StreetTrees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=8dd6632e710243d4b3620f2304e8e409&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=8dd6632e710243d4b3620f2304e8e409&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "P2StreetTrees",
+      "attribution_name": "Survey completed by ArborPro LLC. 2016"
     }
   },
   {
@@ -2282,7 +2455,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/ebVVGQwOgDoHy4wd/arcgis/rest/services/Urbana_Street_Trees_view/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=79d75ee733094491b7f3a2a2515542f3&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=79d75ee733094491b7f3a2a2515542f3&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Urbana Street Trees (Public)"
     }
   },
   {
@@ -2291,7 +2466,8 @@
     "state": "IL",
     "country": "US",
     "license": {
-      "api_url": "https://gispub.normal.org/tongis/rest/services/Hosted/Town_of_Normal_Tree_Inventory_Public/FeatureServer/0"
+      "api_url": "https://gispub.normal.org/tongis/rest/services/Hosted/Town_of_Normal_Tree_Inventory_Public/FeatureServer/0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution."
     }
   },
   {
@@ -2302,7 +2478,10 @@
     "license": {
       "api_url": "https://services2.arcgis.com/s1wgJQKbKJihhhaT/arcgis/rest/services/Trees_Public_view/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=bf919332567d44b2b1bc531858aa2bc9&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=bf919332567d44b2b1bc531858aa2bc9"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Milwaukee County Tree Points - Public View",
+      "attribution_name": "Milwaukee County Parks",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=bf919332567d44b2b1bc531858aa2bc9"
     }
   },
   {
@@ -2312,7 +2491,10 @@
     "country": "US",
     "license": {
       "api_url": "https://utility.arcgis.com/usrsvcs/servers/7ef20f8a5add4adcb61b95fdf630984d/rest/services/FieldMaps/TreesFieldEdits/MapServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=7ef20f8a5add4adcb61b95fdf630984d&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=7ef20f8a5add4adcb61b95fdf630984d&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Inventory",
+      "attribution_name": "City of Tulsa GIS Services - 175 E 2nd St Tulsa OK 74103"
     }
   },
   {
@@ -2323,8 +2505,10 @@
     "license": {
       "api_url": "https://maps.cor.gov/arcgis/rest/services/OpenData/Trees/MapServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=0089a7d9862749db95b1e606fcd600a0&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=0089a7d9862749db95b1e606fcd600a0",
-      "license_comment": "Terms allow personal use and adaptation; public redistribution is not expressly authorized. Seek written permission."
+      "license_comment": "Permission required for public redistribution beyond the stated personal-use/adaptation grant. Contact: GIS@cor.gov.",
+      "dataset_name": "Trees",
+      "attribution_name": "City of Richardson",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=0089a7d9862749db95b1e606fcd600a0"
     }
   },
   {
@@ -2334,7 +2518,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/WHM6qC35aMtyAAlN/arcgis/rest/services/BPR_Park_And_Street_Trees/FeatureServer/1",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=61e4dc96bc0745ecb42c3f3892728bd6&sublayer=1"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=61e4dc96bc0745ecb42c3f3892728bd6&sublayer=1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: gis@cityofboise.org.",
+      "dataset_name": "Parks and Recreation Managed Park and Street Trees",
+      "attribution_name": "City of Boise"
     }
   },
   {
@@ -2344,7 +2531,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/HfwHS0BxZBQ1E5DY/arcgis/rest/services/TreeLocations_mso/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=478d76729bfc4236ae12bafb644fb635&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=478d76729bfc4236ae12bafb644fb635&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "TreeLocations_mso"
     }
   },
   {
@@ -2354,7 +2543,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/XQV8LA8nMUXfZshp/arcgis/rest/services/2026_City_Managed_Santa_Fe_Public_Spaces_Tree_Inventory_WFL1/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=619426fd3b61487dbd6e19eba7fdfcf1&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=619426fd3b61487dbd6e19eba7fdfcf1&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "2026 City Managed Santa Fe Public Spaces Tree Inventory_WFL1"
     }
   },
   {
@@ -2364,7 +2555,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/mXWZ2wsX9klsJAJY/arcgis/rest/services/Cityworks_Horticulture_Tree_Test_view_Public/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=5a5fd0d701e04a75ba945bf94e71db9f&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=5a5fd0d701e04a75ba945bf94e71db9f&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: plockwitz@coralsprings.gov.",
+      "dataset_name": "Cityworks Horticulture Tree Test view Public"
     }
   },
   {
@@ -2383,7 +2576,7 @@
       "notices": [
         "© Australian Capital Territory"
       ],
-      "license_comment": "CC BY 4.0 assignment is verified, but incorporated ACTmapi terms remain unverified: https://www.actmapi.act.gov.au/terms-and-conditions"
+      "license_comment": "CC BY 4.0 verified; incorporated ACTmapi terms could not be retrieved. Confirm any additional conditions before treating attribution as sufficient."
     }
   },
   {
@@ -2394,7 +2587,14 @@
     "license": {
       "api_url": "https://gispublic.barrie.ca/arcgis/rest/services/Open_Data/FacilitiesStreets/MapServer/37",
       "portal_url": "https://www.arcgis.com/home/item.html?id=d053284adf6341d7939486d13bfd6911&sublayer=37",
-      "license": "https://www.arcgis.com/home/item.html?id=d053284adf6341d7939486d13bfd6911"
+      "dataset_name": "Tree",
+      "attribution_name": "City of Barrie",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=d053284adf6341d7939486d13bfd6911",
+      "notices": [
+        "Contains information licensed under the Open Government Licence – Barrie."
+      ],
+      "license": "https://www.barrie.ca/Online%20Services/PublishingImages/OpenData_Images/COB_DataLicense.pdf",
+      "license_name": "Open Government Licence - Barrie 1.0"
     }
   },
   {
@@ -2406,7 +2606,7 @@
       "api_url": "https://services.arcgis.com/rYz782eMbySr2srL/arcgis/rest/services/Public_Tree_Inventory/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=08e50c6cbb2545b4897d613a817fa4d4&sublayer=0",
       "license": "https://www.hamilton.ca/city-council/data-maps/open-data/open-data-licence-terms-and-conditions",
-      "license_comment": "The Open Data Licence permits modification and redistribution with the prescribed attribution, but allows cancellation or suspension without notice, after which use is unauthorized. Its incorporated Acceptable Use Agreement returned HTTP 403 during review. Retained outside the release set until that agreement can be verified and the additional obligations accepted.",
+      "license_comment": "Attribution present; the incorporated Acceptable Use Agreement could not be retrieved. Confirm additional restrictions. Contact: pwforestry@hamilton.ca.",
       "dataset_name": "Public Tree Inventory",
       "attribution_name": "City of Hamilton",
       "license_name": "City of Hamilton Open Data Licence 1.1",
@@ -2424,7 +2624,13 @@
     "license": {
       "api_url": "https://geoportal.kelowna.ca/arcgis/rest/services/ArcGISOnline/OpenData_Environment/MapServer/17",
       "portal_url": "https://www.arcgis.com/home/item.html?id=39d13a47b8f94cce82a9b4c86efc8ee7&sublayer=17",
-      "license": "http://apps.kelowna.ca/images/opendata/opengovernmentlicence.pdf"
+      "dataset_name": "Tree Inventory",
+      "license": "https://apps.kelowna.ca/images/opendata/OpenGovernmentLicence.pdf",
+      "license_name": "Open Government Licence - City of Kelowna",
+      "attribution_name": "City of Kelowna",
+      "notices": [
+        "Contains information licensed under the Open Government Licence – City of Kelowna."
+      ]
     }
   },
   {
@@ -2443,7 +2649,7 @@
         "Contains information licensed under the Open Government Licence – Maple Ridge."
       ],
       "terms_url": "https://www.mapleridge.ca/terms-use",
-      "license_comment": "The Open Government Licence permits modification and redistribution but incorporates website terms that prohibit modifying website content and restrict permitted uses. Retained outside the release set pending clarification of the conflicting terms."
+      "license_comment": "License scope unclear: OGL permits modification/redistribution, while incorporated website terms restrict content changes and use. Confirm that open datasets are exempt."
     }
   },
   {
@@ -2454,7 +2660,15 @@
     "license": {
       "api_url": "https://services1.arcgis.com/JOTjMnANji9YTrZ2/arcgis/rest/services/Tree_Inventory/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=b5c84f53b4414d539bca94ba3383292c&sublayer=0",
-      "license": "https://data-ptbo.opendata.arcgis.com/pages/terms-of-use"
+      "license_comment": "Permission required for modification: terms cover unmodified datasets. Redistribution also requires retaining notices and obtaining recipient agreement to the terms. Contact: gis@peterborough.ca.",
+      "dataset_name": "Tree Inventory",
+      "terms_url": "https://data-ptbo.opendata.arcgis.com/pages/terms-of-use",
+      "notices": [
+        "All intellectual property and other rights in and to the Dataset belong to the City of Peterborough.",
+        "The Dataset is provided by the City of Peterborough \"as is\" and any express or implied warranties, representations or conditions relating to the Dataset, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed in no event shall the City of Peterborough be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of or relating to the use of the Dataset, even if advised of the possibility of such damage.",
+        "Subject to these Terms, you may use and copy the unmodified Dataset for any lawful purpose that does not involve distributing the Dataset, provided that your use or copying of the Dataset is not: (i) harmful to the City or anyone else; or (ii) subject to any claim or potential claim that it infringes on any third party's proprietary or other rights.",
+        "You may not distribute the Dataset without agreeing to be bound by City of Peterborough's Terms of Use."
+      ]
     }
   },
   {
@@ -2465,8 +2679,15 @@
     "license": {
       "api_url": "https://services5.arcgis.com/ATdLnvuMRJk8AGkQ/arcgis/rest/services/Trees/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=5be6efcf4f264639874bf07009f155d2&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=223810efc31c40b3aff99dd74f809a97",
-      "license_comment": "Open Government License conflicts with personal/non-commercial wording in item metadata; clarify public redistribution rights."
+      "dataset_name": "Trees",
+      "attribution_name": "The Corporation of the Town of Whitby",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=223810efc31c40b3aff99dd74f809a97",
+      "license": "https://www.arcgis.com/sharing/rest/content/items/223810efc31c40b3aff99dd74f809a97/data",
+      "license_name": "Open Government License - The Corporation of the Town of Whitby 1.0",
+      "notices": [
+        "Contains information licensed under the Open Government Licence – The Corporation of the Town of Whitby."
+      ],
+      "license_comment": "The linked license PDF permits modification/redistribution; its ArcGIS item metadata says personal, noncommercial use. Confirm that the dataset license PDF takes precedence."
     }
   },
   {
@@ -2477,7 +2698,14 @@
     "license": {
       "api_url": "https://maps.ottawa.ca/arcgis/rest/services/Forestry/MapServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=13092822f69143b695bdb916357d421b&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=13092822f69143b695bdb916357d421b"
+      "dataset_name": "Tree Inventory",
+      "attribution_name": "City of Ottawa",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=13092822f69143b695bdb916357d421b",
+      "license": "https://ottawa.ca/en/city-hall/open-transparent-and-accountable-government/open-data/open-data-licence-version-20",
+      "license_name": "Open Government Licence - City of Ottawa 2.0",
+      "notices": [
+        "Contains information licensed under the Open Government Licence – City of Ottawa."
+      ]
     }
   },
   {
@@ -2487,7 +2715,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/ze0XBzU1FXj94DJq/arcgis/rest/services/HPSTI_2022_AllSticks_ForWeb/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=11144d39301e4e189c394cd878245066&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=11144d39301e4e189c394cd878245066&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "HPSTI_2022_AllSticks_ForWeb"
     }
   },
   {
@@ -2497,7 +2727,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/me41C4ZTLmDO2rPK/arcgis/rest/services/production_DBO_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=9d23e28c88984fa0903da95792883d4a&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=9d23e28c88984fa0903da95792883d4a&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Inventory"
     }
   },
   {
@@ -2507,7 +2739,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/aOss8CrQf3pARS5q/arcgis/rest/services/Tree_Inventory/FeatureServer/34",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=705ae4c71b014910a0617ba5c7b25b98&sublayer=34"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=705ae4c71b014910a0617ba5c7b25b98&sublayer=34",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Inventory"
     }
   },
   {
@@ -2517,7 +2751,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services8.arcgis.com/LDmC4ZVHdfKcEzxl/arcgis/rest/services/2023_Tree_Inventory_/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=79b9318238a949949c463f9c2e589113&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=79b9318238a949949c463f9c2e589113&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "2023 Tree Inventory"
     }
   },
   {
@@ -2527,7 +2763,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_County_Tree_Inventory/FeatureServer/23",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=4d5bed2b3a3c4985aa4ffb2c7670fd8b&sublayer=23"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=4d5bed2b3a3c4985aa4ffb2c7670fd8b&sublayer=23",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: mdepappa@pinellascounty.org.",
+      "dataset_name": "Pinellas County Tree Inventory",
+      "attribution_name": "This is a cooperative project supported by the Urban & Community Forestry Program of the U.S. Forest Service, Department of Agriculture State & Private Forestry, Region 8 (Atlanta). This Cooperative Agreement (14-CS-11330144-078) between Georgia Tech and the USDA Forest Service (Urban Forestry South, Athens, Georgia) is entitled: Data Model for GIS Database Management and i-Tree Eco In accordance with Federal law and U.S. Department of Agriculture policy, this institution is prohibited from discriminating on the basis of race, color, national origin, sex, age, or disability. DATA STEWARD AND EDITOR: Pinellas County Public Works, Michael DePappa mdepappa@pinellascounty.org (727)464-8758 Data Certification: BRONZE"
     }
   },
   {
@@ -2538,8 +2777,9 @@
     "license": {
       "api_url": "https://services.arcgis.com/f48yV21HSEYeCYMI/arcgis/rest/services/Tree_Inventory_2025_(View)/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=d74aca29ba054b0e92492c5aaa78125b&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=d74aca29ba054b0e92492c5aaa78125b",
-      "license_comment": "Explicitly prohibits alteration or redistribution; permission is needed for processed app data."
+      "license_comment": "Permission required: terms prohibit alteration and redistribution. Disclaimer and source credit do not remove this restriction. Contact: GIS@palmspringsca.gov.",
+      "dataset_name": "Palm Springs Tree Inventory 2025 (View)",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=d74aca29ba054b0e92492c5aaa78125b"
     }
   },
   {
@@ -2551,7 +2791,10 @@
     "license": {
       "api_url": "https://services5.arcgis.com/Ul9AyFFeFTjf08DW/arcgis/rest/services/WI_Municipal_Trees_10_8_24/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=5c6daadb975246a7936863151ad0f4a1&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=5c6daadb975246a7936863151ad0f4a1"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: daniel.buckler@wisconsin.gov.",
+      "dataset_name": "FD: Wisconsin Community Trees Layer",
+      "attribution_name": "WI DNR Division of Forestry, Urban Forestry Team",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=5c6daadb975246a7936863151ad0f4a1"
     }
   },
   {
@@ -2563,7 +2806,10 @@
     "license": {
       "api_url": "https://services.arcgis.com/tKsJAIiLjd90D5q2/arcgis/rest/services/Bloomington_and_Indianapolis_Tree_Inventories/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=6aa1bfc6716f42d0b80ffdeab06e5bbf&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=6aa1bfc6716f42d0b80ffdeab06e5bbf"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Urban Tree Inventories",
+      "attribution_name": "Indiana University's Environmental Resilience Institute (ERI), Davey Resource Group (DRG)",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=6aa1bfc6716f42d0b80ffdeab06e5bbf"
     }
   },
   {
@@ -2572,7 +2818,9 @@
     "country": "HR",
     "license": {
       "api_url": "https://services-eu1.arcgis.com/6BlpNMAIwm2EjKih/arcgis/rest/services/ZG3D_stabla_2025_Z/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=07e1bc958853430d84d1f0ba0a66fd7b&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=07e1bc958853430d84d1f0ba0a66fd7b&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Zagreb Urban Tree Inventory 2025"
     }
   },
   {
@@ -2582,8 +2830,10 @@
     "license": {
       "api_url": "https://gis.wcc.govt.nz/arcgis/rest/services/Parks/Parks/MapServer/53",
       "portal_url": "https://www.arcgis.com/home/item.html?id=93ca9097fd4b487e9fcf55ad75941136&sublayer=53",
-      "license": "https://data-wcc.opendata.arcgis.com/datasets/93ca9097fd4b487e9fcf55ad75941136_53/about",
-      "license_comment": "GIS policy states CC BY 4.0, but portal metadata says CC BY-SA; clarify applicable share-alike obligations."
+      "license_comment": "License unclear: current tree metadata does not identify the Creative Commons variant/version. Confirm adaptation, redistribution, and attribution requirements. Contact: psrgisassetteam@wcc.govt.nz.",
+      "dataset_name": "WCC Trees",
+      "attribution_name": "PSR Assets and Projects GIS team Wellington City Council Email: psrgisassetteam@wcc.govt.nz Phone: 021 227 8284",
+      "terms_url": "https://data-wcc.opendata.arcgis.com/datasets/93ca9097fd4b487e9fcf55ad75941136_53/about"
     }
   },
   {
@@ -2601,7 +2851,7 @@
         "FBC Trees Team, Contains OS data © Crown copyright and database right",
         "© Crown copyright and database rights 2026 Ordnance Survey AC0000814042"
       ],
-      "license_comment": "The item specifies OGL and credits OS MasterMap Topography Layer data. An applicable Ordnance Survey derived-data exemption or separate redistribution grant has not been verified. Retained outside the release set pending clarification of third-party rights; current metadata supplies the 2026 OS notice."
+      "license_comment": "Third-party rights unresolved: OGL excludes unlicensed OS MasterMap rights. Confirm a derived-data exemption or obtain permission; the supplied OS notice is retained."
     }
   },
   {
@@ -2611,7 +2861,10 @@
     "country": "US",
     "license": {
       "api_url": "https://utility.arcgis.com/usrsvcs/servers/a6a5b1e8237f466a8812424d719af26c/rest/services/ParkFeatures/FeatureServer/14",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=a6a5b1e8237f466a8812424d719af26c&sublayer=14"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=a6a5b1e8237f466a8812424d719af26c&sublayer=14",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Collector Trees",
+      "attribution_name": "Parks Division of the Lesiure Services Department, City of St. George, Utah Data obtained April 2014 via Branch to Bud Tree Care, LLC. (435) 554-1208"
     }
   },
   {
@@ -2621,7 +2874,9 @@
     "country": "US",
     "license": {
       "api_url": "https://maps.oxnard.org/arcgis/rest/services/ParksLayers/MapServer/1",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=a5aa2d1dfd344ef79d61507d33cdbc02&sublayer=1"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=a5aa2d1dfd344ef79d61507d33cdbc02&sublayer=1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees"
     }
   },
   {
@@ -2633,7 +2888,8 @@
       "api_url": "https://services1.arcgis.com/UytyQvWmxkbjUtjg/arcgis/rest/services/Trees_(Public)/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=605dc59091604f4b8aa99eaf56d71c3a&sublayer=0",
       "license": "https://creativecommons.org/licenses/by/4.0/",
-      "license_comment": "The current Trees (Public) ArcGIS item and service do not specify CC BY or another reuse grant. The municipal website terms provide disclaimers, not affirmative redistribution permission. Retained outside the release set pending a dataset-specific licence or applicable portal policy."
+      "license_comment": "No reuse license stated in current tree metadata; the recorded CC BY assignment is unconfirmed. Request a dataset-specific grant or applicable portal policy.",
+      "dataset_name": "Trees (Public)"
     }
   },
   {
@@ -2643,7 +2899,9 @@
     "country": "AU",
     "license": {
       "api_url": "https://services9.arcgis.com/vsQXCXZ0LMZJANxk/arcgis/rest/services/Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=60272d3be3d34d7598a05f495fe347be&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=60272d3be3d34d7598a05f495fe347be&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Street Trees"
     }
   },
   {
@@ -2653,7 +2911,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/3CyDafKD7aN8Dr8M/arcgis/rest/services/Tree_Inventory_2021/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=96c75939ccb74bee91dd7c2856d5f1dc&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=96c75939ccb74bee91dd7c2856d5f1dc&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. WCA contact: corporate@wcainc.com.",
+      "dataset_name": "Tree Inventory_2021"
     }
   },
   {
@@ -2663,7 +2923,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/m4mbGGEvcQUVsnNy/arcgis/rest/services/Tree_Inventory_DisplayView/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=1a7fc1efae95438e80678d5a24315aa7&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=1a7fc1efae95438e80678d5a24315aa7&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree_Inventory_DisplayView"
     }
   },
   {
@@ -2673,7 +2935,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/oYaMaMY9WlGtyT0U/arcgis/rest/services/Street_Trees_View/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=8450e6c3992d4e8e9d0f3df4fd2722dd&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=8450e6c3992d4e8e9d0f3df4fd2722dd&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Street Trees View"
     }
   },
   {
@@ -2683,7 +2947,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services9.arcgis.com/UGpGSV1ugL0pHSgX/arcgis/rest/services/Trees_PlanITGeo/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=3fa36f43c28c46e6bb3a09a955c793b2&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=3fa36f43c28c46e6bb3a09a955c793b2&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "City Owned Trees",
+      "attribution_name": "Created by PlanIT Geo, INC. Wheat Ridge, Colorado. For use by the City of Brisbane, CA"
     }
   },
   {
@@ -2693,7 +2960,9 @@
     "country": "AU",
     "license": {
       "api_url": "https://services-ap1.arcgis.com/551UnqKK1GZeDKxQ/arcgis/rest/services/Public_TOB_208_Street_Trees_OldROAM_Jun20_2025_view/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=88781e36f57b4ab88809901bdaee116b&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=88781e36f57b4ab88809901bdaee116b&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Public_TOB_208_Street_Trees_OldROAM_Jun20_2025 view"
     }
   },
   {
@@ -2703,7 +2972,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services6.arcgis.com/dAtAhTJ12QXYHJYN/arcgis/rest/services/Miramar_Tree_Inventory/FeatureServer/1",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=d3be7cdb569a45f5ab5c49038d8db1ee&sublayer=1"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=d3be7cdb569a45f5ab5c49038d8db1ee&sublayer=1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Miramar Tree Inventory"
     }
   },
   {
@@ -2713,7 +2984,9 @@
     "country": "US",
     "license": {
       "api_url": "https://maps.clarkcountynv.gov/arcgis/rest/services/RPM/TreeEdit/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=4c6049beeded4462902ed1c697b504a4&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=4c6049beeded4462902ed1c697b504a4&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "TreeEdit"
     }
   },
   {
@@ -2724,8 +2997,9 @@
     "license": {
       "api_url": "https://services.arcgis.com/kIA6yS9KDGqZL7U3/arcgis/rest/services/CityTrees/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=e5397978d59f46ec96f72a1dfc660919&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=e5397978d59f46ec96f72a1dfc660919",
-      "license_comment": "Redistribution is subject to unspecified licensing restrictions; contact the city before distributing app data."
+      "license_comment": "Permission required or a broader license needed: further distribution is subject to unspecified license/copyright restrictions. Contact: gis@cityofsalem.net.",
+      "dataset_name": "CityTrees",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=e5397978d59f46ec96f72a1dfc660919"
     }
   },
   {
@@ -2736,8 +3010,9 @@
     "license": {
       "api_url": "https://services1.arcgis.com/jhomrVPNnIcrbVuz/arcgis/rest/services/Tree/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=2dcd6a370a024bf791a68c47cecc5ee6&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=2dcd6a370a024bf791a68c47cecc5ee6",
-      "license_comment": "Terms explicitly require City of Tracy permission."
+      "license_comment": "Permission required: the dataset explicitly requires City of Tracy permission for use. WCA contact: corporate@wcainc.com.",
+      "dataset_name": "Tree",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=2dcd6a370a024bf791a68c47cecc5ee6"
     }
   },
   {
@@ -2747,7 +3022,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/Sf3rzzad9Dl4Cuf7/arcgis/rest/services/Trees_All/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=1e73252e386144799b39e95dbaa684ef&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=1e73252e386144799b39e95dbaa684ef&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees_All"
     }
   },
   {
@@ -2757,7 +3034,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services7.arcgis.com/uRrQ0O3z2aaiIWYU/arcgis/rest/services/Public_tree_inventory/FeatureServer/33",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=0f1a1746f6c14fc8a1c124df23f3e963&sublayer=33"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=0f1a1746f6c14fc8a1c124df23f3e963&sublayer=33",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Public tree inventory"
     }
   },
   {
@@ -2767,7 +3046,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services6.arcgis.com/Xv3JMHA0Kl8GN3tJ/arcgis/rest/services/HPB_Tree_Inventory_new/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=37977dc711e547c8a5a33dd7626b339a&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=37977dc711e547c8a5a33dd7626b339a&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "HPB_Tree_Inventory_new",
+      "attribution_name": "Houston Parks Board"
     }
   },
   {
@@ -2777,7 +3059,9 @@
     "country": "US",
     "license": {
       "api_url": "https://gis.cityofwoodland.org/cowgis/rest/services/External/City_Trees/MapServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=d1af8daf150548aba6e25465c9788264&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=d1af8daf150548aba6e25465c9788264&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "City Trees"
     }
   },
   {
@@ -2787,7 +3071,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/1VeK15F7oaitDair/arcgis/rest/services/City_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=ecdc9d08bbf6414ba902103c7bed4c0d&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=ecdc9d08bbf6414ba902103c7bed4c0d&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Fitchburg Trees"
     }
   },
   {
@@ -2797,7 +3083,10 @@
     "country": "US",
     "license": {
       "api_url": "https://gis.goldenvalleymn.gov/server/rest/services/GoldenMap/Golden_Park_Assets/FeatureServer/50",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=e68b52aea37a4446b12d85cc7a994c04&sublayer=50"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=e68b52aea37a4446b12d85cc7a994c04&sublayer=50",
+      "license_comment": "No reuse license stated in current metadata; only a reference-use disclaimer is supplied. Request clarification.",
+      "dataset_name": "Park Amenities",
+      "attribution_name": "City of Golden Valley, MN"
     }
   },
   {
@@ -2806,7 +3095,8 @@
     "state": "CO",
     "country": "US",
     "license": {
-      "api_url": "https://gis.durangoco.gov/map/rest/services/ParksFeatureAccess/MapServer/6"
+      "api_url": "https://gis.durangoco.gov/map/rest/services/ParksFeatureAccess/MapServer/6",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution."
     }
   },
   {
@@ -2816,7 +3106,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/RfAh242jlP6Nb5vP/arcgis/rest/services/TreeInventory_CPC/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=52a0f523c766460796e803a7861493bf&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=52a0f523c766460796e803a7861493bf&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "TreeInventory_CPC",
+      "attribution_name": "Parks"
     }
   },
   {
@@ -2826,7 +3119,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services7.arcgis.com/Z2kjnwbHdLo56fuu/arcgis/rest/services/Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=437c193b56824e22ad6481b3dfad3dc2&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=437c193b56824e22ad6481b3dfad3dc2&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees"
     }
   },
   {
@@ -2836,7 +3131,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services8.arcgis.com/00P6VbLtS94ANPBW/arcgis/rest/services/Tree_Inventory_view/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=75dacdd574af45ddaf1e64e12c2dbad9&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=75dacdd574af45ddaf1e64e12c2dbad9&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Inventory"
     }
   },
   {
@@ -2846,7 +3143,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/HJKXwJwr6cXL7ioD/arcgis/rest/services/Tree_survey_view/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=44e275ba856a4818a7f5e8e618904f6d&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=44e275ba856a4818a7f5e8e618904f6d&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree_survey view"
     }
   },
   {
@@ -2856,7 +3155,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/36QtML6Mf01B1N0W/arcgis/rest/services/Street_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=5bfbd3da60684c6c8543d49a01b2920d&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=5bfbd3da60684c6c8543d49a01b2920d&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Street_Trees"
     }
   },
   {
@@ -2866,7 +3167,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/K8hCj4l2z1EMabnx/arcgis/rest/services/CityTrees/FeatureServer/16",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=0d9714f08fec4eee8eb2258925986bb8&sublayer=16"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=0d9714f08fec4eee8eb2258925986bb8&sublayer=16",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "CityTrees",
+      "attribution_name": "City of O'Fallon, Illinois"
     }
   },
   {
@@ -2875,7 +3179,9 @@
     "state": "WA",
     "country": "US",
     "license": {
-      "api_url": "https://gis.burienwa.gov/server/rest/services/cwams/cwams_Trees/MapServer/0"
+      "api_url": "https://gis.burienwa.gov/server/rest/services/cwams/cwams_Trees/MapServer/0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "cwams_Trees"
     }
   },
   {
@@ -2885,7 +3191,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/nVaPPG0tdkBXOK5F/arcgis/rest/services/Tree_Inventory_Kingston_NY_view/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=49aa4b896bbc407f9e228d8b7d0f5f9d&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=49aa4b896bbc407f9e228d8b7d0f5f9d&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Inventory Kingston NY view"
     }
   },
   {
@@ -2895,7 +3203,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services7.arcgis.com/67OiksmEKqKrWD25/arcgis/rest/services/Trees_public_view/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=61bce0fd906f425f98f06e16df92fb42&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=61bce0fd906f425f98f06e16df92fb42&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees public view"
     }
   },
   {
@@ -2905,7 +3215,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/YwCuPGYdQw7hiTj1/arcgis/rest/services/Public_Trees_(View)/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=6dff95d985c64aad95a38342e0fadbf2&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=6dff95d985c64aad95a38342e0fadbf2&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Public Trees (View)",
+      "attribution_name": "City of Platteville"
     }
   },
   {
@@ -2915,7 +3228,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services8.arcgis.com/deR2GmCznCnyAVvu/arcgis/rest/services/Forestry_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=c842f01aad8c4797904edd775373ac50&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=c842f01aad8c4797904edd775373ac50&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Forestry_Trees",
+      "attribution_name": "Town of Grand Chute"
     }
   },
   {
@@ -2925,7 +3241,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/8df8p0NlLFEShl0r/arcgis/rest/services/minneapolis_public_trees_reduced/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=e8e27314e456446aa2de303f8071a79e&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=e8e27314e456446aa2de303f8071a79e&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "minneapolis_public_trees_reduced"
     }
   },
   {
@@ -2935,7 +3253,10 @@
     "country": "CA",
     "license": {
       "api_url": "https://gismaps.guelph.ca/hosting/rest/services/Forestry/StreetTreeOwnership/MapServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=9388866ea20349e99c97f7f103ca9cc7&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=9388866ea20349e99c97f7f103ca9cc7&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "StreetTreeOwnership",
+      "attribution_name": "Public Services Forestry"
     }
   },
   {
@@ -2946,7 +3267,9 @@
     "license": {
       "api_url": "https://services2.arcgis.com/loGMwowmR0OPlOQb/arcgis/rest/services/Trees_-_Public_View/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=0a2d654ef527442d985d6f959c1085d5&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=0a2d654ef527442d985d6f959c1085d5"
+      "license_comment": "No reuse license stated; metadata reserves all rights. Request permission or clarification for modification and redistribution.",
+      "dataset_name": "Trees",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=0a2d654ef527442d985d6f959c1085d5"
     }
   },
   {
@@ -2956,7 +3279,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/sVDuYsm37AMvFL49/arcgis/rest/services/Public_Trees_6-28-26/FeatureServer/1",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=780d9c0a3883498b82e046ef231144c9&sublayer=1"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=780d9c0a3883498b82e046ef231144c9&sublayer=1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Public Trees 6-28-26"
     }
   },
   {
@@ -2966,7 +3291,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/OrM4sGBhxpl5PoQe/arcgis/rest/services/Westerville_Trees_(Public)/FeatureServer/1",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=63e094e5e18742d4a70f5c4bb02c246a&sublayer=1"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=63e094e5e18742d4a70f5c4bb02c246a&sublayer=1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Westerville Trees (Public)"
     }
   },
   {
@@ -2976,7 +3303,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/GL0fWlNkwysZaKeV/arcgis/rest/services/Bruce_2024_Champaign_Owned_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=d9d42ed212b34886bf383ae454b4135c&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=d9d42ed212b34886bf383ae454b4135c&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Bruce 2024 Champaign Owned Trees",
+      "attribution_name": "City of Champaign"
     }
   },
   {
@@ -2986,7 +3316,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/g26Y0m7OCdjU0ObA/arcgis/rest/services/Street_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=67c8b57d2d91459c9f951df9de961a06&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=67c8b57d2d91459c9f951df9de961a06&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Street_Trees"
     }
   },
   {
@@ -2996,7 +3328,9 @@
     "country": "CA",
     "license": {
       "api_url": "https://arcgis.reddeer.ca/arcgis/rest/services/CoRD_View_Layers/PARK_Trees_inservice/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=9414f00af7594ed9aadfacb7ef841558&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=9414f00af7594ed9aadfacb7ef841558&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "PARK_Trees_inservice (no attachments)"
     }
   },
   {
@@ -3005,7 +3339,9 @@
     "country": "GB",
     "license": {
       "api_url": "https://gis.basingstoke.gov.uk/server/rest/services/AGOL/TreesInspections/FeatureServer/6",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=ac06f92d857b4bd49e5668d0b438b037&sublayer=6"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=ac06f92d857b4bd49e5668d0b438b037&sublayer=6",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "TreesInspections"
     }
   },
   {
@@ -3015,7 +3351,11 @@
     "country": "US",
     "license": {
       "api_url": "https://external25-gis.gjcity.org/arcgis/rest/services/Hub/City_Hub/MapServer/1",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=cef93c83233749eb9265914aca06b35c&sublayer=1"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=cef93c83233749eb9265914aca06b35c&sublayer=1",
+      "dataset_name": "Trees",
+      "attribution_name": "City of Grand Junction GIS",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_name": "CC0 1.0"
     }
   },
   {
@@ -3025,7 +3365,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/ejcbAsQEUUGWEyzb/arcgis/rest/services/LasCrucesNM_TreeInventory__PlanITGeoINC_03_10_2026b/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=6abaa9a7130848818816b7cde4a6b5bb&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=6abaa9a7130848818816b7cde4a6b5bb&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Survey by PlanIT Geo",
+      "attribution_name": "Created by PlanIT Geo, INC. Wheat Ridge, Colorado. For use by Las Cruces, New Mexico."
     }
   },
   {
@@ -3035,7 +3378,9 @@
     "country": "US",
     "license": {
       "api_url": "https://utility.arcgis.com/usrsvcs/servers/d8e68ae495d24f06a9adc233bf6e4c55/rest/services/AGO/Parks/MapServer/1",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=d8e68ae495d24f06a9adc233bf6e4c55&sublayer=1"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=d8e68ae495d24f06a9adc233bf6e4c55&sublayer=1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: gis@stlouispark.org.",
+      "dataset_name": "Trees"
     }
   },
   {
@@ -3045,7 +3390,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/WK6JRyyNiFsxCE3s/arcgis/rest/services/Gary_Public_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=351494f7f07d47c88f3038fb3ce18d1d&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=351494f7f07d47c88f3038fb3ce18d1d&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Gary Public Trees"
     }
   },
   {
@@ -3056,9 +3403,10 @@
     "license": {
       "api_url": "https://services3.arcgis.com/iYP51zxNr6TITn6r/arcgis/rest/services/Tree_Inventory/FeatureServer/4",
       "portal_url": "https://www.arcgis.com/home/item.html?id=e6e55741988f432b9b9ae7406a389c68&sublayer=4",
-      "license": "https://www.arcgis.com/home/item.html?id=e6e55741988f432b9b9ae7406a389c68",
       "terms_url": "https://lamesaca.hub.arcgis.com/pages/4a798df5271f4fadbac349ee71f96dc9",
-      "license_comment": "The City GIS Hub terms include indemnification obligations and provider-specific restrictions for SanGIS-derived data. The page does not clearly establish a general reuse grant for this tree dataset."
+      "license_comment": "No affirmative reuse license stated in the dataset terms; informational-use and accessibility notices do not establish redistribution rights. Request clarification. WCA contact: corporate@wcainc.com.",
+      "dataset_name": "Tree Inventory",
+      "attribution_name": "City of La Mesa GIS (Parks & Rec – Park Maintenance Division; West Coast Arborists, Inc.)"
     }
   },
   {
@@ -3069,7 +3417,10 @@
     "license": {
       "api_url": "https://gwa.kenmorewa.gov/arcgis/rest/services/Public_Trees/FeatureServer/22",
       "portal_url": "https://www.arcgis.com/home/item.html?id=703fed215aaf46b6922f784281281cec&sublayer=22",
-      "license": "https://www.arcgis.com/home/item.html?id=703fed215aaf46b6922f784281281cec"
+      "license_comment": "Noncommercial use only without written authorization. Public redistribution rights are not explicit; request clarification.",
+      "dataset_name": "Public Trees",
+      "attribution_name": "Neal Hicks, Ashleigh Wojcik, Lauren Boydstun, Annalise Korch, Amanda Larson",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=703fed215aaf46b6922f784281281cec"
     }
   },
   {
@@ -3079,8 +3430,9 @@
     "license": {
       "api_url": "https://services1.arcgis.com/DlsnLEhGfXazS5Er/arcgis/rest/services/Street_Trees/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=237eb7c547e44b4eac64a64a02474daf&sublayer=0",
-      "license": "https://open-data-huttcity.hub.arcgis.com/",
-      "license_comment": "Substantial copying or republication requires prior written council consent, including non-commercial redistribution."
+      "license_comment": "Council website terms require written consent for substantial reuse; confirm their application to the tree API and obtain redistribution permission. Contact: contact@huttcity.govt.nz.",
+      "dataset_name": "Street Trees",
+      "terms_url": "https://open-data-huttcity.hub.arcgis.com/"
     }
   },
   {
@@ -3091,8 +3443,10 @@
     "license": {
       "api_url": "https://services.arcgis.com/ULBqC49IEeIR01GF/arcgis/rest/services/Trees_Managed_by_City_of_Northfield_Summer_2024/FeatureServer/1",
       "portal_url": "https://www.arcgis.com/home/item.html?id=85d44b9f2c6a46e6b396aba59c224b8d&sublayer=1",
-      "license": "https://www.arcgis.com/home/item.html?id=85d44b9f2c6a46e6b396aba59c224b8d",
-      "license_comment": "Teaching/research use is stated; other uses require inquiry to the city."
+      "license_comment": "Permission or clarification required: the layer supports teaching/research and directs inquiries about other uses to the City of Northfield. Contact: Jaden Brutsman, City GIS (https://www.northfieldmn.gov/directory.aspx?EID=360).",
+      "dataset_name": "Trees Managed by City of Northfield Summer 2024",
+      "attribution_name": "City of Northfield, MN. 2024.",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=85d44b9f2c6a46e6b396aba59c224b8d"
     }
   },
   {
@@ -3102,7 +3456,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services5.arcgis.com/NUp4yl2gULzlAcEm/arcgis/rest/services/ParkwaysROW_Hosted/FeatureServer/3",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=70129250fb304ec98f3b0e7770462664&sublayer=3"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=70129250fb304ec98f3b0e7770462664&sublayer=3",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "ParkwaysROW_Hosted",
+      "attribution_name": "City of San Juan Capistrano"
     }
   },
   {
@@ -3112,7 +3469,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/2hmXRAz4ofcdQP6p/arcgis/rest/services/Public_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=5306a2f233874eebaed7a008b4919a85&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=5306a2f233874eebaed7a008b4919a85&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Public Trees"
     }
   },
   {
@@ -3123,7 +3482,10 @@
     "license": {
       "api_url": "https://services6.arcgis.com/ovypB8ighP2NPfFE/arcgis/rest/services/Street_Trees/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=80d58060ac11443689bb1e15cb52ffc1&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=80d58060ac11443689bb1e15cb52ffc1"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Street Trees",
+      "attribution_name": "Peninsula Urban Forestry, City of Tumwater Transportation and Engineering Department",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=80d58060ac11443689bb1e15cb52ffc1"
     }
   },
   {
@@ -3133,7 +3495,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/0ofY9RQ0ZCO4aRRx/arcgis/rest/services/Westchester_Public_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=448e13de0d63463f8df6aebfca001a41&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=448e13de0d63463f8df6aebfca001a41&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Westchester_Public_Trees"
     }
   },
   {
@@ -3143,7 +3507,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services8.arcgis.com/kiqE4KVhJWv6tZKC/arcgis/rest/services/Current_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=29e3185536fa4673948f61170f49ac08&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=29e3185536fa4673948f61170f49ac08&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Current Trees"
     }
   },
   {
@@ -3154,7 +3520,10 @@
     "license": {
       "api_url": "https://services6.arcgis.com/WCuPctHy89ccTjFo/arcgis/rest/services/Tree_Inventory_Viewer/FeatureServer/1",
       "portal_url": "https://www.arcgis.com/home/item.html?id=e29362f8e39f4e3bb04c90cb7a578aef&sublayer=1",
-      "license": "https://www.arcgis.com/home/item.html?id=e29362f8e39f4e3bb04c90cb7a578aef"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Public Tree Inventory Viewer Feature Layer",
+      "attribution_name": "MSA Professional Services",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=e29362f8e39f4e3bb04c90cb7a578aef"
     }
   },
   {
@@ -3164,7 +3533,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services9.arcgis.com/nPsFhwkdebYjxn1R/arcgis/rest/services/Salem_Street_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=df1d66111f2d481db82564d5b820dee0&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=df1d66111f2d481db82564d5b820dee0&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Salem_Street_Trees",
+      "attribution_name": "SalemGIS, Salem DPW"
     }
   },
   {
@@ -3174,7 +3546,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services7.arcgis.com/lE5mQkgxehcTjzKf/arcgis/rest/services/Trees_currentinspection_dfc382653d0a4cce8f60666470281bf5/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=914d8a665ae74a91be39c676a54fcb76&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=914d8a665ae74a91be39c676a54fcb76&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees_currentinspection",
+      "attribution_name": "Esri"
     }
   },
   {
@@ -3184,7 +3559,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services5.arcgis.com/whF382HLJPxzhmA9/arcgis/rest/services/Tree_Inventory_View/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=6671312a07fd4786b0a47ce8a7d197c0&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=6671312a07fd4786b0a47ce8a7d197c0&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Inventory View"
     }
   },
   {
@@ -3194,7 +3571,11 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/QNHFBm4iXVHdb5Xv/arcgis/rest/services/Trees_public_ff9eaad404f64dceafb78f7aff40de10/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=722dc9f109844815b88f67f4537ad62f&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=722dc9f109844815b88f67f4537ad62f&sublayer=0",
+      "license_comment": "License unclear: metadata contains Esri Apache software boilerplate, not a confirmed tree-data license. Request clarification.",
+      "dataset_name": "Trees_public",
+      "attribution_name": "Esri",
+      "terms_url": "https://www.apache.org/licenses/LICENSE-2.0"
     }
   },
   {
@@ -3203,7 +3584,9 @@
     "country": "NZ",
     "license": {
       "api_url": "https://services1.arcgis.com/8L3DQUzjrkgEmDpQ/arcgis/rest/services/Hastings_DC_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=11ae2eca83e54f6caeaa0d470b4a7ab1&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=11ae2eca83e54f6caeaa0d470b4a7ab1&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Hastings DC Trees"
     }
   },
   {
@@ -3213,7 +3596,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/dJOijx2lWTlGQBDJ/arcgis/rest/services/CW_4345/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=62bd108e4c5540c69921cffa25a27bd4&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=62bd108e4c5540c69921cffa25a27bd4&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Chicago Area Tree Plantings (Openlands, 2022)",
+      "attribution_name": "Openlands"
     }
   },
   {
@@ -3224,7 +3610,10 @@
     "license": {
       "api_url": "https://gis.trpdmn.org/hostserver/rest/services/ManagedTrees_Public_Viewing/MapServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=aaf1bbc1f49a4a408e18aa1168ca16de&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=aaf1bbc1f49a4a408e18aa1168ca16de"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Managed Trees - Comprehensive - Open Data",
+      "attribution_name": "Three Rivers Parks",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=aaf1bbc1f49a4a408e18aa1168ca16de"
     }
   },
   {
@@ -3234,7 +3623,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/xOD9qWN2fUcwxnUM/arcgis/rest/services/Tree_Inventory_View_NR/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=be06ee318cf044cba3d9786c84c90f57&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=be06ee318cf044cba3d9786c84c90f57&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree_Inventory_View_NR"
     }
   },
   {
@@ -3244,7 +3635,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/fhBemP00ea7p7i0U/arcgis/rest/services/Tree_Inventory_2022/FeatureServer/3",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=7c918046813340989aa7e986abdd5b56&sublayer=3"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=7c918046813340989aa7e986abdd5b56&sublayer=3",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Inventory 2022"
     }
   },
   {
@@ -3254,7 +3647,9 @@
     "country": "US",
     "license": {
       "api_url": "https://utility.arcgis.com/usrsvcs/servers/af97912e86f04c97b770e4f8d1b05a52/rest/services/WhiteBearLake/WBL_Forestry_Tree_Inventory_2026/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=af97912e86f04c97b770e4f8d1b05a52&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=af97912e86f04c97b770e4f8d1b05a52&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "WBL_Forestry_Tree_Inventory"
     }
   },
   {
@@ -3264,7 +3659,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/m3XdyJh55Jrxxk0l/arcgis/rest/services/Tree_Inventory_Public/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=cb236338c85d4dc0b0ab02330f577a39&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=cb236338c85d4dc0b0ab02330f577a39&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree_Inventory_Public"
     }
   },
   {
@@ -3274,7 +3671,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/ljOdqLVbHpS7dOJQ/arcgis/rest/services/WCA_Tree_Inventory/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=fb7b31d61adf4d94bebe271918020aa7&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=fb7b31d61adf4d94bebe271918020aa7&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "WCA_Tree_Inventory"
     }
   },
   {
@@ -3285,7 +3684,10 @@
     "license": {
       "api_url": "https://services.arcgis.com/FLM8UAw9y5MmuVTV/arcgis/rest/services/Street_Trees/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=9f9d4ad74a0d44fba8bf27c829e810f2&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=9f9d4ad74a0d44fba8bf27c829e810f2"
+      "license_comment": "Reuse rights unclear: metadata incorporates GeoHub Terms of Use but does not state a redistribution grant. Request clarification.",
+      "dataset_name": "Street Trees",
+      "attribution_name": "City of Redlands",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=9f9d4ad74a0d44fba8bf27c829e810f2"
     }
   },
   {
@@ -3295,7 +3697,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/kC7o6Onzcn1qsIwk/arcgis/rest/services/Tree_Points_View_Layer_for_Vendors/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=89f134ac16384226b802972128ef5320&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=89f134ac16384226b802972128ef5320&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Points View Layer for Vendors"
     }
   },
   {
@@ -3305,7 +3709,10 @@
     "country": "US",
     "license": {
       "api_url": "https://gisweb.bozeman.net/arcgis/rest/services/Internal/Forestry_Dashboard/MapServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=ba0dea7927184014a8b84e64af5c7684&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=ba0dea7927184014a8b84e64af5c7684&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Forestry Dashboard Map Service",
+      "attribution_name": "City of Bozeman"
     }
   },
   {
@@ -3315,7 +3722,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services5.arcgis.com/wUUM9nP0Ii27QynB/arcgis/rest/services/Historical_Tree_Inventory_(View)/FeatureServer/1",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=0d5c1b7c4e4e4fbca57b812a3c0184c9&sublayer=1"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=0d5c1b7c4e4e4fbca57b812a3c0184c9&sublayer=1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Historical Tree Inventory (View)"
     }
   },
   {
@@ -3325,7 +3734,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/i4mrGZu1Isvl0rWt/arcgis/rest/services/PD_Trees/FeatureServer/6",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=d472e915365c49258220f9b7f3019663&sublayer=6"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=d472e915365c49258220f9b7f3019663&sublayer=6",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "PD Trees"
     }
   },
   {
@@ -3335,7 +3746,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services5.arcgis.com/apvcu8kifKuj4Ua8/arcgis/rest/services/Trees_(Public)/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=208725ca9b0f4cbba338bfa6318f91a2&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=208725ca9b0f4cbba338bfa6318f91a2&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees (Public)"
     }
   },
   {
@@ -3345,7 +3758,9 @@
     "country": "US",
     "license": {
       "api_url": "https://maps.cityofdubuque.org/arcgisweb2/rest/services/Tree_Management/Tree_Collection_Publishing_Public_Version/FeatureServer/5",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=50fb7082181241e987796e2f90c866fc&sublayer=5"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=50fb7082181241e987796e2f90c866fc&sublayer=5",
+      "license_comment": "Reuse scope unclear: terms permit public viewing for information, not explicitly modification or redistribution. Request clarification.",
+      "dataset_name": "Trees_PublicView"
     }
   },
   {
@@ -3355,7 +3770,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services5.arcgis.com/buITjRsK0rZsAXbQ/arcgis/rest/services/Public_Trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=07f6f59030cc43d9b86cb7f1f4f0e163&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=07f6f59030cc43d9b86cb7f1f4f0e163&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Public Trees"
     }
   },
   {
@@ -3365,7 +3782,9 @@
     "country": "US",
     "license": {
       "api_url": "https://gis.ci.oshkosh.wi.us/server/rest/services/Foresty_Publication/MapServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=e543118256ba4472adaed45e8889b864&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=e543118256ba4472adaed45e8889b864&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Forestry Publication"
     }
   },
   {
@@ -3376,7 +3795,9 @@
     "license": {
       "api_url": "https://services3.arcgis.com/EgnL1bB7VxL4zhx7/arcgis/rest/services/Public_Tree_Inventory/FeatureServer/1",
       "portal_url": "https://www.arcgis.com/home/item.html?id=a03fc5c8e183429691b920a4e9000600&sublayer=1",
-      "license": "https://www.arcgis.com/home/item.html?id=a03fc5c8e183429691b920a4e9000600"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Public Tree Inventory",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=a03fc5c8e183429691b920a4e9000600"
     }
   },
   {
@@ -3386,7 +3807,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/apTfC6SUmnNfnxuF/arcgis/rest/services/CountyPark_Trees_All_20210127/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=3332fa56f5184334854cb4951bbfe88c&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=3332fa56f5184334854cb4951bbfe88c&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "All County Park Trees 20210127",
+      "attribution_name": "Hillsborough County Parks & Rec, University of Florida, Information & Innovation Geopsatial Services, Applied GIS"
     }
   },
   {
@@ -3395,7 +3819,8 @@
     "state": "CO",
     "country": "US",
     "license": {
-      "api_url": "https://services3.arcgis.com/5FkYBrhNzpVtlA6F/arcgis/rest/services/Parks/FeatureServer/2"
+      "api_url": "https://services3.arcgis.com/5FkYBrhNzpVtlA6F/arcgis/rest/services/Parks/FeatureServer/2",
+      "license_comment": "License unverified: current source metadata could not be retrieved. Request clarification from the publisher."
     }
   },
   {
@@ -3405,7 +3830,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/r00vmm8eIzAwdHlO/arcgis/rest/services/COSTreeInventory_publicview/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=3491d1374bd640e48410d615fd5c5c07&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=3491d1374bd640e48410d615fd5c5c07&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "COSTreeInventory {VIEW, PUBLIC}"
     }
   },
   {
@@ -3416,7 +3843,10 @@
     "license": {
       "api_url": "https://services9.arcgis.com/hUiJ0kKwHN6Cf0DY/arcgis/rest/services/Tree_Inventory_Canopy_2024_WFL1/FeatureServer/3",
       "portal_url": "https://www.arcgis.com/home/item.html?id=91a923839ab7428f97a0813f3e46fda4&sublayer=3",
-      "license": "https://www.arcgis.com/home/item.html?id=91a923839ab7428f97a0813f3e46fda4"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree_Inventory_Canopy_2024_WFL1",
+      "attribution_name": "Dudek; https://dudek.com/",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=91a923839ab7428f97a0813f3e46fda4"
     }
   },
   {
@@ -3426,7 +3856,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/BIG5xreQwYg6s2kt/arcgis/rest/services/WatertownForestry2023_(View_Only)/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=dee3c9ec7a6743229efd01cc5358e731&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=dee3c9ec7a6743229efd01cc5358e731&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "WatertownForestry2023 (View Only)"
     }
   },
   {
@@ -3437,7 +3869,10 @@
     "license": {
       "api_url": "https://services6.arcgis.com/f6G5SbcwuEVmR1CW/arcgis/rest/services/OpenDataLayers2/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=e6f9e57f61c04a7c9c9f2847897e77a9&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=e6f9e57f61c04a7c9c9f2847897e77a9"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "OpenDataLayers2",
+      "attribution_name": "Wellesley GIS",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=e6f9e57f61c04a7c9c9f2847897e77a9"
     }
   },
   {
@@ -3448,7 +3883,10 @@
     "license": {
       "api_url": "https://services1.arcgis.com/VMiHKHuCDWhb8bY8/arcgis/rest/services/TreeInventory_Public/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=9f92644efbd549058768eb5aa0d28ddb&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=9f92644efbd549058768eb5aa0d28ddb"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "TreeInventory_Public",
+      "attribution_name": "City of Onalaska.Thumbnail created using the Oregon Geospatial Enterprise Office Thumbnail Builder. Thumbnail photo by David Vig on Unsplash. https://dev.navigator.oregon.gov/agol/thumbnailbuilder/index.html https://unsplash.com/@davidvig",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=9f92644efbd549058768eb5aa0d28ddb"
     }
   },
   {
@@ -3458,7 +3896,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services7.arcgis.com/iZIPdzAfqdnP9vrA/arcgis/rest/services/Tree_Inventory_(Public)/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=f7fa8d791e8f4aefbd07c01b9d57c52b&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=f7fa8d791e8f4aefbd07c01b9d57c52b&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Inventory (Public)"
     }
   },
   {
@@ -3468,7 +3908,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/efPDmjgxOd3NdvZV/arcgis/rest/services/MountlakeTerrace_TreeInventory_PlanITGeoINC_08222024/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=60c2c407dcc1408bac4e9ff3da452e03&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=60c2c407dcc1408bac4e9ff3da452e03&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "MountlakeTerrace_TreeInventory_PlanITGeoINC_08222024",
+      "attribution_name": "Created by PlanIT Geo, INC. Wheat Ridge, Colorado. For use by Mountlake Terrace, Washington"
     }
   },
   {
@@ -3478,7 +3921,11 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/aVepqWph7Jkj1aWl/arcgis/rest/services/Trees_public_7114d04be2ec4cd1a370716cb2f3f475/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=b4a7490201d84bd99ee6475addb444a0&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=b4a7490201d84bd99ee6475addb444a0&sublayer=0",
+      "license_comment": "License unclear: metadata contains Esri Apache software boilerplate, not a confirmed tree-data license. Request clarification.",
+      "dataset_name": "Trees_public",
+      "attribution_name": "Esri",
+      "terms_url": "https://www.apache.org/licenses/LICENSE-2.0"
     }
   },
   {
@@ -3489,7 +3936,10 @@
     "license": {
       "api_url": "https://services1.arcgis.com/4nU7cbKqLfftauX2/arcgis/rest/services/TreeInventory/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=91bffc476216422481b511a48796a327&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=91bffc476216422481b511a48796a327"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "TreeInventory",
+      "attribution_name": "COA, Davey Resource Group, volunteers.",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=91bffc476216422481b511a48796a327"
     }
   },
   {
@@ -3499,7 +3949,9 @@
     "country": "US",
     "license": {
       "api_url": "https://esriweb.villageofbellevuewi.gov/arcgis/rest/services/Public_Access/Public_UrbanForestry/MapServer/1/query",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=2c5daca3e4fa4c1487e7ffdc2384098d"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=2c5daca3e4fa4c1487e7ffdc2384098d",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Inventory"
     }
   },
   {
@@ -3509,7 +3961,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services6.arcgis.com/ALaxfASMULIJ1PP6/arcgis/rest/services/Montpelier_Tree_Inventory_Public_Map_View/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=56a6e8a5c54f419cae009c7f95f0d435&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=56a6e8a5c54f419cae009c7f95f0d435&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Montpelier Tree Inventory Public Map View"
     }
   },
   {
@@ -3519,7 +3973,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services5.arcgis.com/TkBKgQn8d3sPkMZo/arcgis/rest/services/Trees_Public/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=255bb4a939aa471886367a2fed5f65d0&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=255bb4a939aa471886367a2fed5f65d0&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees Public"
     }
   },
   {
@@ -3529,7 +3985,11 @@
     "country": "US",
     "license": {
       "api_url": "https://services8.arcgis.com/F06fszt0Xp6od73d/arcgis/rest/services/Trees_public_7efb27e098334e40b09093698f30b8b0/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=20213107077146fa90d16e03cf651959&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=20213107077146fa90d16e03cf651959&sublayer=0",
+      "license_comment": "License unclear: metadata contains Esri Apache software boilerplate, not a confirmed tree-data license. Request clarification.",
+      "dataset_name": "Trees_public",
+      "attribution_name": "Esri",
+      "terms_url": "https://www.apache.org/licenses/LICENSE-2.0"
     }
   },
   {
@@ -3539,7 +3999,9 @@
     "country": "US",
     "license": {
       "api_url": "https://utility.arcgis.com/usrsvcs/servers/d2d68a325c9843f68e84805f5295b1a3/rest/services/Operations_Maintenance/trees/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=d2d68a325c9843f68e84805f5295b1a3&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=d2d68a325c9843f68e84805f5295b1a3&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "trees"
     }
   },
   {
@@ -3549,7 +4011,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/DJP723NX3ukQ2LtF/arcgis/rest/services/Trees__view_ONLY/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=1c0df3775fc44c1aae03a7b977884ae6&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=1c0df3775fc44c1aae03a7b977884ae6&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees view ONLY"
     }
   },
   {
@@ -3559,7 +4023,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services3.arcgis.com/FjNT4j1knnY5Wsw5/arcgis/rest/services/PW_Trees_Public_Viewer/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=f8294d3638a24156aa1005d49883ac07&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=f8294d3638a24156aa1005d49883ac07&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "PW_Trees_Public_Viewer"
     }
   },
   {
@@ -3570,7 +4036,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services.arcgis.com/LGtNQDlIZBdntoA9/arcgis/rest/services/NM_PublicTree_Map/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=976b37c350e34bacb9b4607b2888852e&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=976b37c350e34bacb9b4607b2888852e&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: emcrae@chi-phi.org.",
+      "dataset_name": "New Mexico Tree Plotter Inventory, 2019",
+      "attribution_name": "https://pg-cloud.com/NewMexico/"
     }
   },
   {
@@ -3580,7 +4049,8 @@
     "state": "PA",
     "country": "US",
     "license": {
-      "api_url": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/DCNR_Treevitalize/MapServer/0"
+      "api_url": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/DCNR_Treevitalize/MapServer/0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution."
     }
   },
   {
@@ -3590,7 +4060,10 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/XxHmL09eFqJWI0gE/arcgis/rest/services/Trees_public_3694a69174e146b3b4b24d82a90c198a/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=c84565e8695d41fbbde0973470cefab6&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=c84565e8695d41fbbde0973470cefab6&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Trees_public",
+      "attribution_name": "Esri"
     }
   },
   {
@@ -3601,7 +4074,10 @@
     "license": {
       "api_url": "https://services.arcgis.com/t2tplTEKxuL7eSvF/arcgis/rest/services/Treeplotter_Inventory/FeatureServer/2",
       "portal_url": "https://www.arcgis.com/home/item.html?id=efd9f39819d54020b610ef0f5f0c0c04&sublayer=2",
-      "license": "https://www.arcgis.com/home/item.html?id=efd9f39819d54020b610ef0f5f0c0c04"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: gis@ci.moorhead.mn.us.",
+      "dataset_name": "Treeplotter_Inventory",
+      "attribution_name": "City of Moorhead GIS",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=efd9f39819d54020b610ef0f5f0c0c04"
     }
   },
   {
@@ -3611,7 +4087,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services5.arcgis.com/vow2JQrQyQruqkp7/arcgis/rest/services/COPH_Trees_WFL1/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=e4cd87554f534bf28639bd35237d7fdc&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=e4cd87554f534bf28639bd35237d7fdc&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "City Tree Inventory"
     }
   },
   {
@@ -3622,7 +4100,10 @@
     "license": {
       "api_url": "https://services3.arcgis.com/DLryYCwhA8W7Jq7Q/arcgis/rest/services/Trees/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=0fde99c1b49f4248a8f60caf3e117ea3&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=0fde99c1b49f4248a8f60caf3e117ea3"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: gissupport@seatacwa.gov.",
+      "dataset_name": "Trees",
+      "attribution_name": "This dataset has been prepared and distributed by the City of SeaTac, Washington.",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=0fde99c1b49f4248a8f60caf3e117ea3"
     }
   },
   {
@@ -3632,7 +4113,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services5.arcgis.com/lA7fMEY4qaPiZF6g/arcgis/rest/services/Weaverville_Tree_Inventory/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=c7b2caa071c04948ab4c20a00e8919f2&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=c7b2caa071c04948ab4c20a00e8919f2&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Weaverville Tree Inventory"
     }
   },
   {
@@ -3643,7 +4126,9 @@
     "license": {
       "api_url": "https://services3.arcgis.com/F7NiRLGNbA2hh7gE/arcgis/rest/services/Public_Trees_View_1/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=defd8da338a443818b6a6f8b65b8076b&sublayer=0",
-      "license": "https://www.arcgis.com/home/item.html?id=defd8da338a443818b6a6f8b65b8076b"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Public_Trees_View",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=defd8da338a443818b6a6f8b65b8076b"
     }
   },
   {
@@ -3653,7 +4138,9 @@
     "country": "US",
     "license": {
       "api_url": "https://cityworks.cityofloveland.org/arcgis/rest/services/ParksandRec/Trees/MapServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=0f66e47e8c7a4e60804ec871d5827ff1&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=0f66e47e8c7a4e60804ec871d5827ff1&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "City of Loveland Trees"
     }
   },
   {
@@ -3663,7 +4150,10 @@
     "country": "US",
     "license": {
       "api_url": "https://gis2.arlingtontx.gov/agsext2/rest/services/Parks/ParksAccessory/MapServer/1",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=eba31bcf6fb14f738ef8e2424193aac1&sublayer=1"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=eba31bcf6fb14f738ef8e2424193aac1&sublayer=1",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Parks OMS Map service-Accessory",
+      "attribution_name": "City of Arlington Texas"
     }
   },
   {
@@ -3673,7 +4163,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services1.arcgis.com/YdUP5V6WwzeG8T8r/arcgis/rest/services/PSL_Trees/FeatureServer/2",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=767ea62a6ae34d898185ec5050319c0d&sublayer=2"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=767ea62a6ae34d898185ec5050319c0d&sublayer=2",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "PSL Trees"
     }
   },
   {
@@ -3683,7 +4175,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Fontana_iTree_Inv/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=6023d01d769947c2befeeaf2097261b3&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=6023d01d769947c2befeeaf2097261b3&sublayer=0",
+      "license_comment": "No dataset-specific reuse license verified for the public WCA viewer. Request modification and redistribution permission from the City and inventory publisher.",
+      "dataset_name": "Fontana_iTree_Inv"
     }
   },
   {
@@ -3693,7 +4187,8 @@
     "country": "US",
     "license": {
       "api_url": "https://desmoinesia.treekeepersoftware.com",
-      "portal_url": "https://www.dsm.city/departments/public_works/forestry/"
+      "portal_url": "https://www.dsm.city/departments/public_works/forestry/",
+      "license_comment": "No reuse license verified in inspected source information; request clarification for modification and redistribution."
     }
   },
   {
@@ -3702,7 +4197,8 @@
     "state": "TN",
     "country": "US",
     "license": {
-      "api_url": "https://knoxvilletn.treekeepersoftware.com"
+      "api_url": "https://knoxvilletn.treekeepersoftware.com",
+      "license_comment": "No reuse license found in inspected forestry/viewer information. Request clarification from the City and inventory publisher."
     }
   },
   {
@@ -3711,7 +4207,8 @@
     "state": "OH",
     "country": "US",
     "license": {
-      "api_url": "https://akronoh.treekeepersoftware.com"
+      "api_url": "https://akronoh.treekeepersoftware.com",
+      "license_comment": "No dataset-specific reuse license verified for the public TreeKeeper viewer. Request modification and redistribution clarification from the City and inventory publisher."
     }
   },
   {
@@ -3720,7 +4217,8 @@
     "state": "TN",
     "country": "US",
     "license": {
-      "api_url": "https://clarksvilletn.treekeepersoftware.com"
+      "api_url": "https://clarksvilletn.treekeepersoftware.com",
+      "license_comment": "No dataset-specific reuse license verified for the public TreeKeeper viewer. Request modification and redistribution clarification from the City and inventory publisher."
     }
   },
   {
@@ -3729,7 +4227,8 @@
     "state": "CA",
     "country": "US",
     "license": {
-      "api_url": "https://gisportal.ontarioca.gov/server/rest/services/Public_Works_Digital_Twin_MIL1/MapServer/37"
+      "api_url": "https://gisportal.ontarioca.gov/server/rest/services/Public_Works_Digital_Twin_MIL1/MapServer/37",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution."
     }
   },
   {
@@ -3738,7 +4237,8 @@
     "state": "NC",
     "country": "US",
     "license": {
-      "api_url": "https://maps-apis.carync.gov/server/rest/services/ParksRecreation/CaryTrees/FeatureServer/0"
+      "api_url": "https://maps-apis.carync.gov/server/rest/services/ParksRecreation/CaryTrees/FeatureServer/0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution."
     }
   },
   {
@@ -3749,7 +4249,10 @@
     "license": {
       "api_url": "https://services6.arcgis.com/SiUAoHzWN11AIADA/arcgis/rest/services/Trees_Public_View/FeatureServer/1",
       "portal_url": "https://www.arcgis.com/home/item.html?id=9d10ce6b9f0e4d29ac48285037193138&sublayer=1",
-      "license": "https://www.arcgis.com/home/item.html?id=9d10ce6b9f0e4d29ac48285037193138"
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Newport News Tree Inventory",
+      "attribution_name": "City of Newport News, VA",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=9d10ce6b9f0e4d29ac48285037193138"
     }
   },
   {
@@ -3759,7 +4262,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Bell_Tree_Inventory_Benefits_WFL1/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=3cea65827b694be0b81fc0418ec1a720&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=3cea65827b694be0b81fc0418ec1a720&sublayer=0",
+      "license_comment": "No dataset-specific reuse license verified for the public WCA viewer. Request modification and redistribution permission from the City and inventory publisher.",
+      "dataset_name": "City of Bell Tree Inventory Benefits_WFL1"
     }
   },
   {
@@ -3769,7 +4274,9 @@
     "country": "US",
     "license": {
       "api_url": "https://services2.arcgis.com/nmiTqKBr781zgH63/arcgis/rest/services/Tree_Inventory2025_Public_View_/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=72f3650fe81c4332a44124343317e928&sublayer=0"
+      "portal_url": "https://www.arcgis.com/home/item.html?id=72f3650fe81c4332a44124343317e928&sublayer=0",
+      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution.",
+      "dataset_name": "Tree Inventory 2025 Explorer"
     }
   },
   {
@@ -3779,7 +4286,8 @@
     "country": "US",
     "license": {
       "api_url": "https://princetonnj.treekeepersoftware.com",
-      "portal_url": "https://www.princetonnj.gov/1402/Tree-Inventory"
+      "portal_url": "https://www.princetonnj.gov/1402/Tree-Inventory",
+      "license_comment": "No reuse license found in inspected tree-inventory information. Request modification and redistribution clarification from the municipality and inventory publisher."
     }
   },
   {
@@ -3788,7 +4296,8 @@
     "state": "MA",
     "country": "US",
     "license": {
-      "api_url": "https://supernova.arborprousa.com/api/communityviewer/features"
+      "api_url": "https://supernova.arborprousa.com/api/communityviewer/features",
+      "license_comment": "No reuse license found in inspected tree-inventory information. Request modification and redistribution clarification from the Town and inventory publisher."
     }
   },
   {
@@ -3798,7 +4307,8 @@
     "country": "US",
     "license": {
       "api_url": "https://dallastx.treekeepersoftware.com",
-      "portal_url": "https://dallascityhall.com/projects/forestry/Pages/Inventory.aspx"
+      "portal_url": "https://dallascityhall.com/projects/forestry/Pages/Inventory.aspx",
+      "license_comment": "No dataset-specific reuse license verified for the public TreeKeeper viewer. Request modification and redistribution clarification from the City and inventory publisher."
     }
   },
   {
@@ -3815,7 +4325,7 @@
       "notices": [
         "Nottingham City Council. Contains OS data © Crown copyright [and database right] [year]."
       ],
-      "license_comment": "The item specifies OGL 3.0 but supplies an Ordnance Survey attribution with unresolved [and database right] and [year] placeholders. Retained outside the release set pending confirmation of the correct notice and any applicable third-party rights exemption."
+      "license_comment": "Third-party rights unresolved: confirm an OS redistribution exemption and the correct copyright notice; the source leaves year/database-right placeholders unfilled."
     }
   },
   {
@@ -3824,8 +4334,16 @@
     "country": "AT",
     "license": {
       "api_url": "https://data.wien.gv.at/daten/geo",
-      "license": "https://data.wien.gv.at/nutzungsbedingungen",
-      "license_comment": "Service specifies CC BY 3.0 AT while current policy says CC BY 4.0; confirm the applicable version. Registry notes CC BY 3.0 AT on the service while current city policy says CC BY 4.0. Both are attribution licenses; exact version/source notice should be resolved."
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "portal_url": "https://www.data.gv.at/datasets/c91a4635-8b7d-43fe-9b27-d95dec8392a7",
+      "license_name": "CC BY 4.0 International",
+      "dataset_name": "Baumkataster bzw. Bäume Standorte Wien",
+      "attribution_name": "Stadt Wien",
+      "terms_url": "https://data.wien.gv.at/nutzungsbedingungen",
+      "notices": [
+        "Datenquelle: Stadt Wien - data.wien.gv.at"
+      ],
+      "license_comment": "Current official catalogue assigns CC BY 4.0; older WFS terms referenced CC BY 3.0 AT. Confirm the version applicable to the downloaded data."
     }
   },
   {
@@ -3833,7 +4351,13 @@
     "name": "Helsinki",
     "country": "FI",
     "license": {
-      "api_url": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs"
+      "api_url": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs",
+      "portal_url": "https://hri.fi/data/en_GB/dataset/helsingin-kaupungin-puurekisteri",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "license_name": "CC BY 4.0 International",
+      "dataset_name": "PuuAtlas - Urban tree database of the City of Helsinki",
+      "attribution_name": "City of Helsinki Urban Environment Division / Land Use and City Structure / Urban Space and Landscape Planning",
+      "license_comment": "Attribution/license added. The HRI citation requests the actual data-download date; add it to the notice after verifying the date for the data used."
     }
   },
   {
@@ -3843,14 +4367,14 @@
     "license": {
       "api_url": "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/les-arbres",
       "portal_url": "https://opendata.paris.fr/explore/dataset/les-arbres/",
-      "license": "http://opendatacommons.org/licenses/odbl/",
+      "license": "https://opendatacommons.org/licenses/odbl/1-0/",
       "license_name": "Open Database License (ODbL) 1.0",
       "dataset_name": "Arbres",
       "attribution_name": "Direction des Espaces Verts et de l'Environnement - Ville de Paris",
       "notices": [
         "Contains information from Arbres, which is made available under the Open Database License (ODbL)."
       ],
-      "license_comment": "ODbL attribution, database share-alike and access obligations may apply to combined/processed data; open-source app code alone is insufficient."
+      "license_comment": "Additional obligations: ODbL 4.4/4.6 require derivative-database share-alike and a machine-readable database or alterations offer; assess combined tiles and downstream restrictions."
     }
   },
   {
@@ -3861,7 +4385,8 @@
     "license": {
       "api_url": "https://services1.arcgis.com/qN3V93cYGMKQCOxL/arcgis/rest/services/Somerville_Tree_Inventory_as_of_03_05_23/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=4e33d47547e840fa9d459b275a367366&sublayer=0",
-      "license_comment": "Public copy of the city's tree inventory hosted by a Harvard CGA account; no license found and city provenance is unconfirmed, so redistribution rights are unknown."
+      "license_comment": "No municipal reuse grant verified: the ArcGIS copy has a third-party publisher. Request permission or an authoritative license from the actual data owner.",
+      "dataset_name": "Somerville Tree Inventory as of 03_05_23"
     }
   },
   {
@@ -3872,7 +4397,8 @@
     "license": {
       "api_url": "https://services1.arcgis.com/0j6vZbECadDEXdAS/arcgis/rest/services/Manhattan_Beach_Trimmed/FeatureServer/1",
       "portal_url": "https://www.arcgis.com/home/item.html?id=b5c1a267aaaa4065bfb9607d6bd3dfaf&sublayer=1",
-      "license_comment": "Public copy of the city's street tree inventory hosted by a Cal Poly account; no license found and city provenance is unconfirmed, so redistribution rights are unknown."
+      "license_comment": "No municipal reuse grant verified: the ArcGIS copy has a third-party publisher. Request permission or an authoritative license from the actual data owner.",
+      "dataset_name": "Manhattan Beach Trimmed"
     }
   },
   {
@@ -3883,7 +4409,8 @@
     "license": {
       "api_url": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Maywood_iTree_Inventory_WFL1/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=31e8a92e8ccb4e78b9facfc821081ef0&sublayer=0",
-      "license_comment": "Public copy of the city's i-Tree inventory hosted by a personal account; no license found and city provenance is unconfirmed, so redistribution rights are unknown."
+      "license_comment": "No municipal reuse grant verified: the ArcGIS copy has a third-party publisher. Request permission or an authoritative license from the actual data owner.",
+      "dataset_name": "Maywood iTree Inventory_WFL1"
     }
   },
   {
@@ -3894,7 +4421,8 @@
     "license": {
       "api_url": "https://services1.arcgis.com/WK6JRyyNiFsxCE3s/arcgis/rest/services/Aurora_Trees_7_7_19_PUBLIC/FeatureServer/0",
       "portal_url": "https://www.arcgis.com/home/item.html?id=8ba64cd696c6475db2a78ecfb9a39982&sublayer=0",
-      "license_comment": "Phillips Park trees only, published by a tree-care consultant (grafgis); no license found and city provenance is unconfirmed, so redistribution rights are unknown."
+      "license_comment": "No municipal reuse grant verified: the ArcGIS copy has a third-party publisher. Request permission or an authoritative license from the actual data owner.",
+      "dataset_name": "Aurora_Trees_7_7_19_PUBLIC"
     }
   },
   {
@@ -3905,7 +4433,7 @@
       "api_url": "https://api-open.data.gov.sg/v1/public/api/datasets/d_644ff187b6d14d6316f47284a4a6c81f/poll-download",
       "portal_url": "https://data.gov.sg/datasets/d_644ff187b6d14d6316f47284a4a6c81f/view",
       "license": "https://data.gov.sg/open-data-licence",
-      "license_comment": "Heritage Trees only; the separate TreesSG inventory is not openly licensed. The Singapore Open Data Licence permits application use and necessary sublicensing to app users, but imposes indemnification (including claims from third-party use), excludes downstream sublicensees, and applies newly issued licence versions to continued use. Retained outside the release set pending review of app/tile redistribution terms and acceptance of these obligations. Its example attribution includes a dataset access date; do not substitute the licence-review date for the date of the data actually used.",
+      "license_comment": "Additional obligations: verify that About-page source/license attribution is conspicuous; downstream redistribution requires a direct Singapore license.",
       "dataset_name": "Heritage Trees",
       "attribution_name": "National Parks Board",
       "license_name": "Singapore Open Data Licence 1.0"
@@ -3917,7 +4445,12 @@
     "country": "FR",
     "license": {
       "api_url": "https://data.grandlyon.com/geoserver/ows",
-      "license_comment": "No dataset-specific license found: WFS capabilities have no license field and the linked GeoNetwork metadata (c1b069ca-181d-4265-9838-8d182f207bd3) returns 404. Data Grand Lyon generally uses Licence Ouverte or ODbL; confirm with Data Grand Lyon support."
+      "portal_url": "https://data.grandlyon.com/portail/fr/jeux-de-donnees/arbres-alignement-metropole-lyon/info",
+      "license": "https://data.grandlyon.com/portail/fr/assets/licences/ETALAB-Licence-Ouverte-v2.0.pdf",
+      "license_name": "Licence Ouverte 2.0 (Etalab)",
+      "dataset_name": "Arbres d'alignement de la Métropole de Lyon",
+      "attribution_name": "Métropole de Lyon",
+      "last_updated": "(updated in build_data)"
     }
   }
 ]

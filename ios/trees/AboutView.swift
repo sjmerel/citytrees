@@ -57,10 +57,11 @@ struct HTMLView: UIViewRepresentable {
         let name: String
         let state: String?
         let country: String
+        let sites: Int
         let license: License?
 
         private enum CodingKeys: String, CodingKey {
-            case name, state, country, license
+            case name, state, country, sites, license
         }
 
         init(from decoder: Decoder) throws {
@@ -68,6 +69,7 @@ struct HTMLView: UIViewRepresentable {
             name = try values.decode(String.self, forKey: .name)
             state = try values.decodeIfPresent(String.self, forKey: .state)
             country = try values.decode(String.self, forKey: .country)
+            sites = try values.decode(Int.self, forKey: .sites)
             // Older downloaded datasets store only a license URL, not attribution metadata.
             if (try? values.decode(String.self, forKey: .license)) != nil {
                 license = nil
@@ -99,10 +101,10 @@ struct HTMLView: UIViewRepresentable {
             .sorted { $0.title.localizedStandardCompare($1.title) == .orderedAscending }
         return sections.map { title, cities in
             let items = cities
-                .map { city in (name: city.state.map { "\(city.name), \($0)" } ?? city.name, license: city.license) }
+                .map { city in (name: city.state.map { "\(city.name), \($0)" } ?? city.name, sites: city.sites, license: city.license) }
                 .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
-                .map { name, license in
-                    "<li style=\"list-style: none\"><details><summary style=\"font-size: inherit; font-weight: normal\">\(name.htmlEscaped)</summary>\(licenseHTML(license))</details></li>"
+                .map { name, sites, license in
+                    "<li style=\"list-style: none\"><details><summary style=\"font-size: inherit; font-weight: normal\">\(name.htmlEscaped) <span class=\"tree-count\">(\(sites.formatted()) trees)</span></summary>\(licenseHTML(license))</details></li>"
                 }
             return "<h3>\(title.htmlEscaped)</h3><ul>\(items.joined())</ul>"
         }.joined() + "<p class=\"license-statement\">All datasets listed above are modified by City Trees: records filtered, botanical names standardized, and data converted to map tiles.</p>"

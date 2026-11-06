@@ -17,7 +17,8 @@ async function main() {
   // normalize raw text
 
   console.log('loading...');
-  let data = loadCityData();
+  let cities = loadObject('cities.json');
+  let data = loadCityData(cities);
   console.log(`  = TOTAL: ${data.length} sites`);
 
 
@@ -67,8 +68,10 @@ async function main() {
   let sites = data.map(o => ({
     lat: o.lat,
     lon: o.lon,
+    city: o.city,
     type: typeIndex.get(o.name)!
   }));
+  data = []; // free memory
 
   let types = names.map(o => ({ 
     canonical_name: o,
@@ -98,10 +101,13 @@ async function main() {
 
   console.log();
   console.log('writing json files...');
-  console.log(`  ${sites.length} sites`);
-  writeArray(types, 'types.json');
   console.log(`  ${types.length} unique types`);
-  writeArray(sites, 'sites.json');
+  saveLargeArray(types, 'types.json');
+  console.log(`  ${sites.length} sites`);
+  saveLargeArray(sites, 'sites.json');
+
+  cities = processCities(cities, sites, types);
+  saveObject('cities_out.json', cities);
 }
 
 
@@ -109,8 +115,7 @@ async function main() {
 
 ////////////////////////////////////////
 
-function loadCityData(): any[] {
-  let cities = loadObject('cities.json');
+function loadCityData(cities: any[]): any[] {
   let data = [];
   for (let cityObj of cities) {
     let cityData = loadObject(`cities/${cityObj.code}.json`);
@@ -421,6 +426,28 @@ async function getWikipediaUrls(types: any[]): Promise<any[]> {
   return types;
 }
 
+
+////////////////////////////////////////
+
+function processCities(cities: any[], sites: any[], types: any[]): any[] {
+  let counts = sites.reduce((acc, cur) => {
+    acc[cur.city] = (acc[cur.city] ?? 0) + 1;
+    return acc;
+  }, {});
+
+  for (let city of cities) {
+    delete city.license.license_comment;
+    city.sites = counts[city.code];
+    if (Object.hasOwn(city.license, 'last_updated')) {
+      // some licenses require last date of access
+      city.license.last_updated = fs.statSync(`./cities/${city.code}.json`).birthtime.toLocaleDateString('en-US');
+    }
+  }
+
+  return cities;
+}
+
+
 ////////////////////////////////////////
 
 function loadCache(path: string): any {
@@ -453,7 +480,7 @@ function saveObject(path: string, cache: any) {
 }
 
 // write large array in chunks, if the full string is too long
-function writeArray(array: [any], path: string) {
+function saveLargeArray(array: [any], path: string) {
   let fd = fs.openSync(path, 'w');
   fs.writeSync(fd, '[');
   for (let i = 0; i < array.length; i += 50000) {

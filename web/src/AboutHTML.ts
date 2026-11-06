@@ -15,11 +15,12 @@ export function citiesHTML(cities: City[]): string {
             const items = cities
                 .map(city => ({
                     name: city.state != null ? `${city.name}, ${city.state}` : city.name,
+                    sites: city.sites,
                     license: typeof city.license === 'string' ? null : city.license,
                 }))
                 .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }))
-                .map(({ name, license }) =>
-                    `<li style="list-style: none"><details><summary style="font-size: inherit; font-weight: normal">${htmlEscaped(name)}</summary>${licenseHTML(license)}</details></li>`);
+                .map(({ name, sites, license }) =>
+                    `<li style="list-style: none"><details><summary style="font-size: inherit; font-weight: normal">${htmlEscaped(name)} <span class="tree-count">(${sites.toLocaleString()} trees)</span></summary>${licenseHTML(license)}</details></li>`);
             return `<h3>${htmlEscaped(title)}</h3><ul>${items.join('')}</ul>`;
         }).join('') + '<p class="license-statement">All datasets listed above are modified by City Trees: records filtered, botanical names standardized, and data converted to map tiles.</p>';
 }

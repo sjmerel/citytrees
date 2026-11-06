@@ -92,12 +92,14 @@ object HTMLView {
         val name: String,
         val state: String?,
         val country: String,
+        val sites: Int,
         val license: License?
     ) {
         constructor(values: JSONObject) : this(
             values.requiredString("name"),
             values.optionalString("state"),
             values.requiredString("country"),
+            values.get("sites") as Int,
             // Older downloaded datasets store only a license URL, not attribution metadata.
             if (values.opt("license") is String || values.isNull("license")) null
             else License(values.getJSONObject("license"))
@@ -121,15 +123,16 @@ object HTMLView {
     // The cities in cities.json (downloaded with the data set), as an HTML list per country.
     private fun citiesHTML(cities: List<City>): String {
         val collator = Collator.getInstance()
+        val numberFormat = NumberFormat.getIntegerInstance()
         val sections = cities.groupBy { it.country }
             .map { (code, cities) -> Pair(Locale("", code).displayCountry, cities) }
             .sortedWith { a, b -> collator.compare(a.first, b.first) }
         return sections.joinToString("") { (title, cities) ->
             val items = cities
-                .map { city -> Pair(if (city.state != null) "${city.name}, ${city.state}" else city.name, city.license) }
+                .map { city -> Triple(if (city.state != null) "${city.name}, ${city.state}" else city.name, city.sites, city.license) }
                 .sortedWith { a, b -> collator.compare(a.first, b.first) }
-                .map { (name, license) ->
-                    "<li style=\"list-style: none\"><details><summary style=\"font-size: inherit; font-weight: normal\">${name.htmlEscaped}</summary>${licenseHTML(license)}</details></li>"
+                .map { (name, sites, license) ->
+                    "<li style=\"list-style: none\"><details><summary style=\"font-size: inherit; font-weight: normal\">${name.htmlEscaped} <span class=\"tree-count\">(${numberFormat.format(sites)} trees)</span></summary>${licenseHTML(license)}</details></li>"
                 }
             "<h3>${title.htmlEscaped}</h3><ul>${items.joinToString("")}</ul>"
         } + "<p class=\"license-statement\">All datasets listed above are modified by City Trees: records filtered, botanical names standardized, and data converted to map tiles.</p>"

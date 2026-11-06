@@ -86,10 +86,15 @@ p {
     margin-bottom: 3px;
 }
 
+.tree-count {
+    opacity: 60%;
+}
+
 .license-statement {
-    font-size: 13px;
+    font-size: 11px;
     line-height: 1.4;
     margin-bottom: 6px;
+    margin-left: 18px;
 }
 
 .city-request {

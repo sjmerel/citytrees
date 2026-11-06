@@ -7,6 +7,7 @@ export interface City {
     name: string;
     state?: string | null;
     country: string;
+    sites: number;
     license?: License | string | null;
 }
 
@@ -90,6 +91,7 @@ export class Dataset {
         return typeof value === 'object' && value !== null &&
             'name' in value && typeof value.name === 'string' &&
             'country' in value && typeof value.country === 'string' &&
+            'sites' in value && typeof value.sites === 'number' && Number.isSafeInteger(value.sites) &&
             (!('state' in value) || value.state == null || typeof value.state === 'string') &&
             (!('license' in value) || value.license == null ||
                 typeof value.license === 'string' || Dataset.validLicense(value.license));
