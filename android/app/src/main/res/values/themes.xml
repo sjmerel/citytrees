@@ -2,6 +2,6 @@
 <resources>
 
     <style name="Theme.Trees" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:windowSplashScreenBackground">#DCE8D5</item>
+        <item name="android:windowSplashScreenBackground">#8cc4b9</item>
     </style>
 </resources>
