@@ -61,6 +61,7 @@ fun ContentView() {
     var dataCheckError by remember { mutableStateOf<String?>(null) }
     var dataCheckAttempt by remember { mutableIntStateOf(0) }
     var showingStartup by remember { mutableStateOf(true) }
+    var startupSecondsRemaining by remember { mutableIntStateOf(5) }
 
     // Android-specific: the last selection, shown while the selection card fades out
     var lastSelectedTypeIndex by remember { mutableStateOf<Int?>(null) }
@@ -154,7 +155,7 @@ fun ContentView() {
             })
         }
         AnimatedVisibility(showingStartup, enter = fadeIn(tween(300)), exit = fadeOut(tween(300))) {
-            StartupView { showingStartup = false }
+            StartupView(secondsRemaining = startupSecondsRemaining) { showingStartup = false }
         }
     }
 
@@ -181,7 +182,10 @@ fun ContentView() {
     }
 
     LaunchedEffect(Unit) {
-        delay(5000)
+        while (startupSecondsRemaining > 0 && showingStartup) {
+            delay(1000)
+            startupSecondsRemaining -= 1
+        }
         showingStartup = false
     }
 }

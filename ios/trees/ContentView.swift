@@ -15,6 +15,7 @@ struct ContentView: View {
     @State private var dataCheckError: String?
     @State private var dataCheckAttempt = 0
     @State private var showingStartup = true
+    @State private var startupSecondsRemaining = 5
 
     var body: some View {
         // the map extends under the top safe area too; the overlays stay below it
@@ -106,7 +107,7 @@ struct ContentView: View {
                             .contentShape(Rectangle())
                             .ignoresSafeArea()
                             .onTapGesture { showingStartup = false }
-                        StartupView { showingStartup = false }
+                        StartupView(secondsRemaining: startupSecondsRemaining) { showingStartup = false }
                             .padding(.horizontal, 30)
                     }
                     .transition(.opacity)
@@ -115,7 +116,10 @@ struct ContentView: View {
             .animation(.easeInOut(duration: 0.3), value: showingStartup)
             .task {
                 do {
-                    try await Task.sleep(for: .seconds(5))
+                    while startupSecondsRemaining > 0 && showingStartup {
+                        try await Task.sleep(for: .seconds(1))
+                        startupSecondsRemaining -= 1
+                    }
                     showingStartup = false
                 }
                 catch {}

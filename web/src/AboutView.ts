@@ -1,5 +1,6 @@
 import aboutHTML from '../../assets/about.html?raw';
 import aboutStyles from '../../assets/styles.css?raw';
+import startupArtwork from '../../assets/icon_wide.svg';
 import type { City } from './Dataset';
 import { citiesHTML } from './AboutHTML';
 
@@ -13,9 +14,12 @@ export class AboutView {
             .replaceAll('[CITY_COUNT]', cities.length.toLocaleString())
             .replace('[CITIES]', () => citiesHTML(cities));
         const page = new DOMParser().parseFromString(html, 'text/html');
+        page.querySelector<HTMLImageElement>('.startup-artwork')!.src = startupArtwork;
         page.querySelector('link[rel="stylesheet"]')!.remove();
         const style = page.createElement('style');
-        style.textContent = `${aboutStyles}\nhtml { scrollbar-gutter: stable; }`;
+        style.textContent = `${aboutStyles}
+html { scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }`;
         page.head.append(style);
 
         for (const link of page.querySelectorAll('a')) {

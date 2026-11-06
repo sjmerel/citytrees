@@ -12,12 +12,15 @@ struct AboutView: View {
             .overlay(alignment: .topTrailing) {
                 Button(action: { dismiss() }) {
                     Image("x")
-                        .font(.system(size: 12, weight: .semibold))
-                        .foregroundColor(.gray)
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 48, height: 48)
+                        .foregroundColor(Color(red: 29 / 255, green: 73 / 255, blue: 64 / 255))
                         .padding(8)
                 }
                 .accessibilityLabel("Close")
-                .padding(8)
+                .offset(x: 4, y: -4)
             }
     }
 }
@@ -29,6 +32,8 @@ struct HTMLView: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
+        webView.scrollView.pinchGestureRecognizer?.isEnabled = false
+        webView.scrollView.alwaysBounceHorizontal = false
         if let url = Bundle.main.url(forResource: resource, withExtension: "html"),
            var html = try? String(contentsOf: url, encoding: .utf8) {
             let data = try! Data(contentsOf: Dataset.instance.localDir.appendingPathComponent("cities.json"))
@@ -36,6 +41,10 @@ struct HTMLView: UIViewRepresentable {
             html = html.replacingOccurrences(of: "[TREE_COUNT]", with: TileDb.instance.siteCount.formatted())
                 .replacingOccurrences(of: "[CITY_COUNT]", with: cities.count.formatted())
                 .replacingOccurrences(of: "[CITIES]", with: Self.citiesHTML(cities))
+                .replacingOccurrences(of: "width=device-width, initial-scale=1",
+                                      with: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+                .replacingOccurrences(of: "</head>",
+                                      with: "<style>html, body { overflow-x: hidden; }</style></head>")
             // read access to the bundle lets the page load its stylesheet
             webView.loadHTMLString(html, baseURL: url.deletingLastPathComponent())
         }

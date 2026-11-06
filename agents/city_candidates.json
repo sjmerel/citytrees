@@ -513,6 +513,16 @@
       "next_step": "Earlier ArcGIS search found no usable municipal botanical inventory; check official sources and alternative download formats."
     },
     {
+      "place": "Angers, FR",
+      "next_step": "Import the official arbres signaux point inventory if this small, explicitly partial planting-program coverage is wanted: 314 records with nom_latin and WGS84 points, e.g. Celtis australis and Quercus suber. ODbL 1.0; review database share-alike obligations. Portal processed 2026-10-27, but sampled date_mise_a_jour is 03/2022, not a 2026 survey. Check all records for missing names/locations and seek a broader municipal inventory.",
+      "urls": [
+        "https://data.angers.fr/explore/dataset/arbre-signal-angers/",
+        "https://data.angers.fr/api/explore/v2.1/catalog/datasets/arbre-signal-angers/exports/json",
+        "https://opendatacommons.org/licenses/odbl/"
+      ],
+      "checked_on": "2026-11-03"
+    },
+    {
       "place": "Asheville, NC, US",
       "next_step": "Earlier catalog search found no usable municipal botanical inventory; search official municipal sources beyond ArcGIS."
     },
@@ -612,8 +622,30 @@
       "checked_on": "2026-10-27"
     },
     {
+      "place": "Brest Metropole, FR",
+      "next_step": "Import official Espaces Verts tree point layer: 27,881 records with GENRE/ESPEC and verified Brest-area WGS84 coordinates (Pinus, Betula pendula). Licence Ouverte v2 per the municipal data.gouv.fr publication. Paginate ArcGIS queries (1,000-record cap); preserve valid genus-only names. SUPPR is non throughout, but 585 records have LIBRE=oui despite botanical attributes: establish whether these are vacant locations before including them; conservative candidate subset LIBRE=non has 27,296 records before botanical validation. DTPLA is planting year, not inspection date.",
+      "urls": [
+        "https://www.data.gouv.fr/datasets/les-arbres",
+        "https://geo.brest-metropole.fr/arcgis/rest/services/public/GPB_ESP_Intra_EV_Arbres/MapServer/1411070",
+        "https://www.etalab.gouv.fr/licence-ouverte-open-licence/"
+      ],
+      "checked_on": "2026-11-03"
+    },
+    {
       "place": "Brighton, UK",
       "next_step": "Limited ArcGIS/data.gov.uk search found no official botanical inventory; check council GIS and CSV/GeoJSON/WFS downloads."
+    },
+    {
+      "place": "British Columbia (BC BigTree Registry), BC, CA",
+      "next_step": "Obtain written redistribution permission from the registry/UBC before importing: UBC terms permit only unmodified short extracts for personal non-commercial use and prohibit republication without consent; no dataset-specific open license found. March 2026 living-tree CSV on the officially linked public map has 1,972 records, 1,769 numeric coordinate pairs including five Salt Spring trees; six numeric pairs are geographically invalid. Exclude hidden/missing/no-access coordinates, validate BC geography, and handle seven NAD27 records separately from NAD83/WGS84. Map common names through UBC's authoritative tree-identification list, not tree_sp_code (inconsistent with common_name in multiple rows). CSV is cp1252; direct official CSV GET returned HTML. Province-wide coverage needs maxRadiusDegrees configured to prevent the pipeline's default city-radius filter dropping distant trees. Check age/current status, overlap with municipal inventories, and respect private-property/access restrictions.",
+      "urls": [
+        "https://bigtrees.forestry.ubc.ca/bc-bigtree-registry/",
+        "https://www.ubc.ca/site/legal.html",
+        "https://bigtrees.forestry.ubc.ca/people/",
+        "https://bigtrees.forestry.ubc.ca/nominating-trees/tree-identification/",
+        "https://ngottlieb.github.io/bc-bigtree-registry/data/BCBT_Mar_24_2026.csv"
+      ],
+      "checked_on": "2026-11-03"
     },
     {
       "place": "Brownsville, TX, US",
@@ -683,6 +715,16 @@
       "next_step": "Earlier catalog search found no usable municipal botanical inventory; search official municipal sources beyond ArcGIS."
     },
     {
+      "place": "Cologne, DE",
+      "next_step": "Import official daily-updated municipal Baumkataster WFS (ms:baumkataster): 108,090 records; verified Botanischer_Name values Tsuga canadensis, Thuja occidentalis and Acer saccharinum. DL-DE-Zero 2.0. Municipal individual trees only, not all city trees. Important: sampled GeoJSON ignored srsName=EPSG:4326 and returned EPSG:25832 meter coordinates; explicitly reproject and validate Cologne geography, or use a correctly transformed GML response. Check full export for unnamed/vacant/stump records and trim botanical whitespace.",
+      "urls": [
+        "https://offenedaten-koeln.de/dataset/baumkataster-koeln-fortlaufend-aktualisiert",
+        "https://geoportal.stadt-koeln.de/wss/service/baumkataster_extern_wfs/guest?SERVICE=WFS&REQUEST=GetCapabilities",
+        "https://www.govdata.de/dl-de/zero-2-0"
+      ],
+      "checked_on": "2026-11-03"
+    },
+    {
       "place": "Colorado Springs, CO, US",
       "next_step": "Earlier ArcGIS search found no usable municipal botanical inventory; check official sources and alternative download formats."
     },
@@ -736,6 +778,15 @@
     {
       "place": "Downey, CA, US",
       "next_step": "Earlier ArcGIS/city-portal search found no usable botanical inventory; check official sources for newer publications."
+    },
+    {
+      "place": "Eindhoven, NL",
+      "next_step": "Import official bomen API/export: 127,909 municipal-managed tree points, including botanical boomsoort (Quercus robur, Tilia tomentosa); 17,695 boomsoort values are null, so raw count is not usable count. Portal labels data Publiek domein; retain the exact dataset terms rather than assuming a particular CC license. Data processed 2026-11-02, not a verified survey date. Woods usually omitted. Validate all botanical values and coordinates, excluding placeholders/vacancies; boomsoort_varieteit often says Geen and should not be appended.",
+      "urls": [
+        "https://data.eindhoven.nl/explore/dataset/bomen/",
+        "https://data.eindhoven.nl/api/explore/v2.1/catalog/datasets/bomen/exports/json"
+      ],
+      "checked_on": "2026-11-03"
     },
     {
       "place": "El Paso, TX, US",
@@ -860,6 +911,27 @@
       "place": "Greenwich, CT, US",
       "next_step": "Confirmed via groupByFieldsForStatistics: Parks_Trees_Merge2 has only 839 of 41,272 records with non-blank Genus (rest are a single-space placeholder, not true NULL); TreeWorks_Trees_2010 (10,153 records) has abbreviated common names only (e.g. 'mapl,sugar'), no botanical value. Neither is promotable as-is; seek broader street-tree coverage with a real botanical field.",
       "checked_on": "2026-11-01"
+    },
+    {
+      "place": "Grenoble, FR",
+      "next_step": "Import official city CSV with genre_bota + espece and geo_point_2d (latitude,longitude). Full CSV checked: 31,670 records, 30,859 with nonempty genus and location; sampled Prunus serrulata. All anneeabattage/essouchement/causeabattage are empty. Finish botanical/coordinate/placeholder validation. ODbL 1.0 requires database share-alike review. Export dated 2026-02-28; later catalog modification is not a newer survey. Bastille natural area excluded, and semi-natural woods include only larger individually recorded trees. A separate metro-wide inventory also exists; check it before selecting the largest non-overlapping source.",
+      "urls": [
+        "https://data.metropolegrenoble.fr/visualisation/information/?id=arbres-grenoble",
+        "https://data.metropolegrenoble.fr/sites/default/files/dataset/761/24734-6258-4184-a964-1af2e4f68ce9/arbres_grenoble_epsg4326.csv",
+        "https://data.metropolegrenoble.fr/visualisation/information/?id=patrimoine_arbore_du_territoire_metropolitain",
+        "https://opendatacommons.org/licenses/odbl/"
+      ],
+      "checked_on": "2026-11-03"
+    },
+    {
+      "place": "Groningen, NL",
+      "next_step": "Import official monthly municipal WFS/JSON: 126,016 points, LATIJNSE_NAAM with actual Betula pendula and Quercus robur values and verified local WGS84 coordinates. Municipality includes Haren/Glimmen, not just central Groningen. CC BY 4.0; publisher says data updated through 2026-11-02. Page or bulk-download geo-data:Bomen gemeente Groningen, validate all botanical values and exclude vacancies/stumps/unknowns; do not treat KIEMJAAR as inspection date.",
+      "urls": [
+        "https://data.groningen.nl/dataset/bomen/04da3775-07f0-4388-bc12-7cd7536b04cd",
+        "https://maps.groningen.nl/geoserver/geo-data/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geo-data%3ABomen%20gemeente%20Groningen&maxFeatures=1000000&outputFormat=application%2Fjson&srsName=EPSG%3A4326",
+        "https://creativecommons.org/licenses/by/4.0/"
+      ],
+      "checked_on": "2026-11-03"
     },
     {
       "place": "Harrisonburg, VA, US",
@@ -1107,6 +1179,16 @@
       "checked_on": "2026-10-26"
     },
     {
+      "place": "Montpellier, FR",
+      "next_step": "Import official MMM_MTP_Arbres.json GeoJSON, not the CSV (which lacks coordinates). Full GeoJSON loads with 60,882 point features; sampled local WGS84 positions and nom_latin Platanus x hispanica, with other botanical names verified in CSV. Publisher describes 2025-2026 mobile-mapping/imaging inventory of roadside and municipal park/school trees, not a modeled canopy-count layer; assess classification quality during full validation. ODbL 1.0 database share-alike review required. Filter missing/unknown names and invalid positions before quoting usable count.",
+      "urls": [
+        "https://data.montpellier3m.fr/dataset/arbres-de-montpellier",
+        "https://data.montpellier3m.fr/sites/default/files/ressources/MMM_MTP_Arbres.json",
+        "https://opendatacommons.org/licenses/odbl/"
+      ],
+      "checked_on": "2026-11-03"
+    },
+    {
       "place": "Moreno Valley, CA, US",
       "next_step": "Initial catalog search found student heat/canopy layers, not a verified municipal botanical inventory. Seek an official Parks/Public Works tree export.",
       "checked_on": "2026-10-26"
@@ -1114,6 +1196,16 @@
     {
       "place": "Nanaimo, BC, CA",
       "next_step": "Earlier catalog searches found no usable municipal botanical inventory; revisit official sources and check current regional coverage."
+    },
+    {
+      "place": "Nantes Metropole, FR",
+      "next_step": "Import official combined Nantes city/metropole inventory, covering roadside trees in 24 communes plus Nantes municipal parks/schools. 124,583 tree locations total; 104,068 have statut=Plante (accented in source); exclude unqualified/other-status locations unless verified planted. Botanical lib_genre + lib_espece and WGS84 geo_point_2d verified (Quercus palustris, Fraxinus floribunda). Licence Ouverte. Export processed 2026-02-20, while sample date_inventaire is 2021-2022; do not repeat legacy 2013 metadata date as latest survey. Validate botanical names and positions on planted subset.",
+      "urls": [
+        "https://data.nantesmetropole.fr/explore/dataset/244400404_patrimoine-arbore-nantes-metropole/",
+        "https://data.nantesmetropole.fr/api/explore/v2.1/catalog/datasets/244400404_patrimoine-arbore-nantes-metropole/exports/json",
+        "https://www.etalab.gouv.fr/licence-ouverte-open-licence"
+      ],
+      "checked_on": "2026-11-03"
     },
     {
       "place": "Napa, CA, US",
@@ -1242,6 +1334,16 @@
       "next_step": "Earlier catalog searches found no usable municipal botanical inventory; revisit official sources and check current regional coverage."
     },
     {
+      "place": "Rennes Metropole, FR",
+      "next_step": "Import official arbre export after ODbL 1.0 database share-alike review. Raw 192,008 public-space points include 108,111 with genre=Non renseigne (accented in source), including topographic-only records; do not import those. API filter non-null/non-placeholder genre and abattu=0 yields 83,768 potential botanical records before full name/coordinate validation. Verified Prunus domestica and local WGS84 points. Combine genre + espece; omit cultivar. Coverage varies by participating commune. Export refreshed 2026-11-03, not a universal inspection date.",
+      "urls": [
+        "https://data.rennesmetropole.fr/explore/dataset/arbre/",
+        "https://data.rennesmetropole.fr/api/explore/v2.1/catalog/datasets/arbre/exports/json",
+        "https://opendatacommons.org/licenses/odbl/"
+      ],
+      "checked_on": "2026-11-03"
+    },
+    {
       "place": "Reno, NV, US",
       "next_step": "Earlier ArcGIS search found no usable municipal botanical inventory; check official sources and alternative download formats."
     },
@@ -1277,6 +1379,15 @@
     {
       "place": "Salt Lake City, UT, US",
       "next_step": "Earlier ArcGIS search found no usable municipal botanical inventory; check official sources and alternative download formats."
+    },
+    {
+      "place": "Salt Spring Island, BC, CA",
+      "next_step": "Additional local coverage beyond the BC BigTree Registry lead: no general municipal botanical inventory found. Ask Salt Spring Conservancy/CRD PARC for a shareable ground-surveyed inventory or local Big Tree Project data (reported 34 trees). UBC/Raincoast/Conservancy fieldwork is another lead, but LiDAR-derived tree heights alone do not identify species; do not import canopy/ecosystem polygons.",
+      "urls": [
+        "https://gulfislandsdriftwood.com/big-tree-project-tallies-most-remarkable-giants/",
+        "https://www.raincoast.org/2020/09/big-tree-hunting-on-salt-spring-island/"
+      ],
+      "checked_on": "2026-11-03"
     },
     {
       "place": "San Antonio, TX, US",
@@ -1387,6 +1498,16 @@
     {
       "place": "Stonnington, VIC, AU",
       "next_step": "Earlier data.gov.au/ArcGIS search found no usable botanical inventory; check council GIS/downloads and verify per-tree coverage."
+    },
+    {
+      "place": "Strasbourg Eurometropole, FR",
+      "next_step": "Import official monthly patrimoine_arbore export under Licence Ouverte v2.0. 83,832 individual tree points; 83,726 have non-null si_essence and WGS84 point before final botanical validation. Actual values include Acer platanoides and Alnus spaethii x (normalize hybrid formatting). Covers metropolitan roadside/public equipment trees plus Strasbourg municipal parks/schools, not woods/private trees or other communes' municipal trees. Export processed 2026-11-01; no per-tree inspection date exposed. Validate names, empty sites and coordinate bounds across the full export.",
+      "urls": [
+        "https://data.strasbourg.eu/explore/dataset/patrimoine_arbore/",
+        "https://data.strasbourg.eu/api/explore/v2.1/catalog/datasets/patrimoine_arbore/exports/json",
+        "https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"
+      ],
+      "checked_on": "2026-11-03"
     },
     {
       "place": "Thousand Oaks, CA, US",
