@@ -19,11 +19,8 @@ export interface License {
     license?: string | null;
     license_name?: string | null;
     terms_url?: string | null;
-    attribution_statement?: string | null;
+    notices?: string[] | null;
     attribution_url?: string | null;
-    copyright_notice?: string | null;
-    disclaimer_notice?: string | null;
-    previous_modifications?: string | null;
 }
 
 export class Dataset {
@@ -105,9 +102,12 @@ export class Dataset {
             !('url' in value && typeof value.url === 'string')) {
             return false;
         }
+        if ('notices' in value && value.notices != null &&
+            (!Array.isArray(value.notices) || !value.notices.every(notice => typeof notice === 'string'))) {
+            return false;
+        }
         const fields = ['url', 'api_url', 'portal_url', 'dataset_name', 'attribution_name', 'license', 'license_name', 'terms_url',
-            'attribution_statement', 'attribution_url', 'copyright_notice', 'disclaimer_notice',
-            'previous_modifications'];
+            'attribution_url'];
         return Object.entries(value).every(([key, field]) =>
             !fields.includes(key) || field == null || typeof field === 'string');
     }

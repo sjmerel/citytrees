@@ -28,25 +28,28 @@ function licenseHTML(license: License | null | undefined): string {
     if (license != null) {
         const paragraphs: string[] = [];
         const source = license.portal_url ?? license.api_url ?? license.url;
-        const title = license.dataset_name;
-        const provider = license.attribution_name;
-        if (title != null && provider != null) {
-            paragraphs.push(`Data: ${linkHTML(title, source)}, by ${htmlEscaped(provider)}.`);
+        let row = 'Data: ';
+        const datasetName = license.dataset_name;
+        if (datasetName != null) {
+            row += linkHTML(datasetName, source);
         }
         else {
-            paragraphs.push(linkHTML('Dataset source', source));
+            row += linkHTML('Dataset source', source);
         }
+        const attrName = license.attribution_name;
+        if (attrName != null) {
+            row += `, by ${htmlEscaped(attrName)}`;
+        }
+        paragraphs.push(row);
+
         const name = license.license_name;
         const url = license.license;
         if (name != null && url != null) {
             const label = name.startsWith('CC0 ') ? 'Public-domain dedication' : 'Licensed under';
             paragraphs.push(`${label} ${linkHTML(name, url)}.`);
         }
-        for (const notice of [license.attribution_statement, license.copyright_notice,
-            license.disclaimer_notice, license.previous_modifications]) {
-            if (notice != null) {
-                paragraphs.push(htmlEscaped(notice));
-            }
+        for (const notice of license.notices ?? []) {
+            paragraphs.push(htmlEscaped(notice));
         }
         if (license.attribution_url != null) {
             paragraphs.push(linkHTML('Attribution source', license.attribution_url));

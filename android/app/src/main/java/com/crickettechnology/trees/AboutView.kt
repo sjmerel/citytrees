@@ -110,11 +110,8 @@ object HTMLView {
         val license = values.optionalString("license")
         val license_name = values.optionalString("license_name")
         val terms_url = values.optionalString("terms_url")
-        val attribution_statement = values.optionalString("attribution_statement")
+        val notices = values.optionalStringArray("notices")
         val attribution_url = values.optionalString("attribution_url")
-        val copyright_notice = values.optionalString("copyright_notice")
-        val disclaimer_notice = values.optionalString("disclaimer_notice")
-        val previous_modifications = values.optionalString("previous_modifications")
     }
 
     // The cities in cities.json (downloaded with the data set), as an HTML list per country.
@@ -138,25 +135,28 @@ object HTMLView {
         if (license != null) {
             val paragraphs = ArrayList<String>()
             val source = license.portal_url ?: license.api_url ?: license.url
-            val title = license.dataset_name
-            val provider = license.attribution_name
-            if (title != null && provider != null) {
-                paragraphs.add("Data: ${linkHTML(title, source)}, by ${provider.htmlEscaped}.")
+            var row = "Data: "
+            val datasetName = license.dataset_name
+            if (datasetName != null) {
+                row += linkHTML(datasetName, source)
             }
             else {
-                paragraphs.add(linkHTML("Dataset source", source))
+                row += linkHTML("Dataset source", source)
             }
+            val attrName = license.attribution_name
+            if (attrName != null) {
+                row += ", by ${attrName.htmlEscaped}"
+            }
+            paragraphs.add(row)
+
             val name = license.license_name
             val licenseUrl = license.license
             if (name != null && licenseUrl != null) {
                 val label = if (name.startsWith("CC0 ")) "Public-domain dedication" else "Licensed under"
                 paragraphs.add("$label ${linkHTML(name, licenseUrl)}.")
             }
-            for (notice in listOf(license.attribution_statement, license.copyright_notice,
-                                  license.disclaimer_notice, license.previous_modifications)) {
-                if (notice != null) {
-                    paragraphs.add(notice.htmlEscaped)
-                }
+            for (notice in license.notices ?: emptyList()) {
+                paragraphs.add(notice.htmlEscaped)
             }
             val attributionUrl = license.attribution_url
             if (attributionUrl != null) {
@@ -208,5 +208,13 @@ object HTMLView {
 
     private fun JSONObject.optionalString(key: String): String? {
         return if (isNull(key)) null else requiredString(key)
+    }
+
+    private fun JSONObject.optionalStringArray(key: String): List<String>? {
+        if (isNull(key)) {
+            return null
+        }
+        val values = getJSONArray(key)
+        return List(values.length()) { values.get(it) as String }
     }
 }

@@ -267,8 +267,10 @@
       "dataset_name": "Trees_FCC",
       "attribution_name": "Fingal County Council",
       "license_name": "CC BY 4.0 International",
-      "attribution_statement": "Contains Irish Public Sector Data licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) licence.",
-      "disclaimer_notice": "Please Note that the locations are estimates of location ‘actual location of trees’ rather than individual tree. e.g. maybe at a house and the point is pointing to the dwelling not the actual tree. The accuracy of the recorded counts can be affected by a number of factors including distance from dwelling or nearest geo point, but can vary depending on location of trees."
+      "notices": [
+        "Contains Irish Public Sector Data licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) licence.",
+        "Please Note that the locations are estimates of location ‘actual location of trees’ rather than individual tree. e.g. maybe at a house and the point is pointing to the dwelling not the actual tree. The accuracy of the recorded counts can be affected by a number of factors including distance from dwelling or nearest geo point, but can vary depending on location of trees."
+      ]
     }
   },
   {
@@ -283,7 +285,9 @@
       "dataset_name": "Tree Data Survey 2026 SDCC",
       "attribution_name": "South Dublin County Council",
       "license_name": "CC BY 4.0 International",
-      "attribution_statement": "Contains Irish Public Sector Data licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) licence."
+      "notices": [
+        "Contains Irish Public Sector Data licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) licence."
+      ]
     }
   },
   {
@@ -313,7 +317,9 @@
       "dataset_name": "Tree Inventory View",
       "attribution_name": "Latrobe City Council",
       "license_name": "CC BY 4.0 International",
-      "disclaimer_notice": "No warranties are given. The license may not give you all of the permissions necessary for your intended use. Other rights such as publicity, privacy, or moral rights may limit how you use the material."
+      "notices": [
+        "No warranties are given. The license may not give you all of the permissions necessary for your intended use. Other rights such as publicity, privacy, or moral rights may limit how you use the material."
+      ]
     }
   },
   {
@@ -343,7 +349,9 @@
       "dataset_name": "Street_Trees_Amherst_Town",
       "attribution_name": "Town of Amherst",
       "license_name": "CC BY 4.0 International",
-      "attribution_statement": "This data was provided by the Town of Amherst and derived from data hosted on Ersi.",
+      "notices": [
+        "This data was provided by the Town of Amherst and derived from data hosted on Ersi."
+      ],
       "attribution_url": "https://maps2-amherstma.opendata.arcgis.com/datasets/AmherstMA::street-trees/about"
     }
   },
@@ -360,7 +368,9 @@
       "dataset_name": "Tree Inventory",
       "attribution_name": "U.S. Forest Service",
       "license_name": "CC0 1.0",
-      "disclaimer_notice": "The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, owners hip, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and land users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly."
+      "notices": [
+        "The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, owners hip, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and land users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly."
+      ]
     }
   },
   {
@@ -375,7 +385,9 @@
       "dataset_name": "Botanic collection — Sherwood Arboretum",
       "attribution_name": "Brisbane City Council",
       "license_name": "CC BY 4.0 International",
-      "copyright_notice": "© Brisbane City Council 2024"
+      "notices": [
+        "© Brisbane City Council 2024"
+      ]
     }
   },
   {
@@ -470,8 +482,10 @@
       "dataset_name": "London Public Realm Trees",
       "attribution_name": "Greater London Authority; data collated by Greenspace Information for Greater London (GiGL)",
       "license_name": "Open Government Licence 3.0",
-      "attribution_statement": "Contains public sector information licensed under the Open Government Licence v3.0.",
-      "previous_modifications": "The source dataset was collated by GiGL from London boroughs, the City of London, Transport for London, the Royal Parks, the London Legacy Development Corporation and Quintain; botanical names were standardized using Kew's Plants of the World Online."
+      "notices": [
+        "Contains public sector information licensed under the Open Government Licence v3.0.",
+        "The source dataset was collated by GiGL from London boroughs, the City of London, Transport for London, the Royal Parks, the London Legacy Development Corporation and Quintain; botanical names were standardized using Kew's Plants of the World Online."
+      ]
     }
   },
   {
@@ -485,7 +499,9 @@
       "dataset_name": "Belfast Trees Open Data",
       "attribution_name": "Belfast City Council",
       "license_name": "Open Government Licence 3.0",
-      "attribution_statement": "Contains public sector information licensed under the Open Government Licence v3.0.",
+      "notices": [
+        "Contains public sector information licensed under the Open Government Licence v3.0."
+      ],
       "attribution_url": "https://www.belfastcity.gov.uk/open-and-linked-data"
     }
   },
@@ -500,8 +516,10 @@
       "dataset_name": "Council owned trees",
       "attribution_name": "City of York Council",
       "license_name": "Open Government Licence 3.0",
-      "attribution_statement": "Contains public sector information licensed under the Open Government Licence v3.0.",
-      "copyright_notice": "© Crown copyright and database rights 2017 Ordnance Survey 100020818"
+      "notices": [
+        "Contains public sector information licensed under the Open Government Licence v3.0.",
+        "© Crown copyright and database rights 2017 Ordnance Survey 100020818"
+      ]
     }
   },
   {
@@ -516,7 +534,9 @@
       "dataset_name": "Street Tree Data",
       "attribution_name": "City of Toronto",
       "license_name": "Open Government Licence - Toronto 1.0",
-      "attribution_statement": "Contains information licensed under the Open Government Licence – Toronto."
+      "notices": [
+        "Contains information licensed under the Open Government Licence – Toronto."
+      ]
     }
   },
   {
@@ -531,7 +551,9 @@
       "dataset_name": "Tree Species (Parks trees database)",
       "attribution_name": "City of Victoria",
       "license_name": "Open Government Licence - City of Victoria 1",
-      "attribution_statement": "Contains information licensed under the Open Government Licence – City of Victoria."
+      "notices": [
+        "Contains information licensed under the Open Government Licence – City of Victoria."
+      ]
     }
   },
   {
@@ -546,7 +568,9 @@
       "dataset_name": "Street Tree Inventory",
       "attribution_name": "City of Waterloo",
       "license_name": "Waterloo Open Data User Licence",
-      "attribution_statement": "Contains information provided by the City of Waterloo under licence"
+      "notices": [
+        "Contains information provided by the City of Waterloo under licence"
+      ]
     }
   },
   {
@@ -562,7 +586,9 @@
       "dataset_name": "Public Trees",
       "attribution_name": "The City of Calgary",
       "license_name": "Open Government Licence - City of Calgary 2.1",
-      "attribution_statement": "Contains information licensed under the Open Government Licence – City of Calgary."
+      "notices": [
+        "Contains information licensed under the Open Government Licence – City of Calgary."
+      ]
     }
   },
   {
@@ -577,7 +603,9 @@
       "dataset_name": "Trees",
       "attribution_name": "City of Edmonton",
       "license_name": "Open Government Licence - City of Edmonton 1.0",
-      "attribution_statement": "Contains information licensed under the Open Government Licence – City of Edmonton."
+      "notices": [
+        "Contains information licensed under the Open Government Licence – City of Edmonton."
+      ]
     }
   },
   {
@@ -592,7 +620,9 @@
       "dataset_name": "Tree Inventory",
       "attribution_name": "City of Winnipeg",
       "license_name": "Open Government Licence - Canada 2.0",
-      "attribution_statement": "Contains information licensed under the Open Government Licence – Canada."
+      "notices": [
+        "Contains information licensed under the Open Government Licence – Canada."
+      ]
     }
   },
   {
@@ -607,7 +637,9 @@
       "dataset_name": "Public Trees",
       "attribution_name": "Halifax Regional Municipality",
       "license_name": "Open Government Licence - Halifax 1.0",
-      "attribution_statement": "Contains information licenced under the Open Government Licence—Halifax."
+      "notices": [
+        "Contains information licenced under the Open Government Licence—Halifax."
+      ]
     }
   },
   {
@@ -622,7 +654,9 @@
       "dataset_name": "Tree_Inventory",
       "attribution_name": "City of Kitchener - Infrastructure Services - Operations",
       "license_name": "Open Government Licence - The Corporation of the City of Kitchener 1.0",
-      "attribution_statement": "Contains information licensed under the Open Government Licence - The Corporation of the City of Kitchener."
+      "notices": [
+        "Contains information licensed under the Open Government Licence - The Corporation of the City of Kitchener."
+      ]
     }
   },
   {
@@ -637,8 +671,10 @@
       "dataset_name": "Tree Inventory",
       "attribution_name": "Township of Langley",
       "license_name": "Open Government License - Township of Langley 2",
-      "attribution_statement": "Contains information licensed under the Open Government License – Township of Langley.",
-      "disclaimer_notice": "This dataset is provided by the Township of Langley for informational purposes only. While reasonable efforts are made to keep the data accurate and up to date, the Township does not guarantee its accuracy, completeness, or currency. Users are responsible for verifying any information before relying on it. The Township of Langley is not liable for any loss or damages resulting from the use of this dataset. The dataset may be updated, modified, or removed at any time without notice."
+      "notices": [
+        "Contains information licensed under the Open Government License – Township of Langley.",
+        "This dataset is provided by the Township of Langley for informational purposes only. While reasonable efforts are made to keep the data accurate and up to date, the Township does not guarantee its accuracy, completeness, or currency. Users are responsible for verifying any information before relying on it. The Township of Langley is not liable for any loss or damages resulting from the use of this dataset. The dataset may be updated, modified, or removed at any time without notice."
+      ]
     }
   },
   {
@@ -653,8 +689,10 @@
       "dataset_name": "Trees",
       "attribution_name": "The Corporation of the Town of Oakville",
       "license_name": "Open Government Licence - Town of Oakville",
-      "attribution_statement": "Contains information licensed under the Open Government Licence — Town of Oakville.",
-      "copyright_notice": "2024 Town of Oakville"
+      "notices": [
+        "Contains information licensed under the Open Government Licence — Town of Oakville.",
+        "2024 Town of Oakville"
+      ]
     }
   },
   {
@@ -669,7 +707,9 @@
       "dataset_name": "Trees",
       "attribution_name": "City of Prince George",
       "license_name": "Open Government License - City of Prince George 2.0",
-      "attribution_statement": "Contains information licensed under the Open Government License – City of Prince George."
+      "notices": [
+        "Contains information licensed under the Open Government License – City of Prince George."
+      ]
     }
   },
   {
@@ -684,7 +724,9 @@
       "dataset_name": "Tree Inventory",
       "attribution_name": "City of Fredericton",
       "license_name": "Open Government License - City of Fredericton 1.0",
-      "attribution_statement": "Contains information licensed under the Open Government License – City of Fredericton."
+      "notices": [
+        "Contains information licensed under the Open Government License – City of Fredericton."
+      ]
     }
   },
   {
@@ -699,7 +741,9 @@
       "dataset_name": "Tree Inventory",
       "attribution_name": "City of St. Albert",
       "license_name": "Open Data Licence - City of St. Albert 1.0",
-      "attribution_statement": "Contains information licensed under the Open Data Licence – City of St. Albert."
+      "notices": [
+        "Contains information licensed under the Open Data Licence – City of St. Albert."
+      ]
     }
   },
   {
@@ -714,8 +758,10 @@
       "dataset_name": "City Owned Trees",
       "attribution_name": "The Corporation of the City of Kingston",
       "license_name": "Open Data Licence - City of Kingston 1.0",
-      "attribution_statement": "Contains information licensed under the Open Data Licence – City of Kingston.",
-      "disclaimer_notice": "The Corporation of the City of Kingston assumes no responsibility for inaccurate or inconsistent data set out in this map product. The City does not accept any responsibility for reliance thereon. The City does not make any representations or warranty, express or implied, in relation to the website including without limitations, as to the quality, merchantability and fitness for any use. Further, the City does not accept any responsibility for the accuracy of this information, nor is it responsible for any expenses or damages incurred, directly or indirectly, resulting from the use of this information."
+      "notices": [
+        "Contains information licensed under the Open Data Licence – City of Kingston.",
+        "The Corporation of the City of Kingston assumes no responsibility for inaccurate or inconsistent data set out in this map product. The City does not accept any responsibility for reliance thereon. The City does not make any representations or warranty, express or implied, in relation to the website including without limitations, as to the quality, merchantability and fitness for any use. Further, the City does not accept any responsibility for the accuracy of this information, nor is it responsible for any expenses or damages incurred, directly or indirectly, resulting from the use of this information."
+      ]
     }
   },
   {
@@ -730,7 +776,9 @@
       "dataset_name": "Tree Inventory 2019",
       "attribution_name": "City of Abbotsford",
       "license_name": "Open Government Licence - City of Abbotsford 2",
-      "attribution_statement": "Contains information licenced under the Open Government Licence – City of Abbotsford."
+      "notices": [
+        "Contains information licenced under the Open Government Licence – City of Abbotsford."
+      ]
     }
   },
   {
@@ -744,7 +792,9 @@
       "dataset_name": "Trees",
       "attribution_name": "Bristol City Council",
       "license_name": "Open Government Licence 3.0",
-      "attribution_statement": "Bristol City Council Subject to Open Government Licence V 3.0. Contains public sector information licensed under the Open Government Licence v3.0."
+      "notices": [
+        "Bristol City Council Subject to Open Government Licence V 3.0. Contains public sector information licensed under the Open Government Licence v3.0."
+      ]
     }
   },
   {
@@ -759,8 +809,10 @@
       "dataset_name": "Trees",
       "attribution_name": "City of Penticton",
       "license_name": "Open Government Licence - City of Penticton 2",
-      "attribution_statement": "Contains information licenced under the Open Government Licence - City of Penticton.",
-      "copyright_notice": "CIty of Penticton, 2018"
+      "notices": [
+        "Contains information licenced under the Open Government Licence - City of Penticton.",
+        "CIty of Penticton, 2018"
+      ]
     }
   },
   {
@@ -775,7 +827,9 @@
       "dataset_name": "Tree Inventory",
       "attribution_name": "City of Fort St. John",
       "license_name": "Open Government License - City of Fort St. John",
-      "attribution_statement": "Contains information licensed under the Open Government License – City of Fort St. John."
+      "notices": [
+        "Contains information licensed under the Open Government License – City of Fort St. John."
+      ]
     }
   },
   {
@@ -790,7 +844,9 @@
       "dataset_name": "Welland Trees",
       "attribution_name": "City of Welland",
       "license_name": "Open Government Licence - City of Welland 2.0",
-      "attribution_statement": "Contains information licensed under the Open Government Licence – City of Welland."
+      "notices": [
+        "Contains information licensed under the Open Government Licence – City of Welland."
+      ]
     }
   },
   {
@@ -816,7 +872,9 @@
       "dataset_name": "Straßenbaumkataster Hamburg",
       "attribution_name": "Freie und Hansestadt Hamburg, Behörde für Umwelt, Klima, Energie und Agrarwirtschaft",
       "license_name": "dl-de/by-2-0 (Data licence Germany - attribution - Version 2.0)",
-      "attribution_statement": "Daten durch City Trees verändert."
+      "notices": [
+        "Daten durch City Trees verändert."
+      ]
     }
   },
   {
@@ -830,7 +888,9 @@
       "dataset_name": "Baumkataster, Stadt Leipzig",
       "attribution_name": "Stadt Leipzig",
       "license_name": "dl-de/by-2-0 (Data licence Germany - attribution - Version 2.0)",
-      "attribution_statement": "Daten durch City Trees verändert."
+      "notices": [
+        "Daten durch City Trees verändert."
+      ]
     }
   },
   {
@@ -844,10 +904,12 @@
       "dataset_name": "Baumkataster - Frankfurt am Main",
       "attribution_name": "Stadt Frankfurt am Main, Grünflächenamt",
       "license_name": "dl-de/by-2-0 (Data licence Germany - attribution - Version 2.0)",
-      "attribution_statement": "Stadt Frankfurt a.M., Grünflächenamt, 2026 Daten verändert. Daten durch City Trees verändert.",
-      "attribution_url": "https://www.frankfurt.de",
-      "copyright_notice": "© Grünflächenamt Frankfurt am Main",
-      "previous_modifications": "The source CSV was geocoded and projected in ArcGIS Pro and republished as an ArcGIS Online feature service."
+      "notices": [
+        "Stadt Frankfurt a.M., Grünflächenamt, 2026 Daten verändert. Daten durch City Trees verändert.",
+        "© Grünflächenamt Frankfurt am Main",
+        "The source CSV was geocoded and projected in ArcGIS Pro and republished as an ArcGIS Online feature service."
+      ],
+      "attribution_url": "https://www.frankfurt.de"
     }
   },
   {
@@ -1072,7 +1134,9 @@
       "attribution_name": "Gemeente Amsterdam - Directie Verkeer en Openbare Ruimte",
       "license_name": "CC0 1.0",
       "attribution_url": "https://data.overheid.nl/dataset/k3ns1vfps3k0hq",
-      "disclaimer_notice": "Aan de kaart kunnen geen rechten worden ontleend."
+      "notices": [
+        "Aan de kaart kunnen geen rechten worden ontleend."
+      ]
     }
   },
   {
@@ -1101,7 +1165,9 @@
       "dataset_name": "MesaAZiTreeInventory",
       "attribution_name": "City of Mesa with West Coast Arborists, Inc. 2025. Additional resources include i-Tree Eco and American Forests.",
       "license_name": "City of Mesa custom citation terms",
-      "disclaimer_notice": "The data and information presented here is for general reference only. The maps and applications are based upon currently available information and industry standard techniques, and is constantly being updated."
+      "notices": [
+        "The data and information presented here is for general reference only. The maps and applications are based upon currently available information and industry standard techniques, and is constantly being updated."
+      ]
     }
   },
   {
@@ -1116,7 +1182,9 @@
       "dataset_name": "City Managed Trees",
       "attribution_name": "City of Ithaca Forestry Office, City of Ithaca GIS Program",
       "license_name": "City of Ithaca custom attribution and disclaimer terms",
-      "attribution_statement": "Data contained in this product was originally produced by the GIS Program, City of Ithaca, NY. The originator does not warrant the accuracy or completeness of the information portrayed by the data."
+      "notices": [
+        "Data contained in this product was originally produced by the GIS Program, City of Ithaca, NY. The originator does not warrant the accuracy or completeness of the information portrayed by the data."
+      ]
     }
   },
   {
@@ -1131,8 +1199,10 @@
       "dataset_name": "Galesburg Tree Inventory",
       "attribution_name": "Engineering Division, Public Works Department, City of Galesburg",
       "license_name": "City of Galesburg custom attribution and modification terms",
-      "disclaimer_notice": "The user must bear responsibility for the appropriate use of the information with respect to possible errors, original map scale, collection methodology, currency of data and other conditions specific to certain data.",
-      "attribution_statement": "City Trees filters records, standardizes botanical names and converts the data to map tiles. These changes are not approved or endorsed by the City of Galesburg."
+      "notices": [
+        "City Trees filters records, standardizes botanical names and converts the data to map tiles. These changes are not approved or endorsed by the City of Galesburg.",
+        "The user must bear responsibility for the appropriate use of the information with respect to possible errors, original map scale, collection methodology, currency of data and other conditions specific to certain data."
+      ]
     }
   },
   {
@@ -1147,7 +1217,9 @@
       "dataset_name": "Trees",
       "attribution_name": "City of Mountain View, ESRI",
       "license_name": "City of Mountain View custom reuse terms",
-      "disclaimer_notice": "The data available on this portal, including Geographic Information Systems (“GIS”) data, maps, tables, numbers, graphics, and text (hereinafter collectively referred to as the “Information”), is provided AS IS and for you to view, access, copy, distribute and otherwise use the Information at your own risk. The City of Mountain View, its departments and its affiliated entities, elected and appointed officers, officials, employees and agents (hereinafter referred to as the “City”) make no representation or warranty of any kind regarding this website or Information, explicit or implied."
+      "notices": [
+        "The data available on this portal, including Geographic Information Systems (“GIS”) data, maps, tables, numbers, graphics, and text (hereinafter collectively referred to as the “Information”), is provided AS IS and for you to view, access, copy, distribute and otherwise use the Information at your own risk. The City of Mountain View, its departments and its affiliated entities, elected and appointed officers, officials, employees and agents (hereinafter referred to as the “City”) make no representation or warranty of any kind regarding this website or Information, explicit or implied."
+      ]
     }
   },
   {
@@ -1162,9 +1234,11 @@
       "dataset_name": "Trees",
       "attribution_name": "City of Santa Monica - Public Landscape Division",
       "license_name": "Open Data Commons Attribution License (ODC-BY) 1.0",
-      "attribution_statement": "Contains information from Trees which is made available under the ODC Attribution License.",
-      "license_comment": "ODC-BY 1.0 sections 4.2-4.4 require licence URIs and retained notices to accompany conveyed databases/derivative databases and relevant documentation, attribution for publicly used outputs, and no additional restrictions on licensed database rights. Preserve this source's ODC-BY terms in downloadable data and do not treat the combined database as having a single replacement licence. The licence covers database rights, not separate rights in individual contents; City Trees uses factual tree coordinates and botanical names.",
-      "disclaimer_notice": "City of Santa Monica Liability Disclaimer This map of the City of Santa Monica has been provided for illustration purposes only. Every reasonable effort has been made to ensure the accuracy of the maps provided, however, some information may not be accurate. The City of Santa Monica (\"City\") provides this map on an \"AS IS\" basis. The City assumes no liability for damages arising from errors or omissions. THE MAPS ARE PROVIDED WITHOUT WARRANTY OF ANY KIND, either expressed or implied, including but not limited to, the implied warranties of merchantability and fitness for a particular purpose. Do not make any business decisions based on this map before validating your decision with the appropriate City office."
+      "notices": [
+        "Contains information from Trees which is made available under the ODC Attribution License.",
+        "City of Santa Monica Liability Disclaimer This map of the City of Santa Monica has been provided for illustration purposes only. Every reasonable effort has been made to ensure the accuracy of the maps provided, however, some information may not be accurate. The City of Santa Monica (\"City\") provides this map on an \"AS IS\" basis. The City assumes no liability for damages arising from errors or omissions. THE MAPS ARE PROVIDED WITHOUT WARRANTY OF ANY KIND, either expressed or implied, including but not limited to, the implied warranties of merchantability and fitness for a particular purpose. Do not make any business decisions based on this map before validating your decision with the appropriate City office."
+      ],
+      "license_comment": "ODC-BY 1.0 sections 4.2-4.4 require licence URIs and retained notices to accompany conveyed databases/derivative databases and relevant documentation, attribution for publicly used outputs, and no additional restrictions on licensed database rights. Preserve this source's ODC-BY terms in downloadable data and do not treat the combined database as having a single replacement licence. The licence covers database rights, not separate rights in individual contents; City Trees uses factual tree coordinates and botanical names."
     }
   },
   {
@@ -1179,7 +1253,9 @@
       "dataset_name": "Providence Tree Dataset",
       "attribution_name": "City of Providence - Forestry Division",
       "license_name": "Open Data Commons Attribution License (ODC-BY) 1.0",
-      "attribution_statement": "Contains information from Providence Tree Dataset which is made available under the ODC Attribution License.",
+      "notices": [
+        "Contains information from Providence Tree Dataset which is made available under the ODC Attribution License."
+      ],
       "license_comment": "ODC-BY 1.0 sections 4.2-4.4 require licence URIs and retained notices to accompany conveyed databases/derivative databases and relevant documentation, attribution for publicly used outputs, and no additional restrictions on licensed database rights. Preserve this source's ODC-BY terms in downloadable data and do not treat the combined database as having a single replacement licence. The licence covers database rights, not separate rights in individual contents; City Trees uses factual tree coordinates and botanical names."
     }
   },
@@ -1195,8 +1271,10 @@
       "dataset_name": "Marina del Rey Trees Managed by LA County Beaches and Harbors",
       "attribution_name": "Los Angeles County Department of Beaches and Harbors, Los Angeles County Internal Services Department (eGIS)",
       "license_name": "County of Los Angeles GIS Terms of Use",
-      "attribution_statement": "Data provided by the County of Los Angeles. No County endorsement is implied.",
-      "disclaimer_notice": "The data herein is for informational purposes, and may not have been prepared for or be suitable for legal, engineering, or surveying intents. The County of Los Angeles reserves the right to change, restrict or discontinue access at any time. The County provides the website and data on an \"as is\" basis without warranties of any kind, whether express or implied, including merchantability, fitness for a particular purpose, title and non-infringement.",
+      "notices": [
+        "Data provided by the County of Los Angeles. No County endorsement is implied.",
+        "The data herein is for informational purposes, and may not have been prepared for or be suitable for legal, engineering, or surveying intents. The County of Los Angeles reserves the right to change, restrict or discontinue access at any time. The County provides the website and data on an \"as is\" basis without warranties of any kind, whether express or implied, including merchantability, fitness for a particular purpose, title and non-infringement."
+      ],
       "license_comment": "The current dataset incorporates the County's GIS Terms of Use, which expressly permit copying, publication, distribution, transmission, adaptation and commercial or personal use. The citation format is recommended, not mandatory; the original download date is not asserted. The maintainer explicitly accepted the obligation to indemnify, defend and hold the County harmless at their expense, including attorney fees, for liabilities or costs arising out of or relating to a breach or violation of these terms. The licence automatically terminates without notice upon violation; County endorsement is prohibited. Coverage is limited to trees managed by LA County Beaches and Harbors in Marina del Rey."
     }
   },
@@ -1212,7 +1290,9 @@
       "dataset_name": "Park Specimen Trees",
       "attribution_name": "City of Surrey",
       "license_name": "Open Government License - Surrey",
-      "attribution_statement": "Contains information licensed under the Open Government License – City of Surrey."
+      "notices": [
+        "Contains information licensed under the Open Government License – City of Surrey."
+      ]
     }
   },
   {
@@ -1228,7 +1308,9 @@
       "dataset_name": "Street Trees",
       "attribution_name": "The Regional Municipality of York",
       "license_name": "York Region Open Data Licence 1.0",
-      "attribution_statement": "Contains public sector information made available under The Regional Municipality of York's Open Data Licence.",
+      "notices": [
+        "Contains public sector information made available under The Regional Municipality of York's Open Data Licence."
+      ],
       "license_comment": "Credit is optional under this licence. If credit is provided, York Region may require its removal at its sole discretion if it considers the credit not in the public interest. Do not suggest endorsement or official status, misrepresent the data or its source, or use it unlawfully or harmfully. Rights terminate automatically for noncompliance."
     }
   },
@@ -1410,7 +1492,9 @@
       "attribution_name": "Mayor and City Council of Baltimore",
       "terms_url": "https://www.baltimorecity.gov/publicworks/terms-of-use-and-disclaimer-policy",
       "license_name": "CC BY 3.0 Unported",
-      "disclaimer_notice": "The City makes no claims as to the quality, completeness, accuracy, timeliness, or content of any data contained on this site. All such items and materials are provided on an \"as is\" basis, and you are fully and solely responsible for your use of them and for any results or consequences of your use. They have been compiled from a variety of sources, including sources beyond the control of the City, and are subject to change without notice from the City. The data is subject to change as modifications and updates are complete. It is understood that the information contained in the site is being used at one's own risk. In no event shall the City or its elected/appointed officials, municipal agencies and departments, employees, agents, or volunteers be liable for any direct, indirect, special, punitive, incidental, exemplary or consequential damages arising your accessing or using the site, or otherwise arising from this site or from anything contained in or displayed on this site. Nothing contained in or displayed on this site constitutes or is intended to constitute legal advice by the City or any of its elected/appointed officials, municipal agencies and departments, employees, agents, and volunteers.",
+      "notices": [
+        "The City makes no claims as to the quality, completeness, accuracy, timeliness, or content of any data contained on this site. All such items and materials are provided on an \"as is\" basis, and you are fully and solely responsible for your use of them and for any results or consequences of your use. They have been compiled from a variety of sources, including sources beyond the control of the City, and are subject to change without notice from the City. The data is subject to change as modifications and updates are complete. It is understood that the information contained in the site is being used at one's own risk. In no event shall the City or its elected/appointed officials, municipal agencies and departments, employees, agents, or volunteers be liable for any direct, indirect, special, punitive, incidental, exemplary or consequential damages arising your accessing or using the site, or otherwise arising from this site or from anything contained in or displayed on this site. Nothing contained in or displayed on this site constitutes or is intended to constitute legal advice by the City or any of its elected/appointed officials, municipal agencies and departments, employees, agents, and volunteers."
+      ],
       "license_comment": "The portal specifies CC BY 3.0 Unported, but the inventory service is unavailable; confirm its dataset title, license assignment, and dataset-specific notices before generating attribution."
     }
   },
@@ -1793,7 +1877,9 @@
       "dataset_name": "Trees",
       "attribution_name": "City of Evanston IL",
       "license_name": "CC BY 4.0 International",
-      "disclaimer_notice": "The Geospatial data, and the information therein, (collectively the \"Data\") is provided by the City of Evanston in an \"as is\" condition without warranty of any kind, either expressed, implied, or statutory. The user assumes the entire risk as to quality and performance of the Data. No guarantee of accuracy is granted by the City of Evanston. In no event shall the City of Evanston be liable for direct, incidental, consequential or special damages of any kind. The City of Evanston does not accept liability for any damages or misrepresentation caused by inaccuracies in the Data or as a result to changes to the Data, nor is responsibility assumed to maintain the Data in any manner or format.",
+      "notices": [
+        "The Geospatial data, and the information therein, (collectively the \"Data\") is provided by the City of Evanston in an \"as is\" condition without warranty of any kind, either expressed, implied, or statutory. The user assumes the entire risk as to quality and performance of the Data. No guarantee of accuracy is granted by the City of Evanston. In no event shall the City of Evanston be liable for direct, incidental, consequential or special damages of any kind. The City of Evanston does not accept liability for any damages or misrepresentation caused by inaccuracies in the Data or as a result to changes to the Data, nor is responsibility assumed to maintain the Data in any manner or format."
+      ],
       "license_comment": "Portal terms also require retaining original metadata and crediting the City in derived metadata, and require written authorization for automated extraction; resolve these conditions separately from CC BY attribution."
     }
   },
@@ -2294,7 +2380,9 @@
       "dataset_name": "ACTGOV Tree Assets",
       "attribution_name": "Australian Capital Territory",
       "license_name": "CC BY 4.0 International",
-      "copyright_notice": "© Australian Capital Territory",
+      "notices": [
+        "© Australian Capital Territory"
+      ],
       "license_comment": "CC BY 4.0 assignment is verified, but incorporated ACTmapi terms remain unverified: https://www.actmapi.act.gov.au/terms-and-conditions"
     }
   },
@@ -2322,7 +2410,9 @@
       "dataset_name": "Public Tree Inventory",
       "attribution_name": "City of Hamilton",
       "license_name": "City of Hamilton Open Data Licence 1.1",
-      "attribution_statement": "Contains public sector Data made available under the City of Hamilton’s Open Data Licence",
+      "notices": [
+        "Contains public sector Data made available under the City of Hamilton’s Open Data Licence"
+      ],
       "terms_url": "https://www.hamilton.ca/acceptable-use-agreement"
     }
   },
@@ -2349,7 +2439,9 @@
       "dataset_name": "Street Tree",
       "attribution_name": "City of Maple Ridge - Parks Recreation & Culture",
       "license_name": "Open Government Licence - Maple Ridge 2.0",
-      "attribution_statement": "Contains information licensed under the Open Government Licence – Maple Ridge.",
+      "notices": [
+        "Contains information licensed under the Open Government Licence – Maple Ridge."
+      ],
       "terms_url": "https://www.mapleridge.ca/terms-use",
       "license_comment": "The Open Government Licence permits modification and redistribution but incorporates website terms that prohibit modifying website content and restrict permitted uses. Retained outside the release set pending clarification of the conflicting terms."
     }
@@ -2505,8 +2597,10 @@
       "dataset_name": "Trees",
       "attribution_name": "Fareham Borough Council - FBC Trees Team",
       "license_name": "Open Government Licence 3.0",
-      "attribution_statement": "FBC Trees Team, Contains OS data © Crown copyright and database right",
-      "copyright_notice": "© Crown copyright and database rights 2026 Ordnance Survey AC0000814042",
+      "notices": [
+        "FBC Trees Team, Contains OS data © Crown copyright and database right",
+        "© Crown copyright and database rights 2026 Ordnance Survey AC0000814042"
+      ],
       "license_comment": "The item specifies OGL and credits OS MasterMap Topography Layer data. An applicable Ordnance Survey derived-data exemption or separate redistribution grant has not been verified. Retained outside the release set pending clarification of third-party rights; current metadata supplies the 2026 OS notice."
     }
   },
@@ -3718,7 +3812,9 @@
       "dataset_name": "Trees (NCC Maintained)",
       "attribution_name": "Nottingham City Council",
       "license_name": "Open Government Licence 3.0",
-      "attribution_statement": "Nottingham City Council. Contains OS data © Crown copyright [and database right] [year].",
+      "notices": [
+        "Nottingham City Council. Contains OS data © Crown copyright [and database right] [year]."
+      ],
       "license_comment": "The item specifies OGL 3.0 but supplies an Ordnance Survey attribution with unresolved [and database right] and [year] placeholders. Retained outside the release set pending confirmation of the correct notice and any applicable third-party rights exemption."
     }
   },
@@ -3751,7 +3847,9 @@
       "license_name": "Open Database License (ODbL) 1.0",
       "dataset_name": "Arbres",
       "attribution_name": "Direction des Espaces Verts et de l'Environnement - Ville de Paris",
-      "attribution_statement": "Contains information from Arbres, which is made available under the Open Database License (ODbL).",
+      "notices": [
+        "Contains information from Arbres, which is made available under the Open Database License (ODbL)."
+      ],
       "license_comment": "ODbL attribution, database share-alike and access obligations may apply to combined/processed data; open-source app code alone is insufficient."
     }
   },

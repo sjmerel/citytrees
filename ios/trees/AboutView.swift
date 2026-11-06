@@ -70,7 +70,6 @@ struct HTMLView: UIViewRepresentable {
     }
 
     private struct License: Decodable {
-        let url: String?
         let api_url: String?
         let portal_url: String?
         let dataset_name: String?
@@ -78,11 +77,8 @@ struct HTMLView: UIViewRepresentable {
         let license: String?
         let license_name: String?
         let terms_url: String?
-        let attribution_statement: String?
+        let notices: [String]?
         let attribution_url: String?
-        let copyright_notice: String?
-        let disclaimer_notice: String?
-        let previous_modifications: String?
     }
 
     // The cities in cities.json (downloaded with the data set), as an HTML list per country.
@@ -105,23 +101,29 @@ struct HTMLView: UIViewRepresentable {
     private static func licenseHTML(_ license: License?) -> String {
         if let license {
             var paragraphs = [String]()
-            let source = license.portal_url ?? license.api_url ?? license.url
-            if let title = license.dataset_name, let provider = license.attribution_name {
-                paragraphs.append("Data: \(linkHTML(title, url: source)), by \(provider.htmlEscaped).")
+            let source = license.portal_url ?? license.api_url!
+
+            var row = "Data: "
+            if let datasetName = license.dataset_name {
+                row += linkHTML(datasetName, url: source)
             }
             else {
-                paragraphs.append(linkHTML("Dataset source", url: source))
+                row += linkHTML("Dataset source", url: source)
             }
+            if let attrName = license.attribution_name {
+                row += ", by \(attrName.htmlEscaped)"
+            }
+            paragraphs.append(row)
+
             if let name = license.license_name, let url = license.license {
                 let label = name.hasPrefix("CC0 ") ? "Public-domain dedication" : "Licensed under"
                 paragraphs.append("\(label) \(linkHTML(name, url: url)).")
             }
-            for notice in [license.attribution_statement, license.copyright_notice,
-                           license.disclaimer_notice, license.previous_modifications] {
-                if let notice {
-                    paragraphs.append(notice.htmlEscaped)
-                }
+
+            for notice in license.notices ?? [] {
+                paragraphs.append(notice.htmlEscaped)
             }
+
             if let url = license.attribution_url {
                 paragraphs.append(linkHTML("Attribution source", url: url))
             }
