@@ -50,8 +50,22 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release") {
+            val properties = Properties()
+            rootProject.file("../secrets/android-secrets.properties")
+                .inputStream().use { properties.load(it) }
+
+            storeFile = rootProject.file("../secrets/android_release_keystore.jks")
+            storePassword = properties.getProperty("STORE_PASSWORD")
+            keyAlias = "release"
+            keyPassword = properties.getProperty("KEY_PASSWORD")
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
