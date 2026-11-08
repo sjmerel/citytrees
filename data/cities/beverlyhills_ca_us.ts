@@ -6,18 +6,22 @@ import { CityUtil } from './city_util';
 
 async function main() {
 
-  let endpoint = 'https://mgis.beverlyhills.org/arcgis/rest/services/Hansen/CBH_IPS_GIS_UrbanForest_Feature/MapServer/0';
+  let endpoint = 'https://gis.beverlyhills.org/arcgis/rest/services/OD/OpenData_BeverlyHillsGeoHub/FeatureServer/1';
 
   let rows = await CityUtil.fetchArcGis(endpoint, {
-    fields: 'BotanicalName,Latitude,Longitude',
-    where: 'Latitude <> 0 AND Longitude <> 0'
+    fields: 'OBJECTID,BOTANICAL',
+    where: "BOTANICAL IS NOT NULL AND BOTANICAL <> ''",
+    returnGeometry: true,
+    verifyComplete: true
   });
 
-  let trees = rows.map(o => ({
-    lat: o.attributes.Latitude,
-    lon: o.attributes.Longitude,
-    name: o.attributes.BotanicalName.trim()
-  }));
+  let trees = rows
+    .filter(o => o.geometry && !/vacant|stump|unknown|^none$|no tree/i.test(o.attributes.BOTANICAL))
+    .map(o => ({
+      lat: o.geometry.y,
+      lon: o.geometry.x,
+      name: o.attributes.BOTANICAL.trim()
+    }));
 
   fs.writeFileSync(path.join(__dirname, 'beverlyhills_ca_us.json'), JSON.stringify(trees, null, 2));
 }
