@@ -17,22 +17,22 @@ struct BusyView: View {
                         ProgressView()
                             .progressViewStyle(.circular)
                             .controlSize(.large)
-                            .tint(.white)
+                            .tint(AppColors.text)
                     }
                     if let text {
                         Text(text)
                             .font(.system(size: 14))
-                            .foregroundColor(.white)
+                            .foregroundColor(AppColors.text)
                             .multilineTextAlignment(.center)
                     }
                     if let retry {
                         Button("Retry", action: retry)
                             .buttonStyle(.bordered)
-                            .tint(.white)
+                            .tint(AppColors.text)
                     }
                 }
                 .padding(24)
-                .background(Color.black, in: RoundedRectangle(cornerRadius: 14))
+                .background(AppColors.background, in: RoundedRectangle(cornerRadius: 14))
                 .position(x: geometry.size.width / 2, y: geometry.size.height * 0.4)
             }
         }

@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layout
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -52,29 +53,29 @@ fun BusyView(text: String? = null, retry: (() -> Unit)? = null) {
                             (constraints.maxHeight * 0.4f - card.height / 2f).roundToInt())
                     }
                 }
-                .background(Color.Black, RoundedCornerShape(14.dp))
+                .background(colorResource(R.color.app_background), RoundedCornerShape(14.dp))
                 .padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             if (retry == null) {
                 // the size of a large UIActivityIndicatorView
-                CircularProgressIndicator(color = Color.White, modifier = Modifier.size(37.dp))
+                CircularProgressIndicator(color = colorResource(R.color.app_text), modifier = Modifier.size(37.dp))
             }
             if (text != null) {
                 Text(text,
                     fontSize = 14.sp,
-                    color = Color.White,
+                    color = colorResource(R.color.app_text),
                     textAlign = TextAlign.Center)
             }
             if (retry != null) {
-                // like SwiftUI's bordered button style, tinted white
+                // like SwiftUI's bordered button style, tinted with the app text color
                 Text("Retry",
                     fontSize = 17.sp,
-                    color = Color.White,
+                    color = colorResource(R.color.app_text),
                     modifier = Modifier
                         .clip(RoundedCornerShape(6.dp))
-                        .background(Color.White.copy(alpha = 0.15f))
+                        .background(colorResource(R.color.app_text).copy(alpha = 0.15f))
                         .clickable(onClick = retry)
                         .padding(horizontal = 12.dp, vertical = 7.dp))
             }

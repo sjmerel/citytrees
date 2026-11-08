@@ -18,7 +18,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -39,7 +39,7 @@ fun AboutView(dismiss: () -> Unit) {
         Icon(
             painter = painterResource(R.drawable.x),
             contentDescription = null,
-            tint = Color(0xFF1D4940),
+            tint = colorResource(R.color.app_text),
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .offset(x = 4.dp, y = (-4).dp)
@@ -71,6 +71,7 @@ object HTMLView {
                 return super.onTouchEvent(event)
             }
         }
+        webView.setBackgroundColor(context.getColor(R.color.app_background))
         webView.webViewClient = Coordinator()
         var html = context.assets.open("$resource.html").use { String(it.readBytes()) }
         val file = File(Dataset.instance.localDir, "cities.json")

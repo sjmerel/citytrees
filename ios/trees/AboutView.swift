@@ -31,6 +31,9 @@ struct HTMLView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
+        webView.isOpaque = false
+        webView.backgroundColor = UIColor(AppColors.background)
+        webView.scrollView.backgroundColor = webView.backgroundColor
         webView.navigationDelegate = context.coordinator
         webView.scrollView.pinchGestureRecognizer?.isEnabled = false
         webView.scrollView.alwaysBounceHorizontal = false

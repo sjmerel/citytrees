@@ -36,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -104,7 +105,7 @@ fun ContentView() {
                     locationEnabled = true
                 },
                 sheetState = sheetState,
-                containerColor = Color(0xFFF1F8F7),
+                containerColor = colorResource(R.color.app_background),
                 dragHandle = null
             ) {
                 Box(Modifier.fillMaxHeight(0.9f)) {
@@ -139,12 +140,12 @@ fun ContentView() {
                 Box(Modifier.padding(12.dp)) {
                     Text("Data download failed; some trees may be missing.",
                         fontSize = 13.sp,
-                        color = Color.White,
+                        color = colorResource(R.color.app_text),
                         textAlign = TextAlign.Center,
                         modifier = Modifier
                             .fillMaxWidth()
                             .shadow(5.dp, RoundedCornerShape(14.dp))
-                            .background(Color.Black.copy(alpha = 0.7f), RoundedCornerShape(14.dp))
+                            .background(colorResource(R.color.app_background), RoundedCornerShape(14.dp))
                             .padding(horizontal = 16.dp, vertical = 8.dp))
                 }
             }
