@@ -453,6 +453,19 @@
     }
   },
   {
+    "code": "barcelona_atlas_es",
+    "name": "Barcelona (Biodiversity Atlas)",
+    "country": "ES",
+    "license": {
+      "api_url": "https://opendata-ajuntament.barcelona.cat/data/api/3/action/datastore_search",
+      "portal_url": "https://opendata-ajuntament.barcelona.cat/data/en/dataset/atles-biodiversitat-arbrat-geometries",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "dataset_name": "Tree inventory of the Biodiversity Atlas of the city of Barcelona",
+      "attribution_name": "Ajuntament de Barcelona - Medi ambient",
+      "license_name": "CC BY 4.0 International"
+    }
+  },
+  {
     "code": "buenosaires_ar",
     "name": "Buenos Aires",
     "country": "AR",
@@ -1211,8 +1224,7 @@
       "license_name": "Open Data Commons Attribution License (ODC-BY) 1.0",
       "notices": [
         "Contains information from Trees which is made available under the ODC Attribution License."
-      ],
-      "license_comment": "Additional obligations: verify that ODC-BY license URLs and notices accompany downloadable derived databases and documentation; do not impose additional database-right restrictions."
+      ]
     }
   },
   {
@@ -1229,8 +1241,7 @@
       "license_name": "Open Data Commons Attribution License (ODC-BY) 1.0",
       "notices": [
         "Contains information from Providence Tree Dataset which is made available under the ODC Attribution License."
-      ],
-      "license_comment": "Additional obligations: verify that ODC-BY license URLs and notices accompany downloadable derived databases and documentation; do not impose additional database-right restrictions."
+      ]
     }
   },
   {
@@ -1285,8 +1296,11 @@
     "state": "CA",
     "country": "US",
     "license": {
-      "api_url": "https://mgis.beverlyhills.org/arcgis/rest/services/Hansen/CBH_IPS_GIS_UrbanForest_Feature/MapServer/0",
-      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. WCA contact: corporate@wcainc.com."
+      "api_url": "https://gis.beverlyhills.org/arcgis/rest/services/OD/OpenData_BeverlyHillsGeoHub/FeatureServer/1",
+      "portal_url": "https://www.arcgis.com/home/item.html?id=fdf9005441a947a482175f7e5e0f3762",
+      "dataset_name": "Trees of Beverly Hills",
+      "attribution_name": "City of Beverly Hills IT and Urban Forest Division",
+      "license_comment": "No explicit modification or redistribution license stated in the City's dataset terms; request clarification from Beverly Hills IT/Urban Forest Division."
     }
   },
   {
@@ -4451,6 +4465,155 @@
       "dataset_name": "Arbres d'alignement de la Métropole de Lyon",
       "attribution_name": "Métropole de Lyon",
       "last_updated": "(updated in build_data)"
+    }
+  },
+  {
+    "code": "cologne_de",
+    "name": "Cologne",
+    "country": "DE",
+    "license": {
+      "api_url": "https://geoportal.stadt-koeln.de/wss/service/baumkataster_extern_wfs/guest",
+      "portal_url": "https://offenedaten-koeln.de/dataset/baumkataster-koeln-fortlaufend-aktualisiert",
+      "license": "https://www.govdata.de/dl-de/zero-2-0",
+      "license_name": "Data licence Germany - Zero - Version 2.0",
+      "dataset_name": "Baumkataster Köln Fortlaufend aktualisiert",
+      "attribution_name": "Stadt Köln, Amt für Landschaftspflege und Grünflächen"
+    }
+  },
+  {
+    "code": "columbus_oh_us",
+    "name": "Columbus",
+    "state": "OH",
+    "country": "US",
+    "license": {
+      "api_url": "https://maps2.columbus.gov/arcgis/rest/services/Schemas/RecreationParks/MapServer/1",
+      "portal_url": "https://opendata.columbus.gov/maps/public-owned-trees",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_name": "CC0 1.0",
+      "dataset_name": "Public Owned Trees",
+      "attribution_name": "City of Columbus, Recreation and Parks Department, Urban Forestry"
+    }
+  },
+  {
+    "code": "brest_fr",
+    "name": "Brest Metropole",
+    "country": "FR",
+    "license": {
+      "api_url": "https://geo.brest-metropole.fr/arcgis/rest/services/public/GPB_ESP_Intra_EV_Arbres/MapServer/1411070",
+      "portal_url": "https://www.data.gouv.fr/datasets/les-arbres",
+      "license": "https://www.data.gouv.fr/pages/legal/licences/etalab-2-0",
+      "license_name": "Licence Ouverte 2.0 (Etalab)",
+      "dataset_name": "Les arbres",
+      "attribution_name": "Brest métropole",
+      "last_updated": ""
+    }
+  },
+  {
+    "code": "rennes_fr",
+    "name": "Rennes Metropole",
+    "country": "FR",
+    "license": {
+      "api_url": "https://data.rennesmetropole.fr/api/explore/v2.1/catalog/datasets/arbre",
+      "portal_url": "https://data.rennesmetropole.fr/explore/dataset/arbre/",
+      "license": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "license_name": "Open Database License (ODbL) 1.0",
+      "dataset_name": "Arbres sur l'espace public sur Rennes Métropole",
+      "attribution_name": "Rennes Métropole",
+      "notices": [
+        "Contains information from Arbres sur l'espace public sur Rennes Métropole, which is made available under the Open Database License (ODbL)."
+      ],
+      "license_comment": "Additional obligations: ODbL 4.4/4.6 require derivative-database share-alike and a machine-readable database or complete alterations offer; assess combined tiles and downstream restrictions, including ODbL 4.7 parallel unrestricted distribution."
+    }
+  },
+  {
+    "code": "montpellier_fr",
+    "name": "Montpellier",
+    "country": "FR",
+    "license": {
+      "api_url": "https://data.montpellier3m.fr/sites/default/files/ressources/MMM_MTP_Arbres.json",
+      "portal_url": "https://data.montpellier3m.fr/dataset/arbres-de-montpellier",
+      "license": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "license_name": "Open Database License (ODbL) 1.0",
+      "dataset_name": "Arbres de Montpellier",
+      "attribution_name": "Ville de Montpellier; Montpellier Méditerranée Métropole",
+      "notices": [
+        "Contains information from Arbres de Montpellier, which is made available under the Open Database License (ODbL)."
+      ],
+      "license_comment": "Additional obligations: ODbL 4.4/4.6 require derivative-database share-alike and a machine-readable database or complete alterations offer; assess combined tiles and downstream restrictions, including ODbL 4.7 parallel unrestricted distribution."
+    }
+  },
+  {
+    "code": "grenoble_fr",
+    "name": "Grenoble Metropole",
+    "country": "FR",
+    "license": {
+      "api_url": "https://data.metropolegrenoble.fr/sites/default/files/dataset/761/24734-6258-4184-a964-1af2e4f68ce9/arbres_grenoble_epsg4326.csv",
+      "portal_url": "https://data.metropolegrenoble.fr/visualisation/information/?id=arbres-grenoble",
+      "license": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "license_name": "Open Database License (ODbL) 1.0",
+      "dataset_name": "Arbres de la Ville de Grenoble; Patrimoine arboré du territoire Métropolitain",
+      "attribution_name": "Ville de Grenoble; Grenoble Alpes Métropole",
+      "notices": [
+        "Contains information from Arbres de la Ville de Grenoble (https://data.metropolegrenoble.fr/visualisation/information/?id=arbres-grenoble), which is made available under the Open Database License (ODbL).",
+        "Contains information from Patrimoine arboré du territoire Métropolitain (https://data.metropolegrenoble.fr/visualisation/information/?id=patrimoine_arbore_du_territoire_metropolitain), which is made available under the Open Database License (ODbL)."
+      ],
+      "license_comment": "Both source inventories are ODbL 1.0. Additional obligations: ODbL 4.4/4.6 require derivative-database share-alike and a machine-readable database or complete alterations offer; assess combined tiles and downstream restrictions, including ODbL 4.7 parallel unrestricted distribution."
+    }
+  },
+  {
+    "code": "eindhoven_nl",
+    "name": "Eindhoven",
+    "country": "NL",
+    "license": {
+      "api_url": "https://data.eindhoven.nl/api/explore/v2.1/catalog/datasets/bomen",
+      "portal_url": "https://data.eindhoven.nl/explore/dataset/bomen/",
+      "license_name": "Publiek domein",
+      "dataset_name": "Bomen",
+      "attribution_name": "Gemeente Eindhoven"
+    }
+  },
+  {
+    "code": "groningen_nl",
+    "name": "Groningen",
+    "country": "NL",
+    "license": {
+      "api_url": "https://maps.groningen.nl/geoserver/geo-data/ows",
+      "portal_url": "https://data.groningen.nl/dataset/bomen/04da3775-07f0-4388-bc12-7cd7536b04cd",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "license_name": "CC BY 4.0 International",
+      "dataset_name": "Bomen gemeente Groningen",
+      "attribution_name": "Gemeente Groningen",
+      "notices": [
+        "Modified: tree records filtered and botanical names normalized."
+      ]
+    }
+  },
+  {
+    "code": "nantes_fr",
+    "name": "Nantes Metropole",
+    "country": "FR",
+    "license": {
+      "api_url": "https://data.nantesmetropole.fr/api/explore/v2.1/catalog/datasets/244400404_patrimoine-arbore-nantes-metropole",
+      "portal_url": "https://data.nantesmetropole.fr/explore/dataset/244400404_patrimoine-arbore-nantes-metropole/",
+      "license": "https://www.etalab.gouv.fr/licence-ouverte-open-licence",
+      "license_name": "Licence Ouverte-LO",
+      "dataset_name": "Patrimoine arboré de Nantes Métropole et de la Ville de Nantes",
+      "attribution_name": "Nantes Métropole",
+      "last_updated": "2026-02-20"
+    }
+  },
+  {
+    "code": "strasbourg_fr",
+    "name": "Strasbourg Eurometropole",
+    "country": "FR",
+    "license": {
+      "api_url": "https://data.strasbourg.eu/api/explore/v2.1/catalog/datasets/patrimoine_arbore",
+      "portal_url": "https://data.strasbourg.eu/explore/dataset/patrimoine_arbore/",
+      "license": "https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf",
+      "license_name": "Licence Ouverte v2.0 (Etalab)",
+      "dataset_name": "Patrimoine arboré",
+      "attribution_name": "Ville et eurométropole de Strasbourg",
+      "last_updated": "2026-11-01"
     }
   }
 ]
