@@ -18,6 +18,7 @@ export class AboutView {
         page.querySelector('link[rel="stylesheet"]')!.remove();
         const style = page.createElement('style');
         style.textContent = `${aboutStyles}
+.startup-artwork { max-width: 100vw; }
 html { scrollbar-width: none; }
 html::-webkit-scrollbar { display: none; }`;
         page.head.append(style);
