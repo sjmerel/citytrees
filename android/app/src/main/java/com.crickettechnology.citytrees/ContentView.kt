@@ -50,7 +50,6 @@ import java.io.File
 fun ContentView() {
 
     val selectedTypeIndex: MutableState<Int?> = remember { mutableStateOf(null) }
-    val isBusy = remember { mutableStateOf(false) }
     var showingAbout by rememberSaveable { mutableStateOf(false) }
     var satellite by remember { mutableStateOf(false) }
     var locationEnabled by rememberSaveable { mutableStateOf(TreesApplication.defaults.getBoolean("hasShownAbout", false)) }
@@ -72,7 +71,7 @@ fun ContentView() {
     // the map extends under the system bars too; the overlays stay below the top one
     Box(Modifier.fillMaxSize()) {
         if (checkForNewDataCompleted) {
-            MapView(selectedTypeIndex, isBusy, tileDownloadFailed, satellite, locationEnabled, isLocationAuthorized, locationRequest).Content()
+            MapView(selectedTypeIndex, tileDownloadFailed, satellite, locationEnabled, isLocationAuthorized, locationRequest).Content()
         }
         Box(Modifier
             .fillMaxSize()
@@ -149,9 +148,6 @@ fun ContentView() {
                             .padding(horizontal = 16.dp, vertical = 8.dp))
                 }
             }
-        }
-        AnimatedVisibility(isBusy.value, enter = fadeIn(tween(300)), exit = fadeOut(tween(300))) {
-            BusyView(text = "Finding your location")
         }
         AnimatedVisibility(isCheckingForNewData, enter = fadeIn(tween(300)), exit = fadeOut(tween(300))) {
             BusyView(text = "Checking for new data")

@@ -4,7 +4,6 @@ import GoogleMaps
 struct ContentView: View {
 
     @State private var selectedTypeIndex: Int?
-    @State private var isBusy = false
     @State private var showingAbout = false
     @State private var satellite = false
     @State private var locationEnabled = UserDefaults.standard.bool(forKey: "hasShownAbout")
@@ -22,7 +21,7 @@ struct ContentView: View {
             .ignoresSafeArea(edges: .bottom)
             .background {
                 if checkForNewDataCompleted {
-                    MapView(selectedTypeIndex: $selectedTypeIndex, isBusy: $isBusy, tileDownloadFailed: $tileDownloadFailed, satellite: satellite, locationEnabled: locationEnabled, isLocationAuthorized: $isLocationAuthorized, locationRequest: locationRequest)
+                    MapView(selectedTypeIndex: $selectedTypeIndex, tileDownloadFailed: $tileDownloadFailed, satellite: satellite, locationEnabled: locationEnabled, isLocationAuthorized: $isLocationAuthorized, locationRequest: locationRequest)
                         .ignoresSafeArea()
                 }
             }
@@ -54,15 +53,6 @@ struct ContentView: View {
                 }
             }
             .animation(.easeInOut(duration: 0.3), value: selectedTypeIndex != nil)
-            .overlay {
-                ZStack {
-                    if isBusy {
-                        BusyView(text: "Finding your location")
-                            .transition(.opacity)
-                    }
-                }
-                .animation(.easeInOut(duration: 0.3), value: isBusy)
-            }
             .overlay(alignment: .bottom) {
                 if tileDownloadFailed {
                     Text("Data download failed; some trees may be missing.")

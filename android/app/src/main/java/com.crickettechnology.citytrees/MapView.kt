@@ -48,9 +48,6 @@ class MapView(
     // Type index of the selected site, shown by the selection card in ContentView.
     val selectedTypeIndex: MutableState<Int?>,
 
-    // True while waiting for the device location; shown by BusyView in ContentView.
-    val isBusy: MutableState<Boolean>,
-
     // True after a tile download failed, until one succeeds; shown as a banner in ContentView.
     val tileDownloadFailed: MutableState<Boolean>,
 
@@ -228,11 +225,9 @@ class MapView(
                 // Android can't tell whether permission was never requested or was denied; if the user
                 // denied it permanently, the request returns immediately.
                 if (!isAuthorized) {
-                    setBusy(true)
                     requestLocationPermission!!()
                 }
                 else {
-                    setBusy(true)
                     requestLocation()
                 }
             }
@@ -250,7 +245,6 @@ class MapView(
         fun showMyLocation() {
             if (parent.locationEnabled && isAuthorized) {
                 isRecentering = true
-                setBusy(true)
                 requestLocation()
             }
         }
@@ -264,16 +258,12 @@ class MapView(
             if (isAuthorized) {
                 requestLocation()
             }
-            else {
-                setBusy(false)
-            }
         }
 
         // The first fix centers the map; if there is none, the map keeps the saved camera or the whole world.
         fun locationUpdated(location: Location) {
             if (hasLocated && !isRecentering) { return }
             hasLocated = true
-            setBusy(false)
             val map = this.map
             if (map != null) {
                 val zoom = maxOf(map.cameraPosition.zoom, 12f)
@@ -291,7 +281,6 @@ class MapView(
         fun locationFailed(error: Exception?) {
             println("location unavailable: $error")
             isRecentering = false
-            setBusy(false)
         }
 
 
@@ -301,10 +290,6 @@ class MapView(
         private var hasConfiguredLocation = false
         private var hasLocated = false
         private var isRecentering = false
-
-        private fun setBusy(busy: Boolean) {
-            parent.isBusy.value = busy
-        }
 
         // Android-specific: counterpart of CLLocationManager.requestLocation
         @SuppressLint("MissingPermission")

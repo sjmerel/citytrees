@@ -9,9 +9,6 @@ struct MapView: UIViewRepresentable {
     // Type index of the selected site, shown by the selection card in ContentView.
     @Binding var selectedTypeIndex: Int?
 
-    // True while waiting for the device location; shown by BusyView in ContentView.
-    @Binding var isBusy: Bool
-
     // True after a tile download failed, until one succeeds; shown as a banner in ContentView.
     @Binding var tileDownloadFailed: Bool
 
@@ -104,11 +101,9 @@ struct MapView: UIViewRepresentable {
             if parent.locationEnabled && !hasConfiguredLocation {
                 hasConfiguredLocation = true
                 if locationManager.authorizationStatus == .notDetermined {
-                    setBusy(true)
                     locationManager.requestWhenInUseAuthorization()
                 }
                 else if isAuthorized {
-                    setBusy(true)
                     locationManager.requestLocation()
                 }
             }
@@ -125,7 +120,6 @@ struct MapView: UIViewRepresentable {
         func showMyLocation() {
             if parent.locationEnabled && isAuthorized {
                 isRecentering = true
-                setBusy(true)
                 locationManager.requestLocation()
             }
         }
@@ -139,16 +133,12 @@ struct MapView: UIViewRepresentable {
             if isAuthorized {
                 manager.requestLocation()
             }
-            else if manager.authorizationStatus != .notDetermined {
-                setBusy(false)
-            }
         }
 
         // The first fix centers the map; if there is none, the map keeps the saved camera or the whole world.
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             if (!hasLocated || isRecentering), let location = locations.last {
                 hasLocated = true
-                setBusy(false)
                 if let mapView {
                     let zoom = max(mapView.camera.zoom, 12)
                     let update = GMSCameraUpdate.setTarget(location.coordinate, zoom: zoom)
@@ -166,7 +156,6 @@ struct MapView: UIViewRepresentable {
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
             print("location unavailable: \(error)")
             isRecentering = false
-            setBusy(false)
         }
 
 
@@ -177,13 +166,6 @@ struct MapView: UIViewRepresentable {
         private var hasLocated = false
         private var isRecentering = false
         private weak var mapView: GMSMapView?
-
-        // Deferred, since this can be called while SwiftUI is updating the view.
-        private func setBusy(_ busy: Bool) {
-            DispatchQueue.main.async { [weak self] in
-                self?.parent.isBusy = busy
-            }
-        }
 
         // The selection is a marker rather than part of the tile layer, so selecting a site
         // doesn't require redrawing tiles.

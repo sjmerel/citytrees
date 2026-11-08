@@ -125,7 +125,6 @@ export class MapView {
         this.locating = true;
         const button = document.querySelector<HTMLButtonElement>('#locate')!;
         button.disabled = true;
-        this.showStatus('Finding your location...');
         navigator.geolocation.getCurrentPosition(position => {
             this.locating = false;
             button.disabled = false;
