@@ -7,6 +7,7 @@ struct ContentView: View {
     @State private var isBusy = false
     @State private var showingAbout = false
     @State private var satellite = false
+    @State private var locationEnabled = UserDefaults.standard.bool(forKey: "hasShownAbout")
     @State private var isLocationAuthorized = false
     @State private var locationRequest = 0
     @State private var tileDownloadFailed = false
@@ -21,7 +22,7 @@ struct ContentView: View {
             .ignoresSafeArea(edges: .bottom)
             .background {
                 if checkForNewDataCompleted {
-                    MapView(selectedTypeIndex: $selectedTypeIndex, isBusy: $isBusy, tileDownloadFailed: $tileDownloadFailed, satellite: satellite, isLocationAuthorized: $isLocationAuthorized, locationRequest: locationRequest)
+                    MapView(selectedTypeIndex: $selectedTypeIndex, isBusy: $isBusy, tileDownloadFailed: $tileDownloadFailed, satellite: satellite, locationEnabled: locationEnabled, isLocationAuthorized: $isLocationAuthorized, locationRequest: locationRequest)
                         .ignoresSafeArea()
                 }
             }
@@ -36,7 +37,7 @@ struct ContentView: View {
                     .padding(.trailing, 16)
                     .padding(.bottom, 50)
             }
-            .sheet(isPresented: $showingAbout) {
+            .sheet(isPresented: $showingAbout, onDismiss: { locationEnabled = true }) {
                 AboutView()
                     .onAppear {
                         UserDefaults.standard.set(true, forKey: "hasShownAbout")

@@ -30,6 +30,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -50,8 +51,9 @@ fun ContentView() {
 
     val selectedTypeIndex: MutableState<Int?> = remember { mutableStateOf(null) }
     val isBusy = remember { mutableStateOf(false) }
-    var showingAbout by remember { mutableStateOf(false) }
+    var showingAbout by rememberSaveable { mutableStateOf(false) }
     var satellite by remember { mutableStateOf(false) }
+    var locationEnabled by rememberSaveable { mutableStateOf(TreesApplication.defaults.getBoolean("hasShownAbout", false)) }
     val isLocationAuthorized = remember { mutableStateOf(false) }
     var locationRequest by remember { mutableIntStateOf(0) }
     val tileDownloadFailed = remember { mutableStateOf(false) }
@@ -70,7 +72,7 @@ fun ContentView() {
     // the map extends under the system bars too; the overlays stay below the top one
     Box(Modifier.fillMaxSize()) {
         if (checkForNewDataCompleted) {
-            MapView(selectedTypeIndex, isBusy, tileDownloadFailed, satellite, isLocationAuthorized, locationRequest).Content()
+            MapView(selectedTypeIndex, isBusy, tileDownloadFailed, satellite, locationEnabled, isLocationAuthorized, locationRequest).Content()
         }
         Box(Modifier
             .fillMaxSize()
@@ -98,14 +100,20 @@ fun ContentView() {
                 }
             }
             ModalBottomSheet(
-                onDismissRequest = { showingAbout = false },
+                onDismissRequest = {
+                    showingAbout = false
+                    locationEnabled = true
+                },
                 sheetState = sheetState,
                 containerColor = Color(0xFFF1F8F7),
                 dragHandle = null
             ) {
                 Box(Modifier.fillMaxHeight(0.9f)) {
                     AboutView {
-                        scope.launch { sheetState.hide() }.invokeOnCompletion { showingAbout = false }
+                        scope.launch { sheetState.hide() }.invokeOnCompletion {
+                            showingAbout = false
+                            locationEnabled = true
+                        }
                     }
                 }
             }

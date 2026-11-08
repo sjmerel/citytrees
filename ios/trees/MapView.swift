@@ -18,6 +18,9 @@ struct MapView: UIViewRepresentable {
     // Satellite imagery instead of the normal map.
     var satellite: Bool
 
+    // Whether location queries and permission requests are allowed.
+    var locationEnabled: Bool
+
     // Whether the custom location button is available, and requests to recenter the map.
     @Binding var isLocationAuthorized: Bool
     var locationRequest: Int
@@ -64,6 +67,7 @@ struct MapView: UIViewRepresentable {
 
     func updateUIView(_ mapView: GMSMapView, context: Context) {
         context.coordinator.parent = self
+        context.coordinator.configureLocation(for: mapView)
         mapView.mapType = satellite ? .satellite : .normal
         context.coordinator.tileLayer.outlined = satellite
         if selectedTypeIndex == nil {
@@ -97,13 +101,16 @@ struct MapView: UIViewRepresentable {
             self.mapView = mapView
             updateLocationControls()
 
-            if locationManager.authorizationStatus == .notDetermined {
-                setBusy(true)
-                locationManager.requestWhenInUseAuthorization()
-            }
-            else if isAuthorized {
-                setBusy(true)
-                locationManager.requestLocation()
+            if parent.locationEnabled && !hasConfiguredLocation {
+                hasConfiguredLocation = true
+                if locationManager.authorizationStatus == .notDetermined {
+                    setBusy(true)
+                    locationManager.requestWhenInUseAuthorization()
+                }
+                else if isAuthorized {
+                    setBusy(true)
+                    locationManager.requestLocation()
+                }
             }
         }
 
@@ -116,7 +123,7 @@ struct MapView: UIViewRepresentable {
         }
 
         func showMyLocation() {
-            if isAuthorized {
+            if parent.locationEnabled && isAuthorized {
                 isRecentering = true
                 setBusy(true)
                 locationManager.requestLocation()
@@ -128,7 +135,7 @@ struct MapView: UIViewRepresentable {
 
         func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
             updateLocationControls()
-            if hasLocated { return }
+            if !hasConfiguredLocation || hasLocated { return }
             if isAuthorized {
                 manager.requestLocation()
             }
@@ -166,6 +173,7 @@ struct MapView: UIViewRepresentable {
         ////////////////////////////////////////
 
         private let locationManager = CLLocationManager()
+        private var hasConfiguredLocation = false
         private var hasLocated = false
         private var isRecentering = false
         private weak var mapView: GMSMapView?
@@ -232,7 +240,7 @@ struct MapView: UIViewRepresentable {
         }
 
         private func updateLocationControls() {
-            mapView?.isMyLocationEnabled = isAuthorized
+            mapView?.isMyLocationEnabled = parent.locationEnabled && isAuthorized
             mapView?.settings.compassButton = isAuthorized
             mapView?.settings.myLocationButton = false
             DispatchQueue.main.async { [weak self] in

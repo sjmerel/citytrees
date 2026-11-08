@@ -57,6 +57,9 @@ class MapView(
     // Satellite imagery instead of the normal map.
     val satellite: Boolean,
 
+    // Whether location queries and permission requests are allowed.
+    val locationEnabled: Boolean,
+
     // Whether the custom location button is available, and requests to recenter the map.
     val isLocationAuthorized: MutableState<Boolean>,
     val locationRequest: Int
@@ -179,6 +182,7 @@ class MapView(
         coordinator.parent = this
         val map = coordinator.map
         if (map != null) {
+            coordinator.configureLocation(map)
             map.mapType = if (satellite) GoogleMap.MAP_TYPE_SATELLITE else GoogleMap.MAP_TYPE_NORMAL
             val padding = coordinator.padding
             map.setPadding(padding.left, padding.top, padding.right, padding.bottom)
@@ -219,15 +223,18 @@ class MapView(
             this.map = map
             updateLocationControls()
 
-            // Android can't tell whether permission was never requested or was denied; if the user
-            // denied it permanently, the request returns immediately.
-            if (!isAuthorized) {
-                setBusy(true)
-                requestLocationPermission!!()
-            }
-            else {
-                setBusy(true)
-                requestLocation()
+            if (parent.locationEnabled && !hasConfiguredLocation) {
+                hasConfiguredLocation = true
+                // Android can't tell whether permission was never requested or was denied; if the user
+                // denied it permanently, the request returns immediately.
+                if (!isAuthorized) {
+                    setBusy(true)
+                    requestLocationPermission!!()
+                }
+                else {
+                    setBusy(true)
+                    requestLocation()
+                }
             }
         }
 
@@ -241,7 +248,7 @@ class MapView(
         }
 
         fun showMyLocation() {
-            if (isAuthorized) {
+            if (parent.locationEnabled && isAuthorized) {
                 isRecentering = true
                 setBusy(true)
                 requestLocation()
@@ -253,7 +260,7 @@ class MapView(
 
         fun locationPermissionChanged() {
             updateLocationControls()
-            if (hasLocated) { return }
+            if (!hasConfiguredLocation || hasLocated) { return }
             if (isAuthorized) {
                 requestLocation()
             }
@@ -291,6 +298,7 @@ class MapView(
         ////////////////////////////////////////
 
         private val locationClient = LocationServices.getFusedLocationProviderClient(TreesApplication.context)
+        private var hasConfiguredLocation = false
         private var hasLocated = false
         private var isRecentering = false
 
@@ -379,7 +387,7 @@ class MapView(
         private fun updateLocationControls() {
             val map = this.map
             if (map != null) {
-                map.isMyLocationEnabled = isAuthorized
+                map.isMyLocationEnabled = parent.locationEnabled && isAuthorized
                 map.uiSettings.isCompassEnabled = isAuthorized
                 map.uiSettings.isMyLocationButtonEnabled = false
             }
