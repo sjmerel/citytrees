@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.graphics.Point
 import android.location.Location
+import android.view.MotionEvent
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.WindowInsets
@@ -114,7 +115,18 @@ class MapView(
     ////////////////////////////////////////
 
     private fun makeUIView(context: Context, coordinator: Coordinator): GoogleMapView {
-        val mapView = GoogleMapView(context)
+        val mapView = object : GoogleMapView(context) {
+            override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+                when (event.actionMasked) {
+                    MotionEvent.ACTION_DOWN, MotionEvent.ACTION_CANCEL -> coordinator.tapCoordinate = null
+                    MotionEvent.ACTION_UP -> {
+                        val point = Point(event.x.roundToInt(), event.y.roundToInt())
+                        coordinator.tapCoordinate = coordinator.map?.projection?.fromScreenLocation(point)
+                    }
+                }
+                return super.dispatchTouchEvent(event)
+            }
+        }
         mapView.onCreate(null)
 
         // Android-specific: the map is provided asynchronously
@@ -133,8 +145,11 @@ class MapView(
             }
             map.setOnCameraIdleListener(coordinator)
             map.setOnMapClickListener(coordinator)
-            // the selection marker should not be tappable; consuming the tap is the closest Android equivalent
-            map.setOnMarkerClickListener { true }
+            map.setOnMarkerClickListener { marker ->
+                // Accessibility activation may not have a touch coordinate.
+                coordinator.onMapClick(coordinator.tapCoordinate ?: marker.position)
+                true
+            }
 
             val tileLayer = coordinator.tileLayer
             tileLayer.map = map
@@ -197,6 +212,9 @@ class MapView(
         // Android-specific: the system bar insets, in pixels
         var padding = Rect()
 
+        // Android-specific: marker-click callbacks do not include the tap location.
+        var tapCoordinate: LatLng? = null
+
         fun configureLocation(map: GoogleMap) {
             this.map = map
             updateLocationControls()
@@ -218,6 +236,7 @@ class MapView(
         }
 
         override fun onMapClick(latLng: LatLng) {
+            tapCoordinate = null
             select(nearestSite(latLng, map!!))
         }
 
