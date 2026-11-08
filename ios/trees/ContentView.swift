@@ -14,8 +14,6 @@ struct ContentView: View {
     @State private var isCheckingForNewData = true
     @State private var dataCheckError: String?
     @State private var dataCheckAttempt = 0
-    @State private var showingStartup = true
-    @State private var startupSecondsRemaining = 5
 
     var body: some View {
         // the map extends under the top safe area too; the overlays stay below it
@@ -40,6 +38,9 @@ struct ContentView: View {
             }
             .sheet(isPresented: $showingAbout) {
                 AboutView()
+                    .onAppear {
+                        UserDefaults.standard.set(true, forKey: "hasShownAbout")
+                    }
             }
             .overlay(alignment: .top) {
                 if let selectedTypeIndex {
@@ -100,30 +101,6 @@ struct ContentView: View {
             .task(id: dataCheckAttempt) {
                 await checkForNewData()
             }
-            .overlay {
-                if showingStartup {
-                    ZStack {
-                        Color.clear
-                            .contentShape(Rectangle())
-                            .ignoresSafeArea()
-                            .onTapGesture { showingStartup = false }
-                        StartupView(secondsRemaining: startupSecondsRemaining) { showingStartup = false }
-                            .padding(.horizontal, 30)
-                    }
-                    .transition(.opacity)
-                }
-            }
-            .animation(.easeInOut(duration: 0.3), value: showingStartup)
-            .task {
-                do {
-                    while startupSecondsRemaining > 0 && showingStartup {
-                        try await Task.sleep(for: .seconds(1))
-                        startupSecondsRemaining -= 1
-                    }
-                    showingStartup = false
-                }
-                catch {}
-            }
     }
 
     @MainActor
@@ -135,6 +112,9 @@ struct ContentView: View {
                 TreeType.load(url: Dataset.instance.localDir.appendingPathComponent("types.bin"))
                 checkForNewDataCompleted = true
                 isCheckingForNewData = false
+                if !UserDefaults.standard.bool(forKey: "hasShownAbout") {
+                    showingAbout = true
+                }
             }
             catch {
                 if Task.isCancelled { return }

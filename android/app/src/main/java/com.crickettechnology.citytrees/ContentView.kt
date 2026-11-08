@@ -40,7 +40,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -60,8 +59,6 @@ fun ContentView() {
     var isCheckingForNewData by remember { mutableStateOf(true) }
     var dataCheckError by remember { mutableStateOf<String?>(null) }
     var dataCheckAttempt by remember { mutableIntStateOf(0) }
-    var showingStartup by remember { mutableStateOf(true) }
-    var startupSecondsRemaining by remember { mutableIntStateOf(5) }
 
     // Android-specific: the last selection, shown while the selection card fades out
     var lastSelectedTypeIndex by remember { mutableStateOf<Int?>(null) }
@@ -95,6 +92,11 @@ fun ContentView() {
         if (showingAbout) {
             val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
             val scope = rememberCoroutineScope()
+            LaunchedEffect(sheetState.isVisible) {
+                if (sheetState.isVisible) {
+                    TreesApplication.defaults.edit().putBoolean("hasShownAbout", true).apply()
+                }
+            }
             ModalBottomSheet(
                 onDismissRequest = { showingAbout = false },
                 sheetState = sheetState,
@@ -154,9 +156,6 @@ fun ContentView() {
                 dataCheckAttempt += 1
             })
         }
-        AnimatedVisibility(showingStartup, enter = fadeIn(tween(300)), exit = fadeOut(tween(300))) {
-            StartupView(secondsRemaining = startupSecondsRemaining) { showingStartup = false }
-        }
     }
 
     LaunchedEffect(dataCheckAttempt) {
@@ -169,6 +168,9 @@ fun ContentView() {
                 }
                 checkForNewDataCompleted = true
                 isCheckingForNewData = false
+                if (!TreesApplication.defaults.getBoolean("hasShownAbout", false)) {
+                    showingAbout = true
+                }
             }
             catch (e: CancellationException) {
                 throw e
@@ -179,13 +181,5 @@ fun ContentView() {
                 isCheckingForNewData = false
             }
         }
-    }
-
-    LaunchedEffect(Unit) {
-        while (startupSecondsRemaining > 0 && showingStartup) {
-            delay(1000)
-            startupSecondsRemaining -= 1
-        }
-        showingStartup = false
     }
 }
