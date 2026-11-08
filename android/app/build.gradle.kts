@@ -20,7 +20,7 @@ android {
         minSdk = 31
         targetSdk = 36
         versionCode = rootProject.file("versionCode.txt").readText().trim().toInt()
-        versionName = "2.0"
+        versionName = "2.0 ($versionCode)"
 
         // Add MAPS_API_KEY=... to secrets/android-secrets.properties at the repository root (gitignored).
         val mapsPropertiesFile = rootProject.file("../secrets/android-secrets.properties")
