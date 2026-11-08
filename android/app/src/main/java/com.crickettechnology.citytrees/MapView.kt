@@ -267,11 +267,16 @@ class MapView(
             if (hasLocated && !isRecentering) { return }
             hasLocated = true
             setBusy(false)
-            if (isRecentering) {
-                map?.animateCamera(CameraUpdateFactory.newLatLng(LatLng(location.latitude, location.longitude)))
-            }
-            else {
-                map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 12f))
+            val map = this.map
+            if (map != null) {
+                val zoom = maxOf(map.cameraPosition.zoom, 12f)
+                val update = CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), zoom)
+                if (isRecentering) {
+                    map.animateCamera(update)
+                }
+                else {
+                    map.moveCamera(update)
+                }
             }
             isRecentering = false
         }

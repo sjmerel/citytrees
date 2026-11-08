@@ -142,11 +142,15 @@ struct MapView: UIViewRepresentable {
             if (!hasLocated || isRecentering), let location = locations.last {
                 hasLocated = true
                 setBusy(false)
-                if isRecentering {
-                    mapView?.animate(with: GMSCameraUpdate.setTarget(location.coordinate))
-                }
-                else {
-                    mapView?.moveCamera(GMSCameraUpdate.setTarget(location.coordinate, zoom: 12))
+                if let mapView {
+                    let zoom = max(mapView.camera.zoom, 12)
+                    let update = GMSCameraUpdate.setTarget(location.coordinate, zoom: zoom)
+                    if isRecentering {
+                        mapView.animate(with: update)
+                    }
+                    else {
+                        mapView.moveCamera(update)
+                    }
                 }
                 isRecentering = false
             }

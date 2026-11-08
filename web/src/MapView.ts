@@ -68,6 +68,7 @@ export class MapView {
         this.updateMapType();
         document.querySelector<HTMLElement>('#controls')!.hidden = false;
         this.showMyLocation(true);
+        about.show();
     }
 
     private setupButton(id: string, icon: string, action?: () => void) {
@@ -129,8 +130,16 @@ export class MapView {
             this.locating = false;
             button.disabled = false;
             this.myLocation = { lat: position.coords.latitude, lon: position.coords.longitude };
-            this.map.setCenter({ lat: this.myLocation.lat, lng: this.myLocation.lon });
-            this.map.setZoom(Math.max(this.map.getZoom() ?? 0, 12));
+            const center = { lat: this.myLocation.lat, lng: this.myLocation.lon };
+            const zoom = Math.max(this.map.getZoom() ?? 0, 12);
+            if (isStartup) {
+                this.map.setCenter(center);
+                this.map.setZoom(zoom);
+            }
+            else {
+                this.map.setZoom(zoom);
+                this.map.panTo(center);
+            }
             this.drawMarkers();
             this.clearStatus();
         }, error => {
