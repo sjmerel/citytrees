@@ -21,10 +21,22 @@ There is more detailed information on how data is added and processed in the dat
 
 Before researching or adding cities, Agents should read and follow [city instructions](/agents/city-data.instructions.md). 
 Cities that have been considered previously should be stored in the [candidate list](/agents/city_candidates.json).
-When looking for data for a city, prefer government "open data" sites to community projects. Many cities have multiple databases available; if so, try to use the largest and most up-to-date one.
-When asked to find additional cities, in the absence of other specific criteria specified, consider candidates in the candidate list first. If there are no good candidates there, look for cities with large populations.
+When looking for data for a city, prefer government "open data" sites to community projects or feeds from commercial organizations. Many cities have multiple databases available; if so, try to use the largest and most up-to-date one. 
+When asked to find additional cities, in the absence of other specific criteria specified, consider candidates in the candidate list first. If there are no good candidates there, prioritize by city population.
 Agents may update the city-data.instructions.md file as the city research workflow evolves, and otherwise add or edit files in the /agents directory, but must not modify AGENTS.md unless the user explicitly requests it. The goal of the city data instructions is to help Agents add more databases efficiently.
-When adding a city, include a URL to the license of the data in cities.json if available, in the "license" field.  If the license may be prohibitive for our use, include a comment in "license_comment".
+When adding a city, fill out license information if available, following the examples. Possible license keys:
+  * api_url: the primary URL from which we download data
+  * portal_url: a corresponding web portal, friendly to human readers, if any.
+  * license: url of the license of the data, if any.
+  * license_name: name of the license, if any.
+  * dataset_name: official name of the dataset, if any
+  * attribution_name: name of entity to which credit should be attributed, if any
+  * attribution_url: url to which credit should be attributed, if any
+  * terms_url: url to specific terms of use of data, if any
+  * last_updated: set to an emtpy string if license terms require date of access; value will be set when data is built.
+  * notices: additional text required by license, if any.
+  * If the license may be prohibitive for our use, include a comment in "license_comment".
+Do not invent new license keys. Keep license text to the minimum that satisfies known requirements.
 
 
 ## App
