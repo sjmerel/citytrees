@@ -130,7 +130,7 @@ export class MapView {
             button.disabled = false;
             this.myLocation = { lat: position.coords.latitude, lon: position.coords.longitude };
             this.map.setCenter({ lat: this.myLocation.lat, lng: this.myLocation.lon });
-            this.map.setZoom(Math.max(this.map.getZoom() ?? 0, 17));
+            this.map.setZoom(Math.max(this.map.getZoom() ?? 0, 12));
             this.drawMarkers();
             this.clearStatus();
         }, error => {

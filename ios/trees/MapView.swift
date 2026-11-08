@@ -146,7 +146,7 @@ struct MapView: UIViewRepresentable {
                     mapView?.animate(with: GMSCameraUpdate.setTarget(location.coordinate))
                 }
                 else {
-                    mapView?.moveCamera(GMSCameraUpdate.setTarget(location.coordinate, zoom: 16))
+                    mapView?.moveCamera(GMSCameraUpdate.setTarget(location.coordinate, zoom: 12))
                 }
                 isRecentering = false
             }
