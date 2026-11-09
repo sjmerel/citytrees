@@ -330,6 +330,8 @@ function handleDuplicateLocations(data: any[]): any[] {
     }
     start = end;
   }
+  data = data.filter((_, i) => keep[i]);
+
 
   /*
   let removedByCity = new Map<string, number>();
@@ -338,12 +340,12 @@ function handleDuplicateLocations(data: any[]): any[] {
     removedByCity.set(site.city, (removedByCity.get(site.city) ?? 0) + 1);
     return false;
   });
-  console.log(`  ${dedupedSame} duplicate same-species sites merged`);
-  console.log(`  ${droppedMixed} mixed-species co-located sites dropped`);
   for (let [city, removed] of [...removedByCity].sort(([a], [b]) => a.localeCompare(b))) {
     console.log(`  ${city}: ${removed} sites removed`);
   }
   */
+  console.log(`  ${dedupedSame} duplicate same-species sites merged`);
+  console.log(`  ${droppedMixed} mixed-species co-located sites dropped`);
   return data;
 }
 

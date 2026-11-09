@@ -4584,10 +4584,7 @@
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "license_name": "CC BY 4.0 International",
       "dataset_name": "Bomen gemeente Groningen",
-      "attribution_name": "Gemeente Groningen",
-      "notices": [
-        "Modified: tree records filtered and botanical names normalized."
-      ]
+      "attribution_name": "Gemeente Groningen"
     }
   },
   {
@@ -4672,10 +4669,7 @@
       "terms_url": "https://data-bs.ch/stata/dataspot/permalinks/20240822-osm-vektordaten.pdf",
       "dataset_name": "Baumkataster: Baumbestand",
       "attribution_name": "Geodaten Kanton Basel-Stadt",
-      "attribution_url": "https://data.bs.ch/explore/dataset/100052/",
-      "notices": [
-        "Modified: tree records filtered and botanical names normalized."
-      ]
+      "attribution_url": "https://data.bs.ch/explore/dataset/100052/"
     }
   },
   {
@@ -4703,10 +4697,7 @@
       "license_name": "CC BY 4.0 International",
       "dataset_name": "Træ basis (Kommunale træer)",
       "attribution_name": "Københavns Kommune",
-      "attribution_url": "https://www.opendata.dk/city-of-copenhagen/trae-basis-kommunale-traeer",
-      "notices": [
-        "Modified: tree records filtered and botanical names normalized."
-      ]
+      "attribution_url": "https://www.opendata.dk/city-of-copenhagen/trae-basis-kommunale-traeer"
     }
   },
   {
@@ -4752,7 +4743,6 @@
       "terms_url": "https://www.medellin.gov.co/normograma/docs/astrea/docs/C_SGMED_0054_2026.htm",
       "notices": [
         "Créditos: Alcaldía de Medellín - Secretaría de Medio Ambiente - Subsecretaría de Recursos Naturales Renovables y, autoridad ambiental Área Metropolitana del Valle de Aburrá.",
-        "Source published on GeoMedellín: 2022-06-16. Modified: tree records filtered, duplicates removed and botanical names normalized.",
         "La Alcaldía de Medellín no será responsable por la utilización, tratamiento, transformación de los datos, ni tampoco, sobre cualquier tipo de responsabilidad legal o económica sobre el uso directo o indirecto que se realice sobre estos datos."
       ],
       "license_comment": "CC BY-SA 4.0 requires share-alike for applicable adaptations/derived databases; check compatibility before merging or redistributing processed datasets. Attribution alone is insufficient."
@@ -4815,10 +4805,7 @@
       "license_name": "CC BY 4.0 International",
       "dataset_name": "都道の街路樹",
       "attribution_name": "Tokyo Metropolitan Government, Bureau of Construction",
-      "attribution_url": "https://www.kensetsu.metro.tokyo.lg.jp/",
-      "notices": [
-        "Modified: metropolitan-road records from the 23 wards and Tama combined; botanical names crosswalked using Tokyo Metropolitan Government and Forestry and Forest Products Research Institute references. Only verified tree labels retained; duplicates and invalid coordinates excluded."
-      ]
+      "attribution_url": "https://www.kensetsu.metro.tokyo.lg.jp/"
     }
   },
   {
@@ -4834,8 +4821,7 @@
       "attribution_name": "臺北市政府工務局公園路燈工程管理處",
       "attribution_url": "https://pkl.gov.taipei/",
       "notices": [
-        "臺北市政府工務局公園路燈工程管理處 2026 臺北市行道樹位置圖。此開放資料依政府資料開放授權條款 (Open Government Data License) 進行公眾釋出，使用者於遵守本條款各項規定之前提下，得利用之。",
-        "Modified: TWD97 coordinates converted to WGS84; only tree labels with verified government botanical crosswalks retained. Ambiguous species retained at genus level."
+        "臺北市政府工務局公園路燈工程管理處 2026 臺北市行道樹位置圖。此開放資料依政府資料開放授權條款 (Open Government Data License) 進行公眾釋出，使用者於遵守本條款各項規定之前提下，得利用之。"
       ]
     }
   },

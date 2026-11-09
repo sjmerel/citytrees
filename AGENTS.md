@@ -34,7 +34,7 @@ When adding a city, fill out license information if available, following the exa
   * attribution_url: url to which credit should be attributed, if any
   * terms_url: url to specific terms of use of data, if any
   * last_updated: set to an emtpy string if license terms require date of access; value will be set when data is built.
-  * notices: additional text required by license, if any.
+  * notices: additional text required by license, if any.  (Keep this minimal; add only what is required for licensing.)
   * If the license may be prohibitive for our use, include a comment in "license_comment".
 Do not invent new license keys. Keep license text to the minimum that satisfies known requirements.
 
