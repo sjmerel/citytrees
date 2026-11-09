@@ -326,5 +326,93 @@
   "Terminalia subspathulata": {
     "matchedName": "Terminalia",
     "commonNames": []
+  },
+  "Populus": {
+    "matchedName": "Populus",
+    "commonNames": ["Poplar"]
+  },
+  "Juniperus": {
+    "matchedName": "Juniperus",
+    "commonNames": ["Juniper"]
+  },
+  "Euonymus": {
+    "matchedName": "Euonymus",
+    "commonNames": ["Spindletree"]
+  },
+  "Thuja": {
+    "matchedName": "Thuja",
+    "commonNames": ["Arborvitae", "Thuya"]
+  },
+  "Trachycarpus": {
+    "matchedName": "Trachycarpus",
+    "commonNames": ["Windmill palm"]
+  },
+  "Dalbergia": {
+    "matchedName": "Dalbergia",
+    "commonNames": ["Rosewood"]
+  },
+  "Lithocarpus": {
+    "matchedName": "Lithocarpus",
+    "commonNames": ["Stone oak"]
+  },
+  "Terminalia": {
+    "matchedName": "Terminalia",
+    "commonNames": []
+  },
+  "Osmanthus": {
+    "matchedName": "Osmanthus",
+    "commonNames": []
+  },
+  "Metrosideros": {
+    "matchedName": "Metrosideros",
+    "commonNames": []
+  },
+  "Sophora": {
+    "matchedName": "Sophora",
+    "commonNames": []
+  },
+  "Camellia": {
+    "matchedName": "Camellia",
+    "commonNames": []
+  },
+  "Deutzia": {
+    "matchedName": "Deutzia",
+    "commonNames": []
+  },
+  "Hakea": {
+    "matchedName": "Hakea",
+    "commonNames": []
+  },
+  "Eucryphia": {
+    "matchedName": "Eucryphia",
+    "commonNames": []
+  },
+  "Geoffroea decorticans": {
+    "matchedName": "Geoffroea decorticans",
+    "commonNames": ["Chañar"]
+  },
+  "Ochroma pyramidale": {
+    "matchedName": "Ochroma pyramidale",
+    "commonNames": ["West Indian balsa", "Balsa"]
+  },
+  "Coursetia caribaea": {
+    "matchedName": "Coursetia caribaea",
+    "commonNames": []
+  },
+  "Metrosideros excelsa": {
+    "matchedName": "Metrosideros excelsa",
+    "commonNames": ["Pohutukawa", "New Zealand Christmas tree"]
+  },
+  "Hakea laurina": {
+    "matchedName": "Hakea laurina",
+    "commonNames": ["Pincushion hakea", "Pincushion tree"]
+  },
+  "Sophora tetraptera": {
+    "matchedName": "Sophora tetraptera",
+    "commonNames": ["Kowhai"]
+  },
+  "Eucryphia lucida": {
+    "matchedName": "Eucryphia lucida",
+    "commonNames": ["Leatherwood"]
   }
 }
