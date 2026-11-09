@@ -4615,5 +4615,158 @@
       "attribution_name": "Ville et eurométropole de Strasbourg",
       "last_updated": "2026-11-01"
     }
+  },
+  {
+    "code": "antwerp_be",
+    "name": "Antwerp",
+    "country": "BE",
+    "license": {
+      "api_url": "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek6/MapServer/676",
+      "portal_url": "https://portaal-stadantwerpen.opendata.arcgis.com/datasets/boom/explore",
+      "license": "https://www.antwerpen.be/info/gratis-open-data-licentie",
+      "license_name": "Gratis Open Data Licentie 1.0",
+      "dataset_name": "boom",
+      "attribution_name": "bron stad Antwerpen",
+      "attribution_url": "https://www.antwerpen.be/"
+    }
+  },
+  {
+    "code": "lisbon_pt",
+    "name": "Lisbon",
+    "country": "PT",
+    "license": {
+      "api_url": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/Ambiente_DMEVAE/FeatureServer/0",
+      "portal_url": "https://dados.gov.pt/datasets/arvoredo/",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_name": "CC0 1.0",
+      "dataset_name": "Arvoredo",
+      "attribution_name": "Município de Lisboa",
+      "terms_url": "https://www.arcgis.com/home/item.html?id=d2eb1eb1cfae400496bec1aeec4e25b2"
+    }
+  },
+  {
+    "code": "zurich_ch",
+    "name": "Zurich",
+    "country": "CH",
+    "license": {
+      "api_url": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Baumkataster?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=baumkataster_baumstandorte&OUTPUTFORMAT=application%2Fvnd.geo%2Bjson&SRSNAME=EPSG%3A4326",
+      "portal_url": "https://data.stadt-zuerich.ch/dataset/geo_baumkataster",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_name": "CC0 1.0",
+      "dataset_name": "Baumkataster",
+      "attribution_name": "Stadt Zürich, Grün Stadt Zürich",
+      "attribution_url": "https://data.stadt-zuerich.ch/dataset/geo_baumkataster"
+    }
+  },
+  {
+    "code": "basel_ch",
+    "name": "Basel",
+    "country": "CH",
+    "license": {
+      "api_url": "https://data.bs.ch/api/explore/v2.1/catalog/datasets/100052/exports/json",
+      "portal_url": "https://data.bs.ch/explore/dataset/100052/",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "license_name": "CC BY 4.0 International",
+      "terms_url": "https://data-bs.ch/stata/dataspot/permalinks/20240822-osm-vektordaten.pdf",
+      "dataset_name": "Baumkataster: Baumbestand",
+      "attribution_name": "Geodaten Kanton Basel-Stadt",
+      "attribution_url": "https://data.bs.ch/explore/dataset/100052/",
+      "notices": [
+        "Modified: tree records filtered and botanical names normalized."
+      ]
+    }
+  },
+  {
+    "code": "bern_ch",
+    "name": "Bern",
+    "country": "CH",
+    "license": {
+      "api_url": "https://map.bern.ch/arcgis/rest/services/Geoportal/Baumkataster/MapServer/0",
+      "portal_url": "https://opendata.swiss/en/dataset/baumkataster1",
+      "terms_url": "https://opendata.swiss/en/terms-of-use#terms_open",
+      "license_name": "Open use (opendata.swiss terms_open)",
+      "dataset_name": "Baumkataster",
+      "attribution_name": "Geoinformation Stadt Bern",
+      "attribution_url": "https://opendata.swiss/en/dataset/baumkataster1"
+    }
+  },
+  {
+    "code": "copenhagen_dk",
+    "name": "Copenhagen",
+    "country": "DK",
+    "license": {
+      "api_url": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "portal_url": "https://www.opendata.dk/city-of-copenhagen/trae-basis-kommunale-traeer",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "license_name": "CC BY 4.0 International",
+      "dataset_name": "Træ basis (Kommunale træer)",
+      "attribution_name": "Københavns Kommune",
+      "attribution_url": "https://www.opendata.dk/city-of-copenhagen/trae-basis-kommunale-traeer",
+      "notices": [
+        "Modified: tree records filtered and botanical names normalized."
+      ]
+    }
+  },
+  {
+    "code": "ghent_be",
+    "name": "Ghent",
+    "country": "BE",
+    "license": {
+      "api_url": "https://data.stad.gent/api/explore/v2.1/catalog/datasets/locaties-bomen-gent",
+      "portal_url": "https://data.stad.gent/explore/dataset/locaties-bomen-gent/",
+      "license": "https://www.vlaanderen.be/digitaal-vlaanderen/onze-diensten-en-platformen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik",
+      "license_name": "Modellicentie Gratis Hergebruik",
+      "dataset_name": "Locaties bomen Gent",
+      "attribution_name": "Groendienst Gent",
+      "attribution_url": "https://stad.gent/"
+    }
+  },
+  {
+    "code": "geneva_ch",
+    "name": "Geneva",
+    "country": "CH",
+    "license": {
+      "api_url": "https://vector.sitg.ge.ch/arcgis/rest/services/SIPV_ICA_WEB_PUBLIC_TOT/MapServer/0",
+      "portal_url": "https://sitg.ge.ch/donnees/sipv-ica-web-public-tot",
+      "dataset_name": "Inventaire cantonal des arbres pour consultation en ligne",
+      "attribution_name": "Office cantonal de l'agriculture et de la nature (OCAN) et Conservatoire et Jardin botaniques de Genève (CJB)",
+      "attribution_url": "https://sitg.ge.ch/donnees/sipv-ica-web-public-tot",
+      "terms_url": "https://sitg.ge.ch/donnees/sipv-ica-web-public-tot",
+      "license_comment": "Reuse requires OCAN/CJB authorization. Project owner confirms permission; no general open license or permission for downstream reuse is established."
+    }
+  },
+  {
+    "code": "medellin_co",
+    "name": "Medellín",
+    "country": "CO",
+    "license": {
+      "api_url": "https://www.medellin.gov.co/servidormapas/rest/services/ambiente_dllo_sost/VC_Gestion_Ambiental/MapServer/0",
+      "portal_url": "https://www.medellin.gov.co/geomedellin/datosAbiertos/398",
+      "license": "https://creativecommons.org/licenses/by-sa/4.0/deed.es",
+      "license_name": "CC BY-SA 4.0 International",
+      "dataset_name": "Árbol Urbano (Mapa de Referencia)",
+      "attribution_name": "Distrito Especial de Ciencia Tecnología e Innovación de Medellín - GeoMedellín - Dato proporcionado por Departamento Administrativo de Planeación - Subdirección de Planeación Territorial y Estratégica de Ciudad.",
+      "attribution_url": "https://www.medellin.gov.co/geomedellin/datosAbiertos/398",
+      "terms_url": "https://www.medellin.gov.co/normograma/docs/astrea/docs/C_SGMED_0054_2026.htm",
+      "notices": [
+        "Créditos: Alcaldía de Medellín - Secretaría de Medio Ambiente - Subsecretaría de Recursos Naturales Renovables y, autoridad ambiental Área Metropolitana del Valle de Aburrá.",
+        "Source published on GeoMedellín: 2022-06-16. Modified: tree records filtered, duplicates removed and botanical names normalized.",
+        "La Alcaldía de Medellín no será responsable por la utilización, tratamiento, transformación de los datos, ni tampoco, sobre cualquier tipo de responsabilidad legal o económica sobre el uso directo o indirecto que se realice sobre estos datos."
+      ],
+      "license_comment": "CC BY-SA 4.0 requires share-alike for applicable adaptations/derived databases; check compatibility before merging or redistributing processed datasets. Attribution alone is insufficient."
+    }
+  },
+  {
+    "code": "budapest_hu",
+    "name": "Budapest",
+    "country": "HU",
+    "license": {
+      "api_url": "https://infogardenweb.hu/bpfatar/api/tree/supplies/categories",
+      "portal_url": "https://infogardenweb.hu/bpfatar/",
+      "dataset_name": "BP Fatár (FŐKERT store 1, partial coverage)",
+      "attribution_name": "BKM Nonprofit Zrt. – FŐKERT",
+      "attribution_url": "https://fokert.budapestikozmuvek.hu/a-bp-fatar-alkalmazas",
+      "license_comment": "Project owner confirms permission; no published open-data reuse license or downstream permission is established. Partial FŐKERT store-1 inventory only, not all FŐKERT holdings or citywide coverage. Other FŐKERT stores and district inventories excluded; category IDs have conflicting botanical meanings across stores."
+    }
   }
 ]
