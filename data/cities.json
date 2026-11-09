@@ -4768,5 +4768,73 @@
       "attribution_url": "https://fokert.budapestikozmuvek.hu/a-bp-fatar-alkalmazas",
       "license_comment": "Project owner confirms permission; no published open-data reuse license or downstream permission is established. Partial FŐKERT store-1 inventory only, not all FŐKERT holdings or citywide coverage. Other FŐKERT stores and district inventories excluded; category IDs have conflicting botanical meanings across stores."
     }
+  },
+  {
+    "code": "hongkong_cn",
+    "name": "Hong Kong",
+    "country": "CN",
+    "license": {
+      "api_url": "https://portal.csdi.gov.hk/server/rest/services/common/housingauthority_rcd_1788331402958_44090/FeatureServer/0",
+      "portal_url": "https://data.gov.hk/en-data/dataset/hk-housing-lt-lt",
+      "license": "https://data.gov.hk/en/terms-and-conditions",
+      "license_name": "DATA.GOV.HK Terms and Conditions of Use",
+      "terms_url": "https://portal.csdi.gov.hk/csdi-webpage/doc/TNC?lang=en",
+      "dataset_name": "Large Trees managed by Housing Authority (HA) in existing housing estates; Tree (Drainage Services Department)",
+      "attribution_name": "Hong Kong Housing Authority and Drainage Services Department, Government of the Hong Kong Special Administrative Region; DATA.GOV.HK and CSDI Portal",
+      "attribution_url": "https://portal.csdi.gov.hk/",
+      "notices": [
+        "Intellectual property rights in the source data belong to the Government of the Hong Kong Special Administrative Region and the relevant organisations."
+      ]
+    }
+  },
+  {
+    "code": "capetown_za",
+    "name": "Cape Town",
+    "country": "ZA",
+    "license": {
+      "api_url": "https://esapqa.capetown.gov.za/agsext/rest/services/Theme_Based/ODP_SPLIT_10/FeatureServer/16",
+      "portal_url": "https://www.arcgis.com/home/item.html?id=4ea4a97a40744b90a99e87a66270b6be",
+      "license": "https://www.capetown.gov.za/general/city-of-cape-town-open-data-terms-of-use/",
+      "license_name": "City of Cape Town Open Data terms of use",
+      "terms_url": "https://www.capetown.gov.za/media/vg2plaql/open_data_policy.pdf",
+      "dataset_name": "Polyphagous Shot Hole Borer Beetle (PSHB) Sightings",
+      "attribution_name": "City of Cape Town",
+      "attribution_url": "https://www.capetown.gov.za/"
+    }
+  },
+  {
+    "code": "tokyo_jp",
+    "name": "Tokyo",
+    "country": "JP",
+    "license": {
+      "api_url": "https://www.opendata.metro.tokyo.lg.jp/kensetsu/tokyo_gairoju.csv",
+      "portal_url": "https://catalog.data.metro.tokyo.lg.jp/ja/dataset/t000014d2000000029",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "license_name": "CC BY 4.0 International",
+      "dataset_name": "都道の街路樹",
+      "attribution_name": "Tokyo Metropolitan Government, Bureau of Construction",
+      "attribution_url": "https://www.kensetsu.metro.tokyo.lg.jp/",
+      "notices": [
+        "Modified: metropolitan-road records from the 23 wards and Tama combined; botanical names crosswalked using Tokyo Metropolitan Government and Forestry and Forest Products Research Institute references. Only verified tree labels retained; duplicates and invalid coordinates excluded."
+      ]
+    }
+  },
+  {
+    "code": "taipei_tw",
+    "name": "Taipei",
+    "country": "TW",
+    "license": {
+      "api_url": "https://tppkl.blob.core.windows.net/blobfs/TaipeiTree.json",
+      "portal_url": "https://data.gov.tw/en/datasets/128274",
+      "license": "https://data.gov.tw/license",
+      "license_name": "Open Government Data License 1.0",
+      "dataset_name": "臺北市行道樹位置圖",
+      "attribution_name": "臺北市政府工務局公園路燈工程管理處",
+      "attribution_url": "https://pkl.gov.taipei/",
+      "notices": [
+        "臺北市政府工務局公園路燈工程管理處 2026 臺北市行道樹位置圖。此開放資料依政府資料開放授權條款 (Open Government Data License) 進行公眾釋出，使用者於遵守本條款各項規定之前提下，得利用之。",
+        "Modified: TWD97 coordinates converted to WGS84; only tree labels with verified government botanical crosswalks retained. Ambiguous species retained at genus level."
+      ]
+    }
   }
 ]
