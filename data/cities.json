@@ -4322,7 +4322,9 @@
     "license": {
       "api_url": "https://dallastx.treekeepersoftware.com",
       "portal_url": "https://dallascityhall.com/projects/forestry/Pages/Inventory.aspx",
-      "license_comment": "No dataset-specific reuse license verified for the public TreeKeeper viewer. Request modification and redistribution clarification from the City and inventory publisher."
+      "dataset_name": "DRG Inventory (Trees 2024) and Tree Sites",
+      "attribution_name": "City of Dallas",
+      "license_comment": "Project owner confirms permission to use and redistribute these inventories; no published open-data reuse license or general downstream reuse grant is established."
     }
   },
   {
@@ -4835,6 +4837,20 @@
         "臺北市政府工務局公園路燈工程管理處 2026 臺北市行道樹位置圖。此開放資料依政府資料開放授權條款 (Open Government Data License) 進行公眾釋出，使用者於遵守本條款各項規定之前提下，得利用之。",
         "Modified: TWD97 coordinates converted to WGS84; only tree labels with verified government botanical crosswalks retained. Ambiguous species retained at genus level."
       ]
+    }
+  },
+  {
+    "code": "greenwich_ct_us",
+    "name": "Greenwich",
+    "state": "CT",
+    "country": "US",
+    "license": {
+      "api_url": "https://services2.arcgis.com/cYiUUgMhu4YB7W9G/arcgis/rest/services/Parks_Trees_GIS_gdb/FeatureServer/1",
+      "portal_url": "https://www.arcgis.com/home/item.html?id=e187360380194febb1aaa875bcd68e0c",
+      "dataset_name": "Greenwich Tree Inventory - Parks_trees_Merge",
+      "attribution_name": "Town of Greenwich and Greenwich Tree Conservancy",
+      "attribution_url": "https://www.greenwichct.gov/944/Geographic-Information-Systems",
+      "license_comment": "Project owner confirms permission to use and redistribute this inventory; no published open-data reuse license or general downstream reuse grant is established."
     }
   }
 ]
