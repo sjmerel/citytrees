@@ -34,7 +34,7 @@ class MapTileLayer : TileProvider {
             overlay = null
             field = value
             if (value != null) {
-                overlay = value.addTileOverlay(TileOverlayOptions().tileProvider(this).fadeIn(false))
+                overlay = value.addTileOverlay(TileOverlayOptions().tileProvider(this).fadeIn(true))
             }
         }
 
