@@ -4051,10 +4051,10 @@
     "state": "NM",
     "country": "US",
     "license": {
-      "api_url": "https://services.arcgis.com/LGtNQDlIZBdntoA9/arcgis/rest/services/NM_PublicTree_Map/FeatureServer/0",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=976b37c350e34bacb9b4607b2888852e&sublayer=0",
-      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: emcrae@chi-phi.org.",
-      "dataset_name": "New Mexico Tree Plotter Inventory, 2019",
+      "api_url": "https://pg-cloud.com/main/server/db.php",
+      "portal_url": "https://pg-cloud.com/NewMexico/",
+      "license_comment": "No reuse license stated on the inspected public inventory pages; modification and redistribution rights remain unconfirmed. Participating communities have varying survey dates. Excludes Santa Fe and Las Cruces municipal organizations in favor of their separate inventories. Records with missing lookup definitions are omitted and reported.",
+      "dataset_name": "New Mexico TreePlotter Inventory",
       "attribution_name": "https://pg-cloud.com/NewMexico/"
     }
   },
@@ -4088,12 +4088,12 @@
     "state": "MN",
     "country": "US",
     "license": {
-      "api_url": "https://services.arcgis.com/t2tplTEKxuL7eSvF/arcgis/rest/services/Treeplotter_Inventory/FeatureServer/2",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=efd9f39819d54020b610ef0f5f0c0c04&sublayer=2",
-      "license_comment": "No reuse license stated in inspected dataset metadata; request clarification for modification and redistribution. Contact: gis@ci.moorhead.mn.us.",
-      "dataset_name": "Treeplotter_Inventory",
-      "attribution_name": "City of Moorhead GIS",
-      "terms_url": "https://www.arcgis.com/home/item.html?id=efd9f39819d54020b610ef0f5f0c0c04"
+      "api_url": "https://pg-cloud.com/main/server/db.php",
+      "portal_url": "https://www.moorheadmn.gov/parks-rec/environment-and-sustainability/urban-forestry/tree-inventory/",
+      "license_comment": "No reuse license stated on the inspected public inventory pages; modification and redistribution rights remain unconfirmed. Uses the live TreePlotter botanical dictionary, retaining genus-only identifications when species is unavailable or dictionary fields conflict. Records without a botanical name or genus are omitted.",
+      "dataset_name": "City of Moorhead Tree Inventory",
+      "attribution_name": "City of Moorhead",
+      "attribution_url": "https://pg-cloud.com/Moorhead/"
     }
   },
   {
@@ -4933,6 +4933,34 @@
       "dataset_name": "Iowa DNR Urban Tree Inventory Public",
       "attribution_name": "Iowa Department of Natural Resources",
       "license_comment": "No reuse license stated in the inspected public inventory metadata; modification and redistribution rights remain unconfirmed. Community inventories have varying survey dates. Excludes Davenport, Des Moines and Dubuque, which have separate registered inventories."
+    }
+  },
+  {
+    "code": "montana_mt_us",
+    "name": "Montana (DNRC communities)",
+    "maxRadiusDegrees": 20,
+    "state": "MT",
+    "country": "US",
+    "license": {
+      "api_url": "https://pg-cloud.com/main/server/db.php",
+      "portal_url": "https://prod-dnrc.mt.gov/Forestry/Resources/statewide-tree-inventories",
+      "dataset_name": "Montana Statewide Urban Tree Inventory",
+      "attribution_name": "Montana Department of Natural Resources and Conservation and contributing communities",
+      "license_comment": "No reuse license stated on the inspected public inventory pages; modification and redistribution rights remain unconfirmed. Participating communities have varying survey dates. Excludes Bozeman and Missoula municipal organizations in favor of their separate inventories."
+    }
+  },
+  {
+    "code": "colorado_co_us",
+    "name": "Colorado (CO-TreeView communities)",
+    "maxRadiusDegrees": 10,
+    "state": "CO",
+    "country": "US",
+    "license": {
+      "api_url": "https://cotreeview.com/main/server/db.php",
+      "portal_url": "https://www.coloradotrees.org/co-treeview",
+      "dataset_name": "CO-TreeView",
+      "attribution_name": "Colorado Tree Coalition, Colorado State Forest Service and contributing organizations",
+      "license_comment": "No reuse license stated on the inspected public inventory pages; modification and redistribution rights remain unconfirmed. Participating organizations have varying survey dates. Excludes municipal organizations in Aspen, Aurora, Boulder, Denver, Durango, Grand Junction and Loveland in favor of their separate inventories. Records with missing lookup definitions are omitted and reported."
     }
   },
   {

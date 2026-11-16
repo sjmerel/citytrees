@@ -72,6 +72,15 @@
       ]
     },
     {
+      "place": "California (Cal Poly Urban Forest Inventory), CA, US",
+      "reason": "The published statewide inventory explicitly obscures individual locality points for privacy and offers summary downloads, not a verified exact-location botanical export suitable for identifying individual trees. Revisit only if the publisher releases an authorized precise per-tree dataset.",
+      "urls": [
+        "https://storymaps.arcgis.com/stories/24d270ef645c4384b75493e9f26272f7",
+        "https://ufei.calpoly.edu/"
+      ],
+      "checked_on": "2026-11-16"
+    },
+    {
       "place": "Cape Coral, FL, US",
       "reason": "the exposed 34,287-record layer is a 2010–2013 inventory and its SPECIES field contains common names only, not botanical names.",
       "urls": [
