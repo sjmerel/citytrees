@@ -1,9 +1,9 @@
 #!/usr/bin/env npx tsx
 
-import axios from 'axios';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { CityUtil } from './city_util';
 
 interface Tree {
   _id: number;
@@ -13,42 +13,73 @@ interface Tree {
   longitud: string | null;
 }
 
-// Ajuntament de Barcelona, Arbrat de parcs; CC BY 4.0.
+interface Geometry {
+  _id: number;
+  geom_fid: string;
+  geom_wgs84: string;
+}
+
+interface Relation {
+  _id: number;
+  geom_fid: string;
+  especie_id: string;
+}
+
+interface Species {
+  _id: number;
+  especie_id: string;
+  nom_ctf: string | null;
+}
+
+// Ajuntament de Barcelona, Arbrat de parcs and Biodiversity Atlas; CC BY 4.0.
 // https://opendata-ajuntament.barcelona.cat/data/en/dataset/arbrat-parcs
+// https://opendata-ajuntament.barcelona.cat/data/en/dataset/atles-biodiversitat-arbrat-geometries
+// https://opendata-ajuntament.barcelona.cat/data/en/dataset/atles-biodiversitat-arbrat-rel-geometria-especie
+// https://opendata-ajuntament.barcelona.cat/data/en/dataset/atles-biodiversitat-arbrat-especies
 // https://creativecommons.org/licenses/by/4.0/
-// Attribute the Ajuntament de Barcelona. This is park-tree coverage only;
-// the companion street/zone inventory bulk resources currently return 403.
+// The Atlas includes street and park trees, overlapping the park inventory.
+// Match the park source's seven-decimal coordinates; process.ts canonicalizes
+// names before merging agreeing co-located trees or dropping conflicts.
+// Bulk downloads return 403; use the CKAN datastore.
 async function main() {
   let endpoint = 'https://opendata-ajuntament.barcelona.cat/data/api/3/action/datastore_search';
-  let resourceId = '23076aaa-4f0e-4045-b4e5-61d5e651b5a6';
-  async function getPage(offset: number, limit: number) {
-    let response = await axios.get(endpoint, {
-      params: { resource_id: resourceId, limit, offset }, timeout: 60000
-    });
-    let result = response.data.result;
-    assert(response.data.success && result && Number.isSafeInteger(result.total));
-    assert(Array.isArray(result.records));
-    return result as { total: number; records: Tree[] };
+  async function getRows<T extends { _id: number }>(resourceId: string, label: string) {
+    async function getPage(offset: number, limit: number) {
+      let response = await CityUtil.getWithRetry(endpoint, {
+        params: { resource_id: resourceId, limit, offset, sort: '_id asc' }, timeout: 60000
+      });
+      let result: { total: number; records: T[] } = response.data.result;
+      assert(response.data.success && result && Number.isSafeInteger(result.total));
+      assert(Array.isArray(result.records));
+      return result;
+    }
+    let first = await getPage(0, 1);
+    assert(first.total > 0);
+    let rows: T[] = [];
+    let ids = new Set<number>();
+    for (let offset = 0; offset < first.total; offset += 10000) {
+      let page = await getPage(offset, 10000);
+      assert.equal(page.total, first.total, `${label} changed during download; retry`);
+      assert.equal(page.records.length, Math.min(10000, first.total - offset),
+        `Incomplete ${label} page`);
+      for (let row of page.records) {
+        assert(Number.isSafeInteger(row._id) && !ids.has(row._id),
+          `Invalid/repeated ${label} row ID`);
+        ids.add(row._id);
+      }
+      rows.push(...page.records);
+      console.log(`${label}: ${rows.length}/${first.total}`);
+    }
+    assert.equal(rows.length, first.total);
+    assert.equal((await getPage(0, 1)).total, first.total,
+      `${label} changed during download; retry`);
+    return rows;
   }
-  let first = await getPage(0, 1);
-  assert(first.total > 0);
-  let rows: Tree[] = [];
-  for (let offset = 0; offset < first.total; offset += 1000) {
-    let page = await getPage(offset, 1000);
-    assert.equal(page.total, first.total, 'Barcelona park inventory changed during download');
-    assert(page.records.length > 0 && page.records.length <= 1000);
-    rows.push(...page.records);
-    console.log(`arbrat-parcs: ${rows.length}/${first.total}`);
-  }
-  assert.equal(rows.length, first.total, 'Incomplete Barcelona park inventory');
-  assert.equal((await getPage(0, 1)).total, first.total,
-    'Barcelona park inventory changed during download; retry');
-  let ids = new Set<number>();
+
+  let rows = await getRows<Tree>('23076aaa-4f0e-4045-b4e5-61d5e651b5a6', 'arbrat-parcs');
   let trees = [];
   let omitted = 0;
   for (let row of rows) {
-    assert(Number.isSafeInteger(row._id) && !ids.has(row._id), 'Invalid/repeated Barcelona row ID');
-    ids.add(row._id);
     assert(typeof row.tipus_element === 'string');
     if (row.tipus_element !== 'ARBRE PARC') {
       ++omitted;
@@ -68,8 +99,51 @@ async function main() {
     trees.push({ lat, lon, name });
   }
   assert(trees.length > 0);
+  let parkCount = trees.length;
+
+  let geometries = await getRows<Geometry>('7c64504a-a718-48fe-b466-8c93a160b0dd', 'Atlas geometries');
+  let relations = await getRows<Relation>('506c3c5d-8f9b-409d-ae96-c0912da4a505', 'Atlas relationships');
+  let species = await getRows<Species>('c654c488-2822-4e51-ad9b-f443989a4b41', 'Atlas species');
+  let names = new Map<string, string | null>();
+  for (let row of species) {
+    assert(typeof row.especie_id === 'string' && /^\d+$/.test(row.especie_id));
+    assert(!names.has(row.especie_id), 'Repeated Atlas species ID');
+    assert(row.nom_ctf === null || typeof row.nom_ctf === 'string');
+    names.set(row.especie_id, row.nom_ctf?.trim().replace(/\s+/g, ' ') ?? null);
+  }
+  let speciesByGeometry = new Map<string, string>();
+  for (let row of relations) {
+    assert(typeof row.geom_fid === 'string' && /^\d+$/.test(row.geom_fid));
+    assert(typeof row.especie_id === 'string' && names.has(row.especie_id),
+      'Atlas relationship references an unknown species');
+    assert(!speciesByGeometry.has(row.geom_fid), 'Repeated Atlas geometry relationship');
+    speciesByGeometry.set(row.geom_fid, row.especie_id);
+  }
+  assert.equal(geometries.length, relations.length, 'Atlas geometry/relationship count mismatch');
+  let ids = new Set<string>();
+  for (let row of geometries) {
+    assert(typeof row.geom_fid === 'string' && /^\d+$/.test(row.geom_fid));
+    assert(!ids.has(row.geom_fid), 'Repeated Atlas geometry ID');
+    ids.add(row.geom_fid);
+    let speciesId = speciesByGeometry.get(row.geom_fid);
+    assert(speciesId !== undefined, 'Atlas geometry has no species relationship');
+    let name = names.get(speciesId);
+    if (!name || /^(?:-|n\.?c\.?|no informat|desconegut)$/i.test(name)) {
+      ++omitted;
+      continue;
+    }
+    assert(typeof row.geom_wgs84 === 'string');
+    let point = /^POINT\s*\(\s*([-+]?\d+(?:\.\d+)?)\s+([-+]?\d+(?:\.\d+)?)\s*\)$/.exec(row.geom_wgs84);
+    assert(point, 'Invalid Atlas point geometry');
+    let lon = Number(point[1]), lat = Number(point[2]);
+    assert(Number.isFinite(lat) && Number.isFinite(lon));
+    assert(lat > 41.3 && lat < 41.5 && lon > 2.0 && lon < 2.3,
+      'Atlas coordinate outside Barcelona');
+    trees.push({ lat: Number(lat.toFixed(7)), lon: Number(lon.toFixed(7)), name });
+  }
+  assert(trees.length > parkCount);
   fs.writeFileSync(path.join(__dirname, 'barcelona_es.json'), JSON.stringify(trees, null, 2));
-  console.log(`barcelona_es: ${trees.length} park trees; ${omitted} non-tree/unidentified sites omitted`);
+  console.log(`barcelona_es: ${parkCount} park + ${trees.length - parkCount} Atlas records; ${omitted} non-tree/unidentified sites omitted`);
 }
 
 main().catch(error => {

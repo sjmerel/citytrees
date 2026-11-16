@@ -414,5 +414,17 @@
   "Eucryphia lucida": {
     "matchedName": "Eucryphia lucida",
     "commonNames": ["Leatherwood"]
+  },
+  "Artocarpus": {
+    "matchedName": "Artocarpus",
+    "commonNames": []
+  },
+  "Dypsis": {
+    "matchedName": "Dypsis",
+    "commonNames": []
+  },
+  "Persea": {
+    "matchedName": "Persea",
+    "commonNames": []
   }
 }

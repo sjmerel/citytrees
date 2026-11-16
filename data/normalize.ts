@@ -12,7 +12,7 @@ export namespace Normalize {
 
   export function normalizeHybridMarker(name: string): string {
     // replace "x" with unicode "×" for hybrids
-    name = name.replace(' x ', ` ${hybridMarker} `);
+    name = name.replace(/ x /g, ` ${hybridMarker} `);
     name = name.replace(/ x$/, ` ${hybridMarker}`);
     name = name.replace(/^x /, `${hybridMarker} `);
     return name;

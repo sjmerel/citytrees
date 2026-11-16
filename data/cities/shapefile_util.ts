@@ -8,7 +8,8 @@ import { randomUUID } from 'node:crypto';
 export async function readPointShapefile(
   url: string,
   filePrefix: string,
-  visit: (attributes: Record<string, string>, x: number, y: number) => void
+  visit: (attributes: Record<string, string>, x: number, y: number) => void,
+  options: { memberPattern?: RegExp; projectionIfMissing?: string } = {}
 ): Promise<{ sourceCount: number; projection: string }> {
   let response = await axios.get(url, { responseType: 'arraybuffer', timeout: 120000 });
   let id = `${filePrefix}-${randomUUID()}`;
@@ -18,6 +19,8 @@ export async function readPointShapefile(
     fs.writeFileSync(archivePath, response.data);
     let members = execFileSync('unzip', ['-Z1', archivePath], { encoding: 'utf8' })
       .split(/\r?\n/).filter(Boolean);
+    let { memberPattern } = options;
+    if (memberPattern) members = members.filter(name => memberPattern.test(name));
     let member = (extension: string) => {
       let matches = members.filter(name => path.extname(name).toLowerCase() === extension);
       assert.equal(matches.length, 1, `Expected one ${extension} in ${filePrefix} archive`);
@@ -27,9 +30,11 @@ export async function readPointShapefile(
     let dbfPath = path.join(__dirname, `.${id}.dbf`);
     let prjPath = path.join(__dirname, `.${id}.prj`);
     extractedPaths.push(shpPath, dbfPath, prjPath);
-    for (let [archiveMember, outputPath] of [
-      [member('.shp'), shpPath], [member('.dbf'), dbfPath], [member('.prj'), prjPath]
-    ]) {
+    let extractions = [[member('.shp'), shpPath], [member('.dbf'), dbfPath]];
+    let hasProjection = members.some(name => path.extname(name).toLowerCase() === '.prj');
+    if (hasProjection) extractions.push([member('.prj'), prjPath]);
+    else assert(options.projectionIfMissing, `Missing projection in ${filePrefix} archive`);
+    for (let [archiveMember, outputPath] of extractions) {
       let fd = fs.openSync(outputPath, 'w');
       try {
         execFileSync('unzip', ['-p', archivePath, archiveMember], {
@@ -40,8 +45,11 @@ export async function readPointShapefile(
       }
     }
 
-    let projection = fs.readFileSync(prjPath, 'utf8');
-    assert(/GCS_WGS_1984|GCS_GDA_1994/.test(projection), `Unexpected CRS in ${filePrefix}`);
+    let projection = hasProjection ? fs.readFileSync(prjPath, 'utf8') : options.projectionIfMissing;
+    assert(typeof projection === 'string' && projection.trim(), `Empty projection in ${filePrefix} archive`);
+    if (options.projectionIfMissing === undefined) {
+      assert(/GCS_WGS_1984|GCS_GDA_1994/.test(projection), `Unexpected CRS in ${filePrefix}`);
+    }
     let shapes = fs.readFileSync(shpPath);
     assert.equal(shapes.readInt32BE(24) * 2, shapes.length, 'Invalid shapefile length');
     assert.equal(shapes.readInt32LE(32), 1, 'Expected a point shapefile');

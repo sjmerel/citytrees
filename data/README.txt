@@ -40,6 +40,7 @@
 # How to add data
 
 * to add a city, add a script to cities/, and add an entry for the city to cities.json.  include license URL if found, and license comment if the license may be restrictive for our use.
+* some cities may have multiple datasets (for example, one for street trees and one for park trees).  Combine them if it is simple (e.g. they can be found on the same portal site and use the same license).
 * run process.ts (see above) to build the data with the new city.
 * you may want to update the manually mantained JSON files described above to handle any new names. (Typically this is done with an AI agent.)
   * normalization:

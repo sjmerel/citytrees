@@ -281,9 +281,10 @@
       "portal_url": "https://www.arcgis.com/home/item.html?id=af5db0cb62984fe8afea30e8b2389904&sublayer=0",
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "terms_url": "https://www.arcgis.com/home/item.html?id=af5db0cb62984fe8afea30e8b2389904",
-      "dataset_name": "Tree Data Survey 2026 SDCC",
+      "dataset_name": "Tree Data Survey 2026 SDCC; TreeCarbon",
       "attribution_name": "South Dublin County Council",
       "license_name": "CC BY 4.0 International",
+      "license_comment": "CC BY 4.0 applies to the survey. Missing positions are supplemented from the council's 2024 TreeCarbon layer; its item states no reuse license: https://www.arcgis.com/home/item.html?id=d230920b33a2423b8179fb45aba8ad7c.",
       "notices": [
         "Contains Irish Public Sector Data licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) licence."
       ]
@@ -447,20 +448,8 @@
     "license": {
       "api_url": "https://opendata-ajuntament.barcelona.cat/data/api/3/action/datastore_search",
       "license": "https://creativecommons.org/licenses/by/4.0/",
-      "dataset_name": "Trees in the parks of the city of Barcelona",
-      "attribution_name": "Ajuntament de Barcelona - Medi ambient",
-      "license_name": "CC BY 4.0 International"
-    }
-  },
-  {
-    "code": "barcelona_atlas_es",
-    "name": "Barcelona (Biodiversity Atlas)",
-    "country": "ES",
-    "license": {
-      "api_url": "https://opendata-ajuntament.barcelona.cat/data/api/3/action/datastore_search",
-      "portal_url": "https://opendata-ajuntament.barcelona.cat/data/en/dataset/atles-biodiversitat-arbrat-geometries",
-      "license": "https://creativecommons.org/licenses/by/4.0/",
-      "dataset_name": "Tree inventory of the Biodiversity Atlas of the city of Barcelona",
+      "portal_url": "https://opendata-ajuntament.barcelona.cat/data/en/dataset",
+      "dataset_name": "Trees in the parks of the city of Barcelona; Tree inventory of the Biodiversity Atlas of the city of Barcelona",
       "attribution_name": "Ajuntament de Barcelona - Medi ambient",
       "license_name": "CC BY 4.0 International"
     }
@@ -1011,11 +1000,11 @@
     "state": "OR",
     "country": "US",
     "license": {
-      "api_url": "https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer/1415",
-      "portal_url": "https://www.arcgis.com/home/item.html?id=c2b02440053f459db71e1109b9947e51&sublayer=1415",
+      "api_url": "https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer",
+      "portal_url": "https://gis-pdx.opendata.arcgis.com/search?q=trees",
       "license": "https://opendatacommons.org/licenses/pddl/1-0/",
       "terms_url": "https://www.portlandmaps.com/bps/arpa/tos.pdf",
-      "dataset_name": "Street Tree Inventory - Active Records",
+      "dataset_name": "Street Tree Inventory - Active Records; Parks Tree Inventory",
       "attribution_name": "City of Portland - Bureau of Parks and Recreation",
       "license_name": "Open Data Commons Public Domain Dedication and License (PDDL) 1.0"
     }
@@ -1288,6 +1277,19 @@
       "dataset_name": "Street Trees",
       "attribution_name": "The Regional Municipality of York",
       "license_name": "York Region Open Data Licence 1.0"
+    }
+  },
+  {
+    "code": "dublin_ie",
+    "name": "Dublin",
+    "country": "IE",
+    "license": {
+      "api_url": "https://data.smartdublin.ie/dataset/9db57181-c6e7-4069-b9ec-d7d316ace784/resource/1ad731c9-4377-43c8-9d7f-942723a9e3cf/download/tree.shapefile.zip",
+      "portal_url": "https://data.smartdublin.ie/dataset/tree-dcc",
+      "license": "http://www.opendefinition.org/licenses/cc-by",
+      "license_name": "Creative Commons Attribution",
+      "dataset_name": "Tree DCC",
+      "attribution_name": "Dublin City Council"
     }
   },
   {
@@ -4837,6 +4839,113 @@
       "attribution_name": "Town of Greenwich and Greenwich Tree Conservancy",
       "attribution_url": "https://www.greenwichct.gov/944/Geographic-Information-Systems",
       "license_comment": "Project owner confirms permission to use and redistribute this inventory; no published open-data reuse license or general downstream reuse grant is established."
+    }
+  },
+  {
+    "code": "sanjose_cr",
+    "name": "San Jose",
+    "country": "CR",
+    "license": {
+      "api_url": "https://services5.arcgis.com/0ZvuJDanWVJc4vYr/arcgis/rest/services/SIG_SER_%C3%81RBOLES_C%C3%8DRCULOS/FeatureServer/0",
+      "portal_url": "https://www.arcgis.com/home/item.html?id=d51ef3f707354915aa54c5ab41b95613",
+      "dataset_name": "SIG_SER_ARBOLES_CIRCULOS",
+      "attribution_name": "Municipalidad de San Jose",
+      "license_comment": "No reuse license stated in the municipal inventory metadata; modification and redistribution rights remain unconfirmed. Survey date is unspecified."
+    }
+  },
+  {
+    "code": "kampala_ug",
+    "name": "Kampala",
+    "country": "UG",
+    "license": {
+      "api_url": "https://services2.arcgis.com/v3NaWnqsu9WnV5NK/arcgis/rest/services/Kampala_Tree_Audit_2025_WFL1/FeatureServer/1",
+      "portal_url": "https://www.arcgis.com/home/item.html?id=b520ea196dfd463ca8f2f45e3261641d",
+      "dataset_name": "Kampala Tree Audit 2025",
+      "attribution_name": "Kampala Capital City Authority Landscape team (as described by the publisher)",
+      "license_comment": "No reuse license stated; modification and redistribution rights remain unconfirmed. Public copy published by fkafeero, whose affiliation with KCCA has not been independently established."
+    }
+  },
+  {
+    "code": "valencia_es",
+    "name": "Valencia",
+    "country": "ES",
+    "license": {
+      "api_url": "https://geoportal.valencia.es/server/rest/services/OPENDATA/MedioAmbiente/MapServer/151",
+      "portal_url": "https://opendata-valencia.iotplatform.telefonica.com/dataset/arbratge-arbolado",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "license_name": "CC BY 4.0 International",
+      "dataset_name": "Arbratge - Arbolado",
+      "attribution_name": "Ajuntament de Valencia"
+    }
+  },
+  {
+    "code": "seville_es",
+    "name": "Seville",
+    "country": "ES",
+    "license": {
+      "api_url": "https://services1.arcgis.com/hcmP7kr0Cx3AcTJk/arcgis/rest/services/Parques_y_Jardines_Inventario_de_Arboles/FeatureServer/13",
+      "portal_url": "https://www.arcgis.com/home/item.html?id=69cabe3f2f4b48159f23945dead37ccc",
+      "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "license_name": "CC BY-NC 4.0 International",
+      "dataset_name": "Parques y Jardines: Inventario de Arboles; Inventario de Palmeras",
+      "attribution_name": "Ayuntamiento de Sevilla, Servicio de Parques y Jardines",
+      "license_comment": "Noncommercial reuse only. Combines the separately licensed tree inventory and palm inventory (https://www.arcgis.com/home/item.html?id=7345f428d1224e7ea6e06c78e0577c15), describing 2024 surveys."
+    }
+  },
+  {
+    "code": "goldcoast_qld_au",
+    "name": "Gold Coast",
+    "state": "QLD",
+    "country": "AU",
+    "license": {
+      "api_url": "https://services.arcgis.com/3vStCH7NDoBOZ5zn/arcgis/rest/services/Urban_Forest/FeatureServer/0",
+      "portal_url": "https://data-goldcoast.opendata.arcgis.com/datasets/fe6b95356ae147fda4119434769a5df5_0/about",
+      "license": "https://creativecommons.org/licenses/by/3.0/au/",
+      "license_name": "CC BY 3.0 Australia",
+      "dataset_name": "Urban Forest",
+      "attribution_name": "City of Gold Coast",
+      "license_comment": "August 2021 public snapshot; latest recorded arborist inspections are from September 2020. Undocumented health codes are excluded."
+    }
+  },
+  {
+    "code": "bengaluru_ka_in",
+    "name": "Bengaluru",
+    "state": "KA",
+    "country": "IN",
+    "license": {
+      "api_url": "https://raw.githubusercontent.com/skthewimp/bengaluru-tree-census-data/main/data/raw/2026-01/bbmp-tree-census-jan-2026.zip",
+      "portal_url": "https://data.opencity.in/dataset/bengaluru-tree-census-data",
+      "license_name": "Other (Public Domain), as labelled by OpenCity",
+      "dataset_name": "BBMP Tree Census Data - January 2026",
+      "attribution_name": "BBMP / KSRSAC, via OpenCity and the skthewimp public mirror",
+      "license_comment": "OpenCity metadata labels this resource public domain; the underlying municipal redistribution grant is not independently confirmed. Uses the January 2026 mirror because primary downloads return 403; the newer July export is unavailable. Partial coverage of 144 historical wards, not the whole metro."
+    }
+  },
+  {
+    "code": "iowa_ia_us",
+    "name": "Iowa (DNR communities)",
+    "maxRadiusDegrees": 5,
+    "state": "IA",
+    "country": "US",
+    "license": {
+      "api_url": "https://services2.arcgis.com/r6iFVcMJeA4kB4GC/arcgis/rest/services/Iowa_DNR_Urban_Tree_Inventory_Public/FeatureServer/0",
+      "portal_url": "https://www.iowadnr.gov/programs-services/forestry-resources/urban-forestry",
+      "dataset_name": "Iowa DNR Urban Tree Inventory Public",
+      "attribution_name": "Iowa Department of Natural Resources",
+      "license_comment": "No reuse license stated in the inspected public inventory metadata; modification and redistribution rights remain unconfirmed. Community inventories have varying survey dates. Excludes Davenport, Des Moines and Dubuque, which have separate registered inventories."
+    }
+  },
+  {
+    "code": "auckland_nz",
+    "name": "Auckland",
+    "country": "NZ",
+    "license": {
+      "api_url": "https://mapspublic.aucklandcouncil.govt.nz/arcgis/rest/services/LiveMaps/ParkAssetPublic/MapServer/143",
+      "portal_url": "https://geomapspublic.aucklandcouncil.govt.nz/viewer/",
+      "dataset_name": "GeoMaps Tree Register",
+      "attribution_name": "Auckland Council",
+      "terms_url": "https://geomapspublic.aucklandcouncil.govt.nz/viewer/disclaimer/disclaimer.html",
+      "license_comment": "Project owner confirms written permission to use and republish this inventory. GeoMaps terms otherwise require prior written consent for substantial copying; no general downstream reuse licence has been established."
     }
   }
 ]
