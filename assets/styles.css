@@ -86,15 +86,24 @@ p {
     margin-bottom: 3px;
 }
 
+.cities .expand-hint {
+    font-weight: normal;
+    opacity: 60%;
+}
+
+.cities details[open] .expand-hint {
+    display: none;
+}
+
 .tree-count {
     opacity: 60%;
 }
 
 .license-statement {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.4;
+    margin-top: 12px;
     margin-bottom: 6px;
-    margin-left: 18px;
 }
 
 .city-request {

@@ -136,7 +136,7 @@ object HTMLView {
                     "<li style=\"list-style: none\"><details><summary style=\"font-size: inherit; font-weight: normal\">${name.htmlEscaped} <span class=\"tree-count\">(${numberFormat.format(sites)} trees)</span></summary>${licenseHTML(license)}</details></li>"
                 }
             "<h3>${title.htmlEscaped}</h3><ul>${items.joinToString("")}</ul>"
-        } + "<p class=\"license-statement\">All datasets listed above are modified by City Trees: records filtered, botanical names standardized, and data converted to map tiles.</p>"
+        }
     }
 
     private fun licenseHTML(license: License?): String {

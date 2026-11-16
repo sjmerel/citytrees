@@ -110,7 +110,7 @@ struct HTMLView: UIViewRepresentable {
                     "<li style=\"list-style: none\"><details><summary style=\"font-size: inherit; font-weight: normal\">\(name.htmlEscaped) <span class=\"tree-count\">(\(sites.formatted()) trees)</span></summary>\(licenseHTML(license))</details></li>"
                 }
             return "<h3>\(title.htmlEscaped)</h3><ul>\(items.joined())</ul>"
-        }.joined() + "<p class=\"license-statement\">All datasets listed above are modified by City Trees: records filtered, botanical names standardized, and data converted to map tiles.</p>"
+        }.joined()
     }
 
     private static func licenseHTML(_ license: License?) -> String {

@@ -22,7 +22,7 @@ export function citiesHTML(cities: City[]): string {
                 .map(({ name, sites, license }) =>
                     `<li style="list-style: none"><details><summary style="font-size: inherit; font-weight: normal">${htmlEscaped(name)} <span class="tree-count">(${sites.toLocaleString()} trees)</span></summary>${licenseHTML(license)}</details></li>`);
             return `<h3>${htmlEscaped(title)}</h3><ul>${items.join('')}</ul>`;
-        }).join('') + '<p class="license-statement">All datasets listed above are modified by City Trees: records filtered, botanical names standardized, and data converted to map tiles.</p>';
+        }).join('');
 }
 
 function licenseHTML(license: License | null | undefined): string {
