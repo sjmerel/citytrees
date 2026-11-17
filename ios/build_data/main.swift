@@ -7,6 +7,8 @@ let p = Profiler(name: "main")
 
 let inDir = URL(fileURLWithPath: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : ".", isDirectory: true)
 let outDir = CommandLine.arguments.count > 2 ? URL(fileURLWithPath: CommandLine.arguments[2], isDirectory: true) : inDir
+print("input: \(inDir.relativePath)")
+print("output: \(outDir.relativePath)")
 
 
 // read files

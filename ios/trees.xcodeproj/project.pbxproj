@@ -16,7 +16,20 @@
 		FE0000000000000000000009 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = FE0000000000000000000007 /* about.html */; };
 		FE0000000000000000000011 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = FE0000000000000000000010 /* styles.css */; };
 		FE0000000000000000000013 /* icon_wide.svg in Resources */ = {isa = PBXBuildFile; fileRef = FE0000000000000000000012 /* icon_wide.svg */; };
+		FE0000000000000000000021 /* build_data in Copy build_data to bin */ = {isa = PBXBuildFile; fileRef = AA77FDAE308430F200DF9258 /* build_data */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FE0000000000000000000020 /* Copy build_data to bin */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "$(SRCROOT)/../bin";
+			dstSubfolder = None;
+			files = (
+				FE0000000000000000000021 /* build_data in Copy build_data to bin */,
+			);
+			name = "Copy build_data to bin";
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		000000000000000000000120 /* trees.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trees.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +174,7 @@
 			buildPhases = (
 				AA77FDAA308430F200DF9258 /* Sources */,
 				AA77FDAB308430F200DF9258 /* Frameworks */,
+				FE0000000000000000000020 /* Copy build_data to bin */,
 			);
 			buildRules = (
 			);
